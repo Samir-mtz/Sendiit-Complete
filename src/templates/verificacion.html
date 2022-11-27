@@ -1,0 +1,8 @@
+{% extends './base.html' %}
+
+{% block title %}Verificacion{% endblock %}
+
+{% block body %}
+<h1>Ya casi esta, {{ current_user.nombre }}!</h1>
+<h2>Hemos enviado un codigo de verificacion a tu correo:{{ current_user.email}}</h2>
+{% endblock %}
