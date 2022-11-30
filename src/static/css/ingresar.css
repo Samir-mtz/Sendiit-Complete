@@ -1,0 +1,150 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+.contenedor-login {
+	/*background-color: yellow;*/
+	text-align: center;
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: row;
+}
+
+.contenedor-login2 {
+	margin-top: 10px;
+	/*background-color: green;*/
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+}
+.contenedor-login img.pequeña {
+	/*background-color: blue;*/
+	margin-left: auto;
+	margin-right: auto;
+	width: 40%;
+	height: 10%;
+	display: flex;
+}
+
+.contenedor-login .titulologin {
+	color: #f9d950;
+	margin-top: 0px;
+	/*background-color: red;*/
+	text-align: center;
+	font-weight: normal;
+	font: italic bold 30px Helvetica, Sans-Serif;
+}
+.contenedor-login .textologin {
+	color: #212e46;
+	font-weight: normal;
+	font: italic bold 10px Helvetica, Sans-Serif;
+	font-size: medium;
+	text-align: center;
+
+}
+.contenedor-login .textologin2 {
+	color: #212e46;
+	font-weight: bolder;
+	font: italic bold 10px Helvetica, Sans-Serif;
+	font-size: medium;
+	text-align: left;
+	margin-left: 100px;
+}
+
+.login-box input[type="email"],
+.login-box input[type="password"] {
+	font: italic 5px Verdana, Sans-Serif;
+	width: 70%;
+	height: 30px;
+	border-radius: 20px;
+}
+.contenedor-login #icono {
+	margin-left: 480px;
+	position: absolute;
+	z-index: 1;
+	background-color: #f9d950;
+	width: 80px;
+	height: 32px;
+	border-radius: 30px;
+}
+
+.contenedor-login .email {
+	margin-top: 2px;
+	margin-left: 3px;
+	height: 29px;
+	width: 38px;
+}
+
+.contenedor-login .candado {
+	margin-top: 2px;
+	margin-left: 3px;
+	height: 29px;
+	width: 25px;
+}
+
+.contenedor-login .recuperacion {
+	color: #354d75;
+	font-weight: bolder;
+	font: italic bold 10px Helvetica, Sans-Serif;
+	font-size: medium;
+	text-align: right;
+	margin-left: 250px;
+}
+
+.contenedor-login .botones .btn button,
+.contenedor-login2 .btn-registrarse button {
+	font-weight: bolder;
+	font-size: large;
+	width: 300px;
+	color: white;
+	background: #212e46;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+	margin-left: auto;
+}
+
+.contenedor-login .botones .btn-ingresar button,
+.contenedor-login2 .btn-registrarse button {
+	margin-top: 10px;
+	background-color: #f9d950;
+	color: #212e46;
+}
+
+.contenedor-login .botones .btn button:hover,
+.contenedor-login2 .btn-registrarse button:hover {
+	transform: scale(1.1);
+}
+
+.contenedor-login .botones .btn {
+	padding-right: 15px;
+}
+
+.contenedor-login .nuevo {
+	height: 100px;
+	width: 500px;
+	color: #212e46;
+	font-weight: bolder;
+	font-size: medium;
+	font-size: medium;
+	text-align: center;
+	display: flex;
+	flex-direction: row;
+	margin-left: 80px;
+}
+
+.contenedor-login2 .btn-registrarse button {
+	background-color: #ffea8c;
+	color: #212e46;
+}
+.contenedor-login .textnuevo {
+	margin-top: 30px;
+	text-align: center;
+}
+.contenedor-login .imagen {
+	opacity: 0.3;
+}

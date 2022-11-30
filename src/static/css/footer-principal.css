@@ -1,0 +1,50 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	grid-template-rows: 100%;
+	text-align: center;
+    align-items: center;
+    /* border: solid 1px red; */
+    color: #fff;
+}
+
+.footer div {
+    /* border: solid 1px red; */
+	background: #212e46;
+    height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+    text-decoration: none;
+	color: #fff;
+    text-align: center;
+    font-size: 150%;
+    /* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright{
+    font-size: 80%;
+}
+
+

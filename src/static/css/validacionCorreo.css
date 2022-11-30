@@ -1,0 +1,60 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+.titulovalidacion{
+	color: #f9d950;
+	margin-top: 0px;
+	text-align: center;
+	font-weight: normal;
+	font: italic bold 22px Helvetica, Sans-Serif;
+}
+img.pequeña{
+	margin-left: auto;
+	margin-right: auto;
+    width: 35%;
+    height: 5%;
+display: flex;
+}
+
+.textgeneral{
+	margin-top: 0px;
+	text-align: center;
+	font-weight: 800;
+	font:italic bold 25px Helvetica, 'Open Sans';  
+}
+.nuevo {
+	color: #212e46;
+	display: flex;
+	flex-direction: row;
+	margin-left: 80px;
+}
+.texto{
+	padding: 10px;
+	float: left;
+	max-width: 60%;
+	margin-left: 40px;
+}
+.imagenreperror
+{
+	padding: 10px;
+	float: right;
+	align-items: center;
+	margin-right: 50px;
+	max-width: 70%;
+}
+.imagenrepemail
+{
+	padding: 10px;
+	float: right;
+	align-items: center;
+	margin-right: 120px;
+	max-width: 50%;
+}
+ .imgn {
+	opacity: 50%;
+  }

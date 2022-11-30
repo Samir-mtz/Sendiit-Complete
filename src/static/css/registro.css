@@ -1,0 +1,233 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	text-align: center;
+}
+
+.main div {
+	background: #fff;
+}
+
+/* .main div:hover{
+    border: 1px solid red;
+} */
+
+.main .titulo-pagina {
+	grid-column: 1/3;
+}
+
+.main .titulo-pagina img {
+	height: 80px;
+}
+
+.main .titulo-pagina h2 {
+	color: #f5cc16;
+	margin-top: -25px;
+}
+
+.main .titulo-pagina h5 {
+	color: #212e46;
+	margin-top: -20px;
+}
+
+.main .formulario {
+	grid-column: 1/3;
+}
+
+.preguntas {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+/* Seccionamos en preguntas personales y de contacto */
+
+form .preguntas .datos-personales .campo,
+form .preguntas .datos-contacto .campo {
+	width: 85%;
+	text-align: left;
+	margin-left: 10%;
+}
+
+.datos-personales .campo .dato,
+.datos-contacto .campo .dato {
+	display: block;
+	padding-top: 10px;
+	font-weight: 500px;
+	margin-bottom: 5px;
+}
+
+small {
+	color: red;
+}
+
+/* Estilo de cada campo del formulario */
+
+.datos-personales .campo input,
+.datos-contacto .campo input {
+	height: 35px;
+	width: 95%;
+	outline: none;
+	border-radius: 20px;
+	border: 1px solid #212e46;
+	padding-left: 15px;
+	font-size: 16px;
+	border-bottom-width: 2px;
+	transition: all 0.3s ease;
+}
+
+.form-registro {
+	width: 700px;
+	padding: 30px;
+}
+
+.form-registro div {
+	padding: 5px;
+	border-radius: 20px;
+}
+
+.input-wrapper {
+	position: relative;
+	width: 95%;
+}
+
+.input-icon {
+	color: #e41f1a;
+	background: #f9d950;
+	padding: 10px 10px;
+	border-radius: 20px;
+	position: absolute;
+	width: 20px;
+	height: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	left: unset;
+	right: 5px;
+}
+
+/* Estilo del checkbox de terminos y condiciones */
+
+.datos-terminos {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-left: 10%;
+	margin-top: 20px;
+}
+
+.main .img-repartidor {
+	grid-column: 3/4;
+	grid-row: 1/4;
+}
+
+.main .btn-envio {
+	grid-column: 1/3;
+	grid-column: 1/3;
+}
+
+/* Estilos para botoes de envio e ingresar */
+
+form .btn {
+	height: 40px;
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+form .btn input {
+	color: #212e46;
+	height: 100%;
+	width: 30%;
+	outline: none;
+	border: none;
+	font-size: 20px;
+	font-weight: 500;
+	border-radius: 10px;
+	letter-spacing: 1px;
+	background-color: #f9d950;
+}
+
+form .btn input:hover,
+.btn button:hover,
+.formulario .btn-link-ingresar button:hover {
+	cursor: pointer;
+	background-color: #f5cc16;
+}
+
+/* Estilo para el texto de ¿Ya tienes una cuenta? */
+
+/* .pregunta{
+	border: 1px solid red;
+	width: 530px;
+	text-align: center;
+	align-items: center;
+    color: rgb(124, 123, 123);
+    margin-top: 10px;
+    margin-bottom: 10px;
+} */
+
+.pregunta {
+	display: grid;
+	grid-template-columns: 40% 20% 40%;
+	grid-template-rows: 100%;
+	height: 35px;
+	width: auto;
+}
+
+/* .pregunta > div:hover {
+	border: 1px solid red;
+} */
+
+.formulario .textnuevo{
+margin-top: -5px;
+text-align: center;	
+color: #9f9f9f;
+}
+
+.formulario .raya .imagen{
+	height: 30px;
+	width: 40%;
+}
+
+.img-izq{
+	margin-left: 50%;
+}
+
+.img-der{
+	margin-right: 50%;
+}
+/* Estilo del boton para ingresar */
+
+.formulario .btn-link-ingresar button {
+	height: 40px;
+	text-align: center;
+	margin: 0 0 0 10px;
+	color: #212e46;
+	width: 30%;
+	outline: none;
+	border: none;
+	font-size: 20px;
+	font-weight: 500;
+	border-radius: 5px;
+	letter-spacing: 1px;
+	background-color: #f9da5075;
+}
+
+.contenido .form-registro .btn-link-ingresar button:hover {
+	background-color: #e8c115bf;
+}
+
+.main .img-repartidor .repartidor img {
+	width: 530px;
+	height: 600px;
+}

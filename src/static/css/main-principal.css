@@ -1,0 +1,49 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	text-align: center;
+}
+
+.main div {
+	background: #fff;
+}
+
+/* .main div:hover{
+    border: 1px solid red;
+} */
+
+.main .titulo-pagina {
+	grid-column: 1/3;
+}
+
+.main .titulo-pagina img {
+	height: 80px;
+}
+
+.main .titulo-pagina h2 {
+	color: #f5cc16;
+	margin-top: -25px;
+}
+
+.main .titulo-pagina h5 {
+	color: #212e46;
+	margin-top: -20px;
+}
+
+.main .contenido {
+	grid-column: 1/3;
+}
+
+
