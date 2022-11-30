@@ -1,29 +1,35 @@
 {% extends 'base-home.html' %}
 {% block body_main %}
 <section>
-	<h2 class="titulo">Sendiit</h2>
 	<div class="contenedor-sobre-nosotros">
-		<div class="conocenos">
-			<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
-		</div>
-		<div class="contenido-textos">
-
-			<a class="titulo" a href="#">¡Conocenos!</a>
-			<p class="texto">
-				¿Te gustaria enviar algun objeto con nosotros ?
-			</p>
-			<p>ㅤ⠀ㅤ</p>
-
-			<!--  Boton enviar ahora -->
-			<div class="botones">
-				<a href="./login" class="btn btn-enviarAhora"><button>Enviar Ahora</button></a>
-			</div>
-		</div>
 		<div>
-			<img class="repartidor" src="../static/img/repartidores/rep2.png" alt="repartidor" />
+			<!-- repartidor -->
+			<img
+				class="repartidor"
+				src="../static/img/repartidores/Repartidor_1.png"
+				alt="repartidor"
+			/>
 		</div>
-
 	</div>
-
+</section>
+<section>
+	<div class="conocenos">
+		<!-- logo -->
+		<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+	</div>
+	<div class="slogan">
+		<h2 class="titulo">ENVIOS EN MENOS DE 24 HORAS</h2>
+		<!-- Slogan -->
+		<br /><br />
+	</div>
+	<div class="btnEnviar">
+		<!-- Boton de enviar-->
+		<a href="/login">
+			<img
+				src="../static/img/principal/botondeClick.png"
+				alt="botondeClick"
+			/>
+		</a>
+	</div>
 </section>
 {% endblock %}
