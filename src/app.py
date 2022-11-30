@@ -32,13 +32,25 @@ def load_user(id):
     return ModelUser.get_by_id(db, id)
 ####
 
+# A cada función se le pasa como argumento extra en la función render_template:
+#  el nombre de la página y el no,bre del css a tomar
 @app.route('/')
 def index():
-    return redirect(url_for('login'))
+    DATA = {
+        'title' : 'Principal',
+        'stylesheet' : 'main-principal.css',
+    }
+    return render_template('index.html', data=DATA)
 
 
-@app.route('/inicio', methods=['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
+    # TITLE = 'Iniciar sesion'
+    # STYLESHEET = 'ingresar.css'
+    DATA = {
+        'title' : 'Iniciar sesion',
+        'stylesheet' : 'ingresar.css',
+    }
     if request.method == 'POST':
         # print(request.form['email'])
         # print(request.form['password'])
@@ -55,12 +67,12 @@ def login():
                     return redirect(url_for('resend_confirmation'))
             else:
                 flash("contraseña incorrectos")
-                return render_template('inicio.html')
+                return render_template('ingresar.html', data=DATA)
         else:
             flash("Usuario  incorrectos")
-            return render_template('inicio.html')
+            return render_template('ingresar.html', data=DATA)
     else:
-        return render_template('inicio.html')
+        return render_template('ingresar.html', data=DATA)
 
 
 @app.route('/logout')
@@ -71,16 +83,25 @@ def logout():
 @app.route('/home')
 @login_required
 def home():
-    return render_template('home.html')
+    DATA = {
+        'TITLE' : 'Home',
+        'STYLESHEET' : 'home.css',
+    }
+    return render_template('home.html', data=DATA)
 
 #Funciones de Registro
 @app.route('/registro', methods=['GET', 'POST'])
 def register():
+    DATA = {
+        'title' : 'Registrar nueva cuenta',
+        'stylesheet' : 'registro.css',
+    }
     if request.method == 'POST':
 
         if ModelUser.check_email(db, request.form['email'])==False: #¿El correo no esta registrado?
 
-            user = User(1, request.form['email'], request.form['password'], request.form['nombre'], request.form['telefono'], request.form['direccion'])
+            user = User(1, request.form['email'], request.form['password'], request.form['nombre'], 
+                            request.form['telefono'], request.form['direccion'])
             execution = ModelUser.register(db, user) #Registralo en la BD
             if execution != None: #Se registro con exito entonces tengo sus datos
                 # token = generate_confirmation_token(user.email)
@@ -101,16 +122,21 @@ def register():
                 #################
 
                 login_user(execution) #Marco sus datos como logeado para que vea verificacion
-                return render_template('verificacion.html') #Renderizo verificacion
+                return render_template('validacionCorreo.html', data = {
+                                                                        'title' : 'Confirmacion de correo',
+                                                                        'stylesheet' : 'validacionCorreo.css',
+                                                                        }
+                                    )
+                # return redirect(url_for('/confirmarCorreo')) #Renderizo verificacion
             else:
                 flash("Algo salio mal, intenta de nuevo")
-                return render_template('inicio.html')
+                return render_template('ingresar.html')
             
         else:
             flash("Ese email ya esta registrado")
-            return render_template('registro.html')    
+            return render_template('registrar.html', data=DATA)    
     else:
-        return render_template('registro.html')
+        return render_template('registrar.html', data=DATA)
 
     
 @app.route('/confirm/<token>')
@@ -149,8 +175,16 @@ def resend_confirmation():
                 )
     mail.send(msg)
 
-    flash('Tu cuenta no esta confirmada, hemos enviado un nuevo correo de confitmación.')
+    flash('Tu cuenta no esta confirmada, hemos enviado un nuevo correo de confirmación.')
     return redirect(url_for('login'))
+
+@app.route('/confirmarCorreo')
+def confirmarCorreo():
+    DATA = {
+        'title' : 'Confirmacion de correo',
+        'stylesheet' : 'validacionCorreo.css',
+    }
+    return render_template('validacionCorreo.html', data=DATA)
 
 @app.route('/verificacion')
 @login_required
@@ -166,9 +200,10 @@ def status_404(error):
     return "<h1>Página no encontrada</h1>", 404
 
 
+# This forces the app to start at '/'
 if __name__ == '__main__':
     app.config.from_object(config['development'])
     csrf.init_app(app)
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
-    app.run()
+    app.run("0.0.0.0", port=5000)
