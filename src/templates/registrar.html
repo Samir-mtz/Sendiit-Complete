@@ -1,0 +1,141 @@
+{% extends 'base-home.html' %}
+{% block body_main %}
+<div class="titulo-pagina">
+	<img src="../static/img/empresa/logo.png" alt="" class="logo-encabezado" />
+	<h2>REGISTRO</h2>
+	<h5>Registro de nuevo usuario</h5>
+</div>
+<div class="img-repartidor">
+	<div class="repartidor">
+		<img src="../static/img/repartidores/repartidor-rojo-1.png" alt="" />
+	</div>
+</div>
+<div class="formulario">
+	<form action="registro" method="POST">
+		{% with messages = get_flashed_messages() %}
+
+		{% if messages %}
+		<br />
+		{% for message in messages %}
+		<div>
+			<strong>{{ message }}</strong>
+		</div>
+		{% endfor %}
+		{% endif %}
+
+		{% endwith %}
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		<div class="preguntas">
+			<div class="datos-personales">
+				<div class="campo">
+					<label for="" class="dato">Nombre y Apellido <small>*</small></label>
+					<div class="input-wrapper">
+						<input type="text" name="nombre" class="input" placeholder="Juan Pérez" />
+						<div class="contenedor-icon">
+							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
+								fill="currentColor">
+								<path fill-rule="evenodd" d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"
+									clip-rule="evenodd" />
+							</svg>
+						</div>
+					</div>
+				</div>
+
+				<div class="campo">
+					<label for="" class="dato">Email <small>*</small></label>
+					<div class="input-wrapper">
+						<input type="email" name="email" class="input" placeholder="juanperez@gmail.com" />
+						<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
+							fill="currentColor">
+							<path fill-rule="evenodd"
+								d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z"
+								clip-rule="evenodd" />
+						</svg>
+					</div>
+				</div>
+
+				<div class="campo">
+					<label for="" class="dato">Contraseña <small>*</small></label>
+					<div class="input-wrapper">
+						<input type="password" name="password" minlength="8" class="input" placeholder="$1234567Abc" required />
+						<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
+							fill="currentColor">
+							<path fill-rule="evenodd"
+								d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z"
+								clip-rule="evenodd" />
+						</svg>
+					</div>
+				</div>
+
+				<div class="campo">
+					<label for="" class="dato">Confirmar Contraseña <small>*</small></label>
+					<div class="input-wrapper">
+						<input type="password" name="passwordconfirm" minlength="8" class="input" placeholder="$1234567Abc"
+							required />
+						<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
+							fill="currentColor">
+							<path fill-rule="evenodd"
+								d="M8 0c-.69 0-1.843.265-2.928.56-1.11.3-2.229.655-2.887.87a1.54 1.54 0 0 0-1.044 1.262c-.596 4.477.787 7.795 2.465 9.99a11.777 11.777 0 0 0 2.517 2.453c.386.273.744.482 1.048.625.28.132.581.24.829.24s.548-.108.829-.24a7.159 7.159 0 0 0 1.048-.625 11.775 11.775 0 0 0 2.517-2.453c1.678-2.195 3.061-5.513 2.465-9.99a1.541 1.541 0 0 0-1.044-1.263 62.467 62.467 0 0 0-2.887-.87C9.843.266 8.69 0 8 0zm0 5a1.5 1.5 0 0 1 .5 2.915l.385 1.99a.5.5 0 0 1-.491.595h-.788a.5.5 0 0 1-.49-.595l.384-1.99A1.5 1.5 0 0 1 8 5z"
+								clip-rule="evenodd" />
+						</svg>
+					</div>
+				</div>
+			</div>
+
+			<div class="datos-contacto">
+				<div class="campo">
+					<label for="" class="dato">Teléfono (Celular)<small>*</small></label>
+					<div class="input-wrapper">
+						<input type="tel" name="telefono" pattern="[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}[0-9]{2}"
+							placeholder="5523170978" />
+						<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
+							fill="currentColor">
+							<path fill-rule="evenodd"
+								d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
+								clip-rule="evenodd" />
+						</svg>
+					</div>
+				</div>
+				<div class="campo">
+					<label for="" class="dato">Dirección <small>*</small></label>
+					<div class="input-wrapper">
+						<input type="text" name="direccion" class="input" placeholder="CDMX, GAM, C.P. 097023" />
+						<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
+							fill="currentColor">
+							<path fill-rule="evenodd"
+								d="M6.5 14.5v-3.505c0-.245.25-.495.5-.495h2c.25 0 .5.25.5.5v3.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 .5-.5Z"
+								clip-rule="evenodd" />
+						</svg>
+					</div>
+				</div>
+				<div class="datos-terminos">
+					<p class="casilla">
+						<input id="checkbox1" type="checkbox" />
+						<label for="checkbox1">Aceptar terminos y condiciones<small>*</small></label>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div class="btn-envio">
+			<div class="btn">
+				<input type="submit" value="Crear cuenta" />
+			</div>
+		</div>
+	</form>
+	<div class="pregunta">
+		<div class="raya">
+			<img src="../static/img/iconos/raya.png" class="imagen img-izq" alt="" />
+		</div>
+		<div>
+			<h1 class="textnuevo">¿Ya tienes cuenta?</h1>
+		</div>
+		<div class="raya">
+			<img src="../static/img/iconos/raya.png" class="imagen img-der" alt="" />
+		</div>
+	</div>
+	<div class="btn-link-ingresar">
+		<!-- Boton de Ingresar -->
+		<a href="./login"><button type="submit">Ingresar</button></a>
+	</div>
+</div>
+{% endblock %}
