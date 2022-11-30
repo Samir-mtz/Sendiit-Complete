@@ -38,7 +38,7 @@ def load_user(id):
 def index():
     DATA = {
         'title' : 'Principal',
-        'stylesheet' : 'main-principal.css',
+        'stylesheet' : 'index.css',
     }
     return render_template('index.html', data=DATA)
 
@@ -94,7 +94,7 @@ def home():
 def register():
     DATA = {
         'title' : 'Registrar nueva cuenta',
-        'stylesheet' : 'registro.css',
+        'stylesheet' : 'registrar.css',
     }
     if request.method == 'POST':
 
@@ -114,7 +114,7 @@ def register():
 
                 msg = Message(
                     subject,
-                    recipients=['armando@tecuani.me'],###Cambiar al correo de usuario
+                    recipients=['jairosotoy@gmail.com'],###Cambiar al correo de usuario
                     html=template,
                     sender="armando.samir.mtzi@gmail.com"
                 )
@@ -169,7 +169,7 @@ def resend_confirmation():
 
     msg = Message(
                     subject,
-                    recipients=['armando@tecuani.me'],########Cambiar al correo de usuario
+                    recipients=['jairosotoy@gmail.com'],########Cambiar al correo de usuario
                     html=template,
                     sender="armando.samir.mtzi@gmail.com"
                 )
