@@ -89,7 +89,7 @@ class ModelUser():
     def confirm_user(self, db, email):
         try:
             cursor = db.connection.cursor()
-            sql = f"UPDATE user SET confirmed=TRUE, confirmed_on='{datetime.datetime.now()}' WHERE email='{email}';"
+            sql = "UPDATE user SET confirmed=1, confirmed_on=CURDATE() WHERE email='" + email + "';"
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:
