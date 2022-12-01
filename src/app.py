@@ -18,9 +18,9 @@ csrf = CSRFProtect()
 db = MySQL(app)
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'armando.samir.mtzi@gmail.com'
-app.config['MAIL_USERNAME'] = 'armando.samir.mtzi@gmail.com'
-app.config['MAIL_PASSWORD'] = "tpxaktlzgmsbehow"
+app.config['MAIL_USERNAME'] = 'sendiit.ads@gmail.com'
+app.config['MAIL_USERNAME'] = 'sendiit.ads@gmail.com'
+app.config['MAIL_PASSWORD'] = "bxvzxxfbrtfnhomy"
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -116,7 +116,7 @@ def register():
                     subject,
                     recipients=['armando@tecuani.me'],###Cambiar al correo de usuario
                     html=template,
-                    sender="armando.samir.mtzi@gmail.com"
+                    sender="sendiit.ads@gmail.com"
                 )
                 mail.send(msg)
                 #################
@@ -171,7 +171,7 @@ def resend_confirmation():
                     subject,
                     recipients=['armando@tecuani.me'],########Cambiar al correo de usuario
                     html=template,
-                    sender="armando.samir.mtzi@gmail.com"
+                    sender="sendiit.ads@gmail.com"
                 )
     mail.send(msg)
 
