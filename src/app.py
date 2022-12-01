@@ -109,12 +109,12 @@ def register():
 
                 ####Envio de correo
                 confirm_url = url_for('confirm_email', token=token, _external=True)
-                template = render_template('email.html', confirm_url=confirm_url)
-                subject = "Por favor Confirma tu correo - Sendiit"
+                template = render_template('correoValidaciones.html', confirm_url=confirm_url)
+                subject = "Activación de cuenta - Sendiit"
 
                 msg = Message(
                     subject,
-                    recipients=['armando@tecuani.me'],###Cambiar al correo de usuario
+                    recipients=['sendiit.ads@gmail.com'],###Cambiar al correo de usuario
                     html=template,
                     sender="sendiit.ads@gmail.com"
                 )
@@ -156,20 +156,23 @@ def confirm_email(token):
             ModelUser.confirm_user(db, email)
             return redirect(url_for('login'))#Pantalla de succes confirmation!
     else: #Codigo expiro
-        flash('Tu codigo de verificacion es incorrecto o ha expirado')
-        return redirect(url_for('login'))#En caso de cuenta creada pero no confirmada
+        return render_template('tokenError.html', data = {
+                                                                    'title' : 'Token no encontrado',
+                                                                    'stylesheet' : 'tokenError.css',
+                                                                }
+                                ) #En caso de cuenta creada pero no confirmada
 
 @app.route('/resend')
 @login_required
 def resend_confirmation():
     token = generate_confirmation_token(current_user.email)
     confirm_url = url_for('confirm_email', token=token, _external=True)
-    template = render_template('email.html', confirm_url=confirm_url)
-    subject = "Por favor confirma tu cuenta"
+    template = render_template('correoValidaciones.html', confirm_url=confirm_url)
+    subject = "Activación de cuenta - Sendiit"
 
     msg = Message(
                     subject,
-                    recipients=['armando@tecuani.me'],########Cambiar al correo de usuario
+                    recipients=['sendiit.ads@gmail.com'],########Cambiar al correo de usuario
                     html=template,
                     sender="sendiit.ads@gmail.com"
                 )
@@ -206,4 +209,4 @@ if __name__ == '__main__':
     csrf.init_app(app)
     app.register_error_handler(401, status_401)
     app.register_error_handler(404, status_404)
-    app.run("0.0.0.0", port=5000)
+    app.run()
