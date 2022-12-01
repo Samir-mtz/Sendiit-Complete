@@ -1,91 +1,55 @@
-<!-- Mensaje de token no encontrado -->
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8" />
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Nombre de la pagina -->
-	<title>TOKEN</title>
-	<!-- Favicon de la empresa -->
-	<link href="../img/empresa/favicon.png" rel="icon" />
-	<!-- Estilos -->
-	<link rel="stylesheet" href="../css/tokenError.css" />
-</head>
-
-<body>
-	<article>
-		<!-- Encabezado -->
-		<header class="header">
-			<!-- Logo de la empresa -->
-			<div class="logo">
-				<a href="../index.html">
-					<img src="../img/empresa/logo.png" alt="Logo de la empresa" />
-				</a>
-			</div>
-			<!-- Barra de navegacion dentro de la pagina -->
-			<div class="secciones">
-				<div class="nav-contenido">
-					<a href="#">INICIO</a>
-				</div>
-				<div class="nav-contenido">
-					<a href="#">SUCURSALES</a>
-				</div>
-				<div class="nav-contenido">
-					<a href="#">CONÓCENOS</a>
-				</div>
-			</div>
-			<!-- Botones de acciones del sistema -->
-			<div class="botones">
-				<div class="nav-botones">
-					<a href="#" class="btn btn-enviar"><button>ENVIAR</button></a>
-				</div>
-				<div class="nav-botones">
-					<a href="./ingresar.html" class="btn btn-ingresar"><button>INGRESAR</button></a>
-				</div>
-				<div class="nav-botones">
-					<a href="./registrar.html" class="btn btn-registarse"><button>REGISTRARSE</button></a>
-				</div>
-			</div>
-		</header>
-		<main>
-			<!--Contenido-->
-			<div class="texto">
-				<div align="center"><img class="pequeña" src="../img/empresa/logo.png" /></div>
-				<h1 class="titulovalidacion">ERROR 404: TOKEN DE ACTIVACION NO ENCONTRADO</h1>
+{% extends 'base-home.html' %}
+{% block body_main %}
+<!--Contenido-->
+			<!-- <div class="texto">
+				<div align="center"><img class="pequeña" src="../static/img/empresa/logo.png" /></div>
+				<h1 class="titulovalidacion">ERROR: TOKEN DE ACTIVACION NO ENCONTRADO</h1>
 				<br />
 				<p class="textgeneral" align="left">Lo sentimos...</p>
 				<br />
 				<p class="textgeneral">
-					Al parecer ha caducado el tiempo para activar tu cuenta.
+					Al parecer ha caducado el tiempo para activar tu cuenta o el token que ha ingresado no existe.
 				</p>
 				<br />
-				<p class="textgeneral">Por favor realiza nuevamente el registro.</p>
+				<p class="textgeneral">Por favor verifica que la direccion del enlace sea correcta o de lo contrario realiza nuevamente el registro.</p>
 				<br />
 				<p class="textgeneral">:(</p>
 			</div>
 			<div class="imagenreperror">
-				<img align="center" src="../img/repartidores/repartidor_error.png" wight="668px" height="520px" />
+				<img align="center" src="../static/img/repartidores/Repartidor_4.png" wight="668px" height="520px" />
 			</div>
-		</main>
+ -->
 
-		<!-- Pie de pagina -->
-		<footer class="footer">
-			<div class="derechos">
-				<div class="copyright">
-					<span>&copy;2022 México. Todos los derechos reservados.</span>
+
+				<div class="texto">
+					<div align="center">
+						<img class="pequeña" src="../static/img/empresa/logo.png" />
+					</div>
+					<br>
+					<!-- <h1 class="titulovalidacion">TOKEN DE ACTIVACION NO ENCONTRADO</h1>
+					<br>
+					<p class="textgeneral" align="left">Lo sentimos...</p>
+					<p class="textgeneral">Al parecer ha caducado el tiempo para activar tu cuenta o el token que ha ingresado no existe.</p>
+					<p class="textgeneral">Por favor verifica que la direccion del enlace sea correcta o de lo contrario realiza nuevamente el registro.</p>
+					 -->
+					 <h1 class="titulovalidacion">TOKEN DE ACTIVACION NO ENCONTRADO</h1>
+					<br>
+					<p class="textgeneral" align="left">Lo sentimos...</p>
+					<p class="textgeneral">Al parecer ha caducado el tiempo para activar tu cuenta.</p>
+					<p class="textgeneral">Por favor realiza nuevamente el registro.</p>
+					
+				<div class="imagenerror">
+				<img src="../static/img/iconos/error.png" width="100" height="100">
 				</div>
-			</div>
-			<div class="redes">
-				<a href="#" class="logo-red"><img src="../img/redes_sociales/facebook.png" alt="logo de facebook" /></a>
-				<a href="#" class="logo-red"><img src="../img/redes_sociales/instagram.png" alt="logo de instagram" /></a>
-				<a href="#" class="logo-red"><img src="../img/redes_sociales/telegram.png" alt="logo de telegram" /></a>
-				<a href="#" class="logo-red"><img src="../img/redes_sociales/email.png" alt="logo de email" /></a>
-			</div>
-		</footer>
-	</article>
-</body>
-
-</html>
+                <a href="./registrar.html" class="btn2"><button>REGISTRARSE</button></a>
+				</div>
+				</div>
+				<div class="imagenreperror">
+					<img
+						align="center"
+						src="../static/img/repartidores/Repartidor_4.png"
+						wight="668px"
+						height="520px"
+					/>
+				</div>
+{% endblock %}

@@ -15,9 +15,11 @@
 	<!-- Favicon de la empresa -->
 	<link href="../static/img/empresa/favicon.png" rel="icon" />
 	<!-- Estilos -->
+	<link rel="stylesheet" href="../static/css/main.css" />
 	{% if data.stylesheet %}
 	<link rel="stylesheet" href="../static/css/{{ data.stylesheet }}" />
 	{% endif %}
+	
 	<!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
 	<link rel="stylesheet" href="../static/css/footer-principal.css" />
 	<link rel="stylesheet" href="../static/css/main.css" /> -->
@@ -47,13 +49,13 @@
 			<!-- Botones de acciones del sistema -->
 			<div class="botones">
 				<div class="nav-botones">
-					<a href="./login" class="btn btn-enviar"><button>ENVIAR</button></a>
+					<a href="/login" class="btn btn-enviar"><button>ENVIAR</button></a>
 				</div>
 				<div class="nav-botones">
-					<a href="./login" class="btn btn-ingresar"><button>INGRESAR</button></a>
+					<a href="/login" class="btn btn-ingresar"><button>INGRESAR</button></a>
 				</div>
 				<div class="nav-botones">
-					<a href="./registro" class="btn btn-registarse"><button>REGISTRARSE</button></a>
+					<a href="/registro" class="btn btn-registarse"><button>REGISTRARSE</button></a>
 				</div>
 			</div>
 		</header>
