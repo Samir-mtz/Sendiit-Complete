@@ -65,13 +65,12 @@ def login():
             'title' : 'Iniciar sesion',
             'stylesheet' : 'ingresar.css',
             }
-    print(current_user.is_active)
     if current_user.is_active == False:
         # Mandamos formulario
         if request.method == 'POST':
             user = User(1, request.form['email'], request.form['password'])
             logged_user = ModelUser.login(db, user)
-            print(logged_user.email)
+            # print(logged_user.email)
             # ¿Puede loggearse?
             if logged_user != None:    
 
@@ -97,7 +96,7 @@ def login():
             return render_template('ingresar.html', data=DATA)
     
     else:
-        print('Entra al primer else')
+        # print('Entra al primer else')
         
         return redirect(url_for('home'))
         # return  render_template('ingresar.html', data=DATA)
@@ -107,7 +106,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    return redirect(url_for('login'))
+    return redirect(url_for('index'))
 
 # Home principal de usuario
 @app.route('/home')
@@ -152,13 +151,13 @@ def register():
 
                 msg = Message(
                                 subject,
-                                recipients=['jairosotoy@gmail.com'], # Cambiar al correo de usuario
+                                recipients=['armando@tecuani.me'], # Cambiar al correo de usuario
                                 html=template,
                                 sender="sendiit.ads@gmail.com"
                             )
                 mail.send(msg)
                 
-                # login_user(execution) # Marco sus datos como logeado para que vea verificacion
+                login_user(execution) # Marco sus datos como logeado para que vea verificacion
                 
                 return render_template('validacionCorreo.html',
                                         data = {
@@ -190,6 +189,7 @@ def register():
 @app.route('/confirm/<token>')
 @login_required
 def confirm_email(token):
+    print("algo")
     try:
         email = confirm_token(token) # Regresa el email!
     
@@ -197,16 +197,18 @@ def confirm_email(token):
         flash('Algo salio mal. Por favor intenta de nuevo')
         return redirect(url_for('login')) # En caso de cuenta creada pero no confirmada
     
+    print(email)
     user = ModelUser.consulta_email(db, email)
-    
     if user!=None:
     
         if user.confirmed:
-            flash('Account already confirmed. Please login.', 'success')
+            flash('Tu cuenta ya esta confirmada. Por favor inicia sesión.', 'success')
             return redirect(url_for('login'))
     
         else:
+            print('llego')
             ModelUser.confirm_user(db, email)
+            flash('Cuenta Confirmada, inicia sesión.', 'success')
             return redirect(url_for('login')) # Pantalla de succes confirmation!
     
     else: #Codigo expiro
@@ -231,7 +233,7 @@ def resend_confirmation():
 
     msg = Message(
                     subject,
-                    recipients=['jairosotoy@gmail.com'], # Cambiar al correo de usuario
+                    recipients=['armando@tecuani.me'], # Cambiar al correo de usuario
                     html=template,
                     sender="sendiit.ads@gmail.com"
                 )
@@ -254,10 +256,10 @@ def resend_confirmation():
 
 
 # Verificacion del usuario 
-@app.route('/verificacion')
-@login_required
-def verificacion():
-    return render_template('verificacion.html')
+# @app.route('/verificacion')
+# @login_required
+# def verificacion():
+#     return render_template('verificacion.html')
 
 
 
@@ -267,6 +269,7 @@ def verificacion():
 
 #En caso de que no este logeado y quiera entrar al sistema redirige al login
 def status_401(error):
+    flash('No estas Logeado. Por favor, inicia sesión.')
     return redirect(url_for('login'))
 
 
