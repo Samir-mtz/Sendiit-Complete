@@ -6,25 +6,38 @@
 
 .main {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: repeat(2, 1fr);
 	text-align: center;
+}
+
+.contenido {
+	z-index: 100;
+	flex-direction: column;
+	border: 0.5px solid rgb(218, 218, 218);
+	box-shadow: 3px 3px 3px rgb(218, 218, 218);
+	border-radius: 20px;
+	margin-left: 100px;
+	padding-right: 20px;
+	padding-left: 20px;
 }
 
 .main div {
 	background: #fff;
 }
-
-/* .main div:hover{
+/* 
+.main div:hover{
     border: 1px solid red;
 } */
 
 .main .titulo-pagina {
-	grid-column: 1/3;
+	grid-column: 1/2;
 }
 
 .main .titulo-pagina img {
 	height: 50px;
 	margin-bottom: 10px;
+	margin-top: 10px;
+	width: auto;
 }
 
 .main .titulo-pagina h2 {
@@ -123,7 +136,7 @@ small {
 }
 
 .main .img-repartidor {
-	grid-column: 3/4;
+	grid-column: 2/3;
 	grid-row: 1/4;
 }
 
@@ -137,8 +150,8 @@ small {
 form .btn {
 	height: 40px;
 	text-align: center;
-	margin-top: 10px;
 	margin-bottom: 10px;
+	margin-top: 20px;
 }
 
 form .btn input {
@@ -159,6 +172,9 @@ form .btn input:hover,
 .formulario .btn-link-ingresar button:hover {
 	cursor: pointer;
 	background-color: #f5cc16;
+	transition: all 0.8s;
+	transform: scale(1.1);
+	box-shadow: 5px 5px 5px #f9d950;
 }
 
 /* Estilo para el texto de ¿Ya tienes una cuenta? */
@@ -179,6 +195,9 @@ form .btn input:hover,
 	grid-template-rows: 100%;
 	height: 35px;
 	width: auto;
+	font-size: 70%;
+	padding-top: 10px;
+	padding-bottom: 10px;
 }
 
 /* .pregunta > div:hover {
@@ -208,8 +227,8 @@ form .btn input:hover,
 .formulario .btn-link-ingresar button {
 	height: 40px;
 	text-align: center;
-	margin: 0 0 0 10px;
 	color: #212e46;
+	margin-bottom: 20px;
 	width: 30%;
 	outline: none;
 	border: none;
@@ -227,4 +246,9 @@ form .btn input:hover,
 .main .img-repartidor .repartidor img {
 	width: 530px;
 	height: 600px;
+}
+
+.terminos{
+	text-decoration: none;
+	color: blue;
 }

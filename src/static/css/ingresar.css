@@ -12,15 +12,21 @@
 
 .contenedor-login2 {
 	margin-top: 10px;
-	/*background-color: green;*/
+	background-color: #fff;
 	text-align: center;
 	display: flex;
 	flex-direction: column;
+	border: 0.5px solid rgb(218, 218, 218);
+	box-shadow: 3px 3px 3px rgb(218, 218, 218);
+	border-radius: 20px;
 }
+
+
 .contenedor-login img.pequeña {
 	/*background-color: blue;*/
 	margin-left: auto;
 	margin-right: auto;
+	margin-top: 30px;
 	width: 40%;
 	height: 10%;
 	display: flex;
@@ -58,13 +64,14 @@
 	border-radius: 20px;
 }
 .contenedor-login #icono {
-	margin-left: 480px;
+	margin-left: 420px;
 	position: absolute;
 	z-index: 1;
 	background-color: #f9d950;
 	width: 80px;
-	height: 32px;
+	height: 35px;
 	border-radius: 30px;
+	margin-right: 2005px;
 }
 
 .contenedor-login .email {
@@ -87,7 +94,7 @@
 	font: italic bold 10px Helvetica, Sans-Serif;
 	font-size: medium;
 	text-align: right;
-	margin-left: 250px;
+	margin-left: 200px;
 }
 
 .contenedor-login .botones .btn button,
@@ -102,23 +109,24 @@
 	border-radius: 10px;
 	cursor: pointer;
 	transition: all 0.5s ease 0s;
-	margin-left: auto;
+	/* margin-left: auto; */
+	margin-bottom: 30px;
 }
 
 .contenedor-login .botones .btn-ingresar button,
 .contenedor-login2 .btn-registrarse button {
-	margin-top: 10px;
+	margin-top: 20px;
 	background-color: #f9d950;
 	color: #212e46;
 }
 
 .contenedor-login .botones .btn button:hover,
 .contenedor-login2 .btn-registrarse button:hover {
+	cursor: pointer;
+	background-color: #f5cc16;
+	transition: all 0.8s;
 	transform: scale(1.1);
-}
-
-.contenedor-login .botones .btn {
-	padding-right: 15px;
+	box-shadow: 5px 5px 5px #f9d950;
 }
 
 .contenedor-login .nuevo {
@@ -131,7 +139,8 @@
 	text-align: center;
 	display: flex;
 	flex-direction: row;
-	margin-left: 80px;
+	margin-top: -30px;
+	margin-left: 70px;	
 }
 
 .contenedor-login2 .btn-registrarse button {

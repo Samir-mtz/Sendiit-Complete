@@ -1,8 +1,30 @@
-{% extends './base.html' %}
-
-{% block title %}Home{% endblock %}
-
-{% block body %}
-<h1>Bienvenido, {{ current_user.nombre }}</h1>
-<a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+{% extends 'base-home.html' %}
+{% block body_main %}
+<section class="contenedor-general">
+	<div class="contenedor-izq">
+		<img class="pequeña" src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+		<div class="contenedor-columna">
+			<div class="nuevo">
+				<img class="imagen" src="../static/img/iconos/raya.png" width="33%" />
+				<p>&nbsp;&nbsp;&nbsp;</p>
+				<h1 class="textnuevo">Bienvenida</h1>
+				<!--Anexar letrero de bienvenida-->
+				<p>&nbsp;&nbsp;&nbsp;</p>
+				<img class="imagen" src="../static/img/iconos/raya.png" width="33%" />
+			</div>
+			<br>
+			<h1 class="texto">¡ BIENVENIDO !</h1>
+			<h1 class="texto"> {{ current_user.nombre }} </h1>
+			<marquee behavior="scroll" direction="right" scrollamount="40">
+				<img class="camion" src="../static/img/iconos/camion.png" width="33%" />
+			</marquee>
+			<div class="btnclick">
+				<a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
+			</div>
+		</div>
+	</div>
+	<div>
+		<img class="mediano" src="../static/img/repartidores/Repartidor_5.png" alt="repartidor" height="20%" />
+	</div>
+</section>
 {% endblock %}

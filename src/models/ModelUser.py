@@ -84,7 +84,7 @@ class ModelUser():
                 return None
         except Exception as ex:
             raise Exception(ex)
-
+    
     @classmethod
     def confirm_user(self, db, email):
         try:

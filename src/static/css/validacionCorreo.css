@@ -39,17 +39,6 @@ display: flex;
 	margin-left: 80px;
 }
 
-.btn button {
-	font-weight: 760;
-	color: rgb(0, 0, 0);
-	background: #f9d950;
-	padding: 10px 30px;
-	border: none;
-	border-radius: 50px;
-	cursor: pointer;
-	margin-left: 410px;
-}
-
 .imagenrepemail
 {
 	padding: 10px;
