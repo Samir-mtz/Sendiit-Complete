@@ -18,6 +18,7 @@
 	<link rel="stylesheet" href="../static/css/main.css" />
 	{% if data.stylesheet %}
 	<link rel="stylesheet" href="../static/css/{{ data.stylesheet }}" />
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 	{% endif %}
 	
 	<!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
@@ -85,6 +86,21 @@
 			</div>
 		</footer>
 	</article>
+	<script>
+		let pass=document.getElementById("passorigin");
+		let pass_confirmation=document.getElementById("passconfirm");
+		let warning=document.getElementById("warning");
+	
+		$("#passconfirm").on("change", function(){
+			// console.log("entre")
+			if(pass.value!==pass_confirmation.value){
+				warning.innerHTML="Las contraseñas no coinciden";
+				pass_confirmation.value="";
+			}else{
+				warning.innerHTML="";
+			}
+		});
+	</script>
 </body>
 
 </html>

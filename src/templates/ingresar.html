@@ -7,17 +7,14 @@
 		<h1 class="textologin">Ingresa a tu cuenta</h1>
 		<div class="login-box">
 			<form action="/login" method="POST">
-				{% with messages = get_flashed_messages() %}
+				{% with messages = get_flashed_messages()[-1]%}
 
 				{% if messages %}
-				<br />
-				{% for message in messages %}
-				<div>
-					<strong style="color: #e41f1a;">{{ message }}</strong>
-				</div>
-				{% endfor %}
+					<br />
+					<div>
+						<strong style="color: #e41f1a;">{{ messages }}</strong>
+					</div>
 				{% endif %}
-
 				{% endwith %}
 				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
 				<!--Enviar datos a base de datos-->

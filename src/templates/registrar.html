@@ -57,7 +57,7 @@
 					<div class="campo">
 						<label for="" class="dato">Contraseña <small>*</small></label>
 						<div class="input-wrapper">
-							<input type="password" minlength="8" class="input" placeholder="$1234567Abc" required name="password" pattern=".{8,15}"/>
+							<input  id="passorigin"type="password" minlength="8" class="input" placeholder="$1234567Abc" required name="password" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,15}"/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -68,10 +68,11 @@
 					</div>
 
 					<div class="campo">
+						<strong id="warning" style="color: #e41f1a;"></strong>
 						<label for="" class="dato">Confirmar Contraseña <small>*</small></label>
 						<div class="input-wrapper">
-							<input type="password" minlength="8" class="input" placeholder="$1234567Abc" required
-								name="password_confirm" pattern=".{8,15}"/>
+							<input id="passconfirm" type="password" minlength="8" class="input" placeholder="$1234567Abc" required
+								name="password_confirm" pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,15}"/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -146,5 +147,5 @@
 		<img src="../static/img/repartidores/Repartidor_5.png" alt="" />
 	</div>
 </div>
-<!-- <script src="../static/js/formulario_registrar.js"></script> -->
+
 {% endblock %}
