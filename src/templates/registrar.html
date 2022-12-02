@@ -29,7 +29,7 @@
 					<div class="campo">
 						<label for="" class="dato">Nombre y Apellido <small>*</small></label>
 						<div class="input-wrapper">
-							<input type="text" class="input" placeholder="Juan Pérez" name="nombre" />
+							<input type="text" class="input" placeholder="Juan Pérez" name="nombre" required pattern="[a-zA-Záéíóú ]{3,50}"/>
 							<div class="contenedor-icon">
 								<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 									fill="currentColor">
@@ -44,7 +44,7 @@
 					<div class="campo">
 						<label for="" class="dato">Email <small>*</small></label>
 						<div class="input-wrapper">
-							<input type="email" class="input" placeholder="juanperez@gmail.com" name="email" />
+							<input type="email" class="input" placeholder="juanperez@gmail.com" name="email" required/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -57,7 +57,7 @@
 					<div class="campo">
 						<label for="" class="dato">Contraseña <small>*</small></label>
 						<div class="input-wrapper">
-							<input type="password" minlength="8" class="input" placeholder="$1234567Abc" required name="password" />
+							<input type="password" minlength="8" class="input" placeholder="$1234567Abc" required name="password" pattern=".{8,15}"/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -71,7 +71,7 @@
 						<label for="" class="dato">Confirmar Contraseña <small>*</small></label>
 						<div class="input-wrapper">
 							<input type="password" minlength="8" class="input" placeholder="$1234567Abc" required
-								name="password_confirm" />
+								name="password_confirm" pattern=".{8,15}"/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -86,8 +86,8 @@
 					<div class="campo">
 						<label for="" class="dato">Teléfono (Celular)<small>*</small></label>
 						<div class="input-wrapper">
-							<input type="tel" pattern="[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}-[0-9]{2}" placeholder="55-23-17-09-78"
-								name="telefono" />
+							<input type="tel" pattern="[1-9]{2}[0-9]{8}" placeholder="55-23-17-09-78"
+								name="telefono" required/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -99,7 +99,7 @@
 					<div class="campo">
 						<label for="" class="dato">Dirección <small>*</small></label>
 						<div class="input-wrapper">
-							<input type="text" class="input" placeholder="CDMX, GAM, C.P. 097023" name="direccion" />
+							<input type="text" class="input" placeholder="CDMX, GAM, C.P. 097023" name="direccion" pattern="[a-zA-Z0-9./ ]{10,80}" required/>
 							<svg xmlns="http://www.w3.org/2000/svg" class="bi bi-person-fill input-icon" viewBox="0 0 15 15"
 								fill="currentColor">
 								<path fill-rule="evenodd"
@@ -110,7 +110,7 @@
 					</div>
 					<div class="datos-terminos">
 						<p class="casilla">
-							<input id="checkbox1" type="checkbox" name="terminos_condiciones" />
+							<input id="checkbox1" type="checkbox" name="terminos_condiciones" required />
 							<label for="checkbox1">Aceptar <a href="../static/docs/Terminos_Y_Condiciones.pdf" target="_blank"
 									class="terminos">Términos y Condiciones</a><small>*</small></label>
 						</p>
@@ -146,4 +146,5 @@
 		<img src="../static/img/repartidores/Repartidor_5.png" alt="" />
 	</div>
 </div>
+<!-- <script src="../static/js/formulario_registrar.js"></script> -->
 {% endblock %}

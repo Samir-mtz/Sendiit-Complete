@@ -57,6 +57,63 @@ def index():
 
     return render_template('index.html', data=DATA)
 
+# Ruta raíz
+@app.route('/conocenos')
+def conocenos():
+    DATA = {
+            'title' : 'Conócenos',
+            'stylesheet' : 'Conocenos.css',
+            }
+
+    return render_template('conocenos.html', data=DATA)
+
+# Ruta raíz
+@app.route('/sucursales')
+def sucursales():
+    DATA = {
+            'title' : 'Sucursales',
+            'stylesheet' : 'Sucursales.css',
+            }
+
+    return render_template('Sucursales.html', data=DATA)
+
+@app.route('/sucursales/valle')
+def sucursalesValle():
+    DATA = {
+            'title' : 'Colonia del valle',
+            'stylesheet' : 'Maps.css',
+            }
+
+    return render_template('Valle.html', data=DATA)
+
+@app.route('/sucursales/lindavista')
+def sucursalesLindavista():
+    DATA = {
+            'title' : 'Colonia lindavista',
+            'stylesheet' : 'Maps.css',
+            }
+
+    return render_template('Lindavista.html', data=DATA)
+
+
+@app.route('/sucursales/satelite')
+def sucursalesSatelite():
+    DATA = {
+            'title' : 'Satélite',
+            'stylesheet' : 'Maps.css',
+            }
+
+    return render_template('Satelite.html', data=DATA)
+
+
+@app.route('/sucursales/aragon')
+def sucursalesAragon():
+    DATA = {
+            'title' : 'Colonia aragón',
+            'stylesheet' : 'Maps.css',
+            }
+
+    return render_template('aragon.html', data=DATA)
 
 # Inicio de sesion
 @app.route('/login', methods=['GET', 'POST'])
@@ -151,7 +208,7 @@ def register():
 
                 msg = Message(
                                 subject,
-                                recipients=['armando@tecuani.me'], # Cambiar al correo de usuario
+                                recipients=['jairosotoy@gmail.com'], # Cambiar al correo de usuario
                                 html=template,
                                 sender="sendiit.ads@gmail.com"
                             )
@@ -231,7 +288,7 @@ def resend_confirmation(email):
 
     msg = Message(
                     subject,
-                    recipients=['armando@tecuani.me'], # Cambiar al correo de usuario
+                    recipients=['jairosotoy@gmail.com'], # Cambiar al correo de usuario
                     html=template,
                     sender="sendiit.ads@gmail.com"
                 )
@@ -278,6 +335,8 @@ def status_401(error):
 #En caso de que el usuario acceda a una pagina no definida
 def status_404(error):
     return "<h1>Página no encontrada</h1>", 404
+    # return render_template('error404.html'), 404
+
 
 
 # This forces the app to start at '/'

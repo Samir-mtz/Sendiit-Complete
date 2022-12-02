@@ -1,0 +1,17 @@
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	text-align: center;
+	height: 90%;
+}
+.main .texto{
+    text-align: center;
+	font: italic bold 30px Helvetica, Sans-Serif;
+    color: #e41f1a;
+}
