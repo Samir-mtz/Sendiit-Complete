@@ -14,9 +14,11 @@
 			{% if messages %}
 			<br />
 			{% for message in messages %}
-			<div>
-				<strong style="color: #e41f1a;">{{ message }}</strong>
-			</div>
+				{%if message == 'Ese email ya esta registrado'%}
+				<div>
+					<strong style="color: #e41f1a;">{{ message }}</strong>
+				</div>
+				{% endif %}
 			{% endfor %}
 			{% endif %}
 

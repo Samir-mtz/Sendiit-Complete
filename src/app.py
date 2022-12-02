@@ -81,7 +81,8 @@ def login():
                     if confirmed_user.confirmed: # En caso de no ser confirmado reenvia un correo para confirmar
                         return redirect(url_for('home'))
                     else:
-                        return redirect(url_for('resend_confirmation'))
+                        logout_user()
+                        return redirect(url_for('resend_confirmation', email = logged_user.email))
                 
                 else:
                     flash("Usuario y/o contraseña incorrectos.")
@@ -96,9 +97,8 @@ def login():
             return render_template('ingresar.html', data=DATA)
     
     else:
-        # print('Entra al primer else')
-        
         return redirect(url_for('home'))
+        
         # return  render_template('ingresar.html', data=DATA)
 
 
@@ -116,7 +116,7 @@ def home():
             'title' : 'Home',
             'stylesheet' : 'home.css',
             }
-
+    # print(current_user)
     return render_template('home.html', data=DATA)
 
 
@@ -157,8 +157,8 @@ def register():
                             )
                 mail.send(msg)
                 
-                login_user(execution) # Marco sus datos como logeado para que vea verificacion
-                
+                #login_user(execution) # Marco sus datos como logeado para que vea verificacion
+                logout_user()
                 return render_template('validacionCorreo.html',
                                         data = {
                                                     'title' : 'Confirmacion de correo',
@@ -187,9 +187,8 @@ def register():
 
 # Envio de confirmacion de correo
 @app.route('/confirm/<token>')
-@login_required
+# @login_required
 def confirm_email(token):
-    print("algo")
     try:
         email = confirm_token(token) # Regresa el email!
     
@@ -197,7 +196,7 @@ def confirm_email(token):
         flash('Algo salio mal. Por favor intenta de nuevo')
         return redirect(url_for('login')) # En caso de cuenta creada pero no confirmada
     
-    print(email)
+    # print(email)
     user = ModelUser.consulta_email(db, email)
     if user!=None:
     
@@ -221,10 +220,9 @@ def confirm_email(token):
 
 
 # Reenvío de correo
-@app.route('/resend')
-@login_required
-def resend_confirmation():
-    token = generate_confirmation_token(current_user.email)
+@app.route('/resend/<email>')
+def resend_confirmation(email):
+    token = generate_confirmation_token(email)
     
     # Envio de correo
     confirm_url = url_for('confirm_email', token=token, _external=True)
@@ -241,7 +239,11 @@ def resend_confirmation():
 
     flash('Tu cuenta no esta confirmada, hemos enviado un nuevo correo de confirmación.')
     
-    return redirect(url_for('login'))
+    return render_template('ingresar.html', 
+                            data = {
+                            'title' : 'Iniciar sesion',
+                            'stylesheet' : 'ingresar.css',
+                        })
 
 
 # Pantalla confirmar correo
