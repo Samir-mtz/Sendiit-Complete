@@ -25,9 +25,9 @@ db = MySQL(app)
 #########################################################################################
 app.config['MAIL_SERVER']='smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'jairosotoy@gmail.com'
-app.config['MAIL_USERNAME'] = 'jairosotoy@gmail.com'
-app.config['MAIL_PASSWORD'] = "seewrbhlwlaphzud"
+app.config['MAIL_USERNAME'] = 'sendiitadsscrumios@gmail.com'
+app.config['MAIL_USERNAME'] = 'sendiitadsscrumios@gmail.com'
+app.config['MAIL_PASSWORD'] = "xeqesdzdiuknempi"
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
@@ -208,9 +208,9 @@ def register():
 
                 msg = Message(
                                 subject,
-                                recipients=['armando@tecuani.me'], # Cambiar al correo de usuario
+                                recipients=['bryan.hdez24072@gmail.com'], # Cambiar al correo de usuario
                                 html=template,
-                                sender="sendiit.ads@gmail.com"
+                                sender="sendiitadsscrumios@gmail.com"
                             )
                 mail.send(msg)
                 
@@ -288,9 +288,9 @@ def resend_confirmation(email):
 
     msg = Message(
                     subject,
-                    recipients=['armando@tecuani.me'], # Cambiar al correo de usuario
+                    recipients=['bryan.hdez24072@gmail.com'], # Cambiar al correo de usuario
                     html=template,
-                    sender="sendiit.ads@gmail.com"
+                    sender="sendiitadsscrumios@gmail.com"
                 )
     mail.send(msg)
 
