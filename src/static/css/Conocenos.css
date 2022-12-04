@@ -15,22 +15,23 @@
 	margin-top: 60px;
     padding-top: 100px;
     margin-left: 80px;
-	font-weight: normal;
-	font: italic bold 30px Helvetica, Sans-Serif;
+	/* font-weight: normal; */
+    font-family: "Oswald", sans-serif;
 }
 .main .TextoConocenos .titulo{
     color: #e41f1a;
     text-align: center;
+    font-size: 300%;
 }
 .main .TextoConocenos .conocenos{
     color: #000;
     text-align: justify;
+    font-size: 180%;
 }
 .main .ImagenConocenos{
     width: 550px;
-    height: 700px;
+    height: 600px;
     margin-top: 30px;
-	text-align: center ;
 }
 .main .h1{
 	text-align: center;
