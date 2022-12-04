@@ -12,6 +12,19 @@
 }
 .main .texto{
     text-align: center;
-	font: italic bold 30px Helvetica, Sans-Serif;
+	font-family: "Oswald", sans-serif;
+	font-size: xx-large;
+	text-transform: uppercase;
     color: #e41f1a;
+}
+
+.main .mapa{
+	display: grid;
+	place-content: center;
+}
+
+iframe{
+	margin-top: auto;
+	border-radius: 20px;
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
 }
