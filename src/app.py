@@ -208,7 +208,7 @@ def register():
 
                 msg = Message(
                                 subject,
-                                recipients=['bryan.hdez24072@gmail.com'], # Cambiar al correo de usuario
+                                recipients=['jairosotoy@gmail.com'], # Cambiar al correo de usuario
                                 html=template,
                                 sender="sendiitadsscrumios@gmail.com"
                             )
@@ -288,7 +288,7 @@ def resend_confirmation(email):
 
     msg = Message(
                     subject,
-                    recipients=['bryan.hdez24072@gmail.com'], # Cambiar al correo de usuario
+                    recipients=['jairosotoy@gmail.com'], # Cambiar al correo de usuario
                     html=template,
                     sender="sendiitadsscrumios@gmail.com"
                 )
