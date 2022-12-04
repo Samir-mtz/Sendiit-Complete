@@ -20,7 +20,7 @@
 }
 .main .textoL{
 	text-align: center;
-	font: italic bold 10px Helvetica, Sans-Serif;
+	font-family: "Oswald", sans-serif;
 	margin-left: 50px;
 	margin-right: 50px;
 }
