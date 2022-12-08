@@ -145,7 +145,7 @@ def login():
                             return redirect(url_for('home'))
                         elif confirmed_user.tipo =='admin':
                             return redirect(url_for('admin'))
-                        else:
+                        else:                                                                                                       
                             # flash("algo salio mal.")
                             return redirect(url_for('index'))
 
