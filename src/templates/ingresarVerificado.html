@@ -1,0 +1,86 @@
+{% extends 'base-home.html' %}
+{% block body_main %}
+			<main class="main">
+				<section class="contenedor-login">
+					<div class="contenedor-login2">
+						<img
+							class="pequeña"
+							src="../static/img/empresa/logo.png"
+							alt="Logo de la empresa"
+						/>
+						<h1 class="titulologin">INICIO DE SESIÓN</h1>
+						<h1 class="textologin">Ingresa a tu cuenta</h1>
+						<div class="login-box">
+							<form>
+								<!--Enviar datos a base de datos-->
+								<h1 for="email" class="textologin2">
+									Email<a style="color: red">*</a>
+								</h1>
+
+								<div id="icono">
+									<img
+										class="email"
+										src="../static/img/iconos/email.png"
+										alt="Icono"
+									/>
+								</div>
+
+								<input
+									type="email"
+									placeholder=" ejemplo@email.com"
+									size="30"
+									style="font-family: Verdana; font-size: 20px; float: center"
+									required
+								/>
+								<br />
+								<br />
+								<h1 for="password" class="textologin2">
+									Contraseña<a style="color: red">*</a>
+								</h1>
+
+								<div id="icono">
+									<img
+										class="candado"
+										src="../static/img/iconos/candado.png"
+										alt="Icono"
+									/>
+								</div>
+								<input
+									type="password"
+									placeholder=" **********"
+									size="30"
+									style="font-family: Verdana; font-size: 20px; float: center"
+									required
+								/>
+								<br /><br>
+								<a class="recuperacion" href="#" style="text-decoration: none"
+									>¿Olvidaste tu contraseña?</a
+								>
+								<br />
+								<div class="botones">
+									<a href="#" class="btn btn-ingresar"
+										><button>INGRESAR</button></a
+									>
+									<br />
+								</div>
+							</form>
+						</div>
+						<div class="nuevo">
+							<img class="imagen" src="../static/img/iconos/raya.png" width="33%" />
+							<p>&nbsp;&nbsp;&nbsp;</p>
+							<h1 class="textnuevo">¿Eres nuevo?</h1>
+							<p>&nbsp;&nbsp;&nbsp;</p>
+							<img class="imagen" src="../static/img/iconos/raya.png" width="33%" />
+						</div>
+						<a href="#" class="btn btn-registrarse"><button>REGISTRATE</button></a>
+					</div>
+					<div>
+						<img
+							src="../static/img/empresa/verificacion.png"
+							alt="verificacion"
+							class="verificacion"
+						/>
+					</div>
+				</section>
+				<br />
+{% endblock %}

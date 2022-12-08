@@ -7,6 +7,16 @@
 	</div>
 	<h1 class="titulovalidacion">VALIDACIÓN DE CORREO ELECTRÓNICO</h1>
 	<br />
+	{% with messages = get_flashed_messages()[-1]%}
+
+				{% if messages %}
+					<br />
+					<div>
+						<strong style="color: #e41f1a;">{{ messages }}</strong>
+					</div>
+				{% endif %}
+	{% endwith %}
+
 	<p class="textgeneral">
 		Hola {{ nombre }}, para continuar se requiere tu confirmación el correo electrónico: {{
 		email}}
@@ -25,9 +35,15 @@
 		<img class="img" src="../static/img/iconos/raya.png" width="33%" style="margin-top: -50px; opacity: 0.5;"/>
 		<!-- <p>&nbsp;&nbsp;&nbsp;</p> -->
 	</div>
-	<div class="boton" aling="center">
-		<a href="#" class="btn-renviar"><button>ENVIAR DE NUEVO EL EMAIL</button></a>
-	</div>
+	<form action="/resendEmail" method="POST">
+		<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		<input type="text" name="nombre" value="{{ nombre }}" hidden>
+		<input type="text" name="email" value="{{ email }}" hidden>
+		<div class="boton" aling="center">
+			<!-- <a href="/resendEmail/{{ email }}?{{ nombre }}" class="btn-renviar"><button>ENVIAR DE NUEVO EL EMAIL</button></a> -->
+			<a href="#" class="btn-renviar"><button>ENVIAR DE NUEVO EL EMAIL</button></a>
+		</div>
+	</form>
 </div>
 <div class="imagenrepemail">
 	<img align="center" src="../static/img/repartidores/Repartidor_3.png" width="255" height="520" />

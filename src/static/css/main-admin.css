@@ -1,0 +1,175 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 45% 40%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	border-bottom: 1px solid #000;
+	/* border: solid 1px red; */
+}
+
+.header div {
+	/* border: solid 1px red; */
+	background: #fff;
+	height: 1fr;
+}
+
+.header .logo {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+.header .nav-contenido .Titulo {
+	display: grid;
+	align-items: center;
+	place-content: center;
+	color: #e41f1a;
+	text-transform: uppercase;
+	font-style: italic;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	transition: all 0.5s;
+	/* border: solid 1px red; */
+}
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .botones {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 100%;
+}
+
+.header .botones a {
+	text-decoration: none;
+	color: #212e46;
+	/* border: solid 1px red; */
+}
+
+.header .botones .nav-botones {
+	display: grid;
+	place-content: center;
+}
+
+.header .secciones .nav-contenido a:hover {
+	color: #e41f1a;
+	transform: scale(1.1);
+}
+
+.header .botones .btn button {
+	display: grid;
+	font-size: 75%;
+	color: white;
+	background: #212e46;
+	padding: 10px 10px;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+	/* margin-left: auto; */
+}
+
+.header .botones .btn-imgAdmin img {
+	display: grid;
+	place-content: center;
+	height: 50px;
+}
+
+.header .botones .btn-imgAdmin img:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+}
+
+.header .botones .btn-admin button {
+	background-color: #f9d950;
+	color: #212e46;
+}
+
+.header .botones .btn-cerrarsesion button {
+	background-color: #212e46;
+	color: #fff;
+}
+
+.header .botones .btn button:hover {
+	transform: scale(1.1);
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns:50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
+}
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
+}
