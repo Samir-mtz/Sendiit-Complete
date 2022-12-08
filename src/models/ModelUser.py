@@ -75,11 +75,11 @@ class ModelUser():
     def consulta_email(self, db, email):
         try:
             cursor = db.connection.cursor()
-            sql = "SELECT id, confirmed, nombre FROM user WHERE email = '{}'".format(email)
+            sql = "SELECT id, confirmed, nombre, tipo FROM user WHERE email = '{}'".format(email)
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(email="",password=None,id=row[0], confirmed=row[1], nombre=row[2])
+                return User(email="",password=None,id=row[0], confirmed=row[1], nombre=row[2], tipo=row[3])
             else:
                 return None
         except Exception as ex:

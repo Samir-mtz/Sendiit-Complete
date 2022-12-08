@@ -138,9 +138,18 @@ def login():
                 if logged_user.password:
                     login_user(logged_user)
                     confirmed_user = ModelUser.consulta_email(db, logged_user.email)
-                
+                    print(confirmed_user.tipo)
                     if confirmed_user.confirmed: # En caso de no ser confirmado reenvia un correo para confirmar
-                        return redirect(url_for('home'))
+                        if confirmed_user.tipo=='user':
+                            print('si entro')
+                            return redirect(url_for('home'))
+                        elif confirmed_user.tipo =='admin':
+                            return redirect(url_for('admin'))
+                        else:
+                            # flash("algo salio mal.")
+                            return redirect(url_for('index'))
+
+                            
                     else:
                         logout_user()
                         token = generate_confirmation_token(logged_user.email)
@@ -179,7 +188,15 @@ def home():
             'stylesheet' : 'bienvenida.css',
             }
     # print(current_user)
-    return render_template('home.html', data=DATA)
+    user = ModelUser.consulta_email(db, current_user.email)
+    print(user.tipo)
+    if user.tipo == 'usuario':
+        return render_template('home.html', data=DATA)
+    elif user.tipo == 'admin':
+        return redirect(url_for('admin'))
+    else:
+        return redirect(url_for('index'))
+
 
 
 # Registro de una nueva cuenta
@@ -357,14 +374,17 @@ def resend_email():
 #########################################################################################
 # Ruta raíz
 @app.route('/admin')
+@login_required
 def admin():
     DATA = {
             'title' : 'Catalogos',
             'stylesheet' : 'Catalogos.css',
             }
-
-    return render_template('Catalogos.html', data=DATA)
-
+    user = ModelUser.consulta_email(db, current_user.email)
+    if user.tipo == 'admin':
+        return render_template('Catalogos.html', data=DATA)
+    else:
+        return redirect(url_for('home'))
 
 # Lockers - tabla
 @app.route('/admin/lockers')
@@ -387,13 +407,13 @@ def lockersAgregar():
     return render_template('AgregarLocker.html', data=DATA)
 
 
-#########################################################################################
-############################# Funciones de redireccionamineto ###########################
-#########################################################################################
+#############################################################################################################
+############################# Funciones de redireccionamineto despues de un error ###########################
+#############################################################################################################
 
 #En caso de que no este logeado y quiera entrar al sistema redirige al login
 def status_401(error):
-    flash('No estas Logeado. Por favor, inicia sesión.')
+    flash('Para acceder, por favor inicia sesión.')
     return redirect(url_for('login'))
 
 
