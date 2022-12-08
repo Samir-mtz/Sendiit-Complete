@@ -115,6 +115,10 @@ def sucursalesAragon():
 
     return render_template('aragon.html', data=DATA)
 
+#########################################################################################
+##################################### Usuario cliente ###################################
+#########################################################################################
+
 # Inicio de sesion
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -346,6 +350,42 @@ def resend_email():
     except: #Intenta ingresar con un correo no registrado
         flash('Error. Usuario no registrado')
         return redirect(url_for('register'))
+
+
+#########################################################################################
+################################## Usuario administrador ################################
+#########################################################################################
+# Ruta raíz
+@app.route('/admin')
+def admin():
+    DATA = {
+            'title' : 'Catalogos',
+            'stylesheet' : 'Catalogos.css',
+            }
+
+    return render_template('Catalogos.html', data=DATA)
+
+
+# Lockers - tabla
+@app.route('/admin/lockers')
+def lockers():
+    DATA = {
+            'title' : 'Lockers',
+            'stylesheet' : 'tablalockers.css',
+            }
+
+    return render_template('TablaLockers.html', data=DATA)
+
+# Lockers - agregar
+@app.route('/admin/lockers/agregar')
+def lockersAgregar():
+    DATA = {
+            'title' : 'Agregar Locker',
+            'stylesheet' : 'AgregarLocker.css',
+            }
+
+    return render_template('AgregarLocker.html', data=DATA)
+
 
 #########################################################################################
 ############################# Funciones de redireccionamineto ###########################

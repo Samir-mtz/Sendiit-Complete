@@ -1,0 +1,77 @@
+{% extends 'base-admin.html' %}
+{% block body_main %}
+<div class="titulo-formulario">
+  <div class="img-catalogo"><img src="../static/img/iconos/locker.png" alt="MiniLocker" width="15%" height="15%" />
+  </div>
+  <div class="buscar">
+    <span>
+      <input type="text" placeholder="Buscar" required>
+      <div class="btn2"><i class="fas fa-search"></i></div>
+    </span>
+  </div>
+</div>
+<div class="datos-tabla">
+  <table align="center">
+    <thead>
+      <tr>
+        <th>Ubicación</th>
+        <th>Tamaño</th>
+        <th>Cantidad</th>
+        <th>Disponibilidad</th>
+        <th>Enviados</th>
+        <th>Recibido</th>
+        <th colspan="3">Acciones</th>
+      </tr>
+    </thead>
+    <tr>
+      <td>Lindavista</td>
+      <td>S</td>
+      <td>5</td>
+      <td>2</td>
+      <td>12</td>
+      <td>4</td>
+      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
+    </tr>
+    <tr>
+      <td>Lindavista</td>
+      <td>S</td>
+      <td>5</td>
+      <td>2</td>
+      <td>12</td>
+      <td>4</td>
+      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
+    </tr>
+
+    <tr>
+      <td>Lindavista</td>
+      <td>S</td>
+      <td>5</td>
+      <td>2</td>
+      <td>12</td>
+      <td>4</td>
+      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
+    </tr>
+
+    <tr>
+      <td>Lindavista</td>
+      <td>S</td>
+      <td>5</td>
+      <td>2</td>
+      <td>12</td>
+      <td>4</td>
+      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
+      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
+    </tr>
+  </table>
+  <div class="agregar">
+    <button class="btn3" id="btn-ventana">AGREGAR LOCKER</button>
+  </div>
+</div>
+{% endblock %}

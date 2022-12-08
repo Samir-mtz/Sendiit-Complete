@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Definiciond el titulo -->
+  {% if data.title %}
+  <title>Administrador Sendiit - {{ data.title }}</title>
+  {% else %}
+  <!-- Titulo generico -->
+  <title>Administración Sendiit</title>
+  {% endif %}
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/main-admin.css" />
+  {% if data.stylesheet %}
+  <link rel="stylesheet" href="../static/css/{{ data.stylesheet }}" />
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  {% endif %}
+</head>
+
+<body>
+  <article>
+    <header class="header">
+      <!-- Logo de la empresa -->
+      <div class="logo">
+        <a href="/">
+          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        </a>
+      </div>
+      <!-- Barra de navegacion dentro de la pagina -->
+      <div class="secciones">
+        <div class="nav-contenido">
+          <h1 class="Titulo">Lockers</h1>
+        </div>
+      </div>
+      </div>
+      <!-- Botones de acciones del sistema -->
+      <div class="botones">
+        <div class="nav-botones">
+          <a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt=""></a>
+        </div>
+        <div class="nav-botones">
+          <a href="#" class="btn btn-admin"><button>ADMIN</button></a>
+        </div>
+        <div class="nav-botones">
+          <a href="#" class="btn btn-cerrarsesion"><button>CERRAR SESIÓN</button></a>
+        </div>
+      </div>
+    </header>
+
+    <main class="main">
+      {% block body_main %}
+      {% endblock %}
+    </main>
+
+    <dialog id="modal-btn">
+      <center>
+        <div class="contenido-modal">
+          <div class="encabezado-modal"><button id="modal-btn-cerrar"><i class="bi bi-x-circle"></i></button></div>
+          <div class="titulo-modal">
+            <h2>¿Desea agregar un locker?</h2>
+          </div>
+          <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+          <div class="botones-modal">
+            <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
+            <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+            <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+            <a href="/admin/lockers/agregar"><button class="confirmar">Confirmar</button></a>
+          </div>
+        </div>
+      </center>
+    </dialog>
+
+    <footer class="footer">
+      <div class="derechos">
+        <div class="copyright">
+          <span>&copy;2022 México. Todos los derechos reservados.</span>
+        </div>
+      </div>
+      <div class="redes">
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+      </div>
+    </footer>
+  </article>
+  <script src="../static/js/ventanas.js"></script>
+</body>
+
+</html>
