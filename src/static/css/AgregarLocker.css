@@ -33,7 +33,7 @@ article {
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
-	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid #000;
 	/* border: solid 1px red; */
 }
 
@@ -48,6 +48,14 @@ article {
 	place-content: center;
 	cursor: pointer;
 }
+.header .nav-contenido .Titulo {
+	display: grid;
+	align-items: center;
+	place-content: center;
+	color: #e41f1a;
+	text-transform: uppercase;
+	font-style: italic;
+}
 
 .header .logo img {
 	height: 85%;
@@ -60,22 +68,18 @@ article {
 	transform: scale(1.1);
 }
 
-.header .secciones,
 .header .botones {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: 100%;
 }
 
-.header .secciones a,
 .header .botones a {
 	text-decoration: none;
 	color: #212e46;
-	font-size: x-large;
 	/* border: solid 1px red; */
 }
 
-.header .secciones .nav-contenido,
 .header .botones .nav-botones {
 	display: grid;
 	place-content: center;
@@ -88,6 +92,7 @@ article {
 
 .header .botones .btn button {
 	display: grid;
+	font-size: 75%;
 	color: white;
 	background: #212e46;
 	padding: 10px 10px;
@@ -96,21 +101,27 @@ article {
 	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 	cursor: pointer;
 	transition: all 0.5s ease 0s;
-	font-size: large;
-	margin-left: auto;
+	/* margin-left: auto; */
 }
 
-.header .botones .btn-enviar button {
-	background-color: #e41f1a;
-	color: #fff;
+.header .botones .btn-imgAdmin img {
+	display: grid;
+	place-content: center;
+	height: 50px;
 }
 
-.header .botones .btn-ingresar button {
+.header .botones .btn-imgAdmin img:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+}
+
+.header .botones .btn-admin button {
 	background-color: #f9d950;
 	color: #212e46;
 }
 
-.header .botones .btn-registrarse button {
+.header .botones .btn-cerrarsesion button {
 	background-color: #212e46;
 	color: #fff;
 }
@@ -123,159 +134,121 @@ article {
                                         Main
 ************************************************************************************/
 
-.contenedor-login {
-	/*background-color: yellow;*/
+.main {
+	display: grid;
+	grid-template-columns: 60% 40%;
 	text-align: center;
-	display: flex;
-	justify-content: space-evenly;
-	flex-direction: row;
+	height: 90%;
+	background: #fff;
 }
 
-.contenedor-login2 {
-	margin-top: 10px;
-	background-color: #fff;
+/* .main div:hover {
+	border: 1px solid red;
+} */
+
+.main .contenido {
+	display: grid;
+	grid-template-rows: 20% 60% 20%;
 	text-align: center;
-	display: flex;
-	flex-direction: column;
-	border: 0.5px solid rgb(218, 218, 218);
-	box-shadow: 3px 3px 3px rgb(218, 218, 218);
-	border-radius: 20px;
+	place-content: center;
+	align-items: center;
 }
 
-
-.contenedor-login img.pequeña {
-	/*background-color: blue;*/
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	width: 40%;
-	height: 10%;
-	display: flex;
+.main .img-lateral {
+	display: grid;
+	place-content: center;
+	text-align: center;
 }
 
-.contenedor-login .titulologin {
+.titulo-formulario {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
+
+.botones-formulario {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
+
+.main .locker {
+	width: 250px;
+	height: 430px;
+	margin: auto;
+}
+
+.main .Texto3 {
+	color: #4e519b;
+	font-family: "Oswald", sans-serif bold;
+	font-size: 170%;
+	letter-spacing: 2px;
+}
+
+.tituloAgregar {
 	color: #f9d950;
-	margin-top: 0px;
-	/*background-color: red;*/
-	text-align: center;
-	font-weight: normal;
-	font: italic bold 30px Helvetica, Sans-Serif;
+	font-size: 40px;
 }
-.contenedor-login .textologin {
-	color: #212e46;
-	font-weight: normal;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
+
+.datos-locker {
+	display: grid;
+	grid-template-rows: repeat(8, 0.3fr);
 	text-align: center;
+	place-content: center;
+	align-items: center;
 }
-.contenedor-login .textologin2 {
-	color: #212e46;
-	font-weight: bolder;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
+
+.texto {
 	text-align: left;
-	margin-left: 100px;
-}
-
-.login-box input[type="email"],
-.login-box input[type="password"] {
-	font: italic 5px Verdana, Sans-Serif;
-	width: 70%;
-	height: 30px;
-	border-radius: 20px;
-}
-.contenedor-login #icono {
-	margin-left: 420px;
-	position: absolute;
-	z-index: 1;
-	background-color: #f9d950;
-	width: 80px;
-	height: 35px;
-	border-radius: 30px;
-	margin-right: 2005px;
-}
-
-.contenedor-login .email {
-	margin-top: 2px;
-	margin-left: 3px;
-	height: 29px;
-	width: 38px;
-}
-
-.contenedor-login .candado {
-	margin-top: 2px;
-	margin-left: 3px;
-	height: 29px;
-	width: 25px;
-}
-
-.contenedor-login .recuperacion {
-	color: #354d75;
-	font-weight: bolder;
-	font: italic bold 10px Helvetica, Sans-Serif;
+	margin-left: -10px;
 	font-size: medium;
-	text-align: right;
-	margin-left: 200px;
 }
 
-.contenedor-login .botones .btn button,
-.contenedor-login2 .btn-registrarse button {
+small {
+	color: red;
+}
+
+.btn-cancelar button {
 	font-weight: bolder;
 	font-size: large;
-	width: 300px;
+	width: 150px;
 	color: white;
-	background: #212e46;
+	background: #e41f1a;
 	padding: 10px 30px;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
 	transition: all 0.5s ease 0s;
-	/* margin-left: auto; */
-	margin-bottom: 30px;
 }
 
-.contenedor-login .botones .btn-ingresar button,
-.contenedor-login2 .btn-registrarse button {
-	margin-top: 20px;
-	background-color: #f9d950;
-	color: #212e46;
-}
-
-.contenedor-login .botones .btn button:hover,
-.contenedor-login2 .btn-registrarse button:hover {
-	cursor: pointer;
-	background-color: #f5cc16;
-	transition: all 0.8s;
-	transform: scale(1.1);
-	box-shadow: 5px 5px 5px #f9d950;
-}
-
-.contenedor-login .nuevo {
-	height: 100px;
-	width: 500px;
-	color: #212e46;
+.btn-confirmar button {
 	font-weight: bolder;
-	font-size: medium;
-	font-size: medium;
-	text-align: center;
-	display: flex;
-	flex-direction: row;
-	margin-top: -30px;
-	margin-left: 70px;	
+	font-size: large;
+	width: 150px;
+	color: white;
+	background: green;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
 }
 
-.contenedor-login2 .btn-registrarse button {
-	background-color: #ffea8c;
-	color: #212e46;
-}
-.contenedor-login .textnuevo {
-	margin-top: 30px;
-	text-align: center;
-}
-.contenedor-login .imagen {
-	opacity: 0.3;
+.btn-confirmar button:hover,
+.btn-cancelar button:hover {
+	transform: scale(1.1);
 }
 
+input {
+	height: 30px;
+	width: 400px;
+	border-radius: 8px;
+	border: 1px solid #000;
+}
 
 /************************************************************************************
                                         Footer
@@ -283,7 +256,7 @@ article {
 
 .footer {
 	display: grid;
-	grid-template-columns:50% 50%;
+	grid-template-columns: 40% 60%;
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
@@ -299,7 +272,7 @@ article {
 
 .footer .redes {
 	display: grid;
-	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: 100%;
 }
 

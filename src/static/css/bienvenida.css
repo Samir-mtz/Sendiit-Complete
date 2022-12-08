@@ -123,159 +123,77 @@ article {
                                         Main
 ************************************************************************************/
 
-.contenedor-login {
-	/*background-color: yellow;*/
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: 60% 40%;
 	text-align: center;
-	display: flex;
-	justify-content: space-evenly;
-	flex-direction: row;
 }
 
-.contenedor-login2 {
-	margin-top: 10px;
-	background-color: #fff;
-	text-align: center;
-	display: flex;
+.contenido {
+	z-index: 100;
 	flex-direction: column;
-	border: 0.5px solid rgb(218, 218, 218);
-	box-shadow: 3px 3px 3px rgb(218, 218, 218);
-	border-radius: 20px;
+    display: grid;
+	place-content: center;
+	/* border-radi  us: 20px; */
 }
 
-
-.contenedor-login img.pequeña {
-	/*background-color: blue;*/
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	width: 40%;
-	height: 10%;
-	display: flex;
+.main div {
+	background: #fff;
 }
 
-.contenedor-login .titulologin {
-	color: #f9d950;
-	margin-top: 0px;
-	/*background-color: red;*/
-	text-align: center;
-	font-weight: normal;
-	font: italic bold 30px Helvetica, Sans-Serif;
+/* .main div:hover{
+    border: 1px solid red;
+} */
+
+.main .titulo-pagina {
+	grid-column: 1/2;
 }
-.contenedor-login .textologin {
+
+.main .titulo-pagina img {
+	height: 80px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	width: auto;
+}
+
+.main h1 {
+	color: #f5cc16;
+	margin-top: 25px;
+}
+
+.main h3 {
 	color: #212e46;
-	font-weight: normal;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
-	text-align: center;
+	margin-top: -20px;
 }
-.contenedor-login .textologin2 {
+
+.btn-siguiente button {
+	font-weight: 700;
+	background-color: #f9da50d4;
 	color: #212e46;
-	font-weight: bolder;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
-	text-align: left;
-	margin-left: 100px;
-}
-
-.login-box input[type="email"],
-.login-box input[type="password"] {
-	font: italic 5px Verdana, Sans-Serif;
-	width: 70%;
-	height: 30px;
-	border-radius: 20px;
-}
-.contenedor-login #icono {
-	margin-left: 420px;
-	position: absolute;
-	z-index: 1;
-	background-color: #f9d950;
-	width: 80px;
-	height: 35px;
-	border-radius: 30px;
-	margin-right: 2005px;
-}
-
-.contenedor-login .email {
-	margin-top: 2px;
-	margin-left: 3px;
-	height: 29px;
-	width: 38px;
-}
-
-.contenedor-login .candado {
-	margin-top: 2px;
-	margin-left: 3px;
-	height: 29px;
-	width: 25px;
-}
-
-.contenedor-login .recuperacion {
-	color: #354d75;
-	font-weight: bolder;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
-	text-align: right;
-	margin-left: 200px;
-}
-
-.contenedor-login .botones .btn button,
-.contenedor-login2 .btn-registrarse button {
-	font-weight: bolder;
-	font-size: large;
-	width: 300px;
-	color: white;
-	background: #212e46;
 	padding: 10px 30px;
 	border: none;
-	border-radius: 10px;
+	border-radius: 15px;
 	cursor: pointer;
-	transition: all 0.5s ease 0s;
-	/* margin-left: auto; */
-	margin-bottom: 30px;
+	margin-left: 270px;
 }
 
-.contenedor-login .botones .btn-ingresar button,
-.contenedor-login2 .btn-registrarse button {
-	margin-top: 20px;
-	background-color: #f9d950;
-	color: #212e46;
-}
-
-.contenedor-login .botones .btn button:hover,
-.contenedor-login2 .btn-registrarse button:hover {
-	cursor: pointer;
-	background-color: #f5cc16;
-	transition: all 0.8s;
+.btn-siguiente button:hover {
+	transition: all 0.5s;
 	transform: scale(1.1);
-	box-shadow: 5px 5px 5px #f9d950;
+	box-shadow: 5px 5px 5px #e41f1a;
+	
 }
 
-.contenedor-login .nuevo {
-	height: 100px;
-	width: 500px;
-	color: #212e46;
-	font-weight: bolder;
-	font-size: medium;
-	font-size: medium;
-	text-align: center;
-	display: flex;
-	flex-direction: row;
-	margin-top: -30px;
-	margin-left: 70px;	
+.main .img-repartidor .repartidor img {
+	width: 530px;
+	height: 600px;
 }
 
-.contenedor-login2 .btn-registrarse button {
-	background-color: #ffea8c;
-	color: #212e46;
+marquee{
+	width: 130%;
 }
-.contenedor-login .textnuevo {
-	margin-top: 30px;
-	text-align: center;
-}
-.contenedor-login .imagen {
-	opacity: 0.3;
-}
-
 
 /************************************************************************************
                                         Footer
