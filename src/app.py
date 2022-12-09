@@ -12,9 +12,13 @@ from models.token import generate_confirmation_token, confirm_token
 # Clases
 # Models:
 from models.ModelUser import ModelUser
+from models.ModelLoker import ModelLocker
+from models.ModelLocation import ModelLocation
 
 # Entities:
 from models.entities.User import User
+from models.entities.Locker import Locker
+from models.entities.Location import Location
 
 app = Flask(__name__)
 csrf = CSRFProtect()
@@ -54,7 +58,6 @@ def index():
             'title' : 'Principal',
             'stylesheet' : 'inicio.css',
             }
-
     return render_template('index.html', data=DATA)
 
 # Ruta raíz
@@ -64,7 +67,6 @@ def conocenos():
             'title' : 'Conócenos',
             'stylesheet' : 'Conocenos.css',
             }
-
     return render_template('conocenos.html', data=DATA)
 
 # Ruta raíz
@@ -74,7 +76,6 @@ def sucursales():
             'title' : 'Sucursales',
             'stylesheet' : 'Sucursales.css',
             }
-
     return render_template('Sucursales.html', data=DATA)
 
 @app.route('/sucursales/valle')
@@ -83,7 +84,6 @@ def sucursalesValle():
             'title' : 'Colonia del valle',
             'stylesheet' : 'Maps.css',
             }
-
     return render_template('Valle.html', data=DATA)
 
 @app.route('/sucursales/lindavista')
@@ -92,7 +92,6 @@ def sucursalesLindavista():
             'title' : 'Colonia lindavista',
             'stylesheet' : 'Maps.css',
             }
-
     return render_template('Lindavista.html', data=DATA)
 
 
@@ -102,7 +101,6 @@ def sucursalesSatelite():
             'title' : 'Satélite',
             'stylesheet' : 'Maps.css',
             }
-
     return render_template('Satelite.html', data=DATA)
 
 
@@ -112,7 +110,6 @@ def sucursalesAragon():
             'title' : 'Colonia aragón',
             'stylesheet' : 'Maps.css',
             }
-
     return render_template('aragon.html', data=DATA)
 
 #########################################################################################
@@ -148,8 +145,7 @@ def login():
                         else:                                                                                                       
                             # flash("algo salio mal.")
                             return redirect(url_for('index'))
-
-                            
+               
                     else:
                         logout_user()
                         token = generate_confirmation_token(logged_user.email)
@@ -162,7 +158,6 @@ def login():
             else:
                 flash("Usuario y/o contraseña incorrectos.")
                 return render_template('ingresar.html', data=DATA)
-
         
         else:
             return render_template('ingresar.html', data=DATA)
@@ -171,7 +166,6 @@ def login():
         return redirect(url_for('home'))
         
         # return  render_template('ingresar.html', data=DATA)
-
 
 # Cerrar sesion
 @app.route('/logout')
@@ -378,7 +372,7 @@ def resend_email():
 def admin():
     DATA = {
             'title' : 'Catalogos',
-            'stylesheet' : 'Catalogos.css',
+            'stylesheet' : '../static/css/Catalogos.css',
             }
     user = ModelUser.consulta_email(db, current_user.email)
     if user.tipo == 'admin':
@@ -387,24 +381,64 @@ def admin():
         return redirect(url_for('home'))
 
 # Lockers - tabla
-@app.route('/admin/lockers')
+@app.route('/admin/lockers', methods=['GET', 'POST'])
 def lockers():
     DATA = {
             'title' : 'Lockers',
-            'stylesheet' : 'tablalockers.css',
+            'stylesheet' : '../static/css/tablalockers.css',
             }
-
-    return render_template('TablaLockers.html', data=DATA)
+    list_lockers = ModelLocker.consultAll(db)
+    return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
 
 # Lockers - agregar
 @app.route('/admin/lockers/agregar')
 def lockersAgregar():
     DATA = {
             'title' : 'Agregar Locker',
-            'stylesheet' : 'AgregarLocker.css',
+            'stylesheet' : '../../static/css/AgregarLocker.css',
             }
+    list_locations = ModelLocation.consultAll(db)
 
-    return render_template('AgregarLocker.html', data=DATA)
+    return render_template('AgregarLocker.html', data=DATA, locations = list_locations)
+
+# Salvar datos post, insertamos, y redireccionamos a admin lockers
+
+# Lockers - actualizar
+@app.route('/admin/lockers/actualizar', methods=['GET', 'POST'])
+def lockersActualizar():
+    DATA = {
+            'title' : 'Agregar Locker',
+            'stylesheet' : '../../static/css/EditarLockers.css',
+            }
+    idLocker = request.form['id']
+    try:
+        return render_template('EditarLockers.html', data=DATA, id = idLocker)
+    except:
+        return redirect(url_for('lockers'))
+
+    
+        
+# Lockers - eliminar
+@app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
+def lockersEliminar():
+    # DATA = {
+    #         'title' : 'Agregar Locker',
+    #         'stylesheet' : '../../static/css/AgregarLocker.css',
+    #         }
+
+    return redirect(url_for('lockers'))
+    # return render_template('AgregarLocker.html', data=DATA)
+
+# Lockers - modificar estado
+@app.route('/admin/lockers/modificar-estado')
+def lockersModificarEstado():
+    # DATA = {
+    #         'title' : 'Agregar Locker',
+    #         'stylesheet' : '../../static/css/AgregarLocker.css',
+    #         }
+
+    # return render_template('AgregarLocker.html', data=DATA)
+    return redirect(url_for('lockers'))
 
 
 #############################################################################################################

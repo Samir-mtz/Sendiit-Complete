@@ -1,15 +1,62 @@
-{% extends 'base-admin.html' %}
+{% extends 'base-admin3level.html' %}
 {% block body_main %}
-<div>
-	<img class="palomit" src="../static/img/Admin/Lockers.png" alt="123">
-</div>
-<div>
-	<h1 class="body"> Editar Locker </h1>
-</div>
-<div>
+<form class="contenido">
+	<div class="titulo-formulario">
+		<div class="img-catalogo"><img src="../static/img/iconos/locker.png" alt="MiniLocker" width="35%" height="45%" />
+		</div>
+		<div>
+			<h1 class="tituloAgregar">Editar Locker</h1>
+		</div>
+	</div>
+	<div class="datos-locker">
+		<p class="texto">Ubicación <small>*</small></p>
+		<input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder=" Lindavista ">
+		<p class="texto">Dirección <small>*</small></p>
+		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" Calle Leonardo da Vinci, 7, 41092. ">
+		<p class="texto">Cantidad <small>*</small></p>
+		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" 1 ">
+		<p class="texto">Modelo <small>*</small></p>
+		<select name="modelo-puertas" id="modelo-puertas">
+			<option value="8">8 Puertas</option>
+			<option value="12">12 Puertas</option>
+			<option value="13" selected>13 Puertas</option>
+		</select>
+		<!-- <input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 "> -->
+	</div>
+	<div class="botones-formulario">
+		<a href="#" class="btn-cancelar"><button>Cancelar</button></a>
+		<a href="#" class="btn-confirmar"><button>Guardar</button></a>
+	</div>
+</form>
+
+<div class="img-lateral">
 	<img class="locker" src="../static/img/Admin/Main-Console-web.png" alt="locker">
-	<h2 class="Texto">
-		Unidad estándar adicional
-	</h2>
+	<h2 class="Texto3">Unidad estándar adicional</h2>
 </div>
+{% endblock %}
+
+{% block message_dialog %}
+<!-- Modal para confirmacion -->
+<dialog class="modal-btn-confirmar" id="modal-btn">
+	<center>
+		<div class="contenido-modal">
+			<div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
+						class="bi bi-x-circle"></i></button></div>
+			<div class="titulo-modal">
+				<h2>¿Desea eliminar el locker?</h2>
+			</div>
+			<!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+			<div class="botones-modal">
+				<a href="./TablaLockers.html"><button class="cancelar">Cancelar</button></a>
+				<!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+				<!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+				<a href="#"><button class="confirmar">Confirmar</button></a>
+			</div>
+		</div>
+	</center>
+</dialog>
+{% endblock %}
+
+{% block scripting_zone %}
+	
 {% endblock %}

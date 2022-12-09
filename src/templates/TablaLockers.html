@@ -5,73 +5,198 @@
   </div>
   <div class="buscar">
     <span>
-      <input type="text" placeholder="Buscar" required>
-      <div class="btn2"><i class="fas fa-search"></i></div>
+      <input type="text" placeholder="Buscar">
+      <i class="fa-search btn2 fas"></i>
     </span>
+  </div>
+  <div class="agregar">
+    <button onclick="abrirAgregar()" class="btn3 btn-ventana-agregar">AGREGAR LOCKER</button>
   </div>
 </div>
 <div class="datos-tabla">
   <table align="center">
     <thead>
+      <!-- Encabezados de la tabla -->
       <tr>
-        <th>Ubicación</th>
-        <th>Tamaño</th>
-        <th>Cantidad</th>
-        <th>Disponibilidad</th>
-        <th>Enviados</th>
-        <th>Recibido</th>
+        <th rowspan="2">Ubicación</th>
+        <th colspan="3">Modelo 8</th>
+        <th colspan="3">Modelo 12</th>
+        <th colspan="3">Modelo 13</th>
+        <!-- <th>Disponibilidad</th> -->
+        <!-- <th>Enviados</th> -->
+        <!-- <th>Recibido</th> -->
         <th colspan="3">Acciones</th>
+      <tr style="background-color: #f9d950; font-size: 13px;">
+        <th>S</th>
+        <th>M</th>
+        <th>L</th>
+        <th>S</th>
+        <th>M</th>
+        <th>L</th>
+        <th>S</th>
+        <th>M</th>
+        <th>L</th>
+        <th>Estado</th>
+        <th>Editar</th>
+        <th>Eliminar</th>
+      </tr>
       </tr>
     </thead>
+    <!-- Fila -->
+    {% for locker in lockers %}
     <tr>
-      <td>Lindavista</td>
-      <td>S</td>
-      <td>5</td>
-      <td>2</td>
-      <td>12</td>
-      <td>4</td>
-      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
-    </tr>
-    <tr>
-      <td>Lindavista</td>
-      <td>S</td>
-      <td>5</td>
-      <td>2</td>
-      <td>12</td>
-      <td>4</td>
-      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
-    </tr>
+      <td>{{ locker.ubicacion }}</td>
 
-    <tr>
-      <td>Lindavista</td>
-      <td>S</td>
-      <td>5</td>
-      <td>2</td>
-      <td>12</td>
-      <td>4</td>
-      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
-    </tr>
+      {% if locker.categoria == 8 %}
+      <td>{{ locker.cantidadS }}</td>
+      <td>{{ locker.cantidadM }}</td>
+      <td>{{ locker.cantidadL }}</td>
 
-    <tr>
-      <td>Lindavista</td>
-      <td>S</td>
-      <td>5</td>
-      <td>2</td>
-      <td>12</td>
-      <td>4</td>
-      <td><img src="../static/img/iconos/checked.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/edit.png" width="40" height="40" /></td>
-      <td><img src="../static/img/iconos/close.png" width="40" height="40" /></td>
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      {% endif %}
+
+      {% if locker.categoria == 12 %}
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+      <td>{{ locker.cantidadS }}</td>
+      <td>{{ locker.cantidadM }}</td>
+      <td>{{ locker.cantidadL }}</td>
+
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+      {% endif %}
+
+      {% if locker.categoria == 13 %}
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+      <td>0</td>
+      <td>0</td>
+      <td>0</td>
+
+      <td>{{ locker.cantidadS }}</td>
+      <td>{{ locker.cantidadM }}</td>
+      <td>{{ locker.cantidadL }}</td>
+      {% endif %}
+
+      <form action="/admin/lockers" method="GET">
+        <td><button onclick="abrirEstado()" class="btn-estado btn-ventana-estado ocultar"><img
+              src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+      </form>
+      
+      <form action="/admin/lockers/actualizar" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
+        <input type="number" name="id" value="{{ locker.id }}" hidden>
+        <td><button onclick="abrirEditar()" class="btn-editar btn-ventana-editar"><img
+              src="../static/img/iconos/edit.png" width="40" height="40" /></button></td>
+      </form>
+
+      <form action="/admin/lockers/eliminar" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
+        <input type="number" name="id" value="{{ locker.id }}" hidden>
+        <td><button onclick="abrirEliminar()" class="btn-eliminar btn-ventana-eliminar"><img
+              src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
+      </form>
+
     </tr>
+    {% endfor %}
   </table>
-  <div class="agregar">
-    <button class="btn3" id="btn-ventana">AGREGAR LOCKER</button>
-  </div>
 </div>
+{% endblock %}
+
+{% block message_dialog %}
+<dialog class="modal-btn-agregar" id="modal-btn">
+  <center>
+    <div class="contenido-modal">
+      <div class="encabezado-modal"><button onclick="cerrarAgregar()" class="modal-btn-cerrar-agregar"><i
+            class="bi bi-x-circle"></i></button></div>
+      <div class="titulo-modal">
+        <h2>¿Desea agregar un locker?</h2>
+      </div>
+      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+      <div class="botones-modal">
+        <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
+        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+        <form action="/admin/lockers/agregar" method="GET">
+          <button class="confirmar">Confirmar</button>
+        </form>
+      </div>
+    </div>
+  </center>
+</dialog>
+
+<!-- Modal para activar/desacrtivar -->
+<dialog class="modal-btn-estado" id="modal-btn">
+  <center>
+    <div class="contenido-modal">
+      <div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
+            class="bi bi-x-circle"></i></button></div>
+      <div class="titulo-modal">
+        <h2>¿Desea cambiar el estado del locker?</h2>
+      </div>
+      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+      <div class="botones-modal">
+        <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
+        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+        <a href="/admin/lockers/actualizar"><button class="confirmar">Confirmar</button></a>
+      </div>
+    </div>
+  </center>
+</dialog>
+
+<!-- Modal para editar -->
+<dialog class="modal-btn-editar" id="modal-btn">
+  <center>
+    <div class="contenido-modal">
+      <div class="encabezado-modal"><button onclick="cerrarEditar()" class="modal-btn-cerrar-editar"><i
+            class="bi bi-x-circle"></i></button></div>
+      <div class="titulo-modal">
+        <h2>¿Desea editar el locker?</h2>
+      </div>
+      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+      <div class="botones-modal">
+        <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
+        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+        <a href="/admin/lockers/eliminar"><button class="confirmar">Confirmar</button></a>
+      </div>
+    </div>
+  </center>
+</dialog>
+
+<!-- Modal para eliminar -->
+<dialog class="modal-btn-eliminar" id="modal-btn">
+  <center>
+    <div class="contenido-modal">
+      <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
+            class="bi bi-x-circle"></i></button></div>
+      <div class="titulo-modal">
+        <h2>¿Desea eliminar el locker?</h2>
+      </div>
+      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+      <div class="botones-modal">
+        <a href="./TablaLockers.html"><button class="cancelar">Cancelar</button></a>
+        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+        <a href="#"><button class="confirmar">Confirmar</button></a>
+      </div>
+    </div>
+  </center>
+</dialog>
+{% endblock %}
+
+{% block scripting_zone %}
+<script src="../static/js/Ventanas_TablaLockers.js"></script>
 {% endblock %}

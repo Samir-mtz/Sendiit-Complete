@@ -1,8 +1,8 @@
-{% extends 'base-admin.html' %}
+{% extends 'base-admin-3level.html' %}
 {% block body_main %}
 <form class="contenido">
 	<div class="titulo-formulario">
-		<div class="img-catalogo"><img src="../static/img/iconos/locker.png" alt="MiniLocker" width="35%" height="45%" />
+		<div class="img-catalogo"><img src="../../static/img/iconos/locker.png" alt="MiniLocker" width="35%" height="45%" />
 		</div>
 		<div>
 			<h1 class="tituloAgregar">Agregar Locker</h1>
@@ -10,13 +10,23 @@
 	</div>
 	<div class="datos-locker">
 		<p class="texto">Ubicación <small>*</small></p>
-		<input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder=" Lindavista ">
+		<select name="ubicaciones" id="ubicaciones">
+			{% for location in locations %}
+        <option value="{{ location.id }}"> {{ location.nombre }} </option>
+      {%  endfor %}
+		</select>
+		<!-- <input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder=" Lindavista "> -->
 		<p class="texto">Dirección <small>*</small></p>
 		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" Calle Leonardo da Vinci, 7, 41092. ">
-		<p class="texto">Tamaño <small>*</small></p>
-		<input class="campo" name="tamanio" id="tamanio" type="text" placeholder=" M ">
 		<p class="texto">Cantidad <small>*</small></p>
-		<input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 ">
+		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" 1 ">
+		<p class="texto">Modelo <small>*</small></p>
+		<select name="modelo-puertas" id="modelo-puertas">
+			<option value="8">8 Puertas</option>
+			<option value="12">12 Puertas</option>
+			<option value="13" selected>13 Puertas</option>
+		</select>
+		<!-- <input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 "> -->
 	</div>
 	<div class="botones-formulario">
 		<a href="#" class="btn-cancelar"><button>Cancelar</button></a>
@@ -25,7 +35,11 @@
 </form>
 
 <div class="img-lateral">
-	<img class="locker" src="../static/img/Admin/Main-Console-web.png" alt="locker">
+	<img class="locker" src="../../static/img/Admin/Main-Console-web.png" alt="locker">
 	<h2 class="Texto3">Unidad estándar adicional</h2>
 </div>
+{% endblock %}
+
+{% block scripting_zone %}
+
 {% endblock %}
