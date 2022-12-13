@@ -35,7 +35,7 @@ class ModelLocker():
     def consult_by_id(self, db, id): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
         try:
             cursor = db.connection.cursor()
-            sql = f"SELECT id,ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, disponibilidad, enviados, recibidos, activo, registrado FROM lockers where ubicacion='{id}'";
+            sql = f"SELECT id,ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, disponibilidad, enviados, recibidos, activo, registrado FROM lockers where id='{id}'";
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
@@ -63,7 +63,7 @@ class ModelLocker():
     def update(self, db, id, locker): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
         try:
             cursor = db.connection.cursor()
-            sql = f"UPDATE lockers SET ubicacion='{locker.ubicacion}', direccion='{locker.direccion}', direccion='{locker.categoria}', cantidadS={locker.cantidadS},cantidadM={locker.cantidadM}, cantidadL={locker.cantidadL}, disponibilidad={locker.disponibilidad} WHERE id='{id}'";
+            sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+"', direccion='"+locker.direccion+"', categoria="+locker.categoria+", cantidadS="+locker.cantidadS+",cantidadM="+locker.cantidadM+", cantidadL="+locker.cantidadL+" WHERE id="+id+";"
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:
@@ -84,7 +84,7 @@ class ModelLocker():
     def delete(self, db, id): 
         try:
             cursor = db.connection.cursor()
-            sql = f"DELETE FROM lockers WHERE id='{id}'";
+            sql = "DELETE FROM lockers WHERE id="+id+";"
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

@@ -89,24 +89,37 @@
       <td>{{ locker.cantidadL }}</td>
       {% endif %}
 
-      <form action="/admin/lockers" method="GET">
+      <!-- <form action="/admin/lockers" method="GET"> -->
         <td><button onclick="abrirEstado()" class="btn-estado btn-ventana-estado ocultar"><img
               src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
-      </form>
+      <!-- </form> -->
       
-      <form action="/admin/lockers/actualizar" method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
-        <input type="number" name="id" value="{{ locker.id }}" hidden>
-        <td><button onclick="abrirEditar()" class="btn-editar btn-ventana-editar"><img
-              src="../static/img/iconos/edit.png" width="40" height="40" /></button></td>
-      </form>
-
-      <form action="/admin/lockers/eliminar" method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
+      <!-- <form action="/admin/lockers/actualizar" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">  -->
+        <!-- <input type="number" name="id" value="{{ locker.id }}" hidden> --> 
+        <!-- <td><button onclick="abrirEditar()" class="btn-editar btn-ventana-editar"><img
+          src="../static/img/iconos/edit.png" width="40" height="40" /></button></td> -->
+        <!-- <td><a href="#"><button class="btn-editar btn-ventana-editar"><img
+              src="../static/img/iconos/edit.png" width="40" height="40" /></button></a></td>
+      </form> -->
+      <td><a href="{{ url_for('lockersActualizar', id_locker = locker.id) }}"><button class="btn-editar btn-ventana-editar"><img
+        src="../static/img/iconos/edit.png" width="40" height="40" /></button></a></td>
+      
+        <form action="{{ url_for('lockersEliminar') }}" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="number" name="id" value="{{ locker.id }}" hidden>
+          <td><button class="btn-eliminar btn-ventana-eliminar"><img
+                src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
+        </form>
+        <!-- <td><a href="{{ url_for('lockersEliminar', id_locker = locker.id) }}"></a><button class="btn-eliminar btn-ventana-eliminar"><img
+          src="../static/img/iconos/close.png" width="40" height="40" /></button></a></td>
+           -->
+      <!-- <form action="/admin/lockers/eliminar" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
         <input type="number" name="id" value="{{ locker.id }}" hidden>
         <td><button onclick="abrirEliminar()" class="btn-eliminar btn-ventana-eliminar"><img
               src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
-      </form>
+      </form> -->
 
     </tr>
     {% endfor %}
@@ -131,66 +144,6 @@
         <form action="/admin/lockers/agregar" method="GET">
           <button class="confirmar">Confirmar</button>
         </form>
-      </div>
-    </div>
-  </center>
-</dialog>
-
-<!-- Modal para activar/desacrtivar -->
-<dialog class="modal-btn-estado" id="modal-btn">
-  <center>
-    <div class="contenido-modal">
-      <div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
-            class="bi bi-x-circle"></i></button></div>
-      <div class="titulo-modal">
-        <h2>¿Desea cambiar el estado del locker?</h2>
-      </div>
-      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
-      <div class="botones-modal">
-        <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
-        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
-        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
-        <a href="/admin/lockers/actualizar"><button class="confirmar">Confirmar</button></a>
-      </div>
-    </div>
-  </center>
-</dialog>
-
-<!-- Modal para editar -->
-<dialog class="modal-btn-editar" id="modal-btn">
-  <center>
-    <div class="contenido-modal">
-      <div class="encabezado-modal"><button onclick="cerrarEditar()" class="modal-btn-cerrar-editar"><i
-            class="bi bi-x-circle"></i></button></div>
-      <div class="titulo-modal">
-        <h2>¿Desea editar el locker?</h2>
-      </div>
-      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
-      <div class="botones-modal">
-        <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
-        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
-        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
-        <a href="/admin/lockers/eliminar"><button class="confirmar">Confirmar</button></a>
-      </div>
-    </div>
-  </center>
-</dialog>
-
-<!-- Modal para eliminar -->
-<dialog class="modal-btn-eliminar" id="modal-btn">
-  <center>
-    <div class="contenido-modal">
-      <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
-            class="bi bi-x-circle"></i></button></div>
-      <div class="titulo-modal">
-        <h2>¿Desea eliminar el locker?</h2>
-      </div>
-      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
-      <div class="botones-modal">
-        <a href="./TablaLockers.html"><button class="cancelar">Cancelar</button></a>
-        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
-        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
-        <a href="#"><button class="confirmar">Confirmar</button></a>
       </div>
     </div>
   </center>

@@ -36,6 +36,12 @@ CREATE TABLE lockers (
 );
 
 INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Lindavista', 'Calle test', 13, 4, 5, 4, 13);
+INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Colonia del valle', 'Calle test', 13, 4, 5, 4, 13);
+INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Satelite', 'Calle test', 13, 4, 5, 4, 13);
+INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Villa de Aragon', 'Calle test', 13, 4, 5, 4, 13);
+INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Lindavista', 'Calle test', 13, 4, 5, 4, 13);
+INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Lindavista', 'Calle test', 13, 4, 5, 4, 13);
+
 
 CREATE TABLE ubicaciones (
   `id` smallint(3) NOT NULL AUTO_INCREMENT,

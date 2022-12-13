@@ -1,6 +1,7 @@
 {% extends 'base-admin-3level.html' %}
 {% block body_main %}
-<form class="contenido">
+<form class="contenido" action="/admin/lockers/agregado" method="POST">
+	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
 	<div class="titulo-formulario">
 		<div class="img-catalogo"><img src="../../static/img/iconos/locker.png" alt="MiniLocker" width="35%" height="45%" />
 		</div>
@@ -10,16 +11,16 @@
 	</div>
 	<div class="datos-locker">
 		<p class="texto">Ubicación <small>*</small></p>
-		<select name="ubicaciones" id="ubicaciones">
+		<select name="ubicacion" id="ubicacion">
 			{% for location in locations %}
-        <option value="{{ location.id }}"> {{ location.nombre }} </option>
+        <option value="{{ location.nombre }}"> {{ location.nombre }} </option>
       {%  endfor %}
 		</select>
 		<!-- <input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder=" Lindavista "> -->
 		<p class="texto">Dirección <small>*</small></p>
 		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" Calle Leonardo da Vinci, 7, 41092. ">
 		<p class="texto">Cantidad <small>*</small></p>
-		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" 1 ">
+		<input class="campo" name="cantidad" id="cantidad" type="text" placeholder="1">
 		<p class="texto">Modelo <small>*</small></p>
 		<select name="modelo-puertas" id="modelo-puertas">
 			<option value="8">8 Puertas</option>

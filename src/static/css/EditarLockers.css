@@ -155,6 +155,18 @@ article {
 /* .main div:hover {
 	border: 1px solid red;
 } */
+.main .col-izq{
+	display: grid;
+	grid-template-rows: 90% 10%;
+}
+
+.main .col-izq .contenido {
+	display: grid;
+	grid-template-rows: 20% 60% 20%;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
 
 .main .contenido {
 	display: grid;

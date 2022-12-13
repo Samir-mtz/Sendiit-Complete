@@ -7,16 +7,14 @@
 	</div>
 	<h1 class="titulovalidacion">VALIDACIÓN DE CORREO ELECTRÓNICO</h1>
 	<br />
-	{% with messages = get_flashed_messages()[-1]%}
 
-				{% if messages %}
-					<br />
-					<div>
-						<strong style="color: #e41f1a;">{{ messages }}</strong>
-					</div>
-				{% endif %}
+	<p class="textgeneral">
+		{% with messages = get_flashed_messages()[-1]%}
+		{% if messages %}	
+		<strong style="color: #e41f1a;">{{ messages }}</strong>
+	{% endif %}
 	{% endwith %}
-
+	</p>
 	<p class="textgeneral">
 		Hola {{ nombre }}, para continuar se requiere tu confirmación el correo electrónico: {{
 		email}}
@@ -30,9 +28,10 @@
 	<div class="pregunta" aling="center">
 		<img class="img" src="../static/img/iconos/raya.png" width="33%" style="margin-top: -50px; opacity: 0.5;" />
 		<!-- <p>&nbsp;&nbsp;&nbsp;</p> -->
-		<h1 class="textnuevo" style="text-decoration: none; color: rgb(100, 99, 99); font-size: smaller;">¿No ha llegado ningún correo?</h1>
+		<h1 class="textnuevo" style="text-decoration: none; color: rgb(100, 99, 99); font-size: smaller;">¿No ha llegado
+			ningún correo?</h1>
 		<p>&nbsp;&nbsp;&nbsp;</p>
-		<img class="img" src="../static/img/iconos/raya.png" width="33%" style="margin-top: -50px; opacity: 0.5;"/>
+		<img class="img" src="../static/img/iconos/raya.png" width="33%" style="margin-top: -50px; opacity: 0.5;" />
 		<!-- <p>&nbsp;&nbsp;&nbsp;</p> -->
 	</div>
 	<form action="/resendEmail" method="POST">

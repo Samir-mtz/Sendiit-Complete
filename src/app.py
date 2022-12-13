@@ -137,7 +137,7 @@ def login():
                     confirmed_user = ModelUser.consulta_email(db, logged_user.email)
                     print(confirmed_user.tipo)
                     if confirmed_user.confirmed: # En caso de no ser confirmado reenvia un correo para confirmar
-                        if confirmed_user.tipo=='user':
+                        if confirmed_user.tipo=='usuario':
                             print('si entro')
                             return redirect(url_for('home'))
                         elif confirmed_user.tipo =='admin':
@@ -381,14 +381,18 @@ def admin():
         return redirect(url_for('home'))
 
 # Lockers - tabla
-@app.route('/admin/lockers', methods=['GET', 'POST'])
+@app.route('/admin/lockers')
 def lockers():
     DATA = {
             'title' : 'Lockers',
             'stylesheet' : '../static/css/tablalockers.css',
             }
     list_lockers = ModelLocker.consultAll(db)
-    return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
+    if list_lockers != None:
+        return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
+    else:
+        return render_template('TablaLockers.html', data=DATA, lockers = [])
+
 
 # Lockers - agregar
 @app.route('/admin/lockers/agregar')
@@ -404,18 +408,93 @@ def lockersAgregar():
 # Salvar datos post, insertamos, y redireccionamos a admin lockers
 
 # Lockers - actualizar
-@app.route('/admin/lockers/actualizar', methods=['GET', 'POST'])
-def lockersActualizar():
+@app.route('/admin/lockers/<int:id_locker>')
+def lockersActualizar(id_locker):
     DATA = {
             'title' : 'Agregar Locker',
             'stylesheet' : '../../static/css/EditarLockers.css',
             }
-    idLocker = request.form['id']
-    try:
-        return render_template('EditarLockers.html', data=DATA, id = idLocker)
-    except:
-        return redirect(url_for('lockers'))
+    
+    list_locations = ModelLocation.consultAll(db)
+    current = ModelLocker.consult_by_id(db, id_locker)
+    
+    return render_template('EditarLockers.html', data=DATA, locations = list_locations, locker = current)
+    
+# Lockers - eliminar
+@app.route('/admin/lockers/agregado', methods=['GET', 'POST'])
+def lockersAgregado():
+    ubicacion = request.form['ubicacion']
+    direccion = request.form['direccion']
+    categoria = request.form['modelo-puertas']
+    cantidad = int(request.form['cantidad'])
+    cantidadS = 0
+    cantidadM = 0
+    cantidadL = 0
 
+    if categoria == 13:
+        cantidadS = 4 * cantidad
+        cantidadM = 5 * cantidad
+        cantidadL = 4 * cantidad
+    elif categoria == 12:
+        cantidadS = 5 * cantidad
+        cantidadM = 4 * cantidad
+        cantidadL = 3 * cantidad
+    else:
+        cantidadS = 4 * cantidad
+        cantidadM = 3 * cantidad
+        cantidadL = 1 * cantidad
+
+    cursor = db.connection.cursor()
+    cursor.execute('INSERT INTO lockers (ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, disponibilidad) VALUES (%s,%s,%s,%s,%s,%s,%s)',
+    (ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, 0))
+    db.connection.commit()
+    return redirect(url_for('lockers'))
+
+
+# Lockers - eliminar
+@app.route('/admin/lockers/actualizado', methods=['GET', 'POST'])
+def lockersActualizado():
+    id_recibido = request.form['id']
+    # ubicacion = request.form['ubicacion']
+    direccion = request.form['direccion']
+    # categoria = request.form['modelo-puertas']
+    # cantidad = request.form['cantidad']
+    # cantidadS = 0
+    # cantidadM = 0
+    # cantidadL = 0
+
+    # if categoria == 13:
+    #     cantidadS = 4 * cantidad
+    #     cantidadM = 5 * cantidad
+    #     cantidadL = 4 * cantidad
+    # if categoria == 12:
+    #     cantidadS = 5 * cantidad
+    #     cantidadM = 4 * cantidad
+    #     cantidadL = 3 * cantidad
+    # if categoria == 8:
+    #     cantidadS = 4 * cantidad
+    #     cantidadM = 3 * cantidad
+    #     cantidadL = 1 * cantidad
+    # locker = {
+    #     'ubicacion':ubicacion,
+    #     'direccion':direccion,
+    #     'categoria':categoria,
+    #     'cantidadS':cantidadS,
+    #     'cantidadM':cantidadM,
+    #     'cantidadL':cantidadL,
+    # } 
+
+    cursor = db.connection.cursor()
+    # sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+ "' WHERE id="+id_recibido
+    cursor.execute('UPDATE lockers SET direccion = "'+direccion+'" WHERE id = '+id_recibido)
+    db.connection.commit()
+    return redirect(url_for('lockers'))
+
+    # try:
+    #     ModelLocker.update(db, id_recibido, locker)    
+    #     return redirect(url_for('lockers'))
+    # except:
+    #     return redirect(url_for('admin'))
     
         
 # Lockers - eliminar
@@ -425,7 +504,13 @@ def lockersEliminar():
     #         'title' : 'Agregar Locker',
     #         'stylesheet' : '../../static/css/AgregarLocker.css',
     #         }
-
+    # ModelLocker.delete(db, id_locker)  
+    # return redirect(url_for('lockers'))
+    id_recibido = request.form['id']
+    cursor = db.connection.cursor()
+    # sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+ "' WHERE id="+id_recibido
+    cursor.execute('DELETE FROM lockers WHERE id = '+id_recibido)
+    db.connection.commit()
     return redirect(url_for('lockers'))
     # return render_template('AgregarLocker.html', data=DATA)
 
