@@ -1,5 +1,6 @@
 {% extends 'base-admin-3level.html' %}
 {% block body_main %}
+<a href="{{url_for('lockers')}}" class="btn-cancelar"><button>Cancelar</button></a>
 <form class="contenido" action="/admin/lockers/agregado" method="POST">
 	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
 	<div class="titulo-formulario">
@@ -30,7 +31,6 @@
 		<!-- <input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 "> -->
 	</div>
 	<div class="botones-formulario">
-		<a href="#" class="btn-cancelar"><button>Cancelar</button></a>
 		<a href="#" class="btn-confirmar"><button>Confirmar</button></a>
 	</div>
 </form>

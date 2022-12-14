@@ -145,7 +145,6 @@ def login():
                         else:                                                                                                       
                             # flash("algo salio mal.")
                             return redirect(url_for('index'))
-               
                     else:
                         logout_user()
                         token = generate_confirmation_token(logged_user.email)
@@ -448,7 +447,7 @@ def lockersAgregado():
     cursor.execute('INSERT INTO lockers (ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, disponibilidad) VALUES (%s,%s,%s,%s,%s,%s,%s)',
     (ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, 0))
     db.connection.commit()
-    return redirect(url_for('lockers'))
+    return redirect(url_for('lockersAgregar'))
 
 
 # Lockers - eliminar
@@ -510,19 +509,32 @@ def lockersEliminar():
     cursor = db.connection.cursor()
     # sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+ "' WHERE id="+id_recibido
     cursor.execute('DELETE FROM lockers WHERE id = '+id_recibido)
-    db.connection.commit()
+    db.connection.commit()  
     return redirect(url_for('lockers'))
     # return render_template('AgregarLocker.html', data=DATA)
 
 # Lockers - modificar estado
-@app.route('/admin/lockers/modificar-estado')
+@app.route('/admin/lockers/modificar-estado', methods=['GET', 'POST'])
 def lockersModificarEstado():
     # DATA = {
     #         'title' : 'Agregar Locker',
     #         'stylesheet' : '../../static/css/AgregarLocker.css',
     #         }
 
-    # return render_template('AgregarLocker.html', data=DATA)
+    id_recibido = request.form['id']
+    cursor = db.connection.cursor()
+    sql_consulta = f"SELECT activo from lockers WHERE id={id_recibido}"
+    cursor.execute(sql_consulta)
+    estado = cursor.fetchone()
+    estadoFin = -1
+    if estado[0] == 0:
+        estadoFin = 1
+    else:
+        estadoFin = 0
+    sql = f"UPDATE lockers SET activo={estadoFin} WHERE id={id_recibido}"
+    cursor.execute(sql)
+    db.connection.commit()  
+
     return redirect(url_for('lockers'))
 
 

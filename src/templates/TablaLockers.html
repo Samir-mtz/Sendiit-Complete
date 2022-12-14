@@ -90,8 +90,14 @@
       {% endif %}
 
       <!-- <form action="/admin/lockers" method="GET"> -->
-        <td><button onclick="abrirEstado()" class="btn-estado btn-ventana-estado ocultar"><img
+        {% if locker.activo == 1%}
+        <td><button onclick="abrirEstado('{{locker.id}}')" class="btn-estado btn-ventana-estado ocultar"><img
               src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+        {% endif %}
+        {% if locker.activo == 0%}
+        <td><button onclick="abrirEstado('{{locker.id}}')" class="btn-estado btn-ventana-estado ocultar" style="opacity: 0.5"><img
+              src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+        {% endif %}
       <!-- </form> -->
       
       <!-- <form action="/admin/lockers/actualizar" method="POST">
@@ -104,13 +110,12 @@
       </form> -->
       <td><a href="{{ url_for('lockersActualizar', id_locker = locker.id) }}"><button class="btn-editar btn-ventana-editar"><img
         src="../static/img/iconos/edit.png" width="40" height="40" /></button></a></td>
-      
-        <form action="{{ url_for('lockersEliminar') }}" method="POST">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <input type="number" name="id" value="{{ locker.id }}" hidden>
-          <td><button class="btn-eliminar btn-ventana-eliminar"><img
-                src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
-        </form>
+        
+        <td>
+          <button onclick="abrirEliminar('{{locker.id}}')" class="btn-eliminar btn-ventana-eliminar">
+          <img src="../static/img/iconos/close.png" width="40" height="40" /></button>
+        </td>
+       
         <!-- <td><a href="{{ url_for('lockersEliminar', id_locker = locker.id) }}"></a><button class="btn-eliminar btn-ventana-eliminar"><img
           src="../static/img/iconos/close.png" width="40" height="40" /></button></a></td>
            -->
@@ -127,6 +132,7 @@
 </div>
 {% endblock %}
 
+
 {% block message_dialog %}
 <dialog class="modal-btn-agregar" id="modal-btn">
   <center>
@@ -136,18 +142,65 @@
       <div class="titulo-modal">
         <h2>¿Desea agregar un locker?</h2>
       </div>
-      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
       <div class="botones-modal">
-        <a href="/admin/lockers"><button class="cancelar">Cancelar</button></a>
-        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
-        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
         <form action="/admin/lockers/agregar" method="GET">
           <button class="confirmar">Confirmar</button>
         </form>
+        <button class="cancelar">Cancelar</button>
       </div>
     </div>
   </center>
 </dialog>
+
+<!-- Modal para eliminar -->
+<dialog class="modal-btn-eliminar" id="modal-btn">
+  <center>
+    <div class="contenido-modal">
+      <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
+            class="bi bi-x-circle"></i></button></div>
+      <div class="titulo-modal">
+        <h2>¿Desea eliminar el locker?</h2>
+      </div>
+      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+      <div class="botones-modal">
+        <form action="{{ url_for('lockersEliminar') }}" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="number" name="id" value="" id='num_id' hidden>
+          <button class="confirmar">Confirmar</button>
+        </form>
+        <button class=" cancelar" onclick="cerrarEliminar()">Cancelar</button>
+        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+      </div>
+    </div>
+  </center>
+</dialog>
+<!-- End Modal eliminar -->
+<!-- Modal para activar/desacrtivar -->
+<dialog class="modal-btn-estado" id="modal-btn">
+  <center>
+    <div class="contenido-modal">
+      <div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
+            class="bi bi-x-circle"></i></button></div>
+      <div class="titulo-modal">
+        <h2>¿Desea cambiar el estado del locker?</h2>
+      </div>
+      <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+      <div class="botones-modal">
+        <button class="cancelar" onclick="cerrarEstado()">Cancelar</button>
+
+        <form action="{{ url_for('lockersModificarEstado') }}" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="number" name="id" value="" id='estado_id' hidden>
+          <button class="confirmar">Confirmar</button>
+        </form>
+        <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+        <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+      </div>
+    </div>
+  </center>
+</dialog>
+<!-- End Model -->
 {% endblock %}
 
 {% block scripting_zone %}
