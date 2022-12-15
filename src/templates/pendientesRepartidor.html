@@ -53,7 +53,7 @@
 				<div class="user">
 					<div class="perfil"><i class="bi bi-person-circle"></i></div>
 					<div class="campos-user">
-						<div class="name-user">Ricardo Sánchez</div>
+						<div class="name-user">{{current_user.nombre}}</div>
 						<div class="btn-user">
 							<div class="pantalla-user"><a href="#">Pendientes</a></div>
 							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
@@ -79,6 +79,9 @@
 							
 							<button class="btn-filtrar">FILTRAR</button>
 						</form>
+						{% if fly==1 %}
+							<a href="/repartidor/pendientes"><button class="btn3">BORRAR FILTRO</button></a>
+						{% endif %}
 					</div>
 					
 					<!-- Genenrar ruta -->

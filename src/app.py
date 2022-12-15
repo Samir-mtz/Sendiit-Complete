@@ -566,18 +566,18 @@ def listaDePaquetes():
             'title' : 'Agregar Locker',
             'stylesheet' : '../../static/css/pendientesRepartidor.css',
             }
-
+    fly=0
     if request.method == 'POST':
         estado = request.form['estado']
         list_paquetes = ModelRepartidor.paquetesAllCondition(db, estado, current_user.id)
-        print(list_paquetes) 
+        fly=1
     else:
         list_paquetes = ModelRepartidor.paquetesAll(db, current_user.id)
     # print(list_paquetes)     
     if list_paquetes != None:
-        return render_template('pendientesRepartidor.html', data=DATA, paquetes = list_paquetes)
+        return render_template('pendientesRepartidor.html', data=DATA, paquetes = list_paquetes, fly=fly)
     else:
-        return render_template('pendientesRepartidor.html', data=DATA, paquetes = [])
+        return render_template('pendientesRepartidor.html', data=DATA, paquetes = [], fly=fly)
         
 
 
