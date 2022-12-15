@@ -1,0 +1,403 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 55% 30%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	/* border: solid 1px red; */
+}
+
+/* .header div {
+	height: 1fr;
+} */
+
+.header .logo {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	transition: a5ll 0.5s;
+	/* border: solid 1px red; */
+}
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .user {
+	display: grid;
+	grid-template-columns: 15% 85%;
+	grid-template-rows: 100%;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+	margin-right: 100px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: rgb(255, 243, 212);
+}
+
+.header .user .perfil {
+	font-size: 300%;
+	color: rgb(16, 73, 158);
+	margin-left: 30px;
+}
+
+.header .user .campos-user {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: 100%;
+}
+
+.header .user .campos-user .name-user {
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
+.header .user .campos-user .btn-user {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+}
+
+.header .user .campos-user .btn-user a {
+	text-decoration: none;
+}
+
+.pantalla-user {
+	border-right: 1px solid rgb(114, 114, 114);
+}
+
+.header .pantalla-user a {
+	color: rgb(114, 114, 114);
+}
+
+.header .cerrar-sesion a {
+	color: rgb(255, 0, 0);
+}
+
+.header .user .campos-user .btn-user .pantalla-user a:hover {
+	transform: scale(1.1);
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: 40% 60%;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	height: 90%;
+}
+
+/* .main div {
+	background: #fff;
+	border: 1px solid red;
+} */
+
+/* .main div:hover {
+	border: 1px solid red;
+} */
+
+.main .der {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	height: 90%;
+}
+
+.main .org {
+	display: grid;
+	grid-template-columns: 45% 50%;
+}
+
+.main .user {
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin-top: 40px;
+	margin-left: 100px;
+	width: 600px;
+	height: 80px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: #f9d950;
+}
+
+.main .estado{
+	display: flex;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 20px;
+	text-align: center;
+	align-items: center;
+	width: 300px;
+	height: 50px;
+	margin-right: 50px;
+	margin-top: 10px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: #f9d950;
+}
+
+.main .der .links .boton-rep{
+	display: flex;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 20px;
+	text-align: center;
+	align-items: center;
+	width: 400px;
+	/* height: 50px; */
+	margin-right: 50px;
+	margin-top: 10px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: #f9d950;
+	text-decoration: none;
+	color: #1d1f46;
+}
+
+.main .der .links .boton-rep:hover{
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.main .texto {
+	margin-right: 25px;
+	color: #1d1f46;
+	font-family: "Oswald", sans-serif bold;
+	font-size: 150%;
+	letter-spacing: 1px;
+}
+
+.main .der .links{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	height: 90%;
+}
+
+.main .der .links .col1{
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	text-align: center;
+	align-items: center;
+	place-content: center;
+}
+
+.btn-repartidor{
+	display: grid;
+	grid-template-columns: 80% 20%;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+}
+
+.seccionboton .botones button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.botones {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.seccionboton a{
+	text-decoration: none;
+}
+
+.seccionboton h1{
+	font-size: small;
+}
+
+.seccionboton .btn-confirmar button {
+	width: 270px;
+	height: 80px;
+	border: 5px solid rgb(16, 73, 158);
+	background: #f9d950;
+	padding: 0px 30px;
+	border-radius: 20px;
+	margin-top: 20px;
+	/* margin-left: 100px; */
+	/* text-align: left; */
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+#icono img:hover {
+	transition: all 0.5s;
+}
+
+#lista img:hover {
+	transform: scale(1.1);
+}
+
+.seccionboton .btn-repartidor button {
+	width: 270px;
+	height: 80px;
+	border: 5px solid rgb(16, 73, 158);
+	background: #f9d950;
+	padding: 0px 30px;
+	border-radius: 20px;
+	/* margin-top: 50px; */
+	margin-left: 100px;
+	text-align: left;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+.main #icono {
+	position: absolute;
+	z-index: 1;
+	margin-top: 30px;
+	margin-left: 40px;
+	transform: rotate(30deg);
+}
+
+.main #texto {
+	position: absolute;
+	z-index: 1;
+	margin-top: 20px;
+	margin-left: 450px;
+}
+
+.main #lista {
+	position: absolute;
+	z-index: 1;
+	margin-top: 65px;
+	margin-right: 150px;
+}
+
+/************************************************************************************
+                                       SWITCH
+*************************************************************************************/
+:root {
+	--color-green: #00a878;
+	--color-red: #dd2b1e;
+	--color-button: #fdffff;
+	--color-black: #000;
+}
+.switch-button {
+	display: inline-block;
+}
+.switch-button .switch-button__checkbox {
+	display: none;
+}
+.switch-button .switch-button__label {
+	margin-top: 4px;
+	background-color: var(--color-red);
+	width: 19rem;
+	height: 3.2rem;
+	border-radius: 1rem;
+	display: inline-block;
+	position: relative;
+}
+.switch-button .switch-button__label:before {
+	margin-top: 1px;
+	transition: 0.2s;
+	display: block;
+	position: absolute;
+	width: 3rem;
+	height: 3rem;
+	background-color: var(--color-button);
+	content: "";
+	border-radius: 50%;
+	box-shadow: inset 0px 0px 0px 1px var(--color-black);
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label {
+	background-color: var(--color-green);
+}
+.switch-button .switch-button__checkbox:checked + .switch-button__label:before {
+	transform: translateX(16rem);
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
+}
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
+}

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Nombre de la pagina -->
+  <title>ALTA REPARTIDORES</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/altasRepartidores.css" />
+  <script src="https://kit.fontawesome.com/0daeb1a0d1.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <article>
+    <header class="header">
+			<!-- Logo de la empresa -->
+			<div class="logo">
+				<a href="../index.html">
+					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+				</a>
+			</div>
+			<!-- Barra de navegacion dentro de la pagina -->
+			<div class="secciones">
+				<div class="nav-contenido">
+					<a href="#">REPARTIDORES</a>
+				</div>
+			</div>
+			<!-- Botones de acciones del sistema -->
+			<div class="botones">
+				<div class="nav-botones">
+					<a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt="" ></a>
+				</div>
+				<div class="nav-botones">
+					<a href="#" class="btn btn-administrador"
+						><button>ADMINISTRADOR</button></a
+					>
+				</div>
+				<div class="nav-botones">
+					<a href="#" class="btn btn-cerrarsesion"
+						><button>CERRAR SESIÓN</button></a
+					>
+				</div>
+			</div>
+		</header>
+
+    <main class="main">
+
+      <div class="titulo-formulario">
+
+        <div class="img-catalogo" ><img src="../static/img/iconos/repartidor.png" alt="Repartidor" width="300" height="300" /></div>
+        <div class="registrados">
+            <a href="tablaRepartidores.html"><button class="btn3 btn-ventana-registrados">REGISTRADOS</button></a>
+            <div class="altas"><a href="altarepartidores.html"><button class="btn3 btn-ventana-altas">ALTAS</button></a></div>
+        </div>
+
+        <!-- Buscar -->
+        <div class="buscar">
+            <span>
+              <input type="text" placeholder="Buscar">
+              <i class="fa-search btn2 fas"></i>
+            </span>
+          </div>
+      </div>
+      <div class="datos-tabla">
+        <table align="center">
+          <thead>
+            <tr>
+              <th>NOMBRE</th>
+              <th>TELEFONO</th>
+              <th>CORREO</th>
+              <th>RFC</th>
+              <th colspan="2">Dar de alta/Rechazar</th>
+              
+            </tr>
+          </thead>
+          <!-- Fila -->
+          <tr>
+            <td>Sara Pérez Acevedo</td>
+            <td>55 39 18 09 89</td>
+            <td>s.perez@sendiit.com</td>
+            <td>GOVM860812QA2</td>
+            <td><button onclick="abrirAlta()" class="btn-alta btn-ventana-alta ocultar"><img
+                src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+            <td><button onclick="abrirRechazar()" class="btn-rechazar btn-ventana-rechazar"><img
+                    src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
+          </tr>
+
+          <tr>
+            <td>Elena Mora Márquez</td>
+            <td>55 45 87 98 08</td>
+            <td>e.mora@sendiit.com</td>
+            <td>JACL841028Q62</td>
+            <td><button onclick="abrirAlta()" class="btn-alta btn-ventana-alta ocultar"><img
+                src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+            <td><button onclick="abrirRechazar()" class="btn-rechazar btn-ventana-rechazar"><img
+                    src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
+          </tr>
+
+
+        </table>
+
+      </div>
+    </main>
+  
+      <!-- Modal para dar de alta al repartidor -->
+      <dialog class="modal-btn-alta" id="modal-btn">
+        <center>
+          <div class="contenido-modal">
+            <div class="encabezado-modal"><button onclick="cerrarAlta()" class="modal-btn-cerrar-alta"><i
+                  class="bi bi-x-circle"></i></button></div>
+            <div class="titulo-modal">
+              <h2>¿Desea dar de alta al repartidor?</h2>
+            </div>
+            <div class="botones-modal">
+                <a href="altarepartidores.html"><button class="confirmar">Confirmar</button></a>
+              <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
+
+            </div>
+          </div>
+        </center>
+      </dialog>
+  
+      
+  
+      <!-- Modal para rechazar -->
+      <dialog class="modal-btn-rechazar" id="modal-btn">
+        <center>
+          <div class="contenido-modal">
+            <div class="encabezado-modal"><button onclick="cerrarRechazar()" class="modal-btn-cerrar-rechazar"><i
+                  class="bi bi-x-circle"></i></button></div>
+            <div class="titulo-modal">
+              <h2>¿Rechazar solicitud de repartidor?</h2>
+            </div>
+            <div class="botones-modal">
+                              <a href="#"><button class="confirmar">Confirmar</button></a>
+              <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
+            </div>
+          </div>
+        </center>
+      </dialog>
+
+
+    <footer class="footer">
+      <div class="derechos">
+        <div class="copyright">
+          <span>&copy;2022 México. Todos los derechos reservados.</span>
+        </div>
+      </div>
+      <div class="redes">
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+      </div>
+    </footer>
+  </article>
+  <script src="../static/js/ventanas_altasRepartidor.js"></script>
+</body>
+
+</html>

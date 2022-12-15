@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Nombre de la pagina -->
+  <title>PLANTILLA</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/InicioRepartidor.css" />
+</head>
+
+<body>
+  <article>
+    <header class="header">
+      <!-- Logo de la empresa -->
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        </a>
+      </div>
+
+      <div></div>
+      <div class="user">
+        <div class="perfil"><i class="bi bi-person-circle"></i></div>
+        <div class="campos-user">
+          <div class="name-user">Ricardo Sánchez</div>
+          <div class="btn-user">
+            <div class="pantalla-user"><a href="#">Inicio</a></div>
+            <div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="repartidor">
+        <img src="../static/img/repartidores/Repartidor_7.png" alt="locker">
+      </div>
+
+      <div class="der">
+        <div class="user">
+          <div class="org">
+            <div>
+              <h1 class="texto">Estás Desconectado</h1>
+            </div>
+            <div class="estado">
+              <!-- Aqui está el estado del repartidor en checkbox -->
+              <div class="switch-button">
+                <!-- Checkbox -->
+                <input type="checkbox" name="switch-button" id="switch-label" class="switch-button__checkbox">
+                <!-- Botón -->
+                <label for="switch-label" class="switch-button__label"></label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="links">
+          <div class="col1">
+            <a href="./InfoGeneral.html" class="boton-rep">
+
+              <div class="btn-repartidor">
+                <h1>Información General</h1>
+                <img src="../static/img/iconos/reporte.png" alt="Icono" width="50%" />
+              </div>
+            </a>
+            <a href="./pendientesRepartidor.html" class="boton-rep">
+              <div class="btn-repartidor">
+                <h1>Pendientes del Repartidor</h1>
+                <img class="lista" src="../static/img/iconos/lista.png" alt="Icono" width="50%" />
+              </div>
+            </a>
+          </div>
+          <div class="img-texto">
+            <img src="../static/img/iconos/texto_1.png" alt="Icono" style="height: 70%; width: 70%;" />
+          </div>
+        </div>
+      </div>
+
+    </main>
+    <footer class="footer">
+      <div class="derechos">
+        <div class="copyright">
+          <span>&copy;2022 México. Todos los derechos reservados.</span>
+        </div>
+      </div>
+      <div class="redes">
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</body>
+
+</html>

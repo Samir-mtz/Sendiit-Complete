@@ -1,0 +1,339 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 55% 30%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	/* border: solid 1px red; */
+}
+
+/* .header div {
+	height: 1fr;
+} */
+
+.header .logo {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	transition: all 0.5s;
+	/* border: solid 1px red; */
+}
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .user {
+	display: grid;
+	grid-template-columns: 15% 85%;
+	grid-template-rows: 100%;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+	margin-right: 100px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: rgb(255, 243, 212);
+}
+
+.header .user .perfil {
+	font-size: 300%;
+	color: rgb(16, 73, 158);
+	margin-left: 20px;
+}
+
+.header .user .campos-user {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: 100%;
+}
+
+.header .user .campos-user .name-user {
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
+.header .user .campos-user .btn-user {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+}
+
+.header .user .campos-user .btn-user a {
+	text-decoration: none;
+}
+
+.pantalla-user {
+	border-right: 1px solid rgb(114, 114, 114);
+}
+
+.pantalla-user a {
+	color: rgb(114, 114, 114);
+}
+
+.cerrar-sesion a {
+	color: rgb(255, 0, 0);
+}
+
+
+.header .user .campos-user .btn-user .pantalla-user a:hover {
+	transform: scale(1.1);
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: 55% 45%;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	height: 90%;
+}
+
+/* .main div {
+	background: #fff;
+	border: 1px solid red;
+} */
+
+/*
+.main div:hover{
+    border: 1px solid red;
+}
+*/
+
+.main .izq {
+	display: grid;
+	grid-template-rows: repeat(5, 1fr);
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	max-width: 1500px;
+	height: 1fr;
+}
+
+.main .der {
+	display: grid;
+	grid-template-rows: 85% 15%;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	height: 100%;
+}
+
+.main .izq .dato{
+	display: grid;
+	grid-template-columns: 35% 65%;
+	text-align: center;
+	margin-bottom: 10px;
+	height: 1fr;
+	border: 3px solid rgb(16, 73, 158);
+	padding: 10px;
+}
+
+.main .izq .dato div{
+	border: 1px solid red;
+}
+
+.main .dato {
+	place-content: center;
+	border-radius: 20px;
+	text-align: center;
+	align-items: center;
+	width: 500px;
+	height: 50px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: #f9d950;
+}
+
+
+/* .main #nombreCampo {
+	position: absolute;
+	margin-top: 5px;
+	margin-left: 10px;
+	color: #1d1f46;
+	font-family: "Oswald", sans-serif bold;
+	font-size: 150%;
+	letter-spacing: 1px;
+} */
+
+/* .main #textoN {
+	position: absolute;
+	z-index: 1;
+	margin-top: 15px;
+	margin-left: -130px;
+}
+
+.main #textoF {
+	position: absolute;
+	z-index: 1;
+	margin-top: 15px;
+	margin-left: 10px;
+
+}
+
+.main #textoC {
+	position: absolute;
+	z-index: 1;
+	margin-top: 15px;
+	margin-left: -130px;
+
+}
+
+.main #textoR {
+	position: absolute;
+	z-index: 1;
+	margin-top: 15px;
+	margin-left: -145px;
+
+}
+
+.main #textoT {
+	position: absolute;
+	z-index: 1;
+	margin-top: 15px;
+	margin-left: -100px;
+
+} */
+
+.seccionboton .botones button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+
+
+.seccionboton {
+	display: flex;
+	flex-direction: row;
+}
+
+.seccionboton .btn-confirmar button {
+
+	width: 160px;
+	height: 50px;
+	border: 5px solid rgb(16, 73, 158);
+	background: #f9d950;
+	padding: 0px 30px;
+	border-radius: 20px;
+	margin-top: 20px;
+	margin-left: 380px;
+	text-align: left;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.textoI {
+
+	color: #1d1f46;
+	font-family: "Oswald", sans-serif bold;
+	font-size: 180%;
+	text-align: left;
+	width: 100px;
+	letter-spacing: 1px;
+}
+
+.contenedor-der {
+	display: flex;
+	flex-direction: column;
+}
+
+.buscar {
+	width: 55%;
+	height: 55%;
+}
+
+.main #home {
+	position: absolute;
+	z-index: 1;
+	margin-top: 27px;
+	margin-left: 490px;
+	width: 35px;
+	height: 35px;
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
+}
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
+}

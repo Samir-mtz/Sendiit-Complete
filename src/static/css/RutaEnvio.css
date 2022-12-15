@@ -1,0 +1,274 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 55% 30%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	/* border: solid 1px red; */
+}
+
+/* .header div {
+	height: 1fr;
+} */
+
+.header .logo {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	transition: all 0.5s;
+	/* border: solid 1px red; */
+}
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .user{
+	display: grid;
+	grid-template-columns: 15% 85%;
+	grid-template-rows: 100%;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+	margin-right: 100px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: rgb(255, 243, 212);
+}
+
+.header .user .perfil{
+	font-size: 300%;
+	color: rgb(16, 73, 158);
+	margin-left: 30px;
+}
+
+.header .user .campos-user{
+	display: grid;
+	grid-template-rows: repeat(2,1fr);
+	grid-template-columns: 100%;
+}
+
+.header .user .campos-user .name-user{
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
+.header .user .campos-user .btn-user{
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+}
+
+.header .user .campos-user .btn-user a{
+	text-decoration: none;
+}
+
+.pantalla-user{
+	border-right: 1px solid rgb(114, 114, 114);
+}
+
+.pantalla-user a{
+	color: rgb(114, 114, 114);
+}
+
+.cerrar-sesion a{
+	color: rgb(255, 0, 0);
+}
+
+
+.header .user .campos-user .btn-user .pantalla-user a:hover {
+	transform: scale(1.1);
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	text-align: center;
+	height: 90%;
+}
+.main .cuadro{
+	text-align: left;
+    flex-direction: column;
+	grid-template-columns: repeat(2, 1fr);
+	background-color: rgb(244, 250, 165);
+    border: 0.5px solid rgb(218, 218, 218);
+    box-shadow: 3px 3px 3px rgb(218, 218, 218);
+    border-radius: 25px;
+    margin-left: 30px;
+    padding: 20px 20px;
+}
+.main .cuadro .cubo{
+	text-align: left;
+}
+.main .cuadro .reloj{
+	text-align: right;
+	
+}
+.main .cuadro .Estados{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	text-align: center;
+	height: 90%;
+}
+
+.main .iframe{
+	margin-top: 10px;
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
+}
+.main .cuadro .estado button{
+	margin: 25px 20px 30px 35px;
+	color: black;
+	font-size: large;
+	background: #f5cc4d;
+	padding: 12px 12px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+	font-family: "Oswald", sans-serif;
+}
+
+
+.main .cuadro .estado button:hover{
+	cursor: pointer;
+	transition: all 1s;
+	transform: scale(1.1);
+	box-shadow: 7px 7px 7px black;
+}
+.main .cuadro .Estados .contenedor{
+	position: relative;
+    display: inline-block;
+    text-align: center; 
+}
+.main .cuadro .Estados .contenedor .capsula{
+	height: 80px;
+	width: 200px;
+	margin: auto;
+	padding: 10px 5px 10px 5px;
+	top: 40px;
+	left : 40px;
+	z-index: -1;
+}
+.main .cuadro .Estados .contenedor .centrado{
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+}
+.main .cuadro .Estados .contenedor .plus{
+	height: 50px;
+	width: 50px;
+	position: absolute; 
+	top: 25px;
+	right : 10px;
+	z-index: 1;
+}
+.main .cuadro .finalizarRuta button{
+	margin-top: 30px;
+	color: black;
+	font-size: large;
+	background: #f5cc4d;
+	padding: 10px 10px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+	font-family: "Oswald", sans-serif;
+	position: relative;
+}
+
+.main .cuadro .finalizarRuta button:hover{
+	cursor: pointer;
+	transition: all 1s;
+	transform: scale(1.1);
+	box-shadow: 8px 8px 8px black;
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns:50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
+	margin-top: 53px;
+}
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
+}

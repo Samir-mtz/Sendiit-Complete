@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Nombre de la pagina -->
+		<title>Ruta de Envio</title>
+		<!-- Favicon de la empresa -->
+		<link href="../static/img/empresa/favicon.png" rel="icon" />
+		<!-- Estilos -->
+		<link rel="stylesheet" href="../static/css/RutaEnvio.css" />
+	</head>
+	<body>
+		<article>
+			<header class="header">
+				<!-- Logo de la empresa -->
+				<div class="logo">
+					<a href="../index.html">
+						<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+					</a>
+				</div>
+				<!-- Barra de navegacion dentro de la pagina -->
+				<!-- <div class="secciones">
+					<div class="nav-contenido">
+						<a href="#">INICIO</a>
+					</div>
+					<div class="nav-contenido">
+						<a href="#">SUCURSALES</a>
+					</div>
+					<div class="nav-contenido">
+						<a href="#">CONÓCENOS</a>
+					</div>
+				</div> -->
+				<!-- Botones de acciones del sistema -->
+				<!-- <div class="botones">
+					<div class="nav-botones">
+						<a href="#" class="btn btn-enviar"><button>ENVIAR</button></a>
+					</div>
+					<div class="nav-botones">
+						<a href="./ingresar.html" class="btn btn-ingresar"
+							><button>INGRESAR</button></a
+						>
+					</div>
+					<div class="nav-botones">
+						<a href="./registrar.html" class="btn btn-registarse"
+							><button>REGISTRARSE</button></a
+						>
+					</div>
+				</div> -->
+				<div></div>
+				<div class="user">
+					<div class="perfil"><i class="bi bi-person-circle"></i></div>
+					<div class="campos-user">
+						<div class="name-user">Ricardo Sánchez</div>
+						<div class="btn-user">
+							<div class="pantalla-user"><a href="#">Inicio</a></div>
+							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+						</div>
+					</div>
+				</div>
+			</header>
+
+			<main class="main">
+				<div class="cuadro">
+					<!--Inicio-->
+					<p class="cubo">
+						<img  src="../static/img/repartidores/Cubo.png" alt="envio">
+						paquetes recolectados <br> 10/30 <br> <p class="reloj"><img  src="../static/img/repartidores/reloj.png" alt="Reloj">Tiempo estimado <br> ---|---</p></p>
+					<!--Estados del repartidor-->
+					<div class="Estados">
+						<div>
+							<img src="../static/img/repartidores/check.png" alt="check">
+						</div>
+						<!--Sucursales-->
+						<div>
+							<div class="contenedor">
+								<img class="capsula" src="../static/img/repartidores/capsula.png" alt="?">
+								<div class="centrado">Lindavista</div>
+								<a href="../templates/RutaEnvio.html"><img class="plus" src="../static/img/repartidores/plus.png" alt=""></a>
+							</div>
+							
+							<div class="contenedor">
+								<img class="capsula" src="../static/img/repartidores/capsula.png" alt="?">
+								<div class="centrado">Colonia del valle</div>
+								<a href="../templates/RutaEnvio.html"><img class="plus" src="../static/img/repartidores/plus.png" alt=""></a>							
+							</div>
+							<div class="contenedor">
+								<img class="capsula" src="../static/img/repartidores/capsula.png" alt="?">
+								<div class="centrado">Satelite</div>
+								<a href="../templates/RutaEnvio.html"><img class="plus" src="../static/img/repartidores/plus.png" alt=""></a>							
+							</div>
+							<div class="contenedor">
+								<img class="capsula" src="../static/img/repartidores/capsula.png" alt="?">
+								<div class="centrado">Villa de aragon</div>
+								<a href="../templates/RutaEnvio.html"><img class="plus" src="../static/img/repartidores/plus.png" alt=""></a>							
+							</div>
+							
+							<!--Finalizar ruta-->
+							<div class="Estados">
+								<div class="finalizarRuta">
+								<a href="%"><button>Finalizar Ruta</button></a>
+							</div>
+						</div>
+					</div>
+				<div>
+					<!--Actualizar estados-->
+							<div class="estado">
+								<a href="%"><button>Actualizar Estado</button></a>
+								<a href="%"><button>Actualizar Estado</button></a>
+								<a href="%"><button>Actualizar Estado</button></a>
+								<a href="%"><button>Actualizar Estado</button></a>
+							</div>
+						</div>
+					</div>
+
+				</div>
+				<!--Mapa con ruta-->
+				<div>
+					<iframe
+					src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d60196.49825560876!2d-99.1890916115148!3d19.44344184068339!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x85d1f9a7c288b7f9%3A0xe0d50245e9c32218!2sPlaza%20Lindavista%2C%20Avenida%20Montevideo%2C%20Lindavista%20Sur%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!3m2!1d19.4919391!2d-99.1335996!4m5!1s0x85d1ff0d05acbd53%3A0x2e327a6894739ccf!2sPlaza%20del%20Valle%2C%20Mier%20y%20Pesado%2C%20c%C3%B3digo%202%2C%20Colonia%20del%20Valle%20Norte%2C%20Ciudad%20de%20M%C3%A9xico%2C%20CDMX!3m2!1d19.3940985!2d-99.1657372!5e0!3m2!1ses-419!2smx!4v1670987361364!5m2!1ses-419!2smx" 
+					width="720"
+					height="780"
+					style="border:0;" 
+					allowfullscreen="" 
+					loading="lazy" 
+					referrerpolicy="no-referrer-when-downgrade">
+				</iframe>
+				</div>
+			</main>
+
+			<footer class="footer">
+				<div class="derechos">
+					<div class="copyright">
+						<span>&copy;2022 México. Todos los derechos reservados.</span>
+					</div>
+				</div>
+				<div class="redes">
+                    <div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+                    </div>
+                    <div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+                    </div>
+                    <div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+                    </div>
+                    <div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+                    </div>
+				</div>
+			</footer>
+		</article>
+	</body>
+</html>
