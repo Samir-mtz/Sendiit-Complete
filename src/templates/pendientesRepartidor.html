@@ -67,14 +67,14 @@
 					<div class="titulo-pagina"><h1> PENDIENTES DEL REPARTIDOR</h1></div>
 					<!-- Filtrar -->
 					<div class="filtrar">
-						<form action="">
-
+						<form action="/repartidor/pendientes" method="POST">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 							<select name="estado" id="estado" class="selector">
-								<option hidden value="">ELEGIR ESTADO</option>
-								<option value="">EN CAMINO</option>
-								<option value="">EN RECOLECCIÓN</option>
-								<option value="">EN LOCKER DESTINO</option>
-								<option value="">EN ALMACEN</option>
+								<option hidden value="ELEGIR ESTADO">ELEGIR ESTADO</option>
+								<option value="EN CAMINO">EN CAMINO</option>
+								<option value="EN RECOLECCIÓN">EN RECOLECCIÓN</option>
+								<option value="EN LOCKER DESTINO">EN LOCKER DESTINO</option>
+								<option value="EN ALMACEN">EN ALMACEN</option>
 							</select>
 							
 							<button class="btn-filtrar">FILTRAR</button>
@@ -102,13 +102,15 @@
 						  </tr>
 						</thead>
 						<!-- Fila -->
+						{% for paquete in paquetes %}
 						<tr>
-						  <td>EN CAMINO</td>
-						  <td>A (LINDAVISTA)</td>
-						  <td>D (SÁTELITE)</td>
+						  <td>{{paquete.estado}}</td>
+						  <td>{{paquete.origen}}</td>
+						  <td>{{paquete.destino}}</td>
 						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)"/></td>
 						</tr>
-						<tr>
+						{% endfor %}
+						<!-- <tr>
 						  <td>EN CAMINO</td>
 						  <td>A (LINDAVISTA)</td>
 						  <td>ALMACÉN</td>
@@ -143,7 +145,7 @@
 						  <td>D (SÁTELITE)</td>
 						  <td>ALMACÉN</td>
 						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
-						</tr>
+						</tr> -->
 					  </table>
 				</div>
 			</main>

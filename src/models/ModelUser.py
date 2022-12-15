@@ -103,7 +103,7 @@ class ModelUser():
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(nombre=row[0], email=row[1], telefono=row[2], direcion=row[3], confirmed_on=row[4])
+                return User(nombre=row[0], email=row[1], telefono=row[2], direccion=row[3], confirmed_on=row[4], id=-1, password=None)
             else:
                 return None
         except Exception as ex:

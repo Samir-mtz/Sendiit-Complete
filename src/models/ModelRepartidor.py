@@ -25,12 +25,13 @@ class ModelRepartidor():
             raise Exception(ex)
     
     @classmethod
-    def paquetesAllCondition(self, db, estado):
+    def paquetesAllCondition(self, db, estado, id):
         try:
             cursor = db.connection.cursor()
             sql = """SELECT estado, origen, destino FROM envios 
-                    WHERE estado = '{}'""".format(estado)
+                    WHERE estado = '{}' and idrepartidor={}""".format(estado, id)
             cursor.execute(sql)
+            print(sql)
             list_paquetes=[]
             while True:
                 row = cursor.fetchone()

@@ -139,7 +139,7 @@ def login():
                     print(confirmed_user.tipo)
                     if confirmed_user.confirmed: # En caso de no ser confirmado reenvia un correo para confirmar
                         if confirmed_user.tipo=='usuario':
-                            print('si entro')
+                            # print('si entro')
                             return redirect(url_for('home'))
                         elif confirmed_user.tipo =='admin':
                             return redirect(url_for('admin'))
@@ -542,6 +542,14 @@ def lockersModificarEstado():
 #########################################################################################
 ################################## Usuario repartidor ###################################
 #########################################################################################
+@app.route('/repartidor')
+def homeRepartidor():
+    # DATA = {
+    #         'title' : 'Agregar Locker',
+    #         'stylesheet' : '../../static/css/AgregarLocker.css',
+    #         }
+    return render_template('InicioRepartidor.html')
+
 @app.route('/repartidor/datos')
 def datosRepartidor():
     # DATA = {
@@ -550,19 +558,27 @@ def datosRepartidor():
     #         }
     repartidor = ModelUser.infoRepartidor(db, current_user.email)
 
-    return render_template('#', repartidor = repartidor)
+    return render_template('InfoGeneral.html', repartidor = repartidor)
 
 @app.route('/repartidor/pendientes', methods=['GET', 'POST'])
 def listaDePaquetes():
     DATA = {
             'title' : 'Agregar Locker',
-            'stylesheet' : '../../static/css/AgregarLocker.css',
+            'stylesheet' : '../../static/css/pendientesRepartidor.css',
             }
-    list_lockers = ModelRepartidor.paquetesAll(db, current_user.id)
-    if list_lockers != None:
-        return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
+
+    if request.method == 'POST':
+        estado = request.form['estado']
+        list_paquetes = ModelRepartidor.paquetesAllCondition(db, estado, current_user.id)
+        print(list_paquetes) 
     else:
-        return render_template('TablaLockers.html', data=DATA, lockers = [])
+        list_paquetes = ModelRepartidor.paquetesAll(db, current_user.id)
+    # print(list_paquetes)     
+    if list_paquetes != None:
+        return render_template('pendientesRepartidor.html', data=DATA, paquetes = list_paquetes)
+    else:
+        return render_template('pendientesRepartidor.html', data=DATA, paquetes = [])
+        
 
 
 

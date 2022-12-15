@@ -26,7 +26,7 @@
       <div class="user">
         <div class="perfil"><i class="bi bi-person-circle"></i></div>
         <div class="campos-user">
-          <div class="name-user">Ricardo Sánchez</div>
+          <div class="name-user">{{current_user.nombre}}</div>
           <div class="btn-user">
             <div class="pantalla-user"><a href="#">I. General</a></div>
             <div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
@@ -37,24 +37,24 @@
     <main class="main">
       <div class="izq">
         <div class="dato">
-          <h1 id="nombreCampo">Email:</h1>
-          <label id="textoN">ricardosanchez@gmail.com</label>
+          <h1 id="nombreCampo">Nombre</h1>
+          <label id="textoC">{{repartidor.nombre}}</label>
         </div>
         <div class="dato">
-          <h1 id="nombreCampo">Nombre</h1>
-          <label id="textoC">Ricardo Sánchez Cruz</label>
+          <h1 id="nombreCampo">Email:</h1>
+          <label id="textoN">{{repartidor.email}}</label>
         </div>
         <div class="dato">
           <h1 id="nombreCampo">Teléfono</h1>
-          <label id="textoR">5598653214</label>
+          <label id="textoR">{{repartidor.telefono}}</label>
         </div>
         <div class="dato">
           <h1 id="nombreCampo">Dirección</h1>
-          <label id="textoT">Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, CDMX.</label>
+          <label id="textoT">{{repartidor.direccion}}</label>
         </div>
         <div class="dato">
           <h1 id="nombreCampo">Fecha de ingreso</h1>
-          <label id="textoT">01-02-2020</label>
+          <label id="textoT">{{repartidor.confirmed_on}}</label>
         </div>
       </div>
       <div class="der">
