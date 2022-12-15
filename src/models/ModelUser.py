@@ -1,7 +1,7 @@
 from .entities.User import User
 import datetime
-class ModelUser():
 
+class ModelUser():
     @classmethod
     def login(self, db, user):
         try:
@@ -54,7 +54,6 @@ class ModelUser():
             except Exception as ex:
                 raise Exception(ex)
         except Exception as ex:
-            print("*********NAAAAA*********")
             raise Exception(ex)
         
     @classmethod
@@ -108,4 +107,35 @@ class ModelUser():
                 return None
         except Exception as ex:
             raise Exception(ex)    
+
+    @classmethod
+    def registerRepartidor(self, db, user):
+        try:
+            encrypted_password = User.generate_password(user.password)
+            cursor = db.connection.cursor()
+            sql = f"INSERT INTO user (email, password, nombre, telefono, direcion, tipo, confirmed) VALUES ('{user.email}','{encrypted_password}','{user.nombre}','{user.telefono}','{user.direccion}', 'repartidor', 1)"
+            cursor.execute(sql)
+            db.connection.commit()
+            
+        except Exception as ex:
+            raise Exception(ex)
     
+    @classmethod
+    def repartidores(self, db):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, nombre, email, telefono, direcion FROM user where tipo='repartidor'";
+            cursor.execute(sql)
+            list_repartidores=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_repartidores.append( Usuario(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direcion=row[4]))
+            
+            if len(list_lockers)>0:
+                return list_repartidores
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)

@@ -399,6 +399,20 @@ def lockers():
         return render_template('TablaLockers.html', data=DATA, lockers = [])
 
 
+@app.route('/admin/repartidor', methods=['GET', 'POST'])
+def adminRepartidores():
+    DATA = {
+            'title' : 'Lockers',
+            'stylesheet' : '../static/css/tablalockers.css',
+            }
+
+    list_repartidores = ModelUser.repartidores(db)
+    if list_repartidores != None:
+        return render_template('TablaLockers.html', data=DATA, lockers = list_repartidores)
+    else:
+        return render_template('TablaLockers.html', data=DATA, lockers = [])
+
+
 # Lockers - agregar
 @app.route('/admin/lockers/agregar')
 def lockersAgregar():
@@ -555,7 +569,11 @@ def homeRepartidor():
             'title' : 'Home',
             'stylesheet' : '../static/css/InicioRepartidor',
             }
-    return render_template('InicioRepartidor.html', data=DATA)
+    user = ModelUser.consulta_email(db, current_user.email)
+    if user.tipo == 'repartidor':
+        return render_template('InicioRepartidor.html', data=DATA)
+    else:
+        return redirect(url_for('home'))
 
 @app.route('/repartidor/datos')
 def datosRepartidor():
@@ -570,7 +588,7 @@ def listaDePaquetes():
             'stylesheet' : '../../static/css/pendientesRepartidor.css',
             }
     fly=0
-    if request.method == 'POST':
+    if request.method == 'POST' and request.form['estado'] != 'ELEGIR ESTADO':
         estado = request.form['estado']
         list_paquetes = ModelRepartidor.paquetesAllCondition(db, estado, current_user.id)
         fly=1
