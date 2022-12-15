@@ -94,4 +94,18 @@ class ModelUser():
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)    
-        
+    
+    @classmethod
+    def infoRepartidor(self, db, email):
+        try:
+            cursor = db.connection.cursor()
+            sql = "SELECT nombre, email, telefono, direcion, confirmed_on FROM user WHERE email = '{}'".format(email)
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return User(nombre=row[0], email=row[1], telefono=row[2], direcion=row[3], confirmed_on=row[4])
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)    
+    

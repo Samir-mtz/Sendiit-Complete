@@ -14,6 +14,7 @@ from models.token import generate_confirmation_token, confirm_token
 from models.ModelUser import ModelUser
 from models.ModelLoker import ModelLocker
 from models.ModelLocation import ModelLocation
+from models.ModelLocation import ModelRepartidor
 
 # Entities:
 from models.entities.User import User
@@ -536,6 +537,28 @@ def lockersModificarEstado():
     db.connection.commit()  
 
     return redirect(url_for('lockers'))
+
+
+#########################################################################################
+################################## Usuario repartidor ###################################
+#########################################################################################
+@app.route('/repartidor/datos')
+def datosRepartidor():
+    repartidor = ModelUser.infoRepartidor(db, current_user.email)
+
+    return render_template('#', repartidor = repartidor)
+
+@app.route('/repartidor/pendientes', methods=['GET', 'POST'])
+def listaDePaquetes():
+    list_lockers = ModelRepartidor.paquetesAll(db, current_user.id)
+    if list_lockers != None:
+        return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
+    else:
+        return render_template('TablaLockers.html', data=DATA, lockers = [])
+
+
+
+
 
 
 #############################################################################################################

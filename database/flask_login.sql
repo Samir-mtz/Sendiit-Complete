@@ -35,6 +35,16 @@ CREATE TABLE lockers (
   PRIMARY KEY(`id`)
 );
 
+CREATE TABLE envios (
+  `id` smallint(3) NOT NULL AUTO_INCREMENT,
+  `estado` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `origen` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `destino` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `idrepartidor` INTEGER COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY(`id`)
+);
+
+
 INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Lindavista', 'Calle test', 13, 4, 5, 4, 13);
 INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Colonia del valle', 'Calle test', 13, 4, 5, 4, 13);
 INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Satelite', 'Calle test', 13, 4, 5, 4, 13);
