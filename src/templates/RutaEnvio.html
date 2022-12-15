@@ -16,7 +16,7 @@
 			<header class="header">
 				<!-- Logo de la empresa -->
 				<div class="logo">
-					<a href="../index.html">
+					<a href="{{ url_for('index') }}">
 						<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
 					</a>
 				</div>
@@ -54,8 +54,8 @@
 					<div class="campos-user">
 						<div class="name-user">Ricardo Sánchez</div>
 						<div class="btn-user">
-							<div class="pantalla-user"><a href="#">Inicio</a></div>
-							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+							<div class="pantalla-user"><a href="{{ url_for('rutaEnvio') }}">Inicio</a></div>
+							<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
 						</div>
 					</div>
 				</div>

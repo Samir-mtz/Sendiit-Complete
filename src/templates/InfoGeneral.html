@@ -18,7 +18,7 @@
     <header class="header">
       <!-- Logo de la empresa -->
       <div class="logo">
-        <a href="../index.html">
+        <a href="{{ url_for('index') }}">
           <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
         </a>
       </div>
@@ -28,8 +28,8 @@
         <div class="campos-user">
           <div class="name-user">{{current_user.nombre}}</div>
           <div class="btn-user">
-            <div class="pantalla-user"><a href="#">I. General</a></div>
-            <div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+            <div class="pantalla-user"><a href="{{ url_for('datosRepartidor') }}">I. General</a></div>
+            <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
         </div>
         <div class="seccionboton">
           <div class="botones">
-            <a href="./InicioRepartidor.html" class="btn-confirmar">
+            <a href="{{ url_for('homeRepartidor') }}" class="btn-confirmar">
               <img id="home" src="../static/img/iconos/home.png" alt="home">
               <button>
                 <div class="textoI">Inicio</div>

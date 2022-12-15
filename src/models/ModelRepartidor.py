@@ -1,5 +1,6 @@
 from .entities.User import User
 from .entities.Envio import Envio
+# from .entities.Repartidor import Repartidor
 import datetime
 class ModelRepartidor():
 
@@ -46,3 +47,22 @@ class ModelRepartidor():
         except Exception as ex:
             raise Exception(ex)
     
+    # @classmethod
+    # def consultAll(self, db): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
+    #     try:
+    #         cursor = db.connection.cursor()
+    #         sql = f"SELECT id, nombre, telefono, correo, rfc FROM repartidores";
+    #         cursor.execute(sql)
+    #         list_repartidores=[]
+    #         while True:
+    #             row = cursor.fetchone()
+    #             if row == None:
+    #                 break
+    #             list_repartidores.append( Repartidor(id=row[0], nombre=row[1], telefono=row[2], correo=row[3], rfc=row[4]))
+            
+    #         if len(list_repartidores)>0:
+    #             return list_repartidores
+    #         else:
+    #             return None
+    #     except Exception as ex:
+    #         raise Exception(ex)

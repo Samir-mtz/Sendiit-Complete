@@ -17,7 +17,7 @@
 			<header class="header">
 				<!-- Logo de la empresa -->
 				<div class="logo">
-					<a href="../index.html">
+					<a href="{{ url_for('index') }}">
 						<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
 					</a>
 				</div>
@@ -55,8 +55,8 @@
 					<div class="campos-user">
 						<div class="name-user">{{current_user.nombre}}</div>
 						<div class="btn-user">
-							<div class="pantalla-user"><a href="#">Pendientes</a></div>
-							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+							<div class="pantalla-user"><a href="{{ url_for('listaDePaquetes') }}">Pendientes</a></div>
+							<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
 						</div>
 					</div>
 				</div>
@@ -80,13 +80,13 @@
 							<button class="btn-filtrar">FILTRAR</button>
 						</form>
 						{% if fly==1 %}
-							<a href="/repartidor/pendientes"><button class="btn3">BORRAR FILTRO</button></a>
+							<a href="{{ url_for('listaDePaquetes') }}"><button class="btn3">BORRAR FILTRO</button></a>
 						{% endif %}
 					</div>
 					
 					<!-- Genenrar ruta -->
 					<div class="generar">
-						<a href="./RutaEnvio.html"><button class="btn3">GENERAR RUTA</button></a>
+						<a href="{{ url_for('rutaEnvio') }}"><button class="btn3">GENERAR RUTA</button></a>
 					</div>
 					<!-- Imagen Repartidor -->
 					<div>

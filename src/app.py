@@ -143,6 +143,8 @@ def login():
                             return redirect(url_for('home'))
                         elif confirmed_user.tipo =='admin':
                             return redirect(url_for('admin'))
+                        elif confirmed_user.tipo =='repartidor':
+                            return redirect(url_for('homeRepartidor'))
                         else:                                                                                                       
                             # flash("algo salio mal.")
                             return redirect(url_for('index'))
@@ -159,7 +161,8 @@ def login():
                 flash("Usuario y/o contraseña incorrectos.")
                 return render_template('ingresar.html', data=DATA)
         
-        else:
+        else: # Se pide por get
+            
             return render_template('ingresar.html', data=DATA)
     
     else:
@@ -188,6 +191,8 @@ def home():
         return render_template('home.html', data=DATA)
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
+    elif user.tipo =='repartidor':
+        return redirect(url_for('homeRepartidor'))
     else:
         return redirect(url_for('index'))
 
@@ -500,10 +505,6 @@ def lockersActualizado():
 # Lockers - eliminar
 @app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
 def lockersEliminar():
-    # DATA = {
-    #         'title' : 'Agregar Locker',
-    #         'stylesheet' : '../../static/css/AgregarLocker.css',
-    #         }
     # ModelLocker.delete(db, id_locker)  
     # return redirect(url_for('lockers'))
     id_recibido = request.form['id']
@@ -517,11 +518,6 @@ def lockersEliminar():
 # Lockers - modificar estado
 @app.route('/admin/lockers/modificar-estado', methods=['GET', 'POST'])
 def lockersModificarEstado():
-    # DATA = {
-    #         'title' : 'Agregar Locker',
-    #         'stylesheet' : '../../static/css/AgregarLocker.css',
-    #         }
-
     id_recibido = request.form['id']
     cursor = db.connection.cursor()
     sql_consulta = f"SELECT activo from lockers WHERE id={id_recibido}"
@@ -539,23 +535,30 @@ def lockersModificarEstado():
     return redirect(url_for('lockers'))
 
 
+# Lockers - tabla
+@app.route('/admin/repartidores')
+def repartidores():
+    # list_repartdores = ModelRepartidor.consultAll(db)
+    # if list_lockers != None:
+    #     return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
+    # else:
+    #     return render_template('TablaLockers.html', data=DATA, lockers = [])
+    return render_template('altaRepartidores.html')
+
 #########################################################################################
 ################################## Usuario repartidor ###################################
 #########################################################################################
 @app.route('/repartidor')
+@login_required
 def homeRepartidor():
-    # DATA = {
-    #         'title' : 'Agregar Locker',
-    #         'stylesheet' : '../../static/css/AgregarLocker.css',
-    #         }
-    return render_template('InicioRepartidor.html')
+    DATA = {
+            'title' : 'Home',
+            'stylesheet' : '../static/css/InicioRepartidor',
+            }
+    return render_template('InicioRepartidor.html', data=DATA)
 
 @app.route('/repartidor/datos')
 def datosRepartidor():
-    # DATA = {
-    #         'title' : 'Agregar Locker',
-    #         'stylesheet' : '../../static/css/AgregarLocker.css',
-    #         }
     repartidor = ModelUser.infoRepartidor(db, current_user.email)
 
     return render_template('InfoGeneral.html', repartidor = repartidor)
@@ -580,6 +583,10 @@ def listaDePaquetes():
         return render_template('pendientesRepartidor.html', data=DATA, paquetes = [], fly=fly)
         
 
+@app.route('/repartidor/rutaEnvio')
+def rutaEnvio():
+    repartidor = ModelUser.infoRepartidor(db, current_user.email)
+    return render_template('RutaEnvio.html', repartidor = repartidor)
 
 
 
