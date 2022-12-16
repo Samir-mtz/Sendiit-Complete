@@ -124,14 +124,14 @@ class ModelUser():
     def consultRepartidoresAll(self, db):
         try:
             cursor = db.connection.cursor()
-            sql = f"SELECT id, nombre, email, telefono, direcion FROM user where tipo='repartidor'";
+            sql = f"SELECT id, nombre, email, telefono, direcion, confirmed FROM user where tipo='repartidor'";
             cursor.execute(sql)
             list_repartidores=[]
             while True:
                 row = cursor.fetchone()
                 if row == None:
                     break
-                list_repartidores.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=1, tipo=''))
+                list_repartidores.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo=''))
             
             if len(list_repartidores)>0:
                 return list_repartidores

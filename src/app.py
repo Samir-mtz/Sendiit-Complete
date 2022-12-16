@@ -149,9 +149,13 @@ def login():
                             # flash("algo salio mal.")
                             return redirect(url_for('index'))
                     else:
-                        logout_user()
-                        token = generate_confirmation_token(logged_user.email)
-                        return redirect(url_for('resend_confirmation', email = token))
+                        if confirmed_user.tipo =='usuario':
+                            logout_user()
+                            token = generate_confirmation_token(logged_user.email)
+                            return redirect(url_for('resend_confirmation', email = token))
+                        else:
+                            flash("Su usuario ha sido deshabilitado")
+                            return render_template('ingresar.html', data=DATA)
                 
                 else:
                     flash("Usuario y/o contraseña incorrectos.")
@@ -533,27 +537,41 @@ def lockersModificarEstado():
 
     return redirect(url_for('lockers'))
 
-
-@app.route('/admin/repartidor', methods=['GET', 'POST'])
-def adminRepartidores():
-    DATA = {
-            'title' : 'Lockers',
-            'stylesheet' : '../static/css/tablalockers.css',
-            }
-
-    list_repartidores = ModelUser.repartidores(db)
-    if list_repartidores != None:
-        return render_template('TablaLockers.html', data=DATA, lockers = list_repartidores)
-    else:
-        return render_template('TablaLockers.html', data=DATA, lockers = [])
-
-
 # Lockers - tabla
 @app.route('/admin/repartidores')
 def repartidores():
     list_repartdores = ModelUser.consultRepartidoresAll(db)
-    return render_template('altaRepartidores.html', repartidores = list_repartdores)
+    if list_repartdores != None:
+        print("entro")
+        return render_template('altaRepartidores.html', repartidores = list_repartdores)
+    else:
+        return render_template('altaRepartidores.html', repartidores = [])
 
+@app.route('/admin/repartidores/modificar-estado', methods=['GET', 'POST'])
+def repartidoresModificarEstado():
+    id_recibido = request.form['id']
+    cursor = db.connection.cursor()
+    sql_consulta = f"SELECT confirmed from user WHERE id={id_recibido}"
+    cursor.execute(sql_consulta)
+    estado = cursor.fetchone()
+    estadoFin = -1
+    if estado[0] == 0:
+        estadoFin = 1
+    else:
+        estadoFin = 0
+    sql = f"UPDATE user SET confirmed={estadoFin} WHERE id={id_recibido}"
+    cursor.execute(sql)
+    db.connection.commit()  
+
+    return redirect(url_for('repartidores'))
+
+@app.route('/admin/repartidores/eliminar', methods=['GET', 'POST'])
+def repartidoresEliminar():
+    id_recibido = request.form['id']
+    cursor = db.connection.cursor()
+    cursor.execute('DELETE FROM user WHERE id = '+id_recibido)
+    db.connection.commit()  
+    return redirect(url_for('repartidores'))
 #########################################################################################
 ################################## Usuario repartidor ###################################
 #########################################################################################

@@ -42,9 +42,9 @@ function cerrarEditar(){
 }
 
 function abrirEliminar(numId){
-    modalEliminar.showModal();
     myId = document.querySelector('#num_id');
     myId.value = numId;
+    modalEliminar.showModal();
 }
 
 function cerrarEliminar(){

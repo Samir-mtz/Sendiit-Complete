@@ -72,7 +72,8 @@
               <th>CORREO</th>
               <th>TELEFONO</th>
               <th>DIRECCION</th>
-              <th colspan="2">Dar de alta/Rechazar</th>
+              <th>ESTADO</th>
+              <th>ELIMINAR</th>
 
             </tr>
           </thead>
@@ -84,9 +85,18 @@
             <td>{{ repartidor.email }}</td>
             <td>{{ repartidor.telefono }}</td>
             <td>{{ repartidor.direccion }}</td>
-            <td><button onclick="abrirAlta()" class="btn-alta btn-ventana-alta ocultar"><img
-                  src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
-            <td><button onclick="abrirRechazar()" class="btn-rechazar btn-ventana-rechazar"><img
+            
+            {% if repartidor.confirmed == 1%}
+              <td><button onclick="abrirAlta('{{repartidor.id}}')" class="btn-alta btn-ventana-alta ocultar"><img
+                    src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+            {% endif %}
+            {% if repartidor.confirmed == 0%}
+            
+              <td><button onclick="abrirAlta('{{repartidor.id}}')" class="btn-alta btn-ventana-alta ocultar" style="opacity: 0.5"><img
+                    src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+            {% endif %}
+
+            <td><button onclick="abrirRechazar('{{repartidor.id}}')" class="btn-rechazar btn-ventana-rechazar"><img
                   src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
           </tr>
           {% endfor %}
@@ -104,11 +114,15 @@
           <div class="encabezado-modal"><button onclick="cerrarAlta()" class="modal-btn-cerrar-alta"><i
                 class="bi bi-x-circle"></i></button></div>
           <div class="titulo-modal">
-            <h2>¿Desea dar de alta al repartidor?</h2>
+            <h2>¿Desea Activar/Desactivar al repartidor?</h2>
           </div>
           <div class="botones-modal">
-            <a href="altarepartidores.html"><button class="confirmar">Confirmar</button></a>
-            <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
+            <form action="{{ url_for('repartidoresModificarEstado') }}" method="POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <input type="number" name="id" value="" id='estado_id' hidden>
+              <button class="confirmar">Confirmar</button>
+            </form>
+            <button class="cancelar" onclick="cerrarAlta()">Cancelar</button>
 
           </div>
         </div>
@@ -124,11 +138,15 @@
           <div class="encabezado-modal"><button onclick="cerrarRechazar()" class="modal-btn-cerrar-rechazar"><i
                 class="bi bi-x-circle"></i></button></div>
           <div class="titulo-modal">
-            <h2>¿Rechazar solicitud de repartidor?</h2>
+            <h2>¿Desea eliminar al repartidor?</h2>
           </div>
           <div class="botones-modal">
-            <a href="#"><button class="confirmar">Confirmar</button></a>
-            <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
+            <form action="{{ url_for('repartidoresEliminar') }}" method="POST">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <input type="number" name="id" value="" id='estado_id2' hidden>
+              <button class="confirmar">Confirmar</button>
+            </form>
+            <button class="cancelar" onclick="cerrarRechazar()">Cancelar</button>
           </div>
         </div>
       </center>
