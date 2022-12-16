@@ -120,10 +120,7 @@ def sucursalesAragon():
 # Inicio de sesion
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    DATA = {
-            'title' : 'Iniciar sesion',
-            'stylesheet' : 'ingresar.css',
-            }
+   
     if current_user.is_active == False:
         # Mandamos formulario
         if request.method == 'POST':
@@ -155,19 +152,19 @@ def login():
                             return redirect(url_for('resend_confirmation', email = token))
                         else:
                             flash("Su usuario ha sido deshabilitado")
-                            return render_template('ingresar.html', data=DATA)
+                            return render_template('ingresar.html')
                 
                 else:
                     flash("Usuario y/o contraseña incorrectos.")
-                    return render_template('ingresar.html', data=DATA)
+                    return render_template('ingresar.html')
 
             else:
                 flash("Usuario y/o contraseña incorrectos.")
-                return render_template('ingresar.html', data=DATA)
+                return render_template('ingresar.html')
         
         else: # Se pide por get
             
-            return render_template('ingresar.html', data=DATA)
+            return render_template('ingresar.html')
     
     else:
         return redirect(url_for('home'))
@@ -205,11 +202,7 @@ def home():
 # Registro de una nueva cuenta
 @app.route('/registro', methods=['GET', 'POST'])
 def register():
-    DATA = {
-            'title' : 'Registrar nueva cuenta',
-            'stylesheet' : 'registrar.css',
-            }
-
+    
     if request.method == 'POST':
         if current_user.is_active == True:
             logout_user()
@@ -261,10 +254,10 @@ def register():
             
         else:
             flash("El correo ingresado ya ha sido registrado")
-            return render_template('registrar.html', data=DATA)    
+            return render_template('registrar.html')    
     
     else:
-        return render_template('registrar.html', data=DATA)
+        return render_template('registrar.html')
 
 
 # Envio de confirmacion de correo
