@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Nombre de la pagina -->
-  <title>ALTA REPARTIDORES</title>
+  <title>Admin - Repartidores</title>
   <!-- Favicon de la empresa -->
   <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
@@ -26,7 +26,7 @@
       <!-- Barra de navegacion dentro de la pagina -->
       <div class="secciones">
         <div class="nav-contenido">
-          <a href="#">REPARTIDORES</a>
+          <a href="{{ url_for('repartidores') }}">REPARTIDORES</a>
         </div>
       </div>
       <!-- Botones de acciones del sistema -->
@@ -35,10 +35,10 @@
           <a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt=""></a>
         </div>
         <div class="nav-botones">
-          <a href="#" class="btn btn-administrador"><button>ADMINISTRADOR</button></a>
+          <a href="{{ url_for('admin') }}" class="btn btn-administrador"><button>ADMINISTRADOR</button></a>
         </div>
         <div class="nav-botones">
-          <a href="#" class="btn btn-cerrarsesion"><button>CERRAR SESIÓN</button></a>
+          <a href="{{ url_for('logout') }}" class="btn btn-cerrarsesion"><button>CERRAR SESIÓN</button></a>
         </div>
       </div>
     </header>
@@ -51,7 +51,7 @@
             height="300" /></div>
         <div class="registrados">
           <!-- <a href="tablaRepartidores.html"><button class="btn3 btn-ventana-registrados">REGISTRADOS</button></a> -->
-          <div class="altas"><a href="altarepartidores.html"><button class="btn3 btn-ventana-altas">REGISTRAR REPARTIDOR</button></a>
+          <div class="altas"><a href="{{ url_for('repartidoresAgregar') }}"><button class="btn3 btn-ventana-altas">REGISTRAR REPARTIDOR</button></a>
           </div>
         </div>
 

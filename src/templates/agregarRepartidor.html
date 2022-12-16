@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Nombre de la pagina -->
-  <title>AGREGAR REPARTIDOR</title>
+  <title>Admin - Agregar Repartidor</title>
   <!-- Favicon de la empresa -->
-  <link href="/static/img/empresa/favicon.png" rel="icon" />
+  <link href="../../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="/static/css/agregarRepartidor.css" />
+  <link rel="stylesheet" href="../../static/css/agregarRepartidor.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
@@ -19,14 +19,14 @@
     <header class="header">
       <!-- Logo de la empresa -->
       <div class="logo">
-        <a href="../index.html">
-          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        <a href="{{ url_for('index') }}">
+          <img src="../../static/img/empresa/logo.png" alt="Logo de la empresa" />
         </a>
       </div>
       <!-- Barra de navegacion dentro de la pagina -->
       <div class="secciones">
         <div class="nav-contenido">
-          <a href="#">AGREGAR REPARTIDOR</a>
+          <a href="{{ url_for('repartidoresAgregar') }}">AGREGAR REPARTIDOR</a>
         </div>
       </div>
       <!-- Botones de acciones del sistema -->
@@ -35,12 +35,12 @@
           <a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt=""></a>
         </div>
         <div class="nav-botones">
-          <a href="#" class="btn btn-administrador"
+          <a href="{{ url_for('admin') }}" class="btn btn-administrador"
             ><button>ADMINISTRADOR</button></a
           >
         </div>
         <div class="nav-botones">
-          <a href="#" class="btn btn-cerrarsesion"
+          <a href="{{ url_for('logout') }}" class="btn btn-cerrarsesion"
             ><button>CERRAR SESIÓN</button></a
           >
         </div>
