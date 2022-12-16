@@ -7,7 +7,14 @@ const password2 = document.getElementById("password_confirm");
 const telefono = document.getElementById("telefono");
 const direccion = document.getElementById("direccion");
 
-
+const campos = {
+	nombre : false,
+	email : false,
+	password: false,
+	password2 : false,
+	telefono : false,
+	direccion : false,
+}
 
 
 inputs.forEach((input) => {
@@ -23,15 +30,7 @@ function checkInputs() {
 	const telefonoValue = telefono.value.trim();
 	const direccionValue = direccion.value.trim();
 
-	const campos = {
-		nombre : false,
-		email : false,
-		password: false,
-		password2 : false,
-		telefono : false,
-		direccion : false,
-
-	}
+	
 	
 	// Comparacion del nombre
 	if (nombreValue === "") {
