@@ -273,8 +273,8 @@ tr:nth-child(even) {
 }
 .altas {
 width: 200px;
-float: right;
-
+float: left;
+margin-left: 20%;
 }
 
 .altas .btn3{
