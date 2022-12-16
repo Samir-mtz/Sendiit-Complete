@@ -1,128 +1,202 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 45% 40%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	/* border: solid 1px red; */
+}
+
+.header div {
+	/* border: solid 1px red; */
+	background: #fff;
+	height: 1fr;
+}
+
+.header .logo {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	transition: all 0.5s;
+	/* border: solid 1px red; */
+}
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .secciones,
+.header .botones {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: 100%;
+}
+
+.header .secciones a,
+.header .botones a {
+	text-decoration: none;
+	color: #212e46;
+	font-size: x-large;
+	/* border: solid 1px red; */
+}
+
+.header .secciones .nav-contenido,
+.header .botones .nav-botones {
+	display: grid;
+	place-content: center;
+}
+
+.header .secciones .nav-contenido a:hover {
+	color: #e41f1a;
+	transform: scale(1.1);
+}
+
+.header .botones .btn button {
+	display: grid;
+	color: white;
+	background: #212e46;
+	padding: 10px 10px;
+	border: none;
+	border-radius: 8px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+	font-size: large;
+	margin-left: auto;
+}
+
+.header .botones .btn-enviar button {
+	background-color: #e41f1a;
+	color: #fff;
+}
+
+.header .botones .btn-ingresar button {
+	background-color: #f9d950;
+	color: #212e46;
+}
+
+.header .botones .btn-registrarse button {
+	background-color: #212e46;
+	color: #fff;
+}
+
+.header .botones .btn button:hover {
+	transform: scale(1.1);
+}
 
 /************************************************************************************
                                         Main
 ************************************************************************************/
 
-.contenedor-login {
-	/*background-color: yellow;*/
+.main {
+	display: grid;
+	grid-template-columns: 50% 50%;
 	text-align: center;
-	display: flex;
-	justify-content: space-evenly;
-	flex-direction: row;
+    align-items: center;
 }
 
-.contenedor-login2 {
+.repartidor img{
+    height: 600px;
+}
+
+.main .titulo-pagina,
+.main .contenido .textnuevo div {
+	grid-column: 1/2;
+}
+
+.main .titulo-pagina img {
+	height: 40px;
+	margin-bottom: 10px;
 	margin-top: 10px;
-	background-color: #fff;
-	text-align: center;
-	display: flex;
+	width: auto;
+}
+
+.main .titulo-pagina h2 {
+	color: #f5cc16;
+	margin-top: -15px;
+}
+
+.main .titulo-pagina h5 {
+	color: #212e46;
+	margin-top: -20px;
+}
+
+.contenido {
 	flex-direction: column;
 	border: 0.5px solid rgb(218, 218, 218);
 	box-shadow: 3px 3px 3px rgb(218, 218, 218);
 	border-radius: 20px;
-}
-
-
-.contenedor-login img.pequeña {
-	/*background-color: blue;*/
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 30px;
-	width: 40%;
-	height: 10%;
-	display: flex;
-}
-
-.contenedor-login .titulologin {
-	color: #f9d950;
-	margin-top: 0px;
-	/*background-color: red;*/
-	text-align: center;
-	font-weight: normal;
-	font: italic bold 30px Helvetica, Sans-Serif;
-}
-.contenedor-login .textologin {
-	color: #212e46;
-	font-weight: normal;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
-	text-align: center;
-}
-.contenedor-login .textologin2 {
-	color: #212e46;
-	font-weight: bolder;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
-	text-align: left;
 	margin-left: 100px;
+	padding: 20px 50px;
+    /* height: 130%; */
 }
 
-.login-box input[type="email"],
-.login-box input[type="password"] {
-	font: italic 5px Verdana, Sans-Serif;
-	width: 70%;
-	height: 30px;
-	border-radius: 20px;
-}
-.contenedor-login #icono {
-	margin-left: 420px;
-	position: absolute;
-	z-index: 1;
-	background-color: #f9d950;
-	width: 80px;
-	height: 35px;
-	border-radius: 30px;
-	margin-right: 2005px;
+.formulario {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 30px;
 }
 
-.contenedor-login .email {
-	margin-top: 2px;
-	margin-left: 3px;
-	height: 29px;
-	width: 38px;
+small{
+    color: red;
 }
 
-.contenedor-login .candado {
-	margin-top: 2px;
-	margin-left: 3px;
-	height: 29px;
-	width: 25px;
+.formulario__grupo-btn-enviar {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
-.contenedor-login .recuperacion {
-	color: #354d75;
-	font-weight: bolder;
-	font: italic bold 10px Helvetica, Sans-Serif;
-	font-size: medium;
-	text-align: right;
-	margin-left: 200px;
-}
-
-.contenedor-login .botones .btn button,
-.contenedor-login2 .btn-registrarse button {
-	font-weight: bolder;
-	font-size: large;
-	width: 300px;
-	color: white;
-	background: #212e46;
-	padding: 10px 30px;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: all 0.5s ease 0s;
-	/* margin-left: auto; */
-	margin-bottom: 30px;
-}
-
-.contenedor-login .botones .btn-ingresar button,
-.contenedor-login2 .btn-registrarse button {
-	margin-top: 20px;
-	background-color: #f9d950;
+.btn-ingresar-extra,
+.btn-form {
 	color: #212e46;
+	height: 100%;
+    padding: 10px 15px;
+	outline: none;
+	border: none;
+	font-size: 20px;
+	font-weight: 400;
+	border-radius: 10px;
+	letter-spacing: 1px;
+	background-color: #f9d950;
 }
 
-.contenedor-login .botones .btn button:hover,
-.contenedor-login2 .btn-registrarse button:hover {
+.btn-ingresar-extra:hover{
 	cursor: pointer;
 	background-color: #f5cc16;
 	transition: all 0.8s;
@@ -130,28 +204,151 @@
 	box-shadow: 5px 5px 5px #f9d950;
 }
 
-.contenedor-login .nuevo {
-	height: 100px;
-	width: 500px;
-	color: #212e46;
-	font-weight: bolder;
-	font-size: medium;
-	font-size: medium;
-	text-align: center;
-	display: flex;
-	flex-direction: row;
-	margin-top: -30px;
-	margin-left: 70px;	
+.btn-form{
+	width: 40%;
+	margin-left: 30%;
 }
 
-.contenedor-login2 .btn-registrarse button {
-	background-color: #ffea8c;
-	color: #212e46;
+.btn-form:hover{
+	cursor: pointer;
+	background-color: #f5cc16;
+	transition: all 0.8s;
+	transform: scale(1.1);
+	box-shadow: 5px 5px 5px #f9d950;
 }
-.contenedor-login .textnuevo {
-	margin-top: 30px;
+
+.formulario__mensaje-exito-activo {
+	display: block;
+}
+
+.pregunta {
+    color: #9f9f9f;
+}
+
+.terminos{
+	text-decoration: none;
+	color: blue;
+}
+
+.form-control {
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	font-weight: 600;
+	cursor: pointer;
+    text-align: left;
+    padding-top: 10px;
+}
+
+.form-control input {
+	width: 90%;
+	background: rgb(255, 255, 255);
+	border: 3px solid rgb(203, 203, 203);
+	border-radius: 10px;
+	height: 25px;
+	line-height: 45px;
+	padding: 0 30px 0 10px;
+	transition: .3s ease all;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input {
+	border-color: #e74c3c;
+}
+
+.form-control i {
+	visibility: hidden;
+	position: absolute;
+	top: 50px;
+	right: 20px;
+}
+
+.form-control.success i.fa-check-circle {
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+	color: #e74c3c;
+	visibility: visible;
+}
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-control.error small {
+	visibility: visible;
+}
+
+.pregunta {
+    color: #9f9f9f;
+}
+
+.recuperacion {
+	color: #354d75;
+	font-weight: bolder;
+	font: italic bold 10px;
+	font-size: medium;
+	text-align: right;
+	margin-left: 300px;
+}
+
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns:50% 50%;
+	grid-template-rows: 100%;
 	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
 }
-.contenedor-login .imagen {
-	opacity: 0.3;
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
 }
