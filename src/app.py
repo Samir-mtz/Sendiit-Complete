@@ -542,10 +542,29 @@ def lockersModificarEstado():
 def repartidores():
     list_repartdores = ModelUser.consultRepartidoresAll(db)
     if list_repartdores != None:
-        print("entro")
+        
         return render_template('altaRepartidores.html', repartidores = list_repartdores)
     else:
         return render_template('altaRepartidores.html', repartidores = [])
+
+@app.route('/admin/repartidores/agregar')
+def repartidoresAgregar():
+    
+    
+    return render_template('agregarRepartidor.html')
+
+
+# @app.route('/admin/lockers/agregar')
+# def lockersAgregar():
+#     DATA = {
+#             'title' : 'Agregar Locker',
+#             'stylesheet' : '../../static/css/AgregarLocker.css',
+#             }
+#     list_locations = ModelLocation.consultAll(db)
+
+#     return render_template('AgregarLocker.html', data=DATA, locations = list_locations)
+
+
 
 @app.route('/admin/repartidores/modificar-estado', methods=['GET', 'POST'])
 def repartidoresModificarEstado():
