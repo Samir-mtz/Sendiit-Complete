@@ -17,131 +17,122 @@
 <body>
   <article>
     <header class="header">
-			<!-- Logo de la empresa -->
-			<div class="logo">
-				<a href="{{ url_for('index') }}">
-					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
-				</a>
-			</div>
-			<!-- Barra de navegacion dentro de la pagina -->
-			<div class="secciones">
-				<div class="nav-contenido">
-					<a href="#">REPARTIDORES</a>
-				</div>
-			</div>
-			<!-- Botones de acciones del sistema -->
-			<div class="botones">
-				<div class="nav-botones">
-					<a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt="" ></a>
-				</div>
-				<div class="nav-botones">
-					<a href="#" class="btn btn-administrador"
-						><button>ADMINISTRADOR</button></a
-					>
-				</div>
-				<div class="nav-botones">
-					<a href="#" class="btn btn-cerrarsesion"
-						><button>CERRAR SESIÓN</button></a
-					>
-				</div>
-			</div>
-		</header>
+      <!-- Logo de la empresa -->
+      <div class="logo">
+        <a href="{{ url_for('index') }}">
+          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        </a>
+      </div>
+      <!-- Barra de navegacion dentro de la pagina -->
+      <div class="secciones">
+        <div class="nav-contenido">
+          <a href="#">REPARTIDORES</a>
+        </div>
+      </div>
+      <!-- Botones de acciones del sistema -->
+      <div class="botones">
+        <div class="nav-botones">
+          <a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt=""></a>
+        </div>
+        <div class="nav-botones">
+          <a href="#" class="btn btn-administrador"><button>ADMINISTRADOR</button></a>
+        </div>
+        <div class="nav-botones">
+          <a href="#" class="btn btn-cerrarsesion"><button>CERRAR SESIÓN</button></a>
+        </div>
+      </div>
+    </header>
 
     <main class="main">
 
       <div class="titulo-formulario">
 
-        <div class="img-catalogo" ><img src="../static/img/iconos/repartidor.png" alt="Repartidor" width="300" height="300" /></div>
+        <div class="img-catalogo"><img src="../static/img/iconos/repartidor.png" alt="Repartidor" width="300"
+            height="300" /></div>
         <div class="registrados">
-            <a href="tablaRepartidores.html"><button class="btn3 btn-ventana-registrados">REGISTRADOS</button></a>
-            <div class="altas"><a href="altarepartidores.html"><button class="btn3 btn-ventana-altas">ALTAS</button></a></div>
+          <a href="tablaRepartidores.html"><button class="btn3 btn-ventana-registrados">REGISTRADOS</button></a>
+          <div class="altas"><a href="altarepartidores.html"><button class="btn3 btn-ventana-altas">ALTAS</button></a>
+          </div>
         </div>
 
         <!-- Buscar -->
         <div class="buscar">
-            <span>
-              <input type="text" placeholder="Buscar">
-              <i class="fa-search btn2 fas"></i>
-            </span>
-          </div>
+          <span>
+            <input type="text" placeholder="Buscar">
+            <i class="fa-search btn2 fas"></i>
+          </span>
+        </div>
       </div>
       <div class="datos-tabla">
         <table align="center">
           <thead>
             <tr>
+              <th>ID</th>
               <th>NOMBRE</th>
-              <th>TELEFONO</th>
               <th>CORREO</th>
-              <th>RFC</th>
+              <th>TELEFONO</th>
+              <th>DIRECCION</th>
               <th colspan="2">Dar de alta/Rechazar</th>
-              
+
             </tr>
           </thead>
-          <!-- Fila -->
+          
+          {% for repartidor in repartidores %}
           <tr>
-            <td>Sara Pérez Acevedo</td>
-            <td>55 39 18 09 89</td>
-            <td>s.perez@sendiit.com</td>
-            <td>GOVM860812QA2</td>
+            <td>{{ repartidor.id }}</td>
+            <td>{{ repartidor.nombre }}</td>
+            <td>{{ repartidor.email }}</td>
+            <td>{{ repartidor.telefono }}</td>
+            <td>{{ repartidor.direccion }}</td>
             <td><button onclick="abrirAlta()" class="btn-alta btn-ventana-alta ocultar"><img
-                src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+                  src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
             <td><button onclick="abrirRechazar()" class="btn-rechazar btn-ventana-rechazar"><img
-                    src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
+                  src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
           </tr>
-
-          <tr>
-            <td>Elena Mora Márquez</td>
-            <td>55 45 87 98 08</td>
-            <td>e.mora@sendiit.com</td>
-            <td>JACL841028Q62</td>
-            <td><button onclick="abrirAlta()" class="btn-alta btn-ventana-alta ocultar"><img
-                src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
-            <td><button onclick="abrirRechazar()" class="btn-rechazar btn-ventana-rechazar"><img
-                    src="../static/img/iconos/close.png" width="40" height="40" /></button></td>
-          </tr>
+          {% endfor %}
 
 
         </table>
 
       </div>
     </main>
-  
-      <!-- Modal para dar de alta al repartidor -->
-      <dialog class="modal-btn-alta" id="modal-btn">
-        <center>
-          <div class="contenido-modal">
-            <div class="encabezado-modal"><button onclick="cerrarAlta()" class="modal-btn-cerrar-alta"><i
-                  class="bi bi-x-circle"></i></button></div>
-            <div class="titulo-modal">
-              <h2>¿Desea dar de alta al repartidor?</h2>
-            </div>
-            <div class="botones-modal">
-                <a href="altarepartidores.html"><button class="confirmar">Confirmar</button></a>
-              <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
 
-            </div>
+    <!-- Modal para dar de alta al repartidor -->
+    <dialog class="modal-btn-alta" id="modal-btn">
+      <center>
+        <div class="contenido-modal">
+          <div class="encabezado-modal"><button onclick="cerrarAlta()" class="modal-btn-cerrar-alta"><i
+                class="bi bi-x-circle"></i></button></div>
+          <div class="titulo-modal">
+            <h2>¿Desea dar de alta al repartidor?</h2>
           </div>
-        </center>
-      </dialog>
-  
-      
-  
-      <!-- Modal para rechazar -->
-      <dialog class="modal-btn-rechazar" id="modal-btn">
-        <center>
-          <div class="contenido-modal">
-            <div class="encabezado-modal"><button onclick="cerrarRechazar()" class="modal-btn-cerrar-rechazar"><i
-                  class="bi bi-x-circle"></i></button></div>
-            <div class="titulo-modal">
-              <h2>¿Rechazar solicitud de repartidor?</h2>
-            </div>
-            <div class="botones-modal">
-                              <a href="#"><button class="confirmar">Confirmar</button></a>
-              <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
-            </div>
+          <div class="botones-modal">
+            <a href="altarepartidores.html"><button class="confirmar">Confirmar</button></a>
+            <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
+
           </div>
-        </center>
-      </dialog>
+        </div>
+      </center>
+    </dialog>
+
+
+
+    <!-- Modal para rechazar -->
+    <dialog class="modal-btn-rechazar" id="modal-btn">
+      <center>
+        <div class="contenido-modal">
+          <div class="encabezado-modal"><button onclick="cerrarRechazar()" class="modal-btn-cerrar-rechazar"><i
+                class="bi bi-x-circle"></i></button></div>
+          <div class="titulo-modal">
+            <h2>¿Rechazar solicitud de repartidor?</h2>
+          </div>
+          <div class="botones-modal">
+            <a href="#"><button class="confirmar">Confirmar</button></a>
+            <a href="./altarepartidores.html"><button class="cancelar">Cancelar</button></a>
+          </div>
+        </div>
+      </center>
+    </dialog>
 
 
     <footer class="footer">

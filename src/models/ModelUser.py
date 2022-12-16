@@ -121,7 +121,7 @@ class ModelUser():
             raise Exception(ex)
     
     @classmethod
-    def repartidores(self, db):
+    def consultRepartidoresAll(self, db):
         try:
             cursor = db.connection.cursor()
             sql = f"SELECT id, nombre, email, telefono, direcion FROM user where tipo='repartidor'";
@@ -131,9 +131,9 @@ class ModelUser():
                 row = cursor.fetchone()
                 if row == None:
                     break
-                list_repartidores.append( Usuario(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direcion=row[4]))
+                list_repartidores.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=1, tipo=''))
             
-            if len(list_lockers)>0:
+            if len(list_repartidores)>0:
                 return list_repartidores
             else:
                 return None

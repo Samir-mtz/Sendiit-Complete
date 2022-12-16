@@ -398,21 +398,6 @@ def lockers():
     else:
         return render_template('TablaLockers.html', data=DATA, lockers = [])
 
-
-@app.route('/admin/repartidor', methods=['GET', 'POST'])
-def adminRepartidores():
-    DATA = {
-            'title' : 'Lockers',
-            'stylesheet' : '../static/css/tablalockers.css',
-            }
-
-    list_repartidores = ModelUser.repartidores(db)
-    if list_repartidores != None:
-        return render_template('TablaLockers.html', data=DATA, lockers = list_repartidores)
-    else:
-        return render_template('TablaLockers.html', data=DATA, lockers = [])
-
-
 # Lockers - agregar
 @app.route('/admin/lockers/agregar')
 def lockersAgregar():
@@ -549,15 +534,25 @@ def lockersModificarEstado():
     return redirect(url_for('lockers'))
 
 
+@app.route('/admin/repartidor', methods=['GET', 'POST'])
+def adminRepartidores():
+    DATA = {
+            'title' : 'Lockers',
+            'stylesheet' : '../static/css/tablalockers.css',
+            }
+
+    list_repartidores = ModelUser.repartidores(db)
+    if list_repartidores != None:
+        return render_template('TablaLockers.html', data=DATA, lockers = list_repartidores)
+    else:
+        return render_template('TablaLockers.html', data=DATA, lockers = [])
+
+
 # Lockers - tabla
 @app.route('/admin/repartidores')
 def repartidores():
-    # list_repartdores = ModelRepartidor.consultAll(db)
-    # if list_lockers != None:
-    #     return render_template('TablaLockers.html', data=DATA, lockers = list_lockers)
-    # else:
-    #     return render_template('TablaLockers.html', data=DATA, lockers = [])
-    return render_template('altaRepartidores.html')
+    list_repartdores = ModelUser.consultRepartidoresAll(db)
+    return render_template('altaRepartidores.html', repartidores = list_repartdores)
 
 #########################################################################################
 ################################## Usuario repartidor ###################################
