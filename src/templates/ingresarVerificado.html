@@ -1,86 +1,122 @@
-{% extends 'base-home.html' %}
-{% block body_main %}
+<!-- Formulario de inicio de sesion -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- Nombre de la pagina -->
+		<title>INGRESAR</title>
+		<!-- Favicon de la empresa -->
+		<link href="../static/img/empresa/favicon.png" rel="icon" />
+		<!-- Estilos -->
+		<link rel="stylesheet" href="../static/css/ingresarVerificado.css" />
+	</head>
+
+	<body>
+		<article>
+			<!-- Encabezado -->
+			<header class="header">
+				<!-- Logo de la empresa -->
+				<div class="logo">
+				  <a href="../index.html">
+					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+				  </a>
+				</div>
+				<!-- Barra de navegacion dentro de la pagina -->
+				<div class="secciones">
+				  <div class="nav-contenido">
+					<a href="./inicio.html">INICIO</a>
+				  </div>
+				  <div class="nav-contenido">
+					<a href="./sucursales.html">SUCURSALES</a>
+				  </div>
+				  <div class="nav-contenido">
+					<a href="./conocenos.html">CONÓCENOS</a>
+				  </div>
+				</div>
+				<!-- Botones de acciones del sistema -->
+				<div class="botones">
+				  <div class="nav-botones">
+					<a href="#" class="btn btn-enviar"><button>ENVIAR</button></a>
+				  </div>
+				  <div class="nav-botones">
+					<a href="./ingresar.html" class="btn btn-ingresar"><button>INGRESAR</button></a>
+				  </div>
+				  <div class="nav-botones">
+					<a href="./registrar.html" class="btn btn-registarse"><button>REGISTRARSE</button></a>
+				  </div>
+				</div>
+			  </header>
+			<!-- Contenido -->
 			<main class="main">
-				<section class="contenedor-login">
-					<div class="contenedor-login2">
-						<img
-							class="pequeña"
-							src="../static/img/empresa/logo.png"
-							alt="Logo de la empresa"
-						/>
-						<h1 class="titulologin">INICIO DE SESIÓN</h1>
-						<h1 class="textologin">Ingresa a tu cuenta</h1>
-						<div class="login-box">
-							<form>
-								<!--Enviar datos a base de datos-->
-								<h1 for="email" class="textologin2">
-									Email<a style="color: red">*</a>
-								</h1>
-
-								<div id="icono">
-									<img
-										class="email"
-										src="../static/img/iconos/email.png"
-										alt="Icono"
-									/>
-								</div>
-
-								<input
-									type="email"
-									placeholder=" ejemplo@email.com"
-									size="30"
-									style="font-family: Verdana; font-size: 20px; float: center"
-									required
-								/>
-								<br />
-								<br />
-								<h1 for="password" class="textologin2">
-									Contraseña<a style="color: red">*</a>
-								</h1>
-
-								<div id="icono">
-									<img
-										class="candado"
-										src="../static/img/iconos/candado.png"
-										alt="Icono"
-									/>
-								</div>
-								<input
-									type="password"
-									placeholder=" **********"
-									size="30"
-									style="font-family: Verdana; font-size: 20px; float: center"
-									required
-								/>
-								<br /><br>
-								<a class="recuperacion" href="#" style="text-decoration: none"
-									>¿Olvidaste tu contraseña?</a
-								>
-								<br />
-								<div class="botones">
-									<a href="#" class="btn btn-ingresar"
-										><button>INGRESAR</button></a
-									>
-									<br />
-								</div>
-							</form>
-						</div>
-						<div class="nuevo">
-							<img class="imagen" src="../static/img/iconos/raya.png" width="33%" />
-							<p>&nbsp;&nbsp;&nbsp;</p>
-							<h1 class="textnuevo">¿Eres nuevo?</h1>
-							<p>&nbsp;&nbsp;&nbsp;</p>
-							<img class="imagen" src="../static/img/iconos/raya.png" width="33%" />
-						</div>
-						<a href="#" class="btn btn-registrarse"><button>REGISTRATE</button></a>
+				<div class="contenido">
+				  <div class="titulo-pagina">
+					<img src="../static/img/empresa/logo.png" alt="" class="logo-encabezado" />
+					<br />
+					<h2>INICIO DE SESIÓN</h2>
+					<h5>Ingresa a tu cuenta</h5>
+				  </div>
+				  <form action="" class="formulario" id="formulario">
+					<!-- Grupo: Correo Electronico -->
+					<div class="form-control">
+					  <label for="email">Email <label style="color: red;">*</label></label><br>
+					  <input type="email" name="email" id="email" placeholder="juanperez@gmail.com" />
+					  <i class="fas fa-check-circle"></i>
+					  <i class="fas fa-exclamation-circle"></i><br>
+					  <small>Error message</small>
 					</div>
+					<!-- Grupo: Contraseña -->
+					<div class="form-control">
+					  <label for="password">Contraseña <label style="color: red;">*</label></label><br>
+					  <input type="password" name="password" id="password" placeholder="$1234567Abc" />
+					  <i class="fas fa-check-circle"></i>
+					  <i class="fas fa-exclamation-circle"></i><br>
+					  <small>Error message</small>
+					</div>
+					<a class="recuperacion" href="#" style="text-decoration: none">¿Olvidaste tu contraseña?</a>
+		  
+		  
+					<button type="submit" class="btn-form">Ingresar</button>
+				  </form>
+				  <!-- Grupo: Pregunta externa -->
+				  <div class="formulario__grupo formulario__grupo-btn-enviar">
 					<div>
-						<img
-							src="../static/img/empresa/verificacion.png"
-							alt="verificacion"
-							class="verificacion"
-						/>
+					  <h1 class="pregunta"><img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" />¿No tienes
+						cuenta?<img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" /></h1>
 					</div>
-				</section>
-				<br />
-{% endblock %}
+					<a href="./registrar.html"><button type="submit" class="btn-ingresar-extra">Registrate</button></a>
+				  </div>
+				</div>
+				<div class="repartidor">
+				  <img class="img-repartidor" src="../static/img/empresa/verificacion.png" alt="" />
+				</div>
+			  </main>
+
+			<!-- Pie de pagina -->
+			<footer class="footer">
+				<div class="derechos">
+					<div class="copyright">
+						<span>&copy;2022 México. Todos los derechos reservados.</span>
+					</div>
+				</div>
+				<div class="redes">
+					<div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+					</div>
+					<div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+					</div>
+					<div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+					</div>
+					<div class="logo-red">
+						<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+					</div>
+				</div>
+			</footer>
+		</article>
+		<script src="../static/js/validacionesIngresar.js"></script>
+	</body>
+</html>
