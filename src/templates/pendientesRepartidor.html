@@ -55,7 +55,7 @@
 					<div class="campos-user">
 						<div class="name-user">{{current_user.nombre}}</div>
 						<div class="btn-user">
-							<div class="pantalla-user"><a href="{{ url_for('listaDePaquetes') }}">Pendientes</a></div>
+							<div class="pantalla-user"><a href="{{ url_for('inicioRepartidor') }}">Inicio</a></div>
 							<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
 						</div>
 					</div>
@@ -78,19 +78,32 @@
 							</select>
 							
 							<button class="btn-filtrar">FILTRAR</button>
+							<div class="btn-borrar">
+								<!-- {% if fly==1 %} -->
+								<a href="{{ url_for('listaDePaquetes') }}"><button class="btn3">BORRAR FILTRO</button></a>
+								<!-- {% endif %} -->
+							</div>
 						</form>
-						{% if fly==1 %}
-							<a href="{{ url_for('listaDePaquetes') }}"><button class="btn3">BORRAR FILTRO</button></a>
-						{% endif %}
 					</div>
 					
 					<!-- Genenrar ruta -->
 					<div class="generar">
 						<a href="{{ url_for('rutaEnvio') }}"><button class="btn3">GENERAR RUTA</button></a>
 					</div>
-					<!-- Imagen Repartidor -->
-					<div>
-						<img class="img-repartidor" src="../static/img/repartidores/Repartidor_8.png" alt="">
+					<div class="extra">
+						<!-- Imagen Repartidor -->
+						<div>
+							<img class="img-repartidor" src="../static/img/repartidores/Repartidor_8.png" alt="">
+						</div>
+						<!-- <div class="seccionboton">
+							<div class="botones">
+							  <a href="{{ url_for('homeRepartidor') }}" class="btn-confirmar">
+								<img id="home" src="../static/img/iconos/home.png" alt="home">
+								<button>
+								  <div class="textoI">Inicio</div>
+								</button></a>
+							</div>
+						  </div> -->
 					</div>
 				</div>
 				<div class="der">
@@ -150,6 +163,7 @@
 						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
 						</tr> -->
 					  </table>
+					  
 				</div>
 			</main>
 			<footer class="footer">

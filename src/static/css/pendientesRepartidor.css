@@ -157,14 +157,14 @@ article {
 
 .filtrar form{
 	display: grid;
-	grid-template-columns: repeat(2,1fr);
+	grid-template-columns: repeat(3,1fr);
 	text-align: center;
 	place-content: center;
 	align-items: center;
 }
 
 .filtrar button{
-	margin-left: 150px;
+	margin-left: 180px;
 }
 
 .selector{
@@ -212,11 +212,58 @@ article {
 	transition: all 0.5s;
 }
 
+.seccionboton .botones button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.seccionboton {
+	display: flex;
+	/* flex-direction: row; */
+}
+
+.seccionboton .btn-confirmar button {
+	width: 160px;
+	height: 50px;
+	border: 5px solid rgb(16, 73, 158);
+	background: #f9d950;
+	padding: 0px 30px;
+	border-radius: 20px;
+	margin-top: 20px;
+	/* margin-left: 380px; */
+	text-align: left;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.textoI {
+	color: #1d1f46;
+	font-family: "Oswald", sans-serif bold;
+	font-size: 180%;
+	text-align: left;
+	width: 100px;
+	letter-spacing: 1px;
+}
+
+.main #home {
+	position: absolute;
+	z-index: 1;
+	margin-top: 27px;
+	margin-left: 110px;
+	width: 35px;
+	height: 35px;
+}
+
+.extra{
+	display: grid;
+	grid-template-columns: repeat(2,0.5fr);
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
 
 .img-repartidor{
 	height: 450px;
 }
-
 
 .main .der{
 	display: grid;
@@ -277,6 +324,10 @@ tr:nth-child(even) {
 .full-img img{
 	width: 90%;
 	max-width: 500px;
+}
+
+.btn-borrar{
+	margin-left: -80%;
 }
 /************************************************************************************
                                         Footer
