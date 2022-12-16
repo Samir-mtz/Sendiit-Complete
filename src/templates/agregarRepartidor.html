@@ -8,9 +8,9 @@
   <!-- Nombre de la pagina -->
   <title>AGREGAR REPARTIDOR</title>
   <!-- Favicon de la empresa -->
-  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <link href="/static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="../static/css/agregarRepartidor.css" />
+  <link rel="stylesheet" href="/static/css/agregarRepartidor.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
@@ -53,8 +53,6 @@
           <br />
           <h2>AGREGAR REPARTIDOR</h2>
           <h5>Registro de nuevo repartidor</h5>
-        </div>
-        <form action="{{ url_for('repartidoresAgregar') }}" class="formulario" id="formulario">
           {% with messages = get_flashed_messages() %}
 
             {% if messages %}
@@ -69,6 +67,8 @@
             {% endif %}
 
           {% endwith %}
+        </div>
+        <form action="{{ url_for('repartidoresAgregar') }}" method="POST" class="formulario" id="formulario">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <div>
             <!-- Grupo: Nombre -->
@@ -154,7 +154,7 @@
       </div>
     </footer>
   </article>
-  <script src="../static/js/validacionesRegistroRepartidor.js"></script>
+  <script src="/static/js/validacionesRegistroRepartidor.js"></script>
 </body>
 
 </html>
