@@ -54,7 +54,22 @@
           <h2>AGREGAR REPARTIDOR</h2>
           <h5>Registro de nuevo repartidor</h5>
         </div>
-        <form action="" class="formulario" id="formulario">
+        <form action="{{ url_for('repartidoresAgregar') }}" class="formulario" id="formulario">
+          {% with messages = get_flashed_messages() %}
+
+            {% if messages %}
+              <br />
+              {% for message in messages %}
+                {%if message == 'Ese email ya esta registrado'%}
+                <div>
+                  <strong style="color: #e41f1a;">{{ message }}</strong>
+                </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+
+          {% endwith %}
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <div>
             <!-- Grupo: Nombre -->
             <div class="form-control">

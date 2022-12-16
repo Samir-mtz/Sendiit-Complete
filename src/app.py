@@ -547,10 +547,34 @@ def repartidores():
     else:
         return render_template('altaRepartidores.html', repartidores = [])
 
-@app.route('/admin/repartidores/agregar')
+@app.route('/admin/repartidores/agregar', methods=['GET', 'POST'])
 def repartidoresAgregar():
+    ModelUser.registerRepartidor(db)
     
+    if request.method == 'POST':
+
+        if ModelUser.check_email(db, request.form['email'])==False: # ¿El correo no esta registrado?
+            user = User(1, request.form['email'], 
+                        request.form['password'], 
+                        request.form['nombre'], 
+                        request.form['telefono'],
+                        request.form['direccion']
+                        )
+            execution = ModelUser.registerRepartidor(db, user) # Registralo en la BD
+            
+            if execution != None: # Se registro con exito entonces tengo sus datos
+                flash("Repartidor Agregado con exito")
+                return render_template('agregarRepartidor.html')
+            else:
+                flash("Algo salió mal, intenta de nuevo")
+                return render_template('agregarRepartidor.html')
+            
+        else:
+            flash("El correo ingresado ya ha sido registrado")
+            return render_template('agregarRepartidor.html')    
     
+    else:
+        return render_template('registrar.html', data=DATA)
     return render_template('agregarRepartidor.html')
 
 
