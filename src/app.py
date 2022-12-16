@@ -632,10 +632,6 @@ def datosRepartidor():
 
 @app.route('/repartidor/pendientes', methods=['GET', 'POST'])
 def listaDePaquetes():
-    DATA = {
-            'title' : 'Agregar Locker',
-            'stylesheet' : '../../static/css/pendientesRepartidor.css',
-            }
     fly=0
     if request.method == 'POST' and request.form['estado'] != 'ELEGIR ESTADO':
         estado = request.form['estado']
@@ -645,9 +641,9 @@ def listaDePaquetes():
         list_paquetes = ModelRepartidor.paquetesAll(db, current_user.id)
     # print(list_paquetes)     
     if list_paquetes != None:
-        return render_template('pendientesRepartidor.html', data=DATA, paquetes = list_paquetes, fly=fly)
+        return render_template('pendientesRepartidor.html', paquetes = list_paquetes, fly=fly)
     else:
-        return render_template('pendientesRepartidor.html', data=DATA, paquetes = [], fly=fly)
+        return render_template('pendientesRepartidor.html', paquetes = [], fly=fly)
         
 
 @app.route('/repartidor/rutaEnvio')

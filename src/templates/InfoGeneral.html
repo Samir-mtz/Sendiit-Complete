@@ -6,11 +6,12 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Nombre de la pagina -->
-  <title>PLANTILLA</title>
+  <title>Repartidor - Datos Personales</title>
   <!-- Favicon de la empresa -->
   <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
   <link rel="stylesheet" href="../static/css/InfoGeneral.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
 <body>
@@ -26,9 +27,9 @@
       <div class="user">
         <div class="perfil"><i class="bi bi-person-circle"></i></div>
         <div class="campos-user">
-          <div class="name-user">{{current_user.nombre}}</div>
+          <div class="name-user">{{ current_user.nombre }}</div>
           <div class="btn-user">
-            <div class="pantalla-user"><a href="{{ url_for('datosRepartidor') }}">I. General</a></div>
+            <div class="pantalla-user"><a href="{{ url_for('homeRepartidor') }}">Inicio</a></div>
             <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
           </div>
         </div>
@@ -37,38 +38,38 @@
     <main class="main">
       <div class="izq">
         <div class="dato">
-          <h1 id="nombreCampo">Nombre</h1>
-          <label id="textoC">{{repartidor.nombre}}</label>
+          <div class="icono-dato"><i class="bi bi-envelope-at-fill"></i></div>
+          <div class="nombre-dato"><i>{{repartidor.email}}</i>  </div>
         </div>
         <div class="dato">
-          <h1 id="nombreCampo">Email:</h1>
-          <label id="textoN">{{repartidor.email}}</label>
+          <div class="icono-dato"><i class="bi bi-person-circle"></i></i></div>
+          <div class="nombre-dato"><i>{{repartidor.nombre}}</i>  </div>
         </div>
         <div class="dato">
-          <h1 id="nombreCampo">Teléfono</h1>
-          <label id="textoR">{{repartidor.telefono}}</label>
+          <div class="icono-dato"><i class="bi bi-telephone-fill"></i></i></div>
+          <div class="nombre-dato"><i>{{repartidor.telefono}}</i>  </div>
         </div>
         <div class="dato">
-          <h1 id="nombreCampo">Dirección</h1>
-          <label id="textoT">{{repartidor.direccion}}</label>
+          <div class="icono-dato"><i class="bi bi-houses-fill"></i></i></div>
+          <div class="nombre-dato"><i>{{repartidor.direccion}}</i>  </div>
         </div>
         <div class="dato">
-          <h1 id="nombreCampo">Fecha de ingreso</h1>
-          <label id="textoT">{{repartidor.confirmed_on}}</label>
+          <div class="icono-dato"><i class="bi bi-calendar-week-fill"></i></i></div>
+          <div class="nombre-dato"><i>{{repartidor.confirmed_on}}</i>  </div>
         </div>
+        <spam class="leyenda">
+          <p>Actualiza tu informacion en nuestra base de datos.</p>
+          <p>Comunicate para la actualización de datos al correo: 
+            sendiitadsscrumios@gmail.com
+            </p>
+        </spam>
       </div>
       <div class="der">
-        <div>
-          <img class="buscar" src="../static/img/iconos/buscar.png" alt="buscar" style="width: 80%; height: 80%;">
+        <div class="icono-perfil">
+          <i class="bi bi-person-bounding-box"></i>
         </div>
-        <div class="seccionboton">
-          <div class="botones">
-            <a href="{{ url_for('homeRepartidor') }}" class="btn-confirmar">
-              <img id="home" src="../static/img/iconos/home.png" alt="home">
-              <button>
-                <div class="textoI">Inicio</div>
-              </button></a>
-          </div>
+        <div class="btn-inicio">
+            <a href="{{ url_for('homeRepartidor') }}"><i class="bi bi-house-door-fill"></i>      Inicio</a>
         </div>
       </div>
     </main>

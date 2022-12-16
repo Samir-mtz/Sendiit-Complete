@@ -5,7 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- Nombre de la pagina -->
-		<title>PENDIENTES REPARTIDOR</title>
+		<title>Repartidor - Pendientes</title>
 		<!-- Favicon de la empresa -->
 		<link href="../static/img/empresa/favicon.png" rel="icon" />
 		<!-- Estilos -->
@@ -55,7 +55,7 @@
 					<div class="campos-user">
 						<div class="name-user">{{current_user.nombre}}</div>
 						<div class="btn-user">
-							<div class="pantalla-user"><a href="{{ url_for('inicioRepartidor') }}">Inicio</a></div>
+							<div class="pantalla-user"><a href="{{ url_for('homeRepartidor') }}">Inicio</a></div>
 							<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
 						</div>
 					</div>

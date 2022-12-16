@@ -151,8 +151,9 @@ article {
 	text-align: center;
 	align-items: center;
 	place-content: center;
-	max-width: 1500px;
+	width: 3fr;
 	height: 1fr;
+	gap: 20px;
 }
 
 .main .der {
@@ -161,34 +162,82 @@ article {
 	text-align: center;
 	align-items: center;
 	place-content: center;
-	height: 100%;
+	/* height: 100%; */
 }
 
-.main .izq .dato{
+/* .main .izq .dato{
 	display: grid;
 	grid-template-columns: 35% 65%;
 	text-align: center;
-	margin-bottom: 10px;
-	height: 1fr;
-	border: 3px solid rgb(16, 73, 158);
-	padding: 10px;
-}
+} */
 
-.main .izq .dato div{
+/* .main .izq .dato div{
 	border: 1px solid red;
-}
+} */
 
-.main .dato {
-	place-content: center;
-	border-radius: 20px;
+.main .izq .dato {
+	display: grid;
+	grid-template-columns: 20% 80%;
 	text-align: center;
 	align-items: center;
-	width: 500px;
-	height: 50px;
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-	background: #f9d950;
+	place-content: center;
+	width: 100%;
+	gap: 30px;
+	padding: 5px;
+	border-radius: 5px;
+	border-bottom: 3px solid rgba(0, 0, 0, 0.3);
 }
 
+.icono-dato{
+	color: #1a75e4;
+	font-size: 30px;
+	text-transform: italic;
+	padding: -10px;
+	margin-left: 10px;
+}
+
+.nombre-dato{
+	color: #212e46;
+	font-size: 20px;
+	text-transform: italic;
+	
+}
+
+.icono-perfil{
+	color: #212e46;
+	font-size: 400px;
+	margin-top: -50px;
+}
+
+.btn-inicio{
+	color: #212e46;
+	font-size: 30px;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	text-transform: uppercase;
+	width: 50%;
+	margin-left: 25%;
+	border: 3px solid rgb(16, 73, 158);
+	background: #f9e489;
+	border-radius: 15px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.btn-inicio a{
+	text-decoration: none;
+	color: #212e46;
+}
+
+.btn-inicio:hover{
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+.leyenda{
+	color: #848687;
+}
 
 /* .main #nombreCampo {
 	position: absolute;
@@ -258,9 +307,8 @@ article {
 	border: 5px solid rgb(16, 73, 158);
 	background: #f9d950;
 	padding: 0px 30px;
-	border-radius: 20px;
 	margin-top: 20px;
-	margin-left: 380px;
+	/* margin-left: 380px; */
 	text-align: left;
 	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 }
