@@ -36,7 +36,7 @@ function checkInputs() {
 		setErrorFor(password, "No puede dejar la contraseña en blanco.");
 		campos['password'] = false;
 	} else if (!comprobarPassword(passwordValue)) {
-		setErrorFor(password, "No ingreso un password válido. La contraseña debe de contener una minuscula, mayuscula, un numero y un caracter especial, con una longitud minima de 8.");
+		setErrorFor(password, "No ingreso un password válido. La contraseña debe de contener una minuscula, mayuscula y un numero, con una longitud minima de 8.");
 		campos['password'] = false;
 	} else {
 		setSuccessFor(password);
@@ -62,7 +62,7 @@ function comprobarEmail(email) {
 }
 
 function comprobarPassword(password) {
-	return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{8,15}$/.test(password);
+	return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,15}$/.test(password);
 }
 
 

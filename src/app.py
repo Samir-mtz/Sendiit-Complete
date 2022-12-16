@@ -545,7 +545,7 @@ def repartidoresAgregar():
     # ModelUser.registerRepartidor(db)
     
     if request.method == 'POST':
-
+        
         if ModelUser.check_email(db, request.form['email'])==False: # ¿El correo no esta registrado?
             user = User(1, request.form['email'], 
                         request.form['password'], 
@@ -556,7 +556,7 @@ def repartidoresAgregar():
             execution = ModelUser.registerRepartidor(db, user) # Registralo en la BD
             
             if execution != None: # Se registro con exito entonces tengo sus datos
-                flash("Repartidor Agregado con exito")
+                # flash("Repartidor Agregado con exito")
                 return render_template('agregarRepartidor.html')
             else:
                 flash("Algo salió mal, intenta de nuevo")

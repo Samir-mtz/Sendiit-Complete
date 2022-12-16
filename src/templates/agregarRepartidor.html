@@ -57,13 +57,13 @@
 
             {% if messages %}
               <br />
-              {% for message in messages %}
-                {%if message == 'Ese email ya esta registrado'%}
+              <!-- {% for message in messages %}
+                {%if message == 'Ese email ya esta registrado'%} -->
                 <div>
-                  <strong style="color: #e41f1a;">{{ message }}</strong>
+                  <strong style="color: #e41f1a;">{{ messages[-1]}}</strong>
                 </div>
-                {% endif %}
-              {% endfor %}
+                <!-- {% endif %}
+              {% endfor %} -->
             {% endif %}
 
           {% endwith %}
@@ -132,6 +132,7 @@
         <img class="img-repartidor" src="../../static/img/repartidores/Repartidor_5.png" alt="" />
       </div>
     </main>
+
     <footer class="footer">
       <div class="derechos">
         <div class="copyright">
