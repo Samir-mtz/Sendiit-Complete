@@ -89,3 +89,14 @@ class ModelLocker():
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)    
+
+    #############Checar disponibilidad del locker
+    @classmethod
+    def checkDisponibilidad(self, db, origen, destino, tamano): 
+        try:
+            cursor = db.connection.cursor()
+            sql = "DELETE FROM lockers WHERE id="+id+";"
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)    

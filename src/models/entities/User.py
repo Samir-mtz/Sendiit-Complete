@@ -5,7 +5,7 @@ import datetime
 
 class User(UserMixin):
 
-    def __init__(self,id, email, password, nombre="",telefono="", direccion="",confirmed=0, tipo="", confirmed_on=None) -> None:
+    def __init__(self, id, email, password, nombre="",telefono="", direccion="",confirmed=0, tipo="", confirmed_on=None, numPaq=0) -> None:
         self.id = id
         self.email = email
         self.password = password
@@ -15,6 +15,7 @@ class User(UserMixin):
         self.confirmed = confirmed
         self.tipo = tipo
         self.confirmed_on = confirmed_on
+        self.numPaq = numPaq
 
 
     @classmethod

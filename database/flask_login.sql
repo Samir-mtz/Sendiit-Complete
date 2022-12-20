@@ -14,6 +14,7 @@ CREATE TABLE `user` (
   `confirmed`  BOOLEAN NOT NULL DEFAULT 0,
   `tipo` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'usuario',
   `confirmed_on` DATE,
+  `numpaquetes` INTEGER COLLATE utf8_unicode_ci NOT NULL DEFAULT 0,
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores the user''s data.';
 
@@ -37,12 +38,29 @@ CREATE TABLE lockers (
 
 CREATE TABLE envios (
   `id` smallint(3) NOT NULL AUTO_INCREMENT,
-  `estado` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `origen` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `destino` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
+  `tamano` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `estado` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `telefono` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `costo` INTEGER COLLATE utf8_unicode_ci NOT NULL,
+  `idusuario` INTEGER COLLATE utf8_unicode_ci NOT NULL,
   `idrepartidor` INTEGER COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY(`id`)
 );
+
+CREATE TABLE tarjetas (
+  `id` smallint(3) NOT NULL AUTO_INCREMENT,
+  `idusuario` INTEGER COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `numtarjeta` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `expiracion` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `cvv` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  PRIMARY KEY(`id`)
+);
+
 
 
 INSERT INTO `lockers` (`ubicacion`, `direccion`, `categoria`, `cantidadS`, `cantidadM`, `cantidadL`, `disponibilidad`) VALUES ('Lindavista', 'Calle test', 13, 4, 5, 4, 13);
