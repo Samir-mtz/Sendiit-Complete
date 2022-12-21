@@ -408,7 +408,7 @@ def formularioPago(envio):
         redirect(url_for('pagoExitoso'))
     listTarjetas = ModelTarjeta.consultAll()
 
-    return render_template('FormularioEnvio.html', tarjetas= listTarjetas)#Cambiar por html correcto
+    return render_template('formularioPago.html', tarjetas= listTarjetas)#Cambiar por html correcto
 
 @app.route('/user/ordenGenerada')
 @login_required
