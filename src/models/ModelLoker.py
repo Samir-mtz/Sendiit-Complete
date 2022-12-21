@@ -95,8 +95,30 @@ class ModelLocker():
     def checkDisponibilidad(self, db, origen, destino, tamano): 
         try:
             cursor = db.connection.cursor()
-            sql = "DELETE FROM lockers WHERE id="+id+";"
-            cursor.execute(sql)
-            db.connection.commit()
+            if tamano == 'pequeno':
+                sql = f"SELECT cantidadS FROM lockers where ubicacion='{origen}'";
+                cursor.execute(sql)
+                origen = cursor.fetchone()
+                sql = f"SELECT cantidadS FROM lockers where ubicacion='{destino}'";
+                cursor.execute(sql)
+                destino = cursor.fetchone()
+            if tamano == 'mediano':
+                sql = f"SELECT cantidadM  FROM lockers where ubicacion='{origen}'";
+                cursor.execute(sql)
+                origen = cursor.fetchone()
+                sql = f"SELECT cantidadM  FROM lockers where ubicacion='{destino}'";
+                cursor.execute(sql)
+                destino = cursor.fetchone()
+            if tamano == 'grande':
+                sql = f"SELECT cantidadL FROM lockers where ubicacion='{origen}'";
+                cursor.execute(sql)
+                origen = cursor.fetchone()
+                sql = f"SELECT cantidadL FROM lockers where ubicacion='{destino}'";
+                cursor.execute(sql)
+                destino = cursor.fetchone()
+            if origen > 0 and destino > 0:
+                return True
+            else:
+                return False
         except Exception as ex:
             raise Exception(ex)    

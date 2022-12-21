@@ -24,5 +24,28 @@ class ModelEnvio():
             cursor.execute(sql)
             db.connection.commit()
 
+            #Decrementamos la cantidad de lockers vacios en origen y destino
+            if envio.tamano == 'pequeno':
+                sql = f"UPDATE lockers SET cantidadS = cantidadS - 1 WHERE ubicacion='{envio.origen}'";
+                cursor.execute(sql)
+                db.connection.commit()
+                sql = f"UPDATE lockers SET cantidadS = cantidadS - 1 WHERE ubicacion='{envio.destino}'";
+                cursor.execute(sql)
+                db.connection.commit()
+            if envio.tamano == 'mediano':
+                sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.origen}'";
+                cursor.execute(sql)
+                db.connection.commit()
+                sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.destino}'";
+                cursor.execute(sql)
+                db.connection.commit()
+            if envio.tamano == 'grande':
+                sql = f"UPDATE lockers SET cantidadL = cantidadL - 1 WHERE ubicacion='{envio.origen}'";
+                cursor.execute(sql)
+                db.connection.commit()
+                sql = f"UPDATE lockers SET cantidadL = cantidadL - 1 WHERE ubicacion='{envio.destino}'";
+                cursor.execute(sql)
+                db.connection.commit()
+            
         except Exception as ex:
             raise Exception(ex)
