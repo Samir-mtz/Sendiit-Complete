@@ -15,11 +15,15 @@ from models.ModelUser import ModelUser
 from models.ModelLoker import ModelLocker
 from models.ModelLocation import ModelLocation
 from models.ModelRepartidor import ModelRepartidor
+from models.ModelEnvio import ModelEnvio
+from models.ModelTarjeta import ModelTarjeta
 
 # Entities:
 from models.entities.User import User
 from models.entities.Locker import Locker
 from models.entities.Location import Location
+from models.entities.Envio import Envio
+from models.entities.Tarjeta import Tarjeta
 
 app = Flask(__name__)
 csrf = CSRFProtect()
@@ -120,7 +124,6 @@ def sucursalesAragon():
 # Inicio de sesion
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-   
     if current_user.is_active == False:
         # Mandamos formulario
         if request.method == 'POST':
@@ -364,6 +367,63 @@ def resend_email():
         flash('Error. Usuario no registrado')
         return redirect(url_for('register'))
 
+@app.route('/user/agregarTarjeta', methods=['GET', 'POST'])
+@login_required
+def agregarTarjeta():
+    if request.method == 'POST':
+        nombre = request.form['nombre']
+        numtarjeta = request.form['numtarjeta']
+        expiracion = request.form['expiracion']
+        cvv = request.form['cvv']
+        tarjeta = Tarjeta( numtarjeta, expiracion, nombre, current_user.id, cvv)
+        ModelTarjeta.register(db, tarjeta)
+
+    return render_template('AgregarTarjeta.html')
+    
+@app.route('/user/formularioEnvio', methods=['GET', 'POST'])
+@login_required
+def formularioEnvio():
+    if request.method == 'POST':
+        origen = request.form['origen']
+        destino = request.form['destino']
+        tamano = request.form['tamano']
+        fragil = request.form['fragil']
+        nombre = request.form['nombre']
+        email = request.form['email']
+        telefono = request.form['telefono']
+        costo = request.form['costo']
+        estado= 'EN ESPERA DE ENTREGA'
+        idusuario = current_user.id
+        envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
+        # ModelEnvio.register(db, envio)
+        return redirect(url_for('formularioPago', envio))
+
+    return render_template('FormularioEnvio.html')
+    
+@app.route('/user/formularioPago/<envio>', methods=['GET', 'POST'])
+@login_required
+def formularioPago(envio):
+    if request.method == 'POST':
+        ModelEnvio.register(db, envio)
+        redirect(url_for('pagoExitoso'))
+    listTarjetas = ModelTarjeta.consultAll()
+
+    return render_template('FormularioEnvio.html', tarjetas= listTarjetas)#Cambiar por html correcto
+
+@app.route('/user/ordenGenerada')
+@login_required
+def ordenGenerada():
+    return render_template('OrdenGenerada.html')
+    
+@app.route('/user/pagoExitoso')
+@login_required
+def pagoExitoso():
+    return render_template('PagoExitoso.html')
+    
+@app.route('/user/pagoFracasado')
+@login_required
+def pagoFracasado():
+    return render_template('PagoFracasado.html')
 
 #########################################################################################
 ################################## Usuario administrador ################################

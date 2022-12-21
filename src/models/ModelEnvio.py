@@ -20,26 +20,26 @@ class ModelEnvio():
             ###
             ###INSERTAMOS EN LA TABLA ENVIOS
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario, idrepartidor) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', 'EN ESPERA DE ENTREGA', {envio.nombre}, {envio.email}, {envio.telefono}, {envio.costo}, {envio.idusuario}, {asignacion})"
+            sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario, idrepartidor) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', {envio.nombre}, {envio.email}, {envio.telefono}, {envio.costo}, {envio.idusuario}, {asignacion})"
             cursor.execute(sql)
             db.connection.commit()
 
             #Decrementamos la cantidad de lockers vacios en origen y destino
-            if envio.tamano == 'pequeno':
+            if envio.tamano == 'Chico':
                 sql = f"UPDATE lockers SET cantidadS = cantidadS - 1 WHERE ubicacion='{envio.origen}'";
                 cursor.execute(sql)
                 db.connection.commit()
                 sql = f"UPDATE lockers SET cantidadS = cantidadS - 1 WHERE ubicacion='{envio.destino}'";
                 cursor.execute(sql)
                 db.connection.commit()
-            if envio.tamano == 'mediano':
+            if envio.tamano == 'Mediano':
                 sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.origen}'";
                 cursor.execute(sql)
                 db.connection.commit()
                 sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.destino}'";
                 cursor.execute(sql)
                 db.connection.commit()
-            if envio.tamano == 'grande':
+            if envio.tamano == 'Grande':
                 sql = f"UPDATE lockers SET cantidadL = cantidadL - 1 WHERE ubicacion='{envio.origen}'";
                 cursor.execute(sql)
                 db.connection.commit()

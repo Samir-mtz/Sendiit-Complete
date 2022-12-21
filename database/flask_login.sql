@@ -41,6 +41,7 @@ CREATE TABLE envios (
   `origen` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `destino` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `tamano` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `fragil` BOOLEAN NOT NULL DEFAULT 0,
   `estado` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `nombre` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,

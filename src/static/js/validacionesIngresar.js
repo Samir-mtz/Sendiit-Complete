@@ -35,13 +35,13 @@ function checkInputs() {
 	if (passwordValue === "") {
 		setErrorFor(password, "No puede dejar la contraseña en blanco.");
 		campos['password'] = false;
-	} else if (!comprobarPassword(passwordValue)) {
-		setErrorFor(password, "No ingreso un password válido. La contraseña debe de contener una minuscula, mayuscula y un numero, con una longitud minima de 8.");
-		campos['password'] = false;
-	} else {
-		setSuccessFor(password);
-		campos['password'] = true;
-	}
+	// } else if (!comprobarPassword(passwordValue)) {
+	// 	setErrorFor(password, "No ingreso un password válido. La contraseña debe de contener una minuscula, mayuscula y un numero, con una longitud minima de 8.");
+	// 	campos['password'] = false;
+	// } else {
+	// 	setSuccessFor(password);
+	// 	campos['password'] = true;
+	// }
 
 }
 
@@ -61,9 +61,9 @@ function comprobarEmail(email) {
 	return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
 }
 
-function comprobarPassword(password) {
-	return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,15}$/.test(password);
-}
+// function comprobarPassword(password) {
+// 	return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{8,15}$/.test(password);
+// }
 
 
 form.addEventListener("submit", (e) => {
