@@ -395,6 +395,21 @@ article {
 	margin-left: -130px;
 
 }
+#CancelarEnvio{
+	
+	font-weight: 400;
+	color: rgb(0, 0, 0);
+	background: #fd5353;
+	padding: 6px 30px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	float: left;
+	margin-top: -35px;
+	float: left;
+	margin-left: -130px;
+	text-decoration: none;
+}
 .botones{
 	display: flex;
 	flex-direction: column;
