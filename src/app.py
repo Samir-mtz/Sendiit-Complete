@@ -396,7 +396,12 @@ def formularioEnvio():
         # g.envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
         # print(g.envio)
         # ModelEnvio.register(db, envio)
-        return render_template('formularioPago.html', envio=envio)
+        listTarjetas = ModelTarjeta.consultAll(db,current_user.id)
+        if listTarjetas != None:
+            return render_template('formularioPago.html', envio=envio, tarjetas= listTarjetas)
+        else:
+            return render_template('formularioPago.html', envio=envio, tarjetas= [])
+
 
     return render_template('FormularioEnvio.html')
     
@@ -418,6 +423,7 @@ def formularioPago():
         ModelEnvio.register(db, datos)
         return render_template('PagoExitoso.html')
     listTarjetas = ModelTarjeta.consultAll(db,current_user.id)
+    print(listTarjetas[0].numtarjeta)
 
     return render_template('formularioPago.html', tarjetas= listTarjetas)
 
