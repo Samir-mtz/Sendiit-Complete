@@ -1,85 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- Nombre de la pagina -->
-		<title>PLANTILLA</title>
-		<!-- Favicon de la empresa -->
-		<link href="../static/img/empresa/favicon.png" rel="icon" />
-		<!-- Estilos -->
-		<link rel="stylesheet" href="../static/css/OrdenGenerada.css" />
-	</head>
-	<body>
-		<article>
-			<header class="header">
-				<!-- Logo de la empresa -->
-				<div class="logo">
-						<img src="../static/img/iconos/lockerheader.png" alt="Logo de la empresa" />
-				</div>
 
-				<div class="headersendit">
-					<div class="logo1">
-							<img src="../static/img/empresa/logo.png" alt="Logo de la empresa"/>
-					</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Nombre de la pagina -->
+  <title>ORDEN GENERADA</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/OrdenGenerada.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <script src="../static/js/jquery.min.js"></script>
+</head>
 
-					<div class="raya">
-						<img src="..//static/img/iconos/raya.png" height="5px"/>
-					</div>
-					<div class="tituloForm">ORDEN GENERADA</div>
-				</div>
-				<div class="user">
-					<div class="perfil"><i class="bi bi-person-circle"></i></div>
-					<div class="campos-user">
-						<div class="name-user">Ricardo Sánchez</div>
-						<div class="btn-user">
-							<div class="historial"><a href="#">Historial</a></div>
-							<div class="pantalla-user"><a href="#">Rastrear Paquetes</a></div>
-							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
-						</div>
-					</div>
-				</div>
-			</header>
-			<main class="main">
-				<div class="contenedor-izq">
+<body>
+  <article>
+    <header class="header">
+      <!-- Logo de la empresa -->
+      <div class="logo">
+        <a href="{{ url_for('index') }}">
+          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        </a>
+      </div>
+      <div class="titulo-pagina">ORDEN GENERADA</div>
+      <div class="user">
+        <div class="perfil"><i class="bi bi-person-circle"></i></div>
+        <div class="campos-user">
+          <div class="name-user">{{ current_user.nombre }}</div>
+          <div class="btn-user">
+            <div class="pantalla-user"><a href="{{ url_for('home') }}">Inicio</a></div>
+            <div class="pantalla-user"><a href="#">Historial</a></div>
+            <div class="pantalla-user"><a href="#">Rastrear</a></div>
+            <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <main class="main">
 
-					<div class="x"><img src="..//static/img/iconos/pdf.png"/></div>
-					<div class="repartidor"><img src="..//static/img/repartidores/Repartidor_8.png"/></div>
-                    
+      <div class="contenedor-izq">
+        <div class="x">
+          <h3 class="leyenda"><i> En el siguinete PDF, tendras la información de tu envio. </i></h3>
+        </div>
+        <div></div>
+        <div class="repartidor">
+          <img src="../static/img/repartidores/Repartidor_8.png" />
+        </div>
+      </div>
+
+      <div class="contenedor-der">
+        <div class="orden"><i class="bi bi-file-earmark-pdf"></i></div>
+        <div class="botones">
+          <a href="javascript:void(0)" class="btn-download btn-generar">Descargar Orden</a>
+        </div>
+      </div>
+
+      <div class="pdfGenerado">
+        <section id="pdfOrden">
+          <header class="header-pdf">
+            <!-- Logo de la empresa -->
+            <div class="logo">
+              <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+            </div>
+            <div class="texto-id" style="margin-bottom: 20px;">
+              <h1>ID: {{idOrden}}</h1>
+            </div>
+          </header>
+          <main class="main-pdf">
+            <div class="titulo-seccion" style="padding-bottom: 20px;">DATOS REMITENTE</div>
+            <div class="datos-personas">
+              <div class="persona-origen">
+                <div class="titulo-seccion">DATOS REMITENTE</div>
+                <div class="dato-remitente"> - Nombre: {{nombrePersonaOrigen}}</div>
+                <div class="dato-remitente"> - Correo electrónico: {{correoPersonaOrigen}}</div>
+                <div class="dato-remitente"> - Teléfono: {{telefonoPersonaOrigen}}</div>
+              </div>
+              <div class="persona-destino">
+                <div class="titulo-seccion">DATOS DESTINATARIO</div>
+                <div class="dato-destinario"> - Nombre: {{nombrePersonaDestino}}</div>
+                <div class="dato-destinario"> - Correo electrónico: {{correoPersonaDestino}}</div>
+                <div class="dato-destinario"> - Teléfono: {{telefonoPersonaDestino}}</div>
+              </div>
+            </div>
+            <div class="titulo-seccion" style="padding-bottom: 20px; padding-top: 50px;">DATOS PAQUETE</div>
+            <div class="datos-paquete">
+              <div class="descripcion-paquete">
+                <div class="paquete">
+                  <div class="dato-paquete"> - Peso: {{pesoPaquete}}</div>
+                  <div class="dato-paquete"> - Tamaño: {{tamanioPaquete}}</div>
+                  <div class="dato-paquete"> - Fecha de Envio: {{fechaEnvioPaquete}}</div>
+                  <div class="dato-paquete"> - Fragil: {{fragilPaquete}}</div>
+                  <!-- <div class="dato-paquete"> - Descripcion: {{desceripcionPaquete}}</div> -->
+                </div>
+                <div class="img-paquete">
+                  <img src="../static/img/OrdenGenerada/paquete.png" alt="Imagen de paquete">
+                </div>
+              </div>
+            </div>
+            <div class="titulo-seccion" style="padding-top: 40px;">CÓDIGO</div>
+            <div class="codigo">
+              <img src="../static/img/OrdenGenerada/qr.png" alt="Imagen de paquete">
+            </div>
+          </main>
+          <footer class="footer-pdf">
+            <div class="derechos">
+              <div class="copyright">
+                <br><br><br><br>
+                <span>&copy;2022 México. Todos los derechos reservados.</span>
+                <!-- <a  href="javascript:void(0)" class="btn-download">Descargar Orden</a> -->
+              </div>
+            </div>
+          </footer>
+        </section>
+      </div>
+      <script>
+
+        const options = {
+          margin: 0.25,
+          filename: 'ordenEnvio.pdf',
+          image: {
+            type: 'jpeg',
+            quality: 50
+          },
+          html2canvas: {
+            scale: 1.0
+          },
+          jsPDF: {
+            unit: 'in',
+            format: 'letter',
+            orientation: 'portrait'
+          }
+        }
+
+        $('.btn-download').click(function (e) {
+          e.preventDefault();
+          const element = document.getElementById('pdfOrden');
+          html2pdf().from(element).set(options).save();
+        });
 
 
-				</div>
-                <div class="contenedor-der">
-				<div class="orden"><img src="..//static/img/iconos/OrdenGenerada.png"/></div>
-				<div class="botones">
-					<a href="#" class="btn-mostrar"><button>Mostrar QR's</button></a>
-				</div>
-			    </div>
+        function printDiv(divName) {
+          var printContents = document.getElementById(divName).innerHTML;
+          var originalContents = document.body.innerHTML;
+          document.body.innerHTML = printContents;
+          window.print();
+          document.body.innerHTML = originalContents;
+        }
+      </script>
+        <script src="../static/js/jspdf.debug.js"></script>
+        <script src="../static/js/html2canvas.min.js"></script>
+        <script src="../static/js/html2pdf.min.js"></script>
+    </main>
+    <footer class="footer">
+      <div class="derechos">
+        <div class="copyright">
+          <span>&copy;2022 México. Todos los derechos reservados.</span>
+        </div>
+      </div>
+      <div class="redes">
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+      </div>
+    </footer>
+  </article>
+</body>
 
-
-			</main>
-			<footer class="footer">
-				<div class="derechos">
-					<div class="copyright">
-						<span>&copy;2022 México. Todos los derechos reservados.</span>
-					</div>
-				</div>
-				<div class="redes">
-                    <div class="logo-red">
-						<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-                    </div>
-                    <div class="logo-red">
-						<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-                    </div>
-                    <div class="logo-red">
-						<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-                    </div>
-                    <div class="logo-red">
-						<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-                    </div>
-				</div>
-			</footer>
-		</article>
-	</body>
 </html>
