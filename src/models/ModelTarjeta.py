@@ -23,6 +23,9 @@ class ModelTarjeta():
                 if row == None:
                     break
                 return listtarjetas.append(Tarjeta(numtarjeta=row[0], nombre=row[1],expiracion=row[2]))
-            return listtarjetas
+            if len(listtarjetas)>0:
+                return listtarjetas
+            else:
+                return None;
         except Exception as ex:
             raise Exception(ex)
