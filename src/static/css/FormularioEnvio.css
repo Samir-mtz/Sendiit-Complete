@@ -6,6 +6,7 @@
 /************************************************************************************
                                         GENERAL
 ************************************************************************************/
+html,
 body {
 	margin: 0;
 	padding: 0;
@@ -21,16 +22,6 @@ article {
 	grid-template-columns: 100%;
 	align-items: center;
 }
-.main {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	text-align: center;
-	height: 90%;
-}
-.main .iframe{
-	margin-top: 20px;
-	box-shadow: 5px 5px 3px rgb(174, 174, 174);
-}
 
 /************************************************************************************
                                         Header
@@ -38,7 +29,7 @@ article {
 
 .header {
 	display: grid;
-	grid-template-columns: 15% 55% 30%;
+	grid-template-columns: 15% 40% 45%;
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
@@ -67,7 +58,7 @@ article {
 	transform: scale(1.1);
 }
 
-.header .user{
+.header .user {
 	display: grid;
 	grid-template-columns: 15% 85%;
 	grid-template-rows: 100%;
@@ -82,47 +73,46 @@ article {
 	background: rgb(255, 243, 212);
 }
 
-.header .user .perfil{
+.header .user .perfil {
 	font-size: 300%;
 	color: rgb(16, 73, 158);
-	margin-left: 30px;
+	margin-left: 20px;
 }
 
-.header .user .campos-user{
+.header .user .campos-user {
 	display: grid;
-	grid-template-rows: repeat(2,1fr);
+	grid-template-rows: repeat(2, 1fr);
 	grid-template-columns: 100%;
 }
 
-.header .user .campos-user .name-user{
+.header .user .campos-user .name-user {
 	font-size: large;
 	color: rgb(16, 73, 158);
 }
 
-.header .user .campos-user .btn-user{
+.header .user .campos-user .btn-user {
 	display: grid;
-	grid-template-columns: repeat(2,1fr);
+	grid-template-columns: repeat(4, 1fr);
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
 }
 
-.header .user .campos-user .btn-user a{
+.header .user .campos-user .btn-user a {
 	text-decoration: none;
 }
 
-.pantalla-user{
+.pantalla-user {
 	border-right: 1px solid rgb(114, 114, 114);
 }
 
-.pantalla-user a{
+.pantalla-user a {
 	color: rgb(114, 114, 114);
 }
 
-.cerrar-sesion a{
+.cerrar-sesion a {
 	color: rgb(255, 0, 0);
 }
-
 
 .header .user .campos-user .btn-user .pantalla-user a:hover {
 	transform: scale(1.1);
@@ -138,6 +128,8 @@ article {
 	display: grid;
     grid-template-columns: 59% 41%;
 	text-align: center;
+	justify-content: center;
+	align-items: center;
 	height: 90%;
     font-family: "Oswald", sans-serif;
 }
@@ -148,10 +140,9 @@ article {
 } */
 .main .Menus{
     text-align: left;
-    margin-left: 210px;
-    font-size: 125%;
+    margin-left: 150px;
+    font-size: 115%;
 }
-
 
 .main .Menus  .form-control {
 	position: relative;
@@ -161,7 +152,7 @@ article {
     vertical-align:text-bottom;
     display: flex;
     flex-direction: column;
-      margin-top: 190px;
+      margin-top: 100px;
 }
 .main .pago  .pago2{
     grid-template-columns:  repeat(2, 1fr);
@@ -169,7 +160,7 @@ article {
 }
 .formularioEnvio .titulo{
     color: #f9d950;
-	font-size: xx-large;
+	font-size: x-large;
 	font-style: italic;
 }
 .main .Menus .Origen label{
@@ -193,44 +184,65 @@ article {
 }
 
 
-.main .botones .btn-cancelar {
+.btn-enviar,
+.btn-cancelar {
     place-content: right;
 	color: white;
 	height: 50px;
     width: 420px;
-    padding: 10px 15px;
+    padding: 5px 15px;
     /* para alinear los botones */
     margin-left: 120px;
 	outline: none;
 	border: none;
-	font-size: 15px;
+	font-size: 10px;
 	border-radius: 10px;
 	letter-spacing: 1px;
-	background-color: red;
+	background-color: rgb(0, 86, 21);
     font-size: large;
     font-family: "Oswald", sans-serif;
+	margin-top: -40px;
 }
-.main .botones .btn-confirmar {
-    place-content: right;
-	color: white;
-	height: 50px;
-    width: 420px;
-    padding: 10px 15px;
-	outline: none;
-	border: none;
-	font-size: 15px;
-	border-radius: 10px;
-	letter-spacing: 1px;
-	background-color: green;
-    font-size: large;
-    font-family: "Oswald", sans-serif;
+
+.btn-cancelar{
+	background-color: #ef0400;
 }
 
 /*.main div:hover{
     border: 1px solid red;
 }*/
 
+.selector,
+.texto-input{
+	width: 400px;
+	height: 40px;
+	font-size: 15px;
+	border: 1px solid silver;
+	border-radius: 10px;
+	text-align: center;
+}	
 
+.fragil{
+	width: 40px;
+	height: 20px;
+	border: 1px solid silver;
+	border-radius: 10px;
+}
+
+.titulo-pagina{
+	color: #f9d950;
+	font-size: 40px;
+}
+
+form {
+	border: solid rgb(218, 218, 218);
+	box-shadow: 3px 3px 3px rgb(218, 218, 218);
+	border-radius: 20px;
+	margin-left: 50px;
+	margin-right: 200px;
+	padding: 20px 10px;
+    /* height: 130%; */
+}
 /************************************************************************************
                                         Footer
 ************************************************************************************/

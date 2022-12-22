@@ -1,173 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- Nombre de la pagina -->
-		<title>PLANTILLA</title>
-		<!-- Favicon de la empresa -->
-		<link href="../static/img/empresa/favicon.png" rel="icon" />
-		<!-- Estilos -->
-		<link rel="stylesheet" href="../static/css/FormularioEnvio.css" />
-	</head>
-	<body>
-		<article>
-			<header class="header">
-				<!-- Logo de la empresa -->
-				<div class="logo">
-					<a href="../index.html">
-						<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
-					</a>
-				</div>
-				<!-- Barra de navegacion dentro de la pagina -->
-				<!-- <div class="secciones">
-					<div class="nav-contenido">
-						<a href="#">INICIO</a>
-					</div>
-					<div class="nav-contenido">
-						<a href="#">SUCURSALES</a>
-					</div>
-					<div class="nav-contenido">
-						<a href="#">CONÓCENOS</a>
-					</div>
-				</div> -->
-				<!-- Botones de acciones del sistema -->
-				<!-- <div class="botones">
-					<div class="nav-botones">
-						<a href="#" class="btn btn-enviar"><button>ENVIAR</button></a>
-					</div>
-					<div class="nav-botones">
-						<a href="./ingresar.html" class="btn btn-ingresar"
-							><button>INGRESAR</button></a
-						>
-					</div>
-					<div class="nav-botones">
-						<a href="./registrar.html" class="btn btn-registarse"
-							><button>REGISTRARSE</button></a
-						>
-					</div>
-				</div> -->
-				<div></div>
-				<div class="user">
-					<div class="perfil"><i class="bi bi-person-circle"></i></div>
-					<div class="campos-user">
-						<div class="name-user">Juan Pérez</div>
-						<div class="btn-user">
-							<div class="pantalla-user"><a href="#">Inicio</a></div>
-							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
-						</div>
-					</div>
-				</div>
-			</header>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Nombre de la pagina -->
+  <title>FORMULARIO DE ENVIO</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/FormularioEnvio.css" />
+</head>
+
+<body>
+  <article>
+    <header class="header">
+      <!-- Logo de la empresa -->
+      <div class="logo">
+        <a href="../index.html">
+          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        </a>
+      </div>
+      <div class="titulo-pagina">FORMULARIO DE ENVIO</div>
+      <div class="user">
+        <div class="perfil"><i class="bi bi-person-circle"></i></div>
+        <div class="campos-user">
+          <div class="name-user">Ricardo Sánchez</div>
+          <div class="btn-user">
+            <div class="pantalla-user"><a href="#">Inicio</a></div>
+            <div class="pantalla-user"><a href="#">Historial</a></div>
+            <div class="pantalla-user"><a href="#">Rastrear</a></div>
+            <div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+          </div>
+        </div>
+      </div>
+    </header>
     <!-- Main -->
     <main class="main">
-			<div>
-				<form action="/user/formularioEnvio" method="POST">
-                    <!-- Título -->
-                    <div class="formularioEnvio">
-                        <h1 class="pregunta"><img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" />  Envía un paquete 
-                          <img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" /></h1>
-                          <h1 class="titulo"> FORMULARIO DE ENVIO</h1>
-                    </div>
-                    <!-- Menu desplegable -->
-                    <div class="Menus">
-						
-                        <label class="Origen" for="Origen"><Obj>Origen:</Obj><label style="color: red;">*</label></label>
-                        <select name="origen" id="Origen" style="width: 25%;">
-                        <option value="Lindavista">Lindavista</option>
-                        <option value="Colonia del Valle">Colonia del Valle</option>
-                        <option value="Sátelite">Sátelite</option>
-                        <option value="Villa de Aragón">Villa de Aragón</option>
-                        </select> <br> 
-                        <label for="Destino"><Obj>Destino:</Obj><label style="color: red;">*</label></label>
-                        <select name="destino" id="Destino" style="width: 25%;" >
-                        <option value="Lindavista">Lindavista</option>
-                        <option value="Colonia del Valle">Colonia del Valle</option>
-                        <option value="Sátelite">Sátelite</option>
-                        <option value="Villa de Aragón">Villa de Aragón</option>
-                        </select> <br> 
-                        <label for="Tamaño" ><Obj>Tamaño del paquete</Obj><label style="color: red;">*</label></label>
-                        <select name="tamano" id="Tamaño" style="width: 28%;" >
-                            <!-- En el parentesis iran los tamaños -->
-                        <option value="Chico">Chico (0cm, 0cm, 0cm)</option>
-                        <option value="Mediano">Mediano(0cm, 0cm, 0cm)</option>
-                        <option value="Grande">Grande(0cm, 0cm, 0cm)</option>
-                    	</select> <br> <br>
-                    <!-- Boton de fragil -->
-                    <label><input type="checkbox" id="cbox1" name="fragil" value="first_checkbox">Es fragil</label><br>
-                    <!-- Formulario del destinatario a recibir -->
-                <div>
-                    <div class="form-control">
-                        <p>Nombre y apellido de la persona que recibe el paquete </Obj><label style="color: red;">*</label></p>
-                        <input style="width:58%;" type="Destinatario" name="nombre" id="Destinatario" placeholder="Jose Lopez" />
-                    </div>
-                    <div class="form-control">
-                        <p>Email de la persona que recibe el paquete </Obj><label style="color: red;">*</label></p>
-                        <input style="width:58%;"  type="EmailDestinatario" name="email" id="EmailDestinatario" placeholder="correojuan_lopez@ejemplo.com" />
-                    </div>
-                    <div class="form-control">
-                        <p>Telefono de la persona que recibe el paquete </Obj><label style="color: red;">*</label></p>
-                        <input style="width:58%;"  type="TelefonoDestinatario" name="telefono" id="TelefonoDestinatario" placeholder="55 55 55 55 55" />
+      <div>
+        <form action="/user/formularioEnvio" method="POST">
+          <br>
+          <br>
+          <div class="Menus">
+            <label class="Origen" for="Origen">
+              <Obj>Origen:</Obj><label style="color: red;">*</label>
+            </label>
+            <select name="origen" id="Origen" class="selector">
+              <option value="Lindavista">Lindavista</option>
+              <option value="Colonia del Valle">Colonia del Valle</option>
+              <option value="Sátelite">Sátelite</option>
+              <option value="Villa de Aragón">Villa de Aragón</option>
+            </select> <br><br>
+            <label for="Destino">
+              <Obj>Destino:</Obj><label style="color: red;">*</label>
+            </label>
+            <select name="destino" id="Destino" class="selector"">
+							<option value=" Lindavista">Lindavista</option>
+              <option value="Colonia del Valle">Colonia del Valle</option>
+              <option value="Sátelite">Sátelite</option>
+              <option value="Villa de Aragón">Villa de Aragón</option>
+            </select> <br><br>
+            <label for="Tamaño">
+              <Obj>Tamaño del paquete</Obj><label style="color: red;">*</label>
+            </label>
+            <select name="tamano" id="Tamaño" class="selector"">
+							<!-- En el parentesis iran los tamaños -->
+							<option value=" Chico">Chico (20cm, 35cm, 50cm)</option>
+              <option value="Mediano">Mediano(45cm, 35cm, 50cm)</option>
+              <option value="Grande">Grande(85cm, 35cm, 50cm)</option>
+            </select> <br> <br>
+            <!-- Boton de fragil -->
+            <label><input type="checkbox" id="cbox1" name="fragil" value="first_checkbox" class="fragil">Es
+              fragil</label><br>
+            <!-- Formulario del destinatario a recibir -->
+            <div>
+              <div class="form-control">
+                <p>Nombre y apellido de la persona que recibe el paquete </Obj><label style="color: red;">*</label></p>
+                <input style="width:58%;" type="Destinatario" name="nombre" id="Destinatario" placeholder="Jose Lopez"
+                  class="texto-input" />
+              </div>
+              <div class="form-control">
+                <p>Email de la persona que recibe el paquete </Obj><label style="color: red;">*</label>
+                </p>
+                <input style="width:58%;" type="EmailDestinatario" name="email" id="EmailDestinatario"
+                  placeholder="correojuan_lopez@ejemplo.com" class="texto-input" />
+              </div>
+              <div class="form-control">
+                <p>Telefono de la persona que recibe el paquete </Obj><label style="color: red;">*</label></p>
+                <input style="width:58%;" type="TelefonoDestinatario" name="telefono" id="TelefonoDestinatario"
+                  placeholder="55 55 55 55 55" class="texto-input" />
 
-                    </div><br><br> 
-					<!-- Quitar el boton pero no el input hidden -->
-						<input type="hidden" name="costo" value="125.50">
-						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-						<input type="submit" value="enviar">
-					<!--  -->
-				</form>
-                    <!-- Boton de cancelar orden-->
-                </div>
-                        <div class="botones">
-                            <a href="./error404.html"><button type="submit" class="btn-cancelar">Cancelar orden</button></a>
-                        </div>
-                    </div>
+              </div><br>
+              <!-- Quitar el boton pero no el input hidden -->
+              <input type="hidden" name="costo" value="125.50">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+              <input type="submit" value="Confirmar Envio" class="btn-enviar">
+              <!--  -->
+        </form>
+        <!-- Boton de cancelar orden-->
+      </div>
+      <!-- <div class="botones">
+				<a href="./error404.html"><button type="submit" class="btn-cancelar">Cancelar orden</button></a>
+			</div> -->
+      </div>
+      </div>
+      <!-- Formato de precio/costo -->
+      <div class="pago">
+        <div class="pago2">
+          <h1>Costo: </h1>
+          <div class="dinero">
+            <h2>$ 107.75 ㅤㅤㅤ MXN</h2>
+          </div>
         </div>
-                <!-- Formato de precio/costo -->
-				<div class="pago">
-                    <div class="pago2">
-                        <h1>Costo: </h1> 
-                        <div class="dinero"><h2>$ 0.00 ㅤㅤㅤ MXN</h2></div>
-                    </div>
-                    <div class="pago2">
-                        <h1>IVA:</h1>
-                        <div class="dinero"><h2>$ 0.00 ㅤㅤㅤ MXN</h2> </div>
-                    </div>
-                    <div class="pago2">
-                        <h1>Costo total:</h1>
-                        <div class="dinero"><h2>$ 0.00 ㅤㅤㅤ MXN</h2></div>
-                    </div>
-                    <!-- Boton de confirmar envio -->
-                    <div class="botones">
-                        <a href="./error404.html"><button type="submit" class="btn-confirmar">Confirmar Envio</button></a>
-                    </div>
-                </div>
+        <div class="pago2">
+          <h1>IVA:</h1>
+          <div class="dinero">
+            <h2>$ 17.25 ㅤㅤㅤ MXN</h2>
+          </div>
+        </div>
+        <div class="pago2">
+          <h1>Costo total:</h1>
+          <div class="dinero">
+            <h2>$ 125.00 ㅤㅤㅤ MXN</h2>
+          </div>
+        </div>
+        <!-- Boton de confirmar envio -->
+        <div class="botones">
+          <br><br><br>
+          <a href="./error404.html"><button type="submit" class="btn-cancelar">Cancelar Envio</button></a>
+        </div>
+      </div>
+    </main>
+    <!-- Footer-->
+    <footer class="footer">
+      <div class="derechos">
+        <div class="copyright">
+          <span>&copy;2022 México. Todos los derechos reservados.</span>
+        </div>
+      </div>
+      <div class="redes">
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+        </div>
+        <div class="logo-red">
+          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+        </div>
+      </div>
+    </footer>
+  </article>
+  <script src="../static/js/validacionesFormEnvio.js"></script>
+</body>
 
-			</main>
-            <!-- Footer-->
-			<footer class="footer">
-			  <div class="derechos">
-				<div class="copyright">
-				  <span>&copy;2022 México. Todos los derechos reservados.</span>
-				</div>
-			  </div>
-			  <div class="redes">
-				<div class="logo-red">
-				  <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-				</div>
-				<div class="logo-red">
-				  <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-				</div>
-				<div class="logo-red">
-				  <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-				</div>
-				<div class="logo-red">
-				  <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-				</div>
-			  </div>
-			</footer>
-		  </article>
-		  <script src="../static/js/validacionesRegistro.js"></script>
-		</body>
-	</html>
+</html>
