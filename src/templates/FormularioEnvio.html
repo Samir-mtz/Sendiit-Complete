@@ -18,7 +18,7 @@
     <header class="header">
       <!-- Logo de la empresa -->
       <div class="logo">
-        <a href="../index.html">
+        <a href="{{ url_for('index') }}">
           <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
         </a>
       </div>
@@ -26,12 +26,12 @@
       <div class="user">
         <div class="perfil"><i class="bi bi-person-circle"></i></div>
         <div class="campos-user">
-          <div class="name-user">Ricardo Sánchez</div>
+          <div class="name-user">{{ current_user.nombre }}</div>
           <div class="btn-user">
-            <div class="pantalla-user"><a href="#">Inicio</a></div>
+            <div class="pantalla-user"><a href="{{ url_for('home') }}">Inicio</a></div>
             <div class="pantalla-user"><a href="#">Historial</a></div>
             <div class="pantalla-user"><a href="#">Rastrear</a></div>
-            <div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
+            <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
           </div>
         </div>
       </div>
@@ -77,7 +77,7 @@
               <label for="Tamaño">
                 <Obj>Tamaño del paquete</Obj><label style="color: red;">*</label>
               </label>
-              <select name="tamano" id="Tamaño" class="selector"">
+              <select name="tamano" id="Tamaño" class="selector">
                 <!-- En el parentesis iran los tamaños -->
                 <option value="0">Seleccionar</option>
                 <option value=" Chico">Chico (20cm, 35cm, 50cm)</option>
