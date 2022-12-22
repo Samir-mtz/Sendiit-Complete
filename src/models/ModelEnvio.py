@@ -36,7 +36,6 @@ class ModelEnvio():
                 cursor.execute(sql)
                 db.connection.commit()
             if envio.tamano == 'Mediano':
-                print("****************************ENTRE**********************************")
                 sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.origen}'";
                 cursor.execute(sql)
                 db.connection.commit()

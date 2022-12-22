@@ -300,7 +300,16 @@ article {
 	border-radius: 50px;
 	cursor: pointer;
 }
-
+#agregarTarjeta{
+	font-weight: 760;
+	color: rgb(0, 0, 0);
+	background: #f9d950;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	text-decoration: none;
+}
 .agregar
 {
 	float: left;

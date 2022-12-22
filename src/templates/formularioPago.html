@@ -53,7 +53,7 @@
 					<br>
 					<p align="left">Usar una nueva tarjeta:</p>
 					<div class="agregar">
-						<a href="./AgregarTarjeta.html" class="btn-tarjeta"><button>AGREGAR TARJETA</button></a>
+						<a href="{{ url_for('agregarTarjeta') }}" id="agregarTarjeta" class="btn-tarjeta">AGREGAR TARJETA</a>
 						<p style="color:#777777">*Solo aceptamos pagos con tarjetas de crédito/débito</p>
 					</div>
 					<input type="hidden" name="tarjetas" id="inputSelect" value="">
@@ -62,7 +62,7 @@
 					<input type="hidden" name="{{item}}" value="{{envio[item]}}">
 					{% endfor %}
 					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-				</form>
+				
 
 			</div>
 			<div>
@@ -74,8 +74,8 @@
 						<p>Número de envío</p>
 						<p>XXXX XXXX</p>
 						<p style="font-size: 20px; opacity: 0.8;">Monto a pagar:</p>
-						<p style="font-size: 15px; opacity: 0.8;">$ 86.20 + 13.79 (IVA)</p>
-						<p style="font-size: 15px; opacity: 0.8;">Costo total: $99.00</p>
+						<p style="font-size: 15px; opacity: 0.8;">$ 107.75 + 17.25 (IVA)</p>
+						<p style="font-size: 15px; opacity: 0.8;">Costo total: $125.00</p>
 					</div>
 
 				</div>
@@ -89,7 +89,7 @@
 					</div>
 				</div>
 			</div>
-
+		</form>
 			<script src="../static/js/formularioPago.js"></script>
 
 		</main>
