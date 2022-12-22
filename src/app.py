@@ -435,7 +435,7 @@ def ordenGenerada():
     print(last_delivery)
     print(sender)
     return render_template('OrdenGenerada.html', datos = last_delivery, sender=sender)
-    
+        
 @app.route('/user/pagoExitoso')
 @login_required
 def pagoExitoso():

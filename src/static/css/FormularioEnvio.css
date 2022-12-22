@@ -140,7 +140,7 @@ article {
 } */
 .main .Menus{
     text-align: left;
-    margin-left: 150px;
+    margin-left: 100px;
     font-size: 115%;
 }
 
@@ -192,7 +192,8 @@ article {
     width: 420px;
     padding: 5px 15px;
     /* para alinear los botones */
-    margin-left: 120px;
+    /* margin-left: 120px; */
+
 	outline: none;
 	border: none;
 	font-size: 10px;
@@ -201,7 +202,7 @@ article {
 	background-color: rgb(0, 86, 21);
     font-size: large;
     font-family: "Oswald", sans-serif;
-	margin-top: -40px;
+	margin-top: 20px;
 }
 
 .btn-cancelar{

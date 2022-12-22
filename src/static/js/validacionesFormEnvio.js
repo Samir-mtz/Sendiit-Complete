@@ -24,7 +24,7 @@ inputs.forEach((input) => {
 
 selects.forEach((select) => {
 	select.addEventListener("change", checkInputs);
-	if(select.id !== 'Destino'){
+	if(select.id == 'Origen'){
 		select.addEventListener("change", selecciones);
 	}
 });
