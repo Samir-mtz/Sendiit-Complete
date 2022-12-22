@@ -23,25 +23,19 @@ article {
 	align-items: center;
 }
 
+
 /************************************************************************************
                                         Header
 ************************************************************************************/
 
 .header {
 	display: grid;
-	grid-template-columns: 15% 35% 50%;
+	grid-template-columns: 15% 40% 45%;
 	grid-template-rows: 100%;
-	height:  140px;
 	text-align: center;
 	align-items: center;
 	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 	/* border: solid 1px red; */
-}
-
-.headersendit{
-	display: flex;
-	flex-direction: column;
-	height: 120px;
 }
 
 /* .header div {
@@ -51,63 +45,21 @@ article {
 .header .logo {
 	display: grid;
 	place-content: center;
+	cursor: pointer;
 }
 
 .header .logo img {
 	height: 85%;
 	width: 85%;
+	transition: all 0.5s;
 	/* border: solid 1px red; */
 }
-.botones {
-	display: grid;
-	text-align: center;
-	place-content: center;
-	align-items: center;
-	margin-top: 50px;
-	margin-left: 80px;
-}
 
-.btn-mostrar button {
-	position: relative;
-	top: -30px;
-	font-weight: bolder;
-	font-size: large;
-	margin-left: 20px;
-	width: 200px;
-	color: black;
-	background: #f9d950;
-	padding: 10px 30px;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: all 0.5s ease 0s;
-}
-
-.btn-mostrar button:hover {
+.header .logo img:hover {
 	transform: scale(1.1);
 }
-.tituloForm {
-	color: #f9d950;
-	font-size:25px;
-	font-family:Arial 50px, Helvetica, sans-serif;
-	font-style: italic;
-	letter-spacing: 1px;
-}
 
-.header .logo1 img {
-	height: 100%;
-	width: 40%;
-	/* border: solid 1px red; */
-}
-
-.header .raya img{
-  height: 20px;
-  width: 90%;
-  opacity: 0.5;
-}
-
-
-.header .user{
+.header .user {
 	display: grid;
 	grid-template-columns: 15% 85%;
 	grid-template-rows: 100%;
@@ -117,68 +69,51 @@ article {
 	text-align: center;
 	align-items: center;
 	margin: 5px;
-	margin-right: 50px;
-	margin-left: 50px;
+	margin-right: 100px;
 	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 	background: rgb(255, 243, 212);
 }
 
-.header .user .perfil{
+.header .user .perfil {
 	font-size: 300%;
 	color: rgb(16, 73, 158);
-	margin-left: 30px;
+	margin-left: 20px;
 }
 
-.header .user .campos-user{
+.header .user .campos-user {
 	display: grid;
-	grid-template-rows: repeat(2,1fr);
+	grid-template-rows: repeat(2, 1fr);
 	grid-template-columns: 100%;
 }
 
-.header .user .campos-user .name-user{
+.header .user .campos-user .name-user {
 	font-size: large;
 	color: rgb(16, 73, 158);
 }
 
-
-/*.header div:hover{
-    border: 1px solid red;
-}
-*/
-.header .user .campos-user .btn-user{
-	display: flex;
-	flex-direction: row;
-	margin-top: 4px;
+.header .user .campos-user .btn-user {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
 }
 
-.header .user .campos-user .btn-user a{
+.header .user .campos-user .btn-user a {
 	text-decoration: none;
 }
 
-.pantalla-user{
+.pantalla-user {
 	border-right: 1px solid rgb(114, 114, 114);
-	border-left: 1px solid rgb(114, 114, 114);
-	width: 200px;
-
 }
 
-.pantalla-user a{
+.pantalla-user a {
 	color: rgb(114, 114, 114);
-
 }
 
-.cerrar-sesion a{
+.cerrar-sesion a {
 	color: rgb(255, 0, 0);
-	margin-left: 40px;
-	width: 300px;
 }
-
-.historial a{
-	color: rgb(114, 114, 114);
-	margin-left: 40px;
-	margin-right: 20px;
-}
-
 
 .header .user .campos-user .btn-user .pantalla-user a:hover {
 	transform: scale(1.1);
@@ -194,9 +129,8 @@ article {
 	box-sizing: border-box;
 }
 .main {
-	height: 100%;
+	width: 100%;
 	font-family: "Oswald", sans-serif;
-	
 }
 
 /* .main div {
@@ -204,24 +138,21 @@ article {
 	border: 1px solid red;
 } */
 
-.main div:hover{
-    border: 1px solid red;
-}
 .main h2 {
 	color: #f5cc16;
 	margin-top: -15px;
 }
 
 .contenedor {
-	float: left;
+	float: center;
 	width: 50%;
 	height: 800px;
 	padding: 40px 20px;
-	margin-top: 5px;
+	margin-top: 20px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: aqua;
+	/* background-color: aqua; */
 }
 
 /* ---------- Estilos Generales de las Tarjetas ----------*/
@@ -369,7 +300,7 @@ article {
 
 /* ---------- Contenedor Boton ----------*/
 .contenedor-btn .btn-abrir-formulario {
-	width: 50px;
+	width: 150px;
 	height: 50px;
 	font-size: 20px;
 	line-height: 20px;
@@ -378,7 +309,7 @@ article {
 	position: relative;
 	top: -25px;
 	z-index: 3;
-	border-radius: 100%;
+	border-radius: 20px;
 	box-shadow: -5px 4px 8px rgba(24,56,182,0.4);
 	padding: 5px;
 	transition: all .2s ease;
@@ -390,13 +321,13 @@ article {
 	background: #1850b1;
 }
 
-.contenedor-btn .btn-abrir-formulario.active {
+/* .contenedor-btn .btn-abrir-formulario.active {
 	transform: rotate(45deg);
-}
+} */
 
 /* ---------- Formulario Tarjeta ----------*/
 .formulario-tarjeta {
-	background: #fff;
+	background: rgba(0,0,0,0.08);
 	width: 100%;
 	max-width: 700px;
 	padding: 150px 30px 30px 30px;
@@ -406,6 +337,7 @@ article {
 	z-index: 1;
 	clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 	transition: clip-path .3s ease-out;
+	margin-top: -50px;
 }
 
 .formulario-tarjeta.active {
@@ -414,7 +346,7 @@ article {
 
 .formulario-tarjeta label {
 	display: block;
-	color: #7d8994;
+	color: #000000;
 	margin-bottom: 5px;
 	font-size: 16px;
 }
@@ -466,9 +398,6 @@ article {
 	position: relative;
 }
 
-.formulario-tarjeta select {
-	-webkit-appearance: none;
-}
 
 .formulario-tarjeta .grupo-select i {
 	position: absolute;
@@ -484,16 +413,18 @@ article {
 
 .formulario-tarjeta .btn-enviar {
 	border: none;
+	width: 100px;
 	padding: 10px;
 	font-size: 22px;
-	color: #fff;
-	background: #f9d950;
-	box-shadow: 2px 2px 10px 0px #f9d950;;
+	color: rgb(41, 41, 41);
+	background: #fae380;
 	cursor: pointer;
 }
 
 .formulario-tarjeta .btn-enviar:hover {
-	background: #f9d950;
+	background: #ffd724;
+	transition: all 0.8s;
+	transform: scale(1.1);
 }
 /* ---------- Cuadrito morado ----------*/
 .contenedor2{
@@ -506,6 +437,7 @@ article {
 	align-items: center; 
 	position: relative;
 	display: table-column;
+	
 }
 
 .no-envio{
@@ -530,7 +462,7 @@ article {
 	margin-left: 60px;
 	position: absolute;
 	align-items: center;
-
+	
 }
 .btn-pagar button
 {
@@ -566,6 +498,11 @@ article {
 	width: fit-content;
 	position: relative;
 	margin-top: -10px;
+}
+
+.titulo-pagina{
+	color: #f9d950;
+	font-size: 40px;
 }
 
 /************************************************************************************
