@@ -208,6 +208,13 @@ article {
 	background-color: #ef0400;
 }
 
+
+.btn-enviar:hover,
+.btn-cancelar:hover{
+	cursor: pointer;
+	transition: all 0.8s;
+	transform: scale(1.1);
+}
 /*.main div:hover{
     border: 1px solid red;
 }*/
@@ -242,6 +249,84 @@ form {
 	margin-right: 200px;
 	padding: 20px 10px;
     /* height: 130%; */
+}
+
+.formulario__mensaje-exito-activo {
+	display: block;
+}
+
+.pregunta {
+    color: #9f9f9f;
+}
+
+.terminos{
+	text-decoration: none;
+	color: blue;
+}
+
+.form-control {
+	margin-bottom: 10px;
+	position: relative;
+}
+
+.form-control label {
+	display: inline-block;
+	font-weight: 600;
+	cursor: pointer;
+    text-align: left;
+    padding-top: 15px;
+}
+
+.form-control input {
+	width: 90%;
+	background: rgb(255, 255, 255);
+	border: 3px solid rgb(203, 203, 203);
+	border-radius: 10px;
+	height: 25px;
+	line-height: 45px;
+	padding: 0 30px 0 10px;
+	transition: .3s ease all;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input {
+	border-color: #e74c3c;
+}
+
+.form-control i {
+	visibility: hidden;
+	position: absolute;
+	top: 62px;
+	right: 10px;
+}
+
+.form-control.success i.fa-check-circle {
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+	color: #e74c3c;
+	visibility: visible;
+}
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-control.error small {
+	visibility: visible;
 }
 /************************************************************************************
                                         Footer
