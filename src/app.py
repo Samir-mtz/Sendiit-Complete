@@ -427,10 +427,14 @@ def formularioPago():
 
     return render_template('formularioPago.html', tarjetas= listTarjetas)
 
-@app.route('/user/ordenGenerada')
+@app.route('/user/ordenGenerada', methods = ['GET','POST'])
 @login_required
 def ordenGenerada():
-    return render_template('OrdenGenerada.html')
+    last_delivery = ModelEnvio.consultLast(db)
+    sender = ModelUser.consulta_telefono(db, current_user.id)
+    print(last_delivery)
+    print(sender)
+    return render_template('OrdenGenerada.html', datos = last_delivery, sender=sender)
     
 @app.route('/user/pagoExitoso')
 @login_required

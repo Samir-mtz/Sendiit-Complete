@@ -65,7 +65,7 @@
               <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
             </div>
             <div class="texto-id" style="margin-bottom: 20px;">
-              <h1>ID: {{idOrden}}</h1>
+              <h1>ID: {{ datos.id }}</h1>
             </div>
           </header>
           <main class="main-pdf">
@@ -73,25 +73,39 @@
             <div class="datos-personas">
               <div class="persona-origen">
                 <div class="titulo-seccion">DATOS REMITENTE</div>
-                <div class="dato-remitente"> - Nombre: {{nombrePersonaOrigen}}</div>
-                <div class="dato-remitente"> - Correo electrónico: {{correoPersonaOrigen}}</div>
-                <div class="dato-remitente"> - Teléfono: {{telefonoPersonaOrigen}}</div>
+                <div class="dato-remitente"> - Nombre: {{ current_user.nombre }}</div>
+                <div class="dato-remitente"> - Correo electrónico: {{ current_user.email }}</div>
+                <div class="dato-remitente"> - Teléfono: {{ sender }}</div>
               </div>
               <div class="persona-destino">
                 <div class="titulo-seccion">DATOS DESTINATARIO</div>
-                <div class="dato-destinario"> - Nombre: {{nombrePersonaDestino}}</div>
-                <div class="dato-destinario"> - Correo electrónico: {{correoPersonaDestino}}</div>
-                <div class="dato-destinario"> - Teléfono: {{telefonoPersonaDestino}}</div>
+                <div class="dato-destinario"> - Nombre: {{datos.nombre}}</div>
+                <div class="dato-destinario"> - Correo electrónico: {{datos.email}}</div>
+                <div class="dato-destinario"> - Teléfono: {{datos.telefono}}</div>
               </div>
             </div>
             <div class="titulo-seccion" style="padding-bottom: 20px; padding-top: 50px;">DATOS PAQUETE</div>
             <div class="datos-paquete">
               <div class="descripcion-paquete">
                 <div class="paquete">
-                  <div class="dato-paquete"> - Peso: {{pesoPaquete}}</div>
-                  <div class="dato-paquete"> - Tamaño: {{tamanioPaquete}}</div>
-                  <div class="dato-paquete"> - Fecha de Envio: {{fechaEnvioPaquete}}</div>
-                  <div class="dato-paquete"> - Fragil: {{fragilPaquete}}</div>
+                  {% if datos.tamanio == 'Chico' %}
+                    <div class="dato-paquete"> - Peso: 0kg - 3kg</div>
+                  {% endif %}
+                  {% if datos.tamanio == 'Mediano' %}
+                    <div class="dato-paquete"> - Peso: 3.1kg - 10kg</div>
+                  {% endif %}
+                  {% if datos.tamanio == 'Grande' %}
+                    <div class="dato-paquete"> - Peso: 10.1kg - 20kg</div>
+                  {% endif %}
+                    <div class="dato-paquete"> - Tamaño: {{datos.tamano}}</div>
+                  {% if datos.fragil == 0 %}
+                    <div class="dato-paquete"> - Fragil: No</div>
+                  {% else %}
+                    <div class="dato-paquete"> - Fragil: Si</div>
+                  {% endif %}
+                  
+                  <div class="dato-paquete"> - Fecha de Envio: 2022-12-22</div>
+                  <div class="dato-paquete"> - Fecha de Entrega: 2022-12-23</div>
                   <!-- <div class="dato-paquete"> - Descripcion: {{desceripcionPaquete}}</div> -->
                 </div>
                 <div class="img-paquete">
