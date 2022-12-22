@@ -29,19 +29,12 @@ article {
 
 .header {
 	display: grid;
-	grid-template-columns: 15% 35% 50%;
+	grid-template-columns: 15% 40% 45%;
 	grid-template-rows: 100%;
-	height:  140px;
 	text-align: center;
 	align-items: center;
 	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 	/* border: solid 1px red; */
-}
-
-.headersendit{
-	display: flex;
-	flex-direction: column;
-	height: 120px;
 }
 
 /* .header div {
@@ -51,20 +44,147 @@ article {
 .header .logo {
 	display: grid;
 	place-content: center;
+	cursor: pointer;
 }
 
 .header .logo img {
 	height: 85%;
 	width: 85%;
+	transition: all 0.5s;
 	/* border: solid 1px red; */
 }
-.botones {
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .user {
 	display: grid;
-	text-align: center;
+	grid-template-columns: 15% 85%;
+	grid-template-rows: 100%;
+	border: 5px solid rgb(16, 73, 158);
 	place-content: center;
+	border-radius: 15px;
+	text-align: center;
 	align-items: center;
-	margin-top: 50px;
-	margin-left: 80px;
+	margin: 5px;
+	margin-right: 100px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: rgb(255, 243, 212);
+}
+
+.header .user .perfil {
+	font-size: 300%;
+	color: rgb(16, 73, 158);
+	margin-left: 20px;
+}
+
+.header .user .campos-user {
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+	grid-template-columns: 100%;
+}
+
+.header .user .campos-user .name-user {
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
+.header .user .campos-user .btn-user {
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+}
+
+.header .user .campos-user .btn-user a {
+	text-decoration: none;
+}
+
+.pantalla-user {
+	border-right: 1px solid rgb(114, 114, 114);
+}
+
+.pantalla-user a {
+	color: rgb(114, 114, 114);
+}
+
+.cerrar-sesion a {
+	color: rgb(255, 0, 0);
+}
+
+.header .user .campos-user .btn-user .pantalla-user a:hover {
+	transform: scale(1.1);
+}
+
+.titulo-pagina {
+	color: #f9d950;
+	font-size: 40px;
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	text-align: center;
+	justify-content: center;
+	place-content: center;
+	height: 100%;
+}
+
+/* .main div {
+	background: #fff;
+	border: 1px solid red;
+} */
+
+.main .repartidor img {
+	transform: scaleX(-1);
+	position: relative;
+	top: 6px;
+	margin-left: 100px;
+	width: 500px;
+	height: 500px;
+
+}
+
+.icono{
+	font-size: 100px;
+	color: #046e00;
+}
+
+.contenedor-izq {
+	display: flex;
+	flex-direction: column;
+}
+
+.contenedor-izq .x img {
+	/* margin-left: 80px; */
+	margin-top: 20px;
+	height: 150px;
+	width: 25%;
+}
+
+
+.main .contenedor-izq .texto1 {
+	height: 50px;
+	margin-top: 5px;
+	/* margin-left: 40px; */
+	color: black;
+	font-size: 25px;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.contenedor-izq .leyenda2 img {
+	/* margin-left: 90px; */
+	margin-top: 20px;
+	height: 70%;
+	width: 65%;
 }
 
 .btn-Continuar button {
@@ -82,162 +202,7 @@ article {
 
 .btn-Continuar button:hover {
 	transform: scale(1.1);
-}
-.tituloForm {
-	color: #f9d950;
-	font-size:25px;
-	font-family:Arial 50px, Helvetica, sans-serif;
-	font-style: italic;
-	letter-spacing: 1px;
-}
-
-.header .logo1 img {
-	height: 100%;
-	width: 40%;
-	/* border: solid 1px red; */
-}
-
-.header .raya img{
-  height: 20px;
-  width: 90%;
-  opacity: 0.5;
-}
-
-
-.header .user{
-	display: grid;
-	grid-template-columns: 15% 85%;
-	grid-template-rows: 100%;
-	border: 5px solid rgb(16, 73, 158);
-	place-content: center;
-	border-radius: 15px;
-	text-align: center;
-	align-items: center;
-	margin: 5px;
-	margin-right: 50px;
-	margin-left: 50px;
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
-	background: rgb(255, 243, 212);
-}
-
-.header .user .perfil{
-	font-size: 300%;
-	color: rgb(16, 73, 158);
-	margin-left: 30px;
-}
-
-.header .user .campos-user{
-	display: grid;
-	grid-template-rows: repeat(2,1fr);
-	grid-template-columns: 100%;
-}
-
-.header .user .campos-user .name-user{
-	font-size: large;
-	color: rgb(16, 73, 158);
-}
-
-/*
-.header div:hover{
-    border: 1px solid red;
-}*/
-
-.header .user .campos-user .btn-user{
-	display: flex;
-	flex-direction: row;
-	margin-top: 4px;
-}
-
-.header .user .campos-user .btn-user a{
-	text-decoration: none;
-}
-
-.pantalla-user{
-	border-right: 1px solid rgb(114, 114, 114);
-	border-left: 1px solid rgb(114, 114, 114);
-	width: 200px;
-
-}
-
-.pantalla-user a{
-	color: rgb(114, 114, 114);
-
-}
-
-.cerrar-sesion a{
-	color: rgb(255, 0, 0);
-	margin-left: 40px;
-	width: 300px;
-}
-
-.historial a{
-	color: rgb(114, 114, 114);
-	margin-left: 40px;
-	margin-right: 20px;
-}
-
-
-.header .user .campos-user .btn-user .pantalla-user a:hover {
-	transform: scale(1.1);
-}
-
-/************************************************************************************
-                                        Main
-************************************************************************************/
-
-/* Estilos con columnas del cuestionario */
-
-.main {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	text-align: center;
-	height: 100%;
-}
-
-/* .main div {
-	background: #fff;
-	border: 1px solid red;
-} */
-
-.main .repartidor img{
-	transform: scaleX(-1);
-	position: relative;
-	top: 6px;
-	margin-left: 100px;
-width: 500px;
-height: 500px;
-
-}
-
-.contenedor-izq{
-	display: flex;
-	flex-direction: column;
-}
-.contenedor-izq .x img{
-	margin-left: 80px;
-	margin-top: 20px;
-	height:150px;
-	width: 25%;
-}
-/*
-.main div:hover{
-    border: 1px solid red;
-}*/
-
-.main .contenedor-izq .texto1{
-	height: 50px;
-	margin-top: 5px;
-	margin-left: 40px;
-	color: black;
-	font-size: 25px;
-	font-family:Arial, Helvetica, sans-serif;
-}
-
-.contenedor-izq .leyenda2 img{
-	margin-left: 90px;
-	margin-top: 20px;
-	height: 70%;
-	width: 65%;
+	cursor: pointer;
 }
 
 /************************************************************************************
@@ -246,7 +211,7 @@ height: 500px;
 
 .footer {
 	display: grid;
-	grid-template-columns:50% 50%;
+	grid-template-columns: 50% 50%;
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
