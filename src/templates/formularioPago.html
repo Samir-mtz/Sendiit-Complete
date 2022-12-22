@@ -46,7 +46,7 @@
 
 					<select name="" id="" class="selector">
 						{% for tarjeta in tarjetas %}
-							<option value="{{ tarjetas.id }}">{{ tarjeta.numtarjeta }}</option>
+							<option value="{{ tarjeta.id }}">Tarjeta que termina en: **** **** **** {{ tarjeta.numtarjeta[15:19] }}</option>
 						{% endfor %}
 					</select>
 
