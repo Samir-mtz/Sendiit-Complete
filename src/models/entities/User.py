@@ -1,11 +1,12 @@
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_login import UserMixin
+from models.entities.Envio import Envio
 import datetime
 
 
 class User(UserMixin):
 
-    def __init__(self, id, email, password, nombre="",telefono="", direccion="",confirmed=0, tipo="", confirmed_on=None, numPaq=0) -> None:
+    def __init__(self, id, email, password, nombre="",telefono="", direccion="",confirmed=0, tipo="", confirmed_on=None, numPaq=0, envio=None) -> None:
         self.id = id
         self.email = email
         self.password = password
@@ -16,6 +17,7 @@ class User(UserMixin):
         self.tipo = tipo
         self.confirmed_on = confirmed_on
         self.numPaq = numPaq
+        self.envio = Envio(origen='', destino='', tamano='', fragil=0, estado='', nombre='', email='', telefono='', costo=0, idusuario=-1)
 
 
     @classmethod

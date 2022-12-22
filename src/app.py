@@ -1,7 +1,7 @@
 #########################################################################################
 ####################################    Librerias   #####################################
 #########################################################################################
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, g
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
@@ -28,7 +28,6 @@ from models.entities.Tarjeta import Tarjeta
 app = Flask(__name__)
 csrf = CSRFProtect()
 db = MySQL(app)
-
 #########################################################################################
 ############################ Configuracion de servicio e-mail ###########################
 #########################################################################################
@@ -50,7 +49,6 @@ login_manager_app = LoginManager(app)
 @login_manager_app.user_loader
 def load_user(id):
     return ModelUser.get_by_id(db, id)
-
 
 #########################################################################################
 ############################ Funciones de routeo de direcciones #########################
@@ -384,6 +382,28 @@ def agregarTarjeta():
 @login_required
 def formularioEnvio():
     if request.method == 'POST':
+        envio = {
+        "destino"  : request.form['destino'],
+        "origen"  : request.form['origen'],
+        "tamano"  : request.form['tamano'],
+        "fragil"  : request.form['fragil'],
+        "nombre"  : request.form['nombre'],
+        "email"  : request.form['email'],
+        "telefono"  : request.form['telefono'],
+        "costo"  : request.form['costo'],
+        "estado" : 'EN ESPERA DE ENTREGA',
+        "idusuario"  : current_user.id }
+        # g.envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
+        # print(g.envio)
+        # ModelEnvio.register(db, envio)
+        return render_template('formularioPago.html', envio=envio)
+
+    return render_template('FormularioEnvio.html')
+    
+@app.route('/user/formularioPago', methods=['GET', 'POST'])
+@login_required
+def formularioPago():
+    if request.method == 'POST':
         origen = request.form['origen']
         destino = request.form['destino']
         tamano = request.form['tamano']
@@ -392,23 +412,14 @@ def formularioEnvio():
         email = request.form['email']
         telefono = request.form['telefono']
         costo = request.form['costo']
-        estado= 'EN ESPERA DE ENTREGA'
-        idusuario = current_user.id
-        envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
-        # ModelEnvio.register(db, envio)
-        return redirect(url_for('formularioPago', envio))
+        estado = request.form['estado']
+        idusuario = request.form['idusuario']
+        datos = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
+        ModelEnvio.register(db, datos)
+        return render_template('PagoExitoso.html')
+    listTarjetas = ModelTarjeta.consultAll(db,current_user.id)
 
-    return render_template('FormularioEnvio.html')
-    
-@app.route('/user/formularioPago/<envio>', methods=['GET', 'POST'])
-@login_required
-def formularioPago(envio):
-    if request.method == 'POST':
-        ModelEnvio.register(db, envio)
-        redirect(url_for('pagoExitoso'))
-    listTarjetas = ModelTarjeta.consultAll()
-
-    return render_template('formularioPago.html', tarjetas= listTarjetas)#Cambiar por html correcto
+    return render_template('formularioPago.html', tarjetas= listTarjetas)
 
 @app.route('/user/ordenGenerada')
 @login_required

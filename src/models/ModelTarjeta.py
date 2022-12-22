@@ -1,5 +1,5 @@
 from .entities.Tarjeta import Tarjeta
-class ModelEnvio():
+class ModelTarjeta():
 
     @classmethod
     def register(self, db, tarjeta):

@@ -4,7 +4,7 @@ class ModelEnvio():
     @classmethod
     def register(self, db, envio):
         try:
-            ###ASIGNAR AL REPARTIDOR ENCONTRANDO EL QUE TENGA MENOS PAQUETES ASIGNADOS
+            ##ASIGNAR AL REPARTIDOR ENCONTRANDO EL QUE TENGA MENOS PAQUETES ASIGNADOS
             cursor = db.connection.cursor()
             sql = f"SELECT id, numpaquetes FROM user where tipo='repartidor'";
             cursor.execute(sql)
@@ -17,10 +17,13 @@ class ModelEnvio():
                 if minimo >= row[1]:
                     minimo = row[1]
                     asignacion = row[0]
-            ###
-            ###INSERTAMOS EN LA TABLA ENVIOS
+            sql = f"UPDATE user SET numpaquetes = { minimo + 1} WHERE id={asignacion}"
+            cursor.execute(sql)
+            db.connection.commit()
+            ##
+            ##INSERTAMOS EN LA TABLA ENVIOS
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario, idrepartidor) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', {envio.nombre}, {envio.email}, {envio.telefono}, {envio.costo}, {envio.idusuario}, {asignacion})"
+            sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario, idrepartidor) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', '{envio.nombre}', '{envio.email}', '{envio.telefono}', {envio.costo}, {envio.idusuario}, {asignacion})"
             cursor.execute(sql)
             db.connection.commit()
 
@@ -33,6 +36,7 @@ class ModelEnvio():
                 cursor.execute(sql)
                 db.connection.commit()
             if envio.tamano == 'Mediano':
+                print("****************************ENTRE**********************************")
                 sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.origen}'";
                 cursor.execute(sql)
                 db.connection.commit()
@@ -46,6 +50,7 @@ class ModelEnvio():
                 sql = f"UPDATE lockers SET cantidadL = cantidadL - 1 WHERE ubicacion='{envio.destino}'";
                 cursor.execute(sql)
                 db.connection.commit()
+
             
         except Exception as ex:
             raise Exception(ex)

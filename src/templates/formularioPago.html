@@ -11,7 +11,7 @@
 		<!-- Favicon de la empresa -->
 		<link href="../static/img/empresa/favicon.png" rel="icon" />
 		<!-- Estilos -->
-		<link rel="stylesheet" href="../static/css/formularioPago.css" />
+		<link rel="stylesheet" href="../../static/css/formularioPago.css" />
 	</head>
 	<body>
 		<article>
@@ -46,7 +46,7 @@
 			<main class="main">
 				<div class="contenedor">
 					<p align="left">Sus tarjetas registradas anteriormente:</p>
-					<form action="">
+					<form action="/user/formularioPago" method="POST">
 						<div class="selectbox">
 							<div class="select" id="select">
 								<div class="contenido-select">
@@ -85,6 +85,11 @@
 							<p style="color:#777777">*Solo aceptamos pagos con tarjetas de crédito/débito</p>
 						</div>
 						<input type="hidden" name="tarjetas" id="inputSelect" value="">
+						
+						{%for item in envio %}
+							<input type="hidden" name="{{item}}" value="{{envio[item]}}">
+						{% endfor %}
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 					</form>	
 					<img class= "tarjeta" src="../static/img/iconos/tarjeta.png">	
 				</div>
