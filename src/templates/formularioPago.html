@@ -39,18 +39,16 @@
 			</div>
 		</header>
 		<main class="main">
-      <div class="contenedor">
+			<div class="contenedor">
 				<p align="left">Sus tarjetas registradas anteriormente:</p>
 
 				<form action="/user/formularioPago" method="POST">
 
-            <select name="" id="" class="selector">
-              <option value="Tarjeta1">**** **** **** 7531</option>
-              <option value="Tarjeta2">**** **** **** 7894</option>
-              <option value="Tarjeta3">**** **** **** 7894</option>
-              <option value="Tarjeta4">**** **** **** 7894</option>
-              <option value="Tarjeta5">**** **** **** 7894</option>
-            </select>
+					<select name="" id="" class="selector">
+						{% for tarjeta in tarjetas %}
+						<option value="{{ tarjetas.id }}">{{ tarjetas.numtarjeta }}</option>
+						{% endfor %}
+					</select>
 
 					<br>
 					<p align="left">Usar una nueva tarjeta:</p>
@@ -65,12 +63,12 @@
 					{% endfor %}
 					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 				</form>
-				
+
 			</div>
-      <div>
-        <img class="tarjeta" src="../static/img/iconos/tarjeta.png">
-      </div>
-      <div class="contenedor2">
+			<div>
+				<img class="tarjeta" src="../static/img/iconos/tarjeta.png">
+			</div>
+			<div class="contenedor2">
 				<div class="no-envio">
 					<div class="envio-texto">
 						<p>Número de envío</p>

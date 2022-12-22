@@ -369,10 +369,10 @@ def resend_email():
 @login_required
 def agregarTarjeta():
     if request.method == 'POST':
-        nombre = request.form['nombre']
-        numtarjeta = request.form['numtarjeta']
-        expiracion = request.form['expiracion']
-        cvv = request.form['cvv']
+        nombre = request.form['inputNombre']
+        numtarjeta = request.form['inputNumero']
+        expiracion = request.form['mes'] + "-" + request.form['year']
+        cvv = request.form['inputCCV']
         tarjeta = Tarjeta( numtarjeta, expiracion, nombre, current_user.id, cvv)
         ModelTarjeta.register(db, tarjeta)
 
