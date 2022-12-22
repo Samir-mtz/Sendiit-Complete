@@ -18,6 +18,8 @@ CREATE TABLE `user` (
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores the user''s data.';
 
+/* Alter table user add `numpaquetes` INTEGER COLLATE utf8_unicode_ci NOT NULL DEFAULT 0; */
+
 /* drop table lockers; */
 
 CREATE TABLE lockers (

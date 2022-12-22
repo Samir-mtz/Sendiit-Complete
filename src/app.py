@@ -186,11 +186,11 @@ def home():
             'title' : 'Home',
             'stylesheet' : 'bienvenida.css',
             }
-    # print(current_user)
+    # # print(current_user)
     user = ModelUser.consulta_email(db, current_user.email)
     print(user.tipo)
     if user.tipo == 'usuario':
-        return render_template('home.html', data=DATA)
+        return render_template('home.html', data = DATA)
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     elif user.tipo =='repartidor':
