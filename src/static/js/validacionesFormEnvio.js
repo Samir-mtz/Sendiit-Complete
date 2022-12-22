@@ -1,12 +1,10 @@
 const inputs = document.querySelectorAll("#formulario input");
 const form = document.getElementById("formulario");
-const destino = document.getElementById("Destino");
 const nombre = document.getElementById("Destinatario");
 const email = document.getElementById("EmailDestinatario");
 const telefono = document.getElementById("TelefonoDestinatario");
 
 const campos = {
-	destino: false,
 	nombre: false,
 	email : false,
 	telefono: false,
@@ -90,7 +88,7 @@ function comprobarTelefono(telefono) {
 form.addEventListener("submit", (e) => {
 	e.preventDefault();
 	checkInputs();
-	if(campos.email == true  && campos.nombre == true  && campos.telefono == true  && campos.destino == true){
+	if(campos.email == true  && campos.nombre == true  && campos.telefono == true){
 		form.submit();
 	}
 });
