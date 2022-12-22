@@ -95,8 +95,8 @@
               </label>
               <select name="fragil" id="cbox" class="selector">
                 <!-- En el parentesis iran los tamaños -->
-                <option value="no" selected>No</option>
-                <option value="si">Si</option>
+                <option value="0" selected>No</option>
+                <option value="1">Si</option>
               </select>
             </div>
             
@@ -128,7 +128,7 @@
 							<small>Error message</small>
               </div><br>
               <!-- Quitar el boton pero no el input hidden -->
-              <input type="hidden" name="costo" value="125.50">
+              <input type="hidden" name="costo" value="125">
               <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <input type="submit" value="Confirmar Envio" class="btn-enviar">
               <!--  -->
