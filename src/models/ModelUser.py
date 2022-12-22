@@ -85,6 +85,20 @@ class ModelUser():
             raise Exception(ex)
     
     @classmethod
+    def consulta_telefono(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = "SELECT telefono FROM user WHERE id =" + str(id)
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return row[0]
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
     def confirm_user(self, db, email):
         try:
             cursor = db.connection.cursor()
