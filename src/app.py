@@ -396,7 +396,7 @@ def formularioEnvio():
         # g.envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
         # print(g.envio)
         # ModelEnvio.register(db, envio)
-        listTarjetas = ModelTarjeta.consultAll(db,current_user.id)
+        listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
         if listTarjetas != None:
             return render_template('formularioPago.html', envio=envio, tarjetas= listTarjetas)
         else:
