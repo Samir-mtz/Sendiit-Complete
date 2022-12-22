@@ -17,10 +17,12 @@ class ModelTarjeta():
             cursor = db.connection.cursor()
             sql = f"SELECT numtarjeta, nombre, expiracion FROM tarjetas where idusuario='{id}'";
             cursor.execute(sql)
-            row = cursor.fetchone()
-            if row != None:
-                return Tarjeta(numtarjeta=row[0], nombre=row[1],expiracion=row[2])
-            else:
-                return None
+            listtarjetas = []
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                return listtarjetas.append(Tarjeta(numtarjeta=row[0], nombre=row[1],expiracion=row[2]))
+            return listtarjetas
         except Exception as ex:
             raise Exception(ex)
