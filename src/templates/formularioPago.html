@@ -1,146 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<!-- Nombre de la pagina -->
-		<title>Formulario de pago</title>
-		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet"> 
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Nombre de la pagina -->
+	<title>Formulario de pago</title>
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 	<script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-		<!-- Favicon de la empresa -->
-		<link href="../static/img/empresa/favicon.png" rel="icon" />
-		<!-- Estilos -->
-		<link rel="stylesheet" href="../../static/css/formularioPago.css" />
-	</head>
-	<body>
-		<article>
-			<header class="header">
-				<!-- Logo de la empresa -->
-				<div class="logo">
-						<img src="../static/img/iconos/lockerheader.png" alt="Logo de la empresa" />
+	<!-- Favicon de la empresa -->
+	<link href="../static/img/empresa/favicon.png" rel="icon" />
+	<!-- Estilos -->
+	<link rel="stylesheet" href="../../static/css/formularioPago.css" />
+</head>
+
+<body>
+	<article>
+		<header class="header">
+			<!-- Logo de la empresa -->
+			<div class="logo">
+				<a href="{{ url_for('index') }}">
+					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+				</a>
+			</div>
+			<div class="titulo-pagina">FORMULARIO DE ENVIO</div>
+			<div class="user">
+				<div class="perfil"><i class="bi bi-person-circle"></i></div>
+				<div class="campos-user">
+					<div class="name-user">{{ current_user.nombre }}</div>
+					<div class="btn-user">
+						<div class="pantalla-user"><a href="{{ url_for('home') }}">Inicio</a></div>
+						<div class="pantalla-user"><a href="#">Historial</a></div>
+						<div class="pantalla-user"><a href="#">Rastrear</a></div>
+						<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
+					</div>
+				</div>
+			</div>
+		</header>
+		<main class="main">
+      <div class="contenedor">
+				<p align="left">Sus tarjetas registradas anteriormente:</p>
+
+				<form action="/user/formularioPago" method="POST">
+
+            <select name="" id="" class="selector">
+              <option value="Tarjeta1">**** **** **** 7531</option>
+              <option value="Tarjeta2">**** **** **** 7894</option>
+              <option value="Tarjeta3">**** **** **** 7894</option>
+              <option value="Tarjeta4">**** **** **** 7894</option>
+              <option value="Tarjeta5">**** **** **** 7894</option>
+            </select>
+
+					<br>
+					<p align="left">Usar una nueva tarjeta:</p>
+					<div class="agregar">
+						<a href="./AgregarTarjeta.html" class="btn-tarjeta"><button>AGREGAR TARJETA</button></a>
+						<p style="color:#777777">*Solo aceptamos pagos con tarjetas de crédito/débito</p>
+					</div>
+					<input type="hidden" name="tarjetas" id="inputSelect" value="">
+
+					{%for item in envio %}
+					<input type="hidden" name="{{item}}" value="{{envio[item]}}">
+					{% endfor %}
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+				</form>
+				
+			</div>
+      <div>
+        <img class="tarjeta" src="../static/img/iconos/tarjeta.png">
+      </div>
+      <div class="contenedor2">
+				<div class="no-envio">
+					<div class="envio-texto">
+						<p>Número de envío</p>
+						<p>XXXX XXXX</p>
+						<p style="font-size: 20px; opacity: 0.8;">Monto a pagar:</p>
+						<p style="font-size: 15px; opacity: 0.8;">$ 86.20 + 13.79 (IVA)</p>
+						<p style="font-size: 15px; opacity: 0.8;">Costo total: $99.00</p>
+					</div>
+
 				</div>
 
-				<div class="headersendit">
-					<div class="logo1">
-							<img src="../static/img/empresa/logo.png" alt="Logo de la empresa"/>
+				<div class="botones">
+					<div class="pagar">
+						<a href="#" class="btn-pagar"><button>PAGAR</button></a>
 					</div>
+					<div class="cancelar">
+						<a href="#" class="btn-cancelar"><button>CANCELAR</button></a>
+					</div>
+				</div>
+			</div>
 
-					<div class="raya">
-						<img src="..//static/img/iconos/raya.png" height="5px"/>
-					</div>
-					<div class="tituloForm">FORMULARIO DE PAGO</div>
-				</div>
-				<div class="user">
-					<div class="perfil"><i class="bi bi-person-circle"></i></div>
-					<div class="campos-user">
-						<div class="name-user">Ricardo Sánchez</div>
-						<div class="btn-user">
-							<div class="historial"><a href="#">Historial</a></div>
-							<div class="pantalla-user"><a href="#">Pago</a></div>
-							<div class="cerrar-sesion"><a href="#">Cerrar Sesión</a></div>
-						</div>
-					</div>
-				</div>
-			</header>
-			<main class="main">
-				<div class="contenedor">
-					<p align="left">Sus tarjetas registradas anteriormente:</p>
-					<form action="/user/formularioPago" method="POST">
-						<div class="selectbox">
-							<div class="select" id="select">
-								<div class="contenido-select">
-									<h1 class="titulo">Selecciona una tarjeta</h1>
-									
-								</div>
-								<i class="fas fa-angle-down"></i>
-							</div>
-			
-							<div class="opciones" id="opciones">
-								<a href="#" class="opcion">
-									<div class="contenido-opcion">
-										<img src="../static/img/iconos/mastercard.png" alt="" width="1px" height="1px">
-										<div class="textos">
-											<p class="descripcion">**** **** **** 7811</p>
-										</div>
-									</div>
-								</a>
-								<a href="#" class="opcion">
-									<div class="contenido-opcion">
-										<img src="../static/img/iconos/visa.png" alt="">
-										<div class="textos">
-											<p class="descripcion">**** **** **** 7811</p>
-										</div>
-									</div>
-								</a>
-							</div>
-						 </div>
-						 <div class="seleccionar">
-							<a class="btn-tarjeta"><button>SELECCIONAR</button></a>
-						</div>
-						<br>
-						<p align="left">Usar una nueva tarjeta:</p>
-						<div class="agregar">
-							<a href="./AgregarTarjeta.html" class="btn-tarjeta"><button>AGREGAR TARJETA</button></a>
-							<p style="color:#777777">*Solo aceptamos pagos con tarjetas de crédito/débito</p>
-						</div>
-						<input type="hidden" name="tarjetas" id="inputSelect" value="">
-						
-						{%for item in envio %}
-							<input type="hidden" name="{{item}}" value="{{envio[item]}}">
-						{% endfor %}
-						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-					</form>	
-					<img class= "tarjeta" src="../static/img/iconos/tarjeta.png">	
-				</div>
-			
-				<script src="../static/js/formularioPago.js"></script>
-				
-				
-					<div class="contenedor2">
-						<div class="no-envio">
-							<div class="envio-texto">
-							<p>Número de envío</p>
-							<p>XXXX XXXX</p>
-							<p style="font-size: 20px; opacity: 0.8;">Monto a pagar:</p>
-							<p style="font-size: 15px; opacity: 0.8;">$ 86.20 + 13.79 (IVA)</p>
-							<p style="font-size: 15px; opacity: 0.8;">Costo total: $99.00</p></div>
-							
-						</div>
+			<script src="../static/js/formularioPago.js"></script>
 
-						<div class="botones">
-							<div class="pagar">
-								<a href="#" class="btn-pagar"><button>PAGAR</button></a>
-							 </div>
-							 <div class="cancelar">
-								<a href="#" class="btn-cancelar"><button>CANCELAR</button></a>
-							 </div>
-						</div>
-					</div>
-				
-			</main>
-			<footer class="footer">
-				<div class="derechos">
-				  <div class="copyright">
+		</main>
+		<footer class="footer">
+			<div class="derechos">
+				<div class="copyright">
 					<span>&copy;2022 México. Todos los derechos reservados.</span>
-				  </div>
 				</div>
-				<div class="redes">
-				  <div class="logo-red">
+			</div>
+			<div class="redes">
+				<div class="logo-red">
 					<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-				  </div>
-				  <div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-				  </div>
-				  <div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-				  </div>
-				  <div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-				  </div>
 				</div>
-			  </footer>
-			</article>
-		  </body>
-		  
-		  </html>
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+				</div>
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+				</div>
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+				</div>
+			</div>
+		</footer>
+	</article>
+</body>
+
+</html>
