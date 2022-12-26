@@ -1,11 +1,10 @@
 
 class Locker():
 
-    def __init__(self, id, ubicacion, direccion, categoria, cantidadS, cantidadM, cantidadL, disponibilidad,enviados, recibidos, activo, registrado=None) -> None:
+    def __init__(self, id, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad,enviados, recibidos, activo, registrado=None) -> None:
         self.id = id
         self.ubicacion = ubicacion
         self.direccion = direccion
-        self.categoria = categoria
         self.cantidadS = cantidadS
         self.cantidadM = cantidadM
         self.cantidadL = cantidadL

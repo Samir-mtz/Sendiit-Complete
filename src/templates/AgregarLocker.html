@@ -8,26 +8,30 @@
 		</div>
 		<div>
 			<h1 class="tituloAgregar">Agregar Locker</h1>
+			{% with messages = get_flashed_messages()[-1]%}
+
+			{% if messages %}
+			<br />
+			<div>
+				<strong style="color: #e41f1a;">{{ messages }}</strong>
+			</div>
+			{% endif %}
+			{% endwith %}
 		</div>
 	</div>
 	<div class="datos-locker">
 		<p class="texto">Ubicación <small>*</small></p>
 		<select name="ubicacion" id="ubicacion">
 			{% for location in locations %}
-        <option value="{{ location.nombre }}"> {{ location.nombre }} </option>
-      {%  endfor %}
+			<option value="{{ location.nombre }}"> {{ location.nombre }} </option>
+			{% endfor %}
 		</select>
 		<!-- <input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder=" Lindavista "> -->
 		<p class="texto">Dirección <small>*</small></p>
 		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" Calle Leonardo da Vinci, 7, 41092. ">
 		<p class="texto">Cantidad <small>*</small></p>
 		<input class="campo" name="cantidad" id="cantidad" type="text" placeholder="1">
-		<p class="texto">Modelo <small>*</small></p>
-		<select name="modelo-puertas" id="modelo-puertas">
-			<option value="8">8 Puertas</option>
-			<option value="12">12 Puertas</option>
-			<option value="13" selected>13 Puertas</option>
-		</select>
+
 		<!-- <input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 "> -->
 	</div>
 	<div class="botones-formulario">
