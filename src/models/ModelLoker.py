@@ -84,7 +84,7 @@ class ModelLocker():
     def delete(self, db, id): 
         try:
             cursor = db.connection.cursor()
-            sql = "DELETE FROM lockers WHERE id="+id+";"
+            sql = 'DELETE FROM lockers WHERE id = '+id
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

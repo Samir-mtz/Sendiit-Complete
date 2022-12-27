@@ -582,16 +582,15 @@ def lockersActualizado():
 # Lockers - eliminar
 @app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
 def lockersEliminar():
-    # ModelLocker.delete(db, id_locker)
-    # return redirect(url_for('lockers'))
-    id_recibido = request.form['id']
-    cursor = db.connection.cursor()
-    # sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+ "' WHERE id="+id_recibido
-    cursor.execute('DELETE FROM lockers WHERE id = '+id_recibido)
-    db.connection.commit()
-    return redirect(url_for('lockers'))
-    # return render_template('AgregarLocker.html', data=DATA)
-
+    try:
+        id_recibido = request.form['id']
+        ModelLocker.delete(db, id_recibido)
+        flash("Locker eliminado con éxito")
+        return redirect(url_for('lockers'))
+    except:
+        flash("Ha ocurrido un error al eliminar locker")
+        return redirect(url_for('lockers'))
+    
 # Lockers - modificar estado
 
 
