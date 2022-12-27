@@ -8,6 +8,7 @@ const origen = document.getElementById("Origen");
 const destino = document.getElementById("Destino");
 const tamano = document.getElementById("Tamaño");
 const peso = document.getElementById("Peso");
+const fragil = document.getElementById("cbox");
 
 let sucursales = [];
 const campos = {
@@ -39,25 +40,34 @@ selects.forEach((select) => {
 	if(select.id == 'Tamaño'){
 		select.addEventListener("change", precio);
 	}
+	if(select.id == 'cbox'){
+		select.addEventListener("change", precio);
+	}
 	
 });
 function precio(){
 	let inicio = tamano.options[tamano.selectedIndex].value;
-	// console.log(inicio);
-	let valor = 80.50;
+	let extra = fragil.options[fragil.selectedIndex].text;
+
+	console.log(extra);
+	let valor = 80.00;
 	if(inicio=="Mediano(45cm, 35cm, 50cm)"){
 		valor +=25.50;
 	}else if(inicio=="Grande(85cm, 35cm, 50cm)"){
 		valor +=40.50;
 	}
-	// console.log(peso.value())
-	valor += (1.5 * peso.innerHTML);
+	if(extra=='Si'){
+		valor+=25;
+	}
+	valor += (1.5 * peso.value);
 	const precio = document.getElementById("precioTotal");
 	const iva = document.getElementById("ivaFinal");
 	let precioF = document.getElementById("precioFinal");
-	precio.innerHTML= valor;
-	iva.innerHTML = valor * 0.16;
-	precioF.innerHTML = parseInt(precio.innerHTML) + parseInt(iva.innerHTML)
+	let iva1 = valor * 0.16;
+	precio.innerHTML= "$" + valor + "MXN";
+	iva.innerHTML = "$" + iva1 + "MXN";
+	let total =iva1 + valor;
+	precioF.innerHTML = "$" + total + "MXN";
 }
 
 function tamanos(){
@@ -110,12 +120,6 @@ function getDisponibilidad(){
 }
 
 function selecciones(){
-	// let option0 = document.createElement("option");
-	// let option = document.createElement("option");
-	// let option2 = document.createElement("option");
-	// let option3 = document.createElement("option");
-	// let opcion = origen.selectedIndex;
-	// var opciones = document.querySelectorAll('#Destino option');
 	let inicio = origen.options[origen.selectedIndex].text
 	const url ="http://127.0.0.1:5000/json/" + inicio;
 	fetch(url).then(response => response.json())
@@ -186,6 +190,7 @@ function checkInputs() {
 		setErrorFor(origen, "Ingresa tu origen.");
 		campos['origen'] = false;
 	}
+	//comprobar destino
 	let opcion1 = destino.selectedIndex;
 	if(destino.options[opcion1].text != "Seleccionar") {
 		campos['destino'] = true;
@@ -194,6 +199,7 @@ function checkInputs() {
 		setErrorFor(destino, "Ingresa tu destino.");
 		campos['destino'] = false;
 	}
+	//comprobar tamaño
 	let opcion2 = tamano.selectedIndex;
 	if(tamano.options[opcion2].text != "Seleccionar") {
 		campos['tamano'] = true;
