@@ -1,8 +1,4 @@
 ###TO DO
-#Hacer dinamico el mapbox
-##Cambiar las direcciones de los lockers
-##Agregar Coordenadas al agregar locker
-##ruta que responda la latitud y longuitud guardada
 #Hacer formula de precios
 
 #########################################################################################
@@ -16,6 +12,7 @@ from config import config
 from flask_mail import Mail, Message
 from models.token import generate_confirmation_token, confirm_token
 from flask import jsonify
+import shutil
 
 # Clases
 # Models:
@@ -25,6 +22,7 @@ from models.ModelLocation import ModelLocation
 from models.ModelRepartidor import ModelRepartidor
 from models.ModelEnvio import ModelEnvio
 from models.ModelTarjeta import ModelTarjeta
+from models.ModelMapbox import ModelMapbox
 
 # Entities:
 from models.entities.User import User
@@ -76,6 +74,10 @@ def jsonroute():
 @app.route('/json/<ubicacion>')
 def jsonroutedestino(ubicacion):
     return jsonify(ModelLocker.consultDestinos(db, ubicacion))
+
+@app.route('/coordenadas')
+def coordenadas():
+    return jsonify(ModelLocker.consultaCoordenadas(db))
 
 # Ruta raíz
 
@@ -417,6 +419,65 @@ def formularioEnvio():
             return render_template('formularioPago.html', envio=envio, tarjetas=listTarjetas)
         else:
             return render_template('formularioPago.html', envio=envio, tarjetas=[])
+    
+    lockers = ModelMapbox.consultaCoordenadas(db)
+    shutil.copy("src/static/js/origen.js", "src/static/js/mapbox2.js")
+    destFile = r"src/static/js/mapbox2.js"
+    with open(destFile, 'a', encoding="utf-8") as f:
+
+        f.write("\nmap.on('load', () => {\n\
+        // make an initial directions request that\n\
+        // starts and ends at the same location\n\
+        map.addSource('places', {\n\
+            'type': 'geojson',\n\t\
+            'data': {\n\t\t\
+                'type': 'FeatureCollection',\n\t\t\t\
+                'features': [")
+        for i in range(len(lockers)):
+            f.write(f"""
+                    {{
+                    'type': 'Feature',
+                    'properties': {{
+                        'description':
+                            '<strong>{lockers[i][0]}</strong><p>{lockers[i][1]}</p>',
+                        'icon': 'post'
+                    }},
+                    'geometry': {{
+                        'type': 'Point',
+                        'coordinates': [{lockers[i][2]}, {lockers[i][3]}]
+                    }}
+                }}
+                """)
+            if i!=len(lockers):
+                f.write(",\n\t\t\t\t\t\t\t")
+        
+        f.write("\
+                            ]\n\t\t\t\
+                        }\n\t\t\
+                    });\n\t\
+                    map.addLayer({\n\t\
+                        'id': 'places',\n\t\t\
+                        'type': 'symbol',\n\t\t\
+                        'source': 'places',\n\t\t\
+                        'layout': {\n\t\t\
+                            'icon-image': ['get', 'icon'],\n\t\t\t\
+                            'icon-size': 0.5,\n\t\t\t\
+                            'icon-allow-overlap': true\n\t\t\t\
+                        }\n\t\t\
+                    });\n\
+                });\n\
+        ")
+
+        f.write("\nlet coordinatesPoints = new Map();")
+        for i in range(len(lockers)):
+            f.write(f"""
+                \ncoordinatesPoints.set('{lockers[i][0]}',[{lockers[i][2]}, {lockers[i][3]}])
+            """)
+        f.write("\nfunction convertMyRoute(inicio, fin){\n\
+                    getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))\n\
+                }")
+    shutil.copy("src/static/js/mapbox2.js", "src/static/js/mapboxfinal.js")
+
 
     return render_template('FormularioEnvio.html')
 

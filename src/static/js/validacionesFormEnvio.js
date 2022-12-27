@@ -7,6 +7,8 @@ const telefono = document.getElementById("TelefonoDestinatario");
 const origen = document.getElementById("Origen");
 const destino = document.getElementById("Destino");
 const tamano = document.getElementById("Tamaño");
+const peso = document.getElementById("Peso");
+
 let sucursales = [];
 const campos = {
 	nombre: false,
@@ -19,6 +21,9 @@ const campos = {
 
 inputs.forEach((input) => {
 	input.addEventListener("keyup", checkInputs);
+	if(input.id== 'Peso'){
+		input.addEventListener("keyup", precio);
+	}
 	input.addEventListener("blur", checkInputs);
 });
 
@@ -31,8 +36,30 @@ selects.forEach((select) => {
 		select.addEventListener("change", ruta);
 		select.addEventListener("change", tamanos);
 	}
+	if(select.id == 'Tamaño'){
+		select.addEventListener("change", precio);
+	}
 	
 });
+function precio(){
+	let inicio = tamano.options[tamano.selectedIndex].value;
+	// console.log(inicio);
+	let valor = 80.50;
+	if(inicio=="Mediano(45cm, 35cm, 50cm)"){
+		valor +=25.50;
+	}else if(inicio=="Grande(85cm, 35cm, 50cm)"){
+		valor +=40.50;
+	}
+	// console.log(peso.value())
+	valor += (1.5 * peso.innerHTML);
+	const precio = document.getElementById("precioTotal");
+	const iva = document.getElementById("ivaFinal");
+	let precioF = document.getElementById("precioFinal");
+	precio.innerHTML= valor;
+	iva.innerHTML = valor * 0.16;
+	precioF.innerHTML = parseInt(precio.innerHTML) + parseInt(iva.innerHTML)
+}
+
 function tamanos(){
 	let inicio = origen.options[origen.selectedIndex].text
 	let fin = destino.options[destino.selectedIndex].text

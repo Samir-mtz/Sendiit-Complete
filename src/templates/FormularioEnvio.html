@@ -96,9 +96,18 @@
                                 <option value="1">Si</option>
                             </select>
                         </div>
-
+                        
                         <!-- Formulario del destinatario a recibir -->
                         <div>
+                            <div class="form-control">
+                                <p>Peso del paquete en Kg.</Obj><label
+                                        style="color: red;">*</label></p>
+                                <input style="width:58%;" type="number" name="peso" id="Peso"
+                                    placeholder="12.5" class="texto-input" />
+                                <i class="fas fa-check-circle"></i>
+                                <i class="fas fa-exclamation-circle"></i><br>
+                                <small>Error message</small>
+                            </div>
                             <div class="form-control">
                                 <p>Nombre y apellido de la persona que recibe el paquete </Obj><label
                                         style="color: red;">*</label></p>
@@ -147,19 +156,19 @@
                 <div class="pago2">
                     <h1>Costo: </h1>
                     <div class="dinero">
-                        <h2>$ 107.75 ㅤㅤㅤ MXN</h2>
+                        <h2 id="precioTotal">$ 107.75 ㅤㅤㅤ MXN</h2>
                     </div>
                 </div>
                 <div class="pago2">
                     <h1>IVA:</h1>
                     <div class="dinero">
-                        <h2>$ 17.25 ㅤㅤㅤ MXN</h2>
+                        <h2 id="ivaFinal">$ 17.25 ㅤㅤㅤ MXN</h2>
                     </div>
                 </div>
                 <div class="pago2">
                     <h1>Costo total:</h1>
                     <div class="dinero">
-                        <h2>$ 125.00 ㅤㅤㅤ MXN</h2>
+                        <h2 id="precioFinal">$ 125.00 ㅤㅤㅤ MXN</h2>
                     </div>
                 </div>
                 <!-- Boton de confirmar envio -->
@@ -193,7 +202,7 @@
             </div>
         </footer>
     </article>
-    <script src="../static/js/mapbox.js"></script>
+    <script src="../static/js/mapboxfinal.js"></script>
     <script src="../static/js/validacionesFormEnvio.js"></script>
     <script>
       
