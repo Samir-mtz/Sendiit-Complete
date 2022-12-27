@@ -7,7 +7,7 @@ const telefono = document.getElementById("TelefonoDestinatario");
 const origen = document.getElementById("Origen");
 const destino = document.getElementById("Destino");
 const tamano = document.getElementById("Tamaño");
-
+let sucursales = [];
 const campos = {
 	nombre: false,
 	email : false,
@@ -27,74 +27,85 @@ selects.forEach((select) => {
 	if(select.id == 'Origen'){
 		select.addEventListener("change", selecciones);
 	}
-});
-
-function selecciones(){
-	let option0 = document.createElement("option");
-	let option = document.createElement("option");
-	let option2 = document.createElement("option");
-	let option3 = document.createElement("option");
-	let opcion = origen.selectedIndex;
-	var opciones = document.querySelectorAll('#Destino option');
-    opciones.forEach(o => o.remove());
-	if(origen.options[opcion].text == "Lindavista"){
-		var opciones = document.querySelectorAll('#Destino option');
-    	opciones.forEach(o => o.remove());
-		option0.text = "Seleccionar";
-		option.text = "Colonia del Valle";
-		option2.text = "Sátelite";
-		option3.text = "Villa de Aragón";
-		option.value = "Colonia del Valle";
-		option2.value = "Sátelite";
-		option3.value = "Villa de Aragón";
-		destino.add(option0);
-		destino.add(option);
-		destino.add(option2);
-		destino.add(option3);
-	}else if(origen.options[opcion].text == "Colonia del Valle"){
-		var opciones = document.querySelectorAll('#Destino option');
-    	opciones.forEach(o => o.remove());
-		option0.text = "Seleccionar";
-		option.text = "Lindavista";
-		option2.text = "Sátelite";
-		option3.text = "Villa de Aragón";
-		option.value = "Lindavista";
-		option2.value = "Sátelite";
-		option3.value = "Villa de Aragón";
-		destino.add(option0);
-		destino.add(option);
-		destino.add(option2);
-		destino.add(option3);
-	}else if(origen.options[opcion].text == "Sátelite"){
-		var opciones = document.querySelectorAll('#Destino option');
-    	opciones.forEach(o => o.remove());
-		option0.text = "Seleccionar";
-		option.text = "Lindavista";
-		option2.text = "Colonia del Valle";
-		option3.text = "Villa de Aragón";
-		option.value = "Lindavista";
-		option2.value = "Colonia del Valle";
-		option3.value = "Villa de Aragón";
-		destino.add(option0);
-		destino.add(option);
-		destino.add(option2);
-		destino.add(option3);
-	}else if(origen.options[opcion].text == "Villa de Aragón"){
-		var opciones = document.querySelectorAll('#Destino option');
-    	opciones.forEach(o => o.remove());
-		option0.text = "Seleccionar";
-		option.text = "Lindavista";
-		option2.text = "Colonia del Valle";
-		option3.text = "Sátelite";
-		option.value = "Lindavista";
-		option2.value = "Colonia del Valle";
-		option3.value = "Sátelite";
-		destino.add(option0);
-		destino.add(option);
-		destino.add(option2);
-		destino.add(option3);
+	if(select.id == 'Destino'){
+		select.addEventListener("change", ruta);
+		select.addEventListener("change", tamanos);
 	}
 	
+});
+function tamanos(){
+	let inicio = origen.options[origen.selectedIndex].text
+	let fin = destino.options[destino.selectedIndex].text
+	const url ="http://127.0.0.1:5000/tamanos/" + inicio + "/"+ fin;
+	// console.log(url);
+	fetch(url).then(response => response.json())
+	.then(data => {
+		// sucursales = data.ubicaciones
+		var opciones = document.querySelectorAll('#Tamaño option');
+		opciones.forEach(o => o.remove());
+		let option0 = document.createElement("option");
+		option0.text = "Seleccionar";
+		tamano.add(option0);
+		data.tamanos.forEach((dato)=>{
+			
+			let option = document.createElement("option");
+			option.text=dato
+				tamano.add(option);
+			}
+			);
+		})
+}
+
+function ruta(){
+	let inicio = origen.options[origen.selectedIndex].text
+	let fin = destino.options[destino.selectedIndex].text
+	if(inicio != "Seleccionar" && fin != "Seleccionar") {
+		convertMyRoute(inicio, fin);
+	}
+}
+function getDisponibilidad(){
+	const url ="http://127.0.0.1:5000/json"
+	fetch(url).then(response => response.json())
+	.then(data => {
+		// sucursales = data.ubicaciones
+		var opciones = document.querySelectorAll('#Origen option');
+		opciones.forEach(o => o.remove());
+		let option0 = document.createElement("option");
+		option0.text = "Seleccionar";
+		origen.add(option0);
+		data.ubicaciones.forEach((dato)=>{
+			let option = document.createElement("option");
+			option.text=dato
+				origen.add(option);
+			}
+			);
+		})
+}
+
+function selecciones(){
+	// let option0 = document.createElement("option");
+	// let option = document.createElement("option");
+	// let option2 = document.createElement("option");
+	// let option3 = document.createElement("option");
+	// let opcion = origen.selectedIndex;
+	// var opciones = document.querySelectorAll('#Destino option');
+	let inicio = origen.options[origen.selectedIndex].text
+	const url ="http://127.0.0.1:5000/json/" + inicio;
+	fetch(url).then(response => response.json())
+	.then(data => {
+		// sucursales = data.ubicaciones
+		var opciones = document.querySelectorAll('#Destino option');
+		opciones.forEach(o => o.remove());
+		let option0 = document.createElement("option");
+		option0.text = "Seleccionar";
+		destino.add(option0);
+		data.ubicaciones.forEach((dato)=>{
+			let option = document.createElement("option");
+				option.text=dato
+				destino.add(option);
+			}
+			);
+		})
 }
 function checkInputs() {
 	const nombreValue = nombre.value.trim();

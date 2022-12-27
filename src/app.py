@@ -1,3 +1,10 @@
+###TO DO
+#Hacer dinamico el mapbox
+##Cambiar las direcciones de los lockers
+##Agregar Coordenadas al agregar locker
+##ruta que responda la latitud y longuitud guardada
+#Hacer formula de precios
+
 #########################################################################################
 ####################################    Librerias   #####################################
 #########################################################################################
@@ -8,6 +15,7 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from config import config
 from flask_mail import Mail, Message
 from models.token import generate_confirmation_token, confirm_token
+from flask import jsonify
 
 # Clases
 # Models:
@@ -56,9 +64,18 @@ def load_user(id):
 ############################ Funciones de routeo de direcciones #########################
 #########################################################################################
 
+
+@app.route('/tamanos/<origen>/<destino>')
+def jsontamanos(origen, destino):
+    return jsonify(ModelLocker.checkDisponibilidad(db, origen, destino))
+
 @app.route('/json')
 def jsonroute():
-    return ModelLocker.consultAllDisponibles(db)
+    return jsonify(ModelLocker.consultAllDisponibles(db))
+
+@app.route('/json/<ubicacion>')
+def jsonroutedestino(ubicacion):
+    return jsonify(ModelLocker.consultDestinos(db, ubicacion))
 
 # Ruta raíz
 
@@ -569,13 +586,13 @@ def lockersAgregado():
 def lockersActualizado():
     id_recibido = request.form['id']
     direccion = request.form['direccion']
- 
     try:
-        ModelLocker.update(db, id_recibido, direccion)
-        flash("Locker actualizado con éxito")
+        id_recibido = request.form['id']
+        ModelLocker.delete(db, id_recibido)
+        flash("Locker eliminado con éxito")
         return redirect(url_for('lockers'))
     except:
-        flash("Ha ocurrido un error al actualizar valores del locker")
+        flash("Ha ocurrido un error al eliminar locker")
         return redirect(url_for('lockers'))
 
 
