@@ -56,6 +56,10 @@ def load_user(id):
 ############################ Funciones de routeo de direcciones #########################
 #########################################################################################
 
+@app.route('/json')
+def jsonroute():
+    return ModelLocker.consultAllDisponibles(db)
+
 # Ruta raíz
 
 
