@@ -6,7 +6,6 @@
 /************************************************************************************
                                         GENERAL
 ************************************************************************************/
-html,
 body {
 	margin: 0;
 	padding: 0;
@@ -22,6 +21,16 @@ article {
 	grid-template-columns: 100%;
 	align-items: center;
 }
+.main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	text-align: center;
+	height: 90%;
+}
+.main .iframe{
+	margin-top: 20px;
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
+}
 
 /************************************************************************************
                                         Header
@@ -29,7 +38,7 @@ article {
 
 .header {
 	display: grid;
-	grid-template-columns: 15% 40% 45%;
+	grid-template-columns: 15% 55% 30%;
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
@@ -58,7 +67,7 @@ article {
 	transform: scale(1.1);
 }
 
-.header .user {
+.header .user{
 	display: grid;
 	grid-template-columns: 15% 85%;
 	grid-template-rows: 100%;
@@ -73,46 +82,47 @@ article {
 	background: rgb(255, 243, 212);
 }
 
-.header .user .perfil {
+.header .user .perfil{
 	font-size: 300%;
 	color: rgb(16, 73, 158);
-	margin-left: 20px;
+	margin-left: 30px;
 }
 
-.header .user .campos-user {
+.header .user .campos-user{
 	display: grid;
-	grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(2,1fr);
 	grid-template-columns: 100%;
 }
 
-.header .user .campos-user .name-user {
+.header .user .campos-user .name-user{
 	font-size: large;
 	color: rgb(16, 73, 158);
 }
 
-.header .user .campos-user .btn-user {
+.header .user .campos-user .btn-user{
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(2,1fr);
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
 }
 
-.header .user .campos-user .btn-user a {
+.header .user .campos-user .btn-user a{
 	text-decoration: none;
 }
 
-.pantalla-user {
+.pantalla-user{
 	border-right: 1px solid rgb(114, 114, 114);
 }
 
-.pantalla-user a {
+.pantalla-user a{
 	color: rgb(114, 114, 114);
 }
 
-.cerrar-sesion a {
+.cerrar-sesion a{
 	color: rgb(255, 0, 0);
 }
+
 
 .header .user .campos-user .btn-user .pantalla-user a:hover {
 	transform: scale(1.1);
@@ -128,8 +138,6 @@ article {
 	display: grid;
     grid-template-columns: 59% 41%;
 	text-align: center;
-	justify-content: center;
-	align-items: center;
 	height: 90%;
     font-family: "Oswald", sans-serif;
 }
@@ -140,9 +148,10 @@ article {
 } */
 .main .Menus{
     text-align: left;
-    margin-left: 100px;
-    font-size: 115%;
+    margin-left: 210px;
+    font-size: 125%;
 }
+
 
 .main .Menus  .form-control {
 	position: relative;
@@ -152,7 +161,7 @@ article {
     vertical-align:text-bottom;
     display: flex;
     flex-direction: column;
-      margin-top: 100px;
+      margin-top: 190px;
 }
 .main .pago  .pago2{
     grid-template-columns:  repeat(2, 1fr);
@@ -160,7 +169,7 @@ article {
 }
 .formularioEnvio .titulo{
     color: #f9d950;
-	font-size: x-large;
+	font-size: xx-large;
 	font-style: italic;
 }
 .main .Menus .Origen label{
@@ -184,151 +193,44 @@ article {
 }
 
 
-.btn-enviar,
-.btn-cancelar {
+.main .botones .btn-cancelar {
     place-content: right;
 	color: white;
 	height: 50px;
     width: 420px;
-    padding: 5px 15px;
+    padding: 10px 15px;
     /* para alinear los botones */
-    /* margin-left: 120px; */
-
+    margin-left: 120px;
 	outline: none;
 	border: none;
-	font-size: 10px;
+	font-size: 15px;
 	border-radius: 10px;
 	letter-spacing: 1px;
-	background-color: rgb(0, 86, 21);
+	background-color: red;
     font-size: large;
     font-family: "Oswald", sans-serif;
-	margin-top: 20px;
+}
+.main .botones .btn-confirmar {
+    place-content: right;
+	color: white;
+	height: 50px;
+    width: 420px;
+    padding: 10px 15px;
+	outline: none;
+	border: none;
+	font-size: 15px;
+	border-radius: 10px;
+	letter-spacing: 1px;
+	background-color: green;
+    font-size: large;
+    font-family: "Oswald", sans-serif;
 }
 
-.btn-cancelar{
-	background-color: #ef0400;
-}
-
-
-.btn-enviar:hover,
-.btn-cancelar:hover{
-	cursor: pointer;
-	transition: all 0.8s;
-	transform: scale(1.1);
-}
 /*.main div:hover{
     border: 1px solid red;
 }*/
 
-.selector,
-.texto-input{
-	width: 400px;
-	height: 40px;
-	font-size: 15px;
-	border: 1px solid silver;
-	border-radius: 10px;
-	text-align: center;
-}	
 
-.fragil{
-	width: 40px;
-	height: 20px;
-	border: 1px solid silver;
-	border-radius: 10px;
-}
-
-.titulo-pagina{
-	color: #f9d950;
-	font-size: 40px;
-}
-
-form {
-	border: solid rgb(218, 218, 218);
-	box-shadow: 3px 3px 3px rgb(218, 218, 218);
-	border-radius: 20px;
-	margin-left: 50px;
-	margin-right: 200px;
-	padding: 20px 10px;
-    /* height: 130%; */
-}
-
-.formulario__mensaje-exito-activo {
-	display: block;
-}
-
-.pregunta {
-    color: #9f9f9f;
-}
-
-.terminos{
-	text-decoration: none;
-	color: blue;
-}
-
-.form-control {
-	margin-bottom: 10px;
-	position: relative;
-}
-
-.form-control label {
-	display: inline-block;
-	font-weight: 600;
-	cursor: pointer;
-    text-align: left;
-    padding-top: 15px;
-}
-
-.form-control input {
-	width: 90%;
-	background: rgb(255, 255, 255);
-	border: 3px solid rgb(203, 203, 203);
-	border-radius: 10px;
-	height: 25px;
-	line-height: 45px;
-	padding: 0 30px 0 10px;
-	transition: .3s ease all;
-}
-
-.form-control input:focus {
-	outline: 0;
-	border-color: #777;
-}
-
-.form-control.success input {
-	border-color: #2ecc71;
-}
-
-.form-control.error input {
-	border-color: #e74c3c;
-}
-
-.form-control i {
-	visibility: hidden;
-	position: absolute;
-	top: 62px;
-	right: 10px;
-}
-
-.form-control.success i.fa-check-circle {
-	color: #2ecc71;
-	visibility: visible;
-}
-
-.form-control.error i.fa-exclamation-circle {
-	color: #e74c3c;
-	visibility: visible;
-}
-
-.form-control small {
-	color: #e74c3c;
-	position: absolute;
-	left: 0;
-	visibility: hidden;
-}
-
-.form-control.error small {
-	visibility: visible;
-}
 /************************************************************************************
                                         Footer
 ************************************************************************************/

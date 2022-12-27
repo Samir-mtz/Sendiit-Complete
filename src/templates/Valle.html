@@ -1,10 +1,73 @@
-{% extends 'base-home.html' %}
-{% block body_main %}
-<div>
-	<iframe
-		src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15053.694094907021!2d-99.18324666044921!3d19.394098500000013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff0d05acbd53%3A0x2e327a6894739ccf!2sPlaza%20del%20Valle!5e0!3m2!1ses-419!2smx!4v1669854555835!5m2!1ses-419!2smx"
-		width="800" height="600" style="border:0;" allowfullscreen="" loading="lazy"
-		referrerpolicy="no-referrer-when-downgrade"></iframe>
-	<h1 class="texto">Ubicacion de los lockers en Colonia del Valle</h1>
-</div>
-{% endblock %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>SUCURSAL - COL. DEL VALLE</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/mapaSucursal.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="{{ url_for('index') }}">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+			<div class="link-header activo"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+			<div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
+    </div>
+    <div class="botones">
+      <a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+			<a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+			<a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="central">
+
+      <div class="mapa">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15053.694094907021!2d-99.18324666044921!3d19.394098500000013!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff0d05acbd53%3A0x2e327a6894739ccf!2sPlaza%20del%20Valle!5e0!3m2!1ses-419!2smx!4v1669854555835!5m2!1ses-419!2smx"
+          width="100%" height="100%" style="border: 0" allowfullscreen="" loading="eager"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+      <div class="texto-ubicacion">
+        <h1 class="texto">Ubicación del lockers, Sucursal Plaza del Valle</h1>
+      </div>
+      <div class="boton-regreso">
+        <a href="{{ url_for('sucursales') }}">
+          <i class="bi bi-arrow-left-circle"></i>
+          <span>Regresar</span>
+        </a>
+      </div>
+
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+</body>
+
+</html>

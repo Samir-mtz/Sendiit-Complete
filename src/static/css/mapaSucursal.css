@@ -186,57 +186,79 @@
 	align-items: center;
 }
 
-.izq {
-	width: 50%;
+.central {
+	width: 90%;
 	height: calc(90vh - 10vh - 5vh);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	margin-left: 5%;
 }
 
-.der {
-	width: 50%;
-	height: calc(90vh - 10vh - 5vh);
+.mapa {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	height: max-content;
+	height: calc(50vh);
+	width: 70%;
+	margin: 1%;
 }
 
-.img-mujer img {
-	height: calc(70vh + 1rem);
+iframe {
+	border-radius: 10px;
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
 }
 
-.titulo-pagina {
+.texto-ubicacion {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(20vh);
-}
-
-.titulo-pagina {
-	height: calc(20vh);
-	color: #e41f1a;
-	font-size: calc(5vh + 0.1rem);
+	height: max-content;
+	width: 70%;
+	font-weight: 1000;
+	font-size: calc(0.75rem);
 	font-style: italic;
-	font-weight: bold;
-	text-transform: uppercase;
+	color: #e41d1a;
 }
 
-.conocenos {
+.boton-regreso {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(30vh);
+	height: max-content;
+	width: 70%;
+	margin: 1%;
 }
 
-.texto-conocenos {
-	color: #0f182a;
-	text-align: justify;
-	font-size: calc(4vh + 0.1rem);
-	font-style: italic;
-	font-weight: bold;
+.boton-regreso a {
+	height: max-content;
+	text-decoration: none;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 500;
+	transition: all 0.2s;
+	padding: 10px 8px;
+	border-radius: 30px;
+	background: #212e46;
+	display: flex;
+	align-items: center;
+	font-size: calc(0.75rem);
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
+}
+
+.boton-regreso span {
+	margin-right: 5px;
+}
+
+.boton-regreso a > i {
+	/* width: 30px; */
+	width: calc(1.5rem);
+	transition: transform 0.5s ease-in-out;
+}
+
+.boton-regreso a:hover {
+	transform: translateX(-3px);
 }
 
 /************************************************************************************

@@ -1,35 +1,121 @@
-{% extends 'base-home.html' %}
-{% block body_main %}
-<div class="lindavista">
-	<img class="Fotos" src="../static/img/principal/Lindavista.png" alt="Lindavista" />
-	<h1>Lindavista</h1>
-	<p class="textoL">Av. Montevideo 363, Lindavista Sur, Gustavo A. Madero, 07300 Ciudad de México, CDMX </p>
-	<a href="/sucursales/lindavista" class="Maps"><button>Ver en Maps</button></a>
-</div>
+<!DOCTYPE html>
+<html lang="es">
 
-<div class="Valle">
-	<img class="Fotos" src="../static/img/principal/Valle.png" alt="Valle" />
-	<br>
-	<h1>Colonia del Valle</h1>
-	<p class="textoL">Mier y Pesado 317, código 2, Col del Valle Nte, Benito Juárez, 03100 Ciudad de México, CDMX</p>
-	<div class="Maps">
-		<a href="/sucursales/valle"><button>Ver en Maps</button></a>
-	</div>
-</div>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>SENDIIT - SUCURSALES</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/sucursales.css" />
+</head>
 
-<div class="Satelite">
-	<img class="Fotos" src="../static/img/principal/Satelite.png" alt="Satelite" />
-	<br>
-	<h1>Sátelite</h1>
-	<p class="textoL">Cto Centro Comercial 2251, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>
-	<a href="/sucursales/satelite" class="Maps"><button>Ver en Maps</button></a>
-</div>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="{{ url_for('index') }}">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+			<div class="link-header activo"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+			<div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
+    </div>
+    <div class="botones">
+      <a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+			<a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+			<a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
+  </header>
 
-<div class="MultiplazaBosques">
-	<img class="Fotos" src="../static/img/principal/Multiplaza.png" alt="Aragon" />
-	<br>
-	<h1>Villa de Aragón</h1>
-	<p class="textoL">Av Central, Blvd, Villa Cacama, Bosques de Aragon, 57170 Nezahualcóyotl, Méx.</p>
-	<a href="/sucursales/aragon" class="Maps"><button>Ver en Maps</button></a>
-</div>
-{% endblock %}
+  <!-- Main -->
+  <main class="main">
+    <section class="central">
+      <div class="sucursal">
+        <div class="captura">
+          <img src="../static/img/sucursales/aragon.png" alt="Plaza Aragon" />
+        </div>
+        <div class="texto-nombre">
+          <h1>PLAZA ARAGÓN</h1>
+        </div>
+        <div class="texto-direccion">
+          <p>Av. Carlos Hank González 120, Cd Azteca 3ra Secc, 55120 Ecatepec de Morelos, Méx.</p>
+        </div>
+        <div class="boton-sucursal">
+          <a href="{{ url_for('sucursalesAragon') }}">
+            <i class="bi bi-compass"></i> <span>Ver en maps</span>
+          </a>
+        </div>
+      </div>
+      <div class="sucursal">
+        <div class="captura">
+          <img src="../static/img/sucursales/valle.png" alt="Plaza Colonia del Valle" />
+        </div>
+        <div class="texto-nombre">
+          <h1>PLAZA DEL VALLE</h1>
+        </div>
+        <div class="texto-direccion">
+          <p>Mier y Pesado 317, código 2, Col del Valle Nte, Benito Juárez, 03100 Ciudad de México, CDMX.</p>
+        </div>
+        <div class="boton-sucursal">
+          <a href="{{ url_for('sucursalesValle') }}">
+            <i class="bi bi-compass"></i> <span>Ver en maps</span>
+          </a>
+        </div>
+      </div>
+      <div class="sucursal">
+        <div class="captura">
+          <img src="../static/img/sucursales/lindavista.png" alt="Plaza Lindavista" />
+        </div>
+        <div class="texto-nombre">
+          <h1>PLAZA LINDAVISTA</h1>
+        </div>
+        <div class="texto-direccion">
+          <p>Av. Montevideo 363, Lindavista Sur, Gustavo A. Madero, 07300 Ciudad de México, CDMX.</p>
+        </div>
+        <div class="boton-sucursal">
+          <a href="{{ url_for('sucursalesLindavista') }}">
+            <i class="bi bi-compass"></i> <span>Ver en maps</span>
+          </a>
+        </div>
+      </div>
+      <div class="sucursal">
+        <div class="captura">
+          <img src="../static/img/sucursales/satelite.png" alt="Plaza Satélite" />
+        </div>
+        <div class="texto-nombre">
+          <h1>PLAZA SATÉLITE</h1>
+        </div>
+        <div class="texto-direccion">
+          <p>Cto Centro Comercial 2251, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>
+        </div>
+        <div class="boton-sucursal">
+          <a href="{{ url_for('sucursalesSatelite') }}">
+            <i class="bi bi-compass"></i> <span>Ver en maps</span>
+          </a>
+        </div>
+      </div>
+
+    </section>
+  </main>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+</body>
+
+</html>

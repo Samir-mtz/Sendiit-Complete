@@ -273,8 +273,8 @@ tr:nth-child(even) {
 }
 .altas {
 width: 200px;
-float: left;
-margin-left: 20%;
+float: right;
+
 }
 
 .altas .btn3{
@@ -386,7 +386,7 @@ dialog{
 }
 
 .img-catalogo{
-	z-index: -10;
+	z-index: -100;
 }
 
 /************************************************************************************

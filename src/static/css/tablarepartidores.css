@@ -48,6 +48,14 @@ article {
 	place-content: center;
 	cursor: pointer;
 }
+.header .nav-contenido .Titulo {
+	display: grid;
+	align-items: center;
+	place-content: center;
+	color: #e41f1a;
+	text-transform: uppercase;
+	font-style: italic;
+}
 
 .header .logo img {
 	height: 85%;
@@ -60,17 +68,22 @@ article {
 	transform: scale(1.1);
 }
 
-.header .secciones,
 .header .botones {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: 100%;
 }
 
+.header .secciones{
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 100%;
+}
+
 .header .secciones a,
 .header .botones a {
 	text-decoration: none;
-	color: #212e46;
+	color: #e41f1a;
 	font-size: x-large;
 	/* border: solid 1px red; */
 }
@@ -100,17 +113,24 @@ article {
 	margin-left: auto;
 }
 
-.header .botones .btn-enviar button {
-	background-color: #e41f1a;
-	color: #fff;
+.header .botones .btn-imgAdmin img {
+	display: grid;
+	place-content: center;
+	height: 50px;
 }
 
-.header .botones .btn-ingresar button {
+.header .botones .btn-imgAdmin img:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+}
+
+.header .botones .btn-administrador button {
 	background-color: #f9d950;
-	color: #212e46;
+	color: #e41f1a;
 }
 
-.header .botones .btn-registrarse button {
+.header .botones .btn-cerrarsesion button {
 	background-color: #212e46;
 	color: #fff;
 }
@@ -123,189 +143,158 @@ article {
                                         Main
 ************************************************************************************/
 
+/* Estilos con columnas del cuestionario */
 .main {
 	display: grid;
-	grid-template-columns: 50% 50%;
+	grid-template-rows: 20% 80%;
 	text-align: center;
-    align-items: center;
+	height: 90%;
+	background: #fff;
 }
 
-.repartidor img{
-    height: 400px;
-}
+/* .main div:hover {
+	border: 1px solid red;
+} */
 
-.main .titulo-pagina,
-.main .contenido .textnuevo div {
-	grid-column: 1/2;
-}
-
-.main .titulo-pagina img {
-	height: 40px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	width: auto;
-}
-
-.main .titulo-pagina h2 {
-	color: #f5cc16;
-	margin-top: -15px;
-}
-
-.main .titulo-pagina h5 {
-	color: #212e46;
-	margin-top: -20px;
-}
-
-.contenido {
-	flex-direction: column;
-	border: 0.5px solid rgb(218, 218, 218);
-	box-shadow: 3px 3px 3px rgb(218, 218, 218);
-	border-radius: 20px;
-	margin-left: 100px;
-	padding: 20px 50px;
-    /* height: 130%; */
-}
-
-.formulario {
+.main .contenido {
 	display: grid;
-	grid-template-columns: 1fr;
-	gap: 30px;
-}
-
-small{
-    color: red;
-}
-
-.formulario__grupo-btn-enviar {
-	display: flex;
-	flex-direction: column;
+	grid-template-rows: 80% 20%;
+	text-align: center;
+	place-content: center;
 	align-items: center;
 }
 
-.btn-ingresar-extra,
-.btn-form {
-	color: #212e46;
-	height: 100%;
-    padding: 10px 15px;
-	outline: none;
-	border: none;
-	font-size: 20px;
-	font-weight: 400;
-	border-radius: 10px;
-	letter-spacing: 1px;
+.titulo-formulario {
+	display: grid;
+	grid-template-columns: repeat(3,1fr);
+	text-align: center;
+	place-content: center;
+	align-items: center;
+	height: 100px;
+}
+
+.datos-tabla {
+	display: grid;
+	grid-template-columns: 100%;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
+
+.main .titulo-formulario{
+	display: grid;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
+
+.tabla {
+	float: left;
+}
+
+table {
+	text-align: center;
+	border-collapse: collapse;
+	width: 80%;
+}
+
+th,
+td {
+	padding: 10px;
+}
+
+thead {
 	background-color: #f9d950;
+	border-bottom: solid 5px #212e46;
+	color: #212e46;
 }
 
-.btn-ingresar-extra:hover{
-	cursor: pointer;
-	background-color: #f5cc16;
-	transition: all 0.8s;
-	transform: scale(1.1);
-	box-shadow: 5px 5px 5px #f9d950;
+tr:nth-child(even) {
+	background-color: #ddd;
 }
 
-.btn-form{
-	width: 40%;
-	margin-left: 30%;
+.buscar input {
+	width: 340px;
+	height: 40px;
+	padding: 0 20px;
+	font-size: 18px;
+	color: #000;
+	outline: none;
+	border: 1px solid silver;
+	border-radius: 15px;
+
 }
 
-.btn-form:hover{
-	cursor: pointer;
-	background-color: #f5cc16;
-	transition: all 0.8s;
-	transform: scale(1.1);
-	box-shadow: 5px 5px 5px #f9d950;
+.btn2 {
+	position: absolute;
+	background: #212e46;
+	width: 45px;
+	height: 45px;
+	line-height: 45px !important;
+	color: #fff;
+	font-size: 20px;
+	border-radius: 50%;	
+	margin-left: -40px;
+
 }
 
-.formulario__mensaje-exito-activo {
-	display: block;
+
+.check {
+	width: 40px;
+	height: 40px;
+}
+.registrados {
+    width: 400px;
+
 }
 
-.pregunta {
-    color: #9f9f9f;
-}
-
-.terminos{
-	text-decoration: none;
-	color: blue;
-}
-
-.form-control {
-	margin-bottom: 10px;
-	position: relative;
-}
-
-.form-control label {
-	display: inline-block;
-	font-weight: 600;
-	cursor: pointer;
-    text-align: left;
-    padding-top: 10px;
-}
-
-.form-control input {
-	width: 90%;
-	background: rgb(255, 255, 255);
-	border: 3px solid rgb(203, 203, 203);
+.registrados .btn3{
+	font-weight: 760;
+	color: #e41f1a;
+	background: #f9d950;
+	padding: 10px 30px;
+	border: none;
 	border-radius: 10px;
-	height: 25px;
-	line-height: 45px;
-	padding: 0 30px 0 10px;
-	transition: .3s ease all;
+	box-shadow: 5px 3px 3px #212e46;
 }
 
-.form-control input:focus {
-	outline: 0;
-	border-color: #777;
+.registrados .btn3:hover{
+	transform: scale(1.2);
+	cursor: pointer;
+	transition: all 0.5s;
 }
 
-.form-control.success input {
-	border-color: #2ecc71;
+.registrados .btn3 button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+}
+.altas {
+width: 200px;
+float: right;
+
 }
 
-.form-control.error input {
-	border-color: #e74c3c;
+.altas .btn3{
+	font-weight: 760;
+	color: #e41f1a;
+	background: #f9d950;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 10px;
+	box-shadow: 5px 3px 3px #212e46;
 }
 
-.form-control i {
-	visibility: hidden;
-	position: absolute;
-	top: 50px;
-	right: 20px;
+.altas .btn3:hover{
+	transform: scale(1.2);
+	cursor: pointer;
+	transition: all 0.5s;
 }
 
-.form-control.success i.fa-check-circle {
-	color: #2ecc71;
-	visibility: visible;
-}
-
-.form-control.error i.fa-exclamation-circle {
-	color: #e74c3c;
-	visibility: visible;
-}
-
-.form-control small {
-	color: #e74c3c;
-	position: absolute;
-	left: 0;
-	visibility: hidden;
-}
-
-.form-control.error small {
-	visibility: visible;
-}
-
-.pregunta {
-    color: #9f9f9f;
-}
-
-.recuperacion {
-	color: #354d75;
-	font-weight: bolder;
-	font: italic bold 10px;
-	font-size: medium;
-	text-align: right;
-	margin-left: 300px;
+.altas .btn3 button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
 }
 
 
