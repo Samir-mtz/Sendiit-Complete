@@ -156,80 +156,7 @@ async function getRoute(inicio, fin) {
         });
 }
 
-map.on('load', () => {
-    // make an initial directions request that
-    // starts and ends at the same location
-    map.addSource('places', {
-        // This GeoJSON contains features that include an "icon"
-        // property. The value of the "icon" property corresponds
-        // to an image in the Mapbox Streets style's sprite.
-        'type': 'geojson',
-        'data': {
-            'type': 'FeatureCollection',
-            'features': [
-                {
-                    'type': 'Feature',
-                    'properties': {
-                        'description':
-                            '<strong>Lindavista</strong><p>07305, Lindavista,Gustavo A. Madero 07300 Ciudad de México, CDMX</p>',
-                        'icon': 'post'
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [-99.13241777989998, 19.503812618644453]
-                    }
-                },
-                {
-                    'type': 'Feature',
-                    'properties': {
-                        'description':
-                            '<strong>Villa de Aragón</strong><p>608, 4a Sección, San Juan de Aragón, Gustavo A. Madero, 07979 Ciudad de México, CDMX</p>',
-                        'icon': 'post'
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [-99.0612996325149, 19.46156136421477]
-                    }
-                },
-                {
-                    'type': 'Feature',
-                    'properties': {
-                        'description':
-                            '<strong>Sátelite</strong><p>Cto. Cirujanos 1-Local 3, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>',
-                        'icon': 'post'
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [-99.23202789711353, 19.510418491079623]
-                    }
-                },
-                {
-                    'type': 'Feature',
-                    'properties': {
-                        'description':
-                            '<strong>Colonia del Valle</strong><p>C. Gabriel Mancera 916, Col del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX</p>',
-                        'icon': 'post'
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [-99.16479674838662, 19.38370135021779]
-                    }
-                }
-            ]
-        }
-    });
-    map.addLayer({
-        'id': 'places',
-        'type': 'symbol',
-        'source': 'places',
-        'layout': {
-            'icon-image': ['get', 'icon'],
-            'icon-size': 0.5,
-            'icon-allow-overlap': true
-        }
-    });
 
-});
 map.on('click', 'places', (e) => {
     // Copy coordinates array.
     const coordinates = e.features[0].geometry.coordinates.slice();
@@ -258,14 +185,3 @@ map.on('mouseenter', 'places', () => {
 map.on('mouseleave', 'places', () => {
     map.getCanvas().style.cursor = '';
 });
-
-let coordinatesPoints = new Map();
-
-coordinatesPoints.set('Lindavista',[-99.13241777989998, 19.503812618644453],)
-coordinatesPoints.set('Colonia del Valle',[-99.16479674838662, 19.38370135021779],)
-coordinatesPoints.set('Sátelite',[-99.23202789711353, 19.510418491079623],)
-coordinatesPoints.set('Villa de Aragón',[-99.0612996325149, 19.46156136421477])
-
-function convertMyRoute(inicio, fin){
-    getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))
-}
