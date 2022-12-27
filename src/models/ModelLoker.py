@@ -45,6 +45,7 @@ class ModelLocker():
         except Exception as ex:
             raise Exception(ex)
     
+    @classmethod
     def consult_by_location(self, db, ubicacion): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
         try:
             cursor = db.connection.cursor()
