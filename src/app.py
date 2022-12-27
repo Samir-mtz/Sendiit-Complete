@@ -614,9 +614,6 @@ def lockersActualizado():
     direccion = request.form['direccion']
     latitud = request.form['latitud']
     longitud = request.form['longitud']
-    print(id_recibido)
-    print(latitud)
-    print(longitud)
     try:
         ModelLocker.update(db, id_recibido, direccion, latitud, longitud)
         flash("Locker actualizado con éxito")
@@ -624,6 +621,7 @@ def lockersActualizado():
     except:
         flash("Ha ocurrido un error al actualizar valores del locker")
         return redirect(url_for('lockers'))
+    
 
 
 # Lockers - eliminar
