@@ -21,16 +21,16 @@
 	</div>
 	<div class="datos-locker">
 		<p class="texto">Ubicación <small>*</small></p>
-		<select name="ubicacion" id="ubicacion">
-			{% for location in locations %}
-			<option value="{{ location.nombre }}"> {{ location.nombre }} </option>
-			{% endfor %}
-		</select>
+		<input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder="Colonia">
 		<!-- <input class="campo" name="ubicacion" id="ubicacion" type="text" placeholder=" Lindavista "> -->
 		<p class="texto">Dirección <small>*</small></p>
 		<input class="campo" name="direccion" id="direccion" type="text" placeholder=" Calle Leonardo da Vinci, 7, 41092. ">
 		<p class="texto">Cantidad <small>*</small></p>
 		<input class="campo" name="cantidad" id="cantidad" type="text" placeholder="1">
+		<p class="texto">Latitud <small>*</small></p>
+		<input class="campo" name="latitud" id="latitud" type="text" placeholder="latitud">
+		<p class="texto">Longitud <small>*</small></p>
+		<input class="campo" name="longitud" id="longitud" type="text" placeholder="longitud">
 
 		<!-- <input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 "> -->
 	</div>

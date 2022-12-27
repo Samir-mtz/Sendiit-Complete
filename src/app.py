@@ -507,12 +507,8 @@ def lockersAgregar():
         'stylesheet': '../../static/css/AgregarLocker.css',
     }
 
-    try:    
-        list_locations = ModelLocation.consultAll(db)
-        return render_template('AgregarLocker.html', data=DATA, locations=list_locations)
-    except:
-        return render_template('AgregarLocker.html', data=DATA, locations=[])
-
+    return render_template('AgregarLocker.html', data=DATA)
+    
 # Salvar datos post, insertamos, y redireccionamos a admin lockers
 
 # Lockers - actualizar
@@ -523,11 +519,10 @@ def lockersActualizar(id_locker):
         'stylesheet': '../../static/css/EditarLockers.css',
     }
     try:
-        list_locations = ModelLocation.consultAll(db)
         current = ModelLocker.consult_by_id(db, id_locker)
-        return render_template('EditarLockers.html', data=DATA, locations=list_locations, locker=current)
+        return render_template('EditarLockers.html', data=DATA, locker=current)
     except:
-        return render_template('EditarLockers.html', data=DATA, locations=[], locker={})
+        return render_template('EditarLockers.html', data=DATA, locker={})
 
 # Lockers - registrar
 @app.route('/admin/lockers/agregado', methods=['GET', 'POST'])
@@ -535,13 +530,15 @@ def lockersAgregado():
     ubicacion = request.form['ubicacion']
     direccion = request.form['direccion']
     cantidad = request.form['cantidad']
+    latitud = request.form['latitud']
+    longitud = request.form['longitud']
     cantidadS = 5 * int(cantidad)
     cantidadM = 6 * int(cantidad)
     cantidadL = 3 * int(cantidad)
     disponibilidad = cantidadS + cantidadM + cantidadL
 
     try:
-        ModelLocker.register(db, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad)
+        ModelLocker.register(db, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, latitud, longitud)
         flash("Locker con ubicación " + ubicacion + " agregado con éxito")
         return redirect(url_for('lockersAgregar'))
     except:
@@ -554,21 +551,26 @@ def lockersAgregado():
 def lockersActualizado():
     id_recibido = request.form['id']
     direccion = request.form['direccion']
+    latitud = request.form['latitud']
+    longitud = request.form['longitud']
+    print(id_recibido)
+    print(latitud)
+    print(longitud)
     try:
-        id_recibido = request.form['id']
-        ModelLocker.delete(db, id_recibido)
-        flash("Locker eliminado con éxito")
+        ModelLocker.update(db, id_recibido, direccion, latitud, longitud)
+        flash("Locker actualizado con éxito")
         return redirect(url_for('lockers'))
     except:
-        flash("Ha ocurrido un error al eliminar locker")
+        flash("Ha ocurrido un error al actualizar valores del locker")
         return redirect(url_for('lockers'))
 
 
 # Lockers - eliminar
 @app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
 def lockersEliminar():
+    id_recibido = request.form['id']
+    print(id_recibido)
     try:
-        id_recibido = request.form['id']
         ModelLocker.delete(db, id_recibido)
         flash("Locker eliminado con éxito")
         return redirect(url_for('lockers'))
@@ -581,21 +583,27 @@ def lockersEliminar():
 
 @app.route('/admin/lockers/modificar-estado', methods=['GET', 'POST'])
 def lockersModificarEstado():
-    id_recibido = request.form['id']
-    cursor = db.connection.cursor()
-    sql_consulta = f"SELECT activo from lockers WHERE id={id_recibido}"
-    cursor.execute(sql_consulta)
-    estado = cursor.fetchone()
-    estadoFin = -1
-    if estado[0] == 0:
-        estadoFin = 1
-    else:
-        estadoFin = 0
-    sql = f"UPDATE lockers SET activo={estadoFin} WHERE id={id_recibido}"
-    cursor.execute(sql)
-    db.connection.commit()
+    try:
+        id_recibido = request.form['id']
+        cursor = db.connection.cursor()
+        sql_consulta = f"SELECT activo from lockers WHERE id={id_recibido}"
+        cursor.execute(sql_consulta)
+        estado = cursor.fetchone()
+        estadoFin = -1
+        if estado[0] == 0:
+            estadoFin = 1
+        else:
+            estadoFin = 0
+        sql = f"UPDATE lockers SET activo={estadoFin} WHERE id={id_recibido}"
+        cursor.execute(sql)
+        db.connection.commit()
+        
+        flash("Estado de locker modificado con éxito")
+        return redirect(url_for('lockers'))
+    except:
+        flash("Ha ocurrido un error al actualizar el estado del locker")
+        return redirect(url_for('lockers'))
 
-    return redirect(url_for('lockers'))
 
 # Lockers - tabla
 
