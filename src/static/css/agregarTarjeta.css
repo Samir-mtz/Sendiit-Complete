@@ -23,19 +23,25 @@ article {
 	align-items: center;
 }
 
-
 /************************************************************************************
                                         Header
 ************************************************************************************/
 
 .header {
 	display: grid;
-	grid-template-columns: 15% 40% 45%;
+	grid-template-columns: 15% 35% 50%;
 	grid-template-rows: 100%;
+	height:  140px;
 	text-align: center;
 	align-items: center;
 	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
 	/* border: solid 1px red; */
+}
+
+.headersendit{
+	display: flex;
+	flex-direction: column;
+	height: 120px;
 }
 
 /* .header div {
@@ -45,21 +51,63 @@ article {
 .header .logo {
 	display: grid;
 	place-content: center;
-	cursor: pointer;
 }
 
 .header .logo img {
 	height: 85%;
 	width: 85%;
-	transition: all 0.5s;
+	/* border: solid 1px red; */
+}
+.botones {
+	display: grid;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-left: 80px;
+}
+
+.btn-mostrar button {
+	position: relative;
+	top: -30px;
+	font-weight: bolder;
+	font-size: large;
+	margin-left: 20px;
+	width: 200px;
+	color: black;
+	background: #f9d950;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+}
+
+.btn-mostrar button:hover {
+	transform: scale(1.1);
+}
+.tituloForm {
+	color: #f9d950;
+	font-size:25px;
+	font-family:Arial 50px, Helvetica, sans-serif;
+	font-style: italic;
+	letter-spacing: 1px;
+}
+
+.header .logo1 img {
+	height: 100%;
+	width: 40%;
 	/* border: solid 1px red; */
 }
 
-.header .logo img:hover {
-	transform: scale(1.1);
+.header .raya img{
+  height: 20px;
+  width: 90%;
+  opacity: 0.5;
 }
 
-.header .user {
+
+.header .user{
 	display: grid;
 	grid-template-columns: 15% 85%;
 	grid-template-rows: 100%;
@@ -69,51 +117,68 @@ article {
 	text-align: center;
 	align-items: center;
 	margin: 5px;
-	margin-right: 100px;
+	margin-right: 50px;
+	margin-left: 50px;
 	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
 	background: rgb(255, 243, 212);
 }
 
-.header .user .perfil {
+.header .user .perfil{
 	font-size: 300%;
 	color: rgb(16, 73, 158);
-	margin-left: 20px;
+	margin-left: 30px;
 }
 
-.header .user .campos-user {
+.header .user .campos-user{
 	display: grid;
-	grid-template-rows: repeat(2, 1fr);
+	grid-template-rows: repeat(2,1fr);
 	grid-template-columns: 100%;
 }
 
-.header .user .campos-user .name-user {
+.header .user .campos-user .name-user{
 	font-size: large;
 	color: rgb(16, 73, 158);
 }
 
-.header .user .campos-user .btn-user {
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	grid-template-rows: 100%;
-	text-align: center;
-	align-items: center;
+
+/*.header div:hover{
+    border: 1px solid red;
+}
+*/
+.header .user .campos-user .btn-user{
+	display: flex;
+	flex-direction: row;
+	margin-top: 4px;
 }
 
-.header .user .campos-user .btn-user a {
+.header .user .campos-user .btn-user a{
 	text-decoration: none;
 }
 
-.pantalla-user {
+.pantalla-user{
 	border-right: 1px solid rgb(114, 114, 114);
+	border-left: 1px solid rgb(114, 114, 114);
+	width: 200px;
+
 }
 
-.pantalla-user a {
+.pantalla-user a{
 	color: rgb(114, 114, 114);
+
 }
 
-.cerrar-sesion a {
+.cerrar-sesion a{
 	color: rgb(255, 0, 0);
+	margin-left: 40px;
+	width: 300px;
 }
+
+.historial a{
+	color: rgb(114, 114, 114);
+	margin-left: 40px;
+	margin-right: 20px;
+}
+
 
 .header .user .campos-user .btn-user .pantalla-user a:hover {
 	transform: scale(1.1);
@@ -129,8 +194,11 @@ article {
 	box-sizing: border-box;
 }
 .main {
-	width: 100%;
+	height: 100%;
 	font-family: "Oswald", sans-serif;
+	display: flex;
+	flex-direction: row;
+	
 }
 
 /* .main div {
@@ -144,15 +212,14 @@ article {
 }
 
 .contenedor {
-	float: center;
+	float: left;
 	width: 50%;
 	height: 800px;
 	padding: 40px 20px;
-	margin-top: 20px;
+	margin-top: 5px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	/* background-color: aqua; */
 }
 
 /* ---------- Estilos Generales de las Tarjetas ----------*/
@@ -181,7 +248,6 @@ article {
 	justify-content: space-between;
 	box-shadow: 0 10px 10px 0 rgba(90,116,148,0.3);
 }
-
 /* ---------- Tarjeta Delantera ----------*/
 
 .tarjeta .delantera {
@@ -300,7 +366,7 @@ article {
 
 /* ---------- Contenedor Boton ----------*/
 .contenedor-btn .btn-abrir-formulario {
-	width: 150px;
+	width: 50px;
 	height: 50px;
 	font-size: 20px;
 	line-height: 20px;
@@ -309,7 +375,7 @@ article {
 	position: relative;
 	top: -25px;
 	z-index: 3;
-	border-radius: 20px;
+	border-radius: 100%;
 	box-shadow: -5px 4px 8px rgba(24,56,182,0.4);
 	padding: 5px;
 	transition: all .2s ease;
@@ -321,13 +387,13 @@ article {
 	background: #1850b1;
 }
 
-/* .contenedor-btn .btn-abrir-formulario.active {
+.contenedor-btn .btn-abrir-formulario.active {
 	transform: rotate(45deg);
-} */
+}
 
 /* ---------- Formulario Tarjeta ----------*/
 .formulario-tarjeta {
-	background: rgba(0,0,0,0.08);
+	background:rgb(255, 243, 212);
 	width: 100%;
 	max-width: 700px;
 	padding: 150px 30px 30px 30px;
@@ -337,7 +403,6 @@ article {
 	z-index: 1;
 	clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 	transition: clip-path .3s ease-out;
-	/* margin-top: 50px; */
 }
 
 .formulario-tarjeta.active {
@@ -346,7 +411,7 @@ article {
 
 .formulario-tarjeta label {
 	display: block;
-	color: #000000;
+	color: #7d8994;
 	margin-bottom: 5px;
 	font-size: 16px;
 }
@@ -398,6 +463,9 @@ article {
 	position: relative;
 }
 
+.formulario-tarjeta select {
+	-webkit-appearance: none;
+}
 
 .formulario-tarjeta .grupo-select i {
 	position: absolute;
@@ -413,37 +481,33 @@ article {
 
 .formulario-tarjeta .btn-enviar {
 	border: none;
-	width: 100px;
 	padding: 10px;
 	font-size: 22px;
-	color: rgb(41, 41, 41);
-	background: #fae380;
+	color: #fff;
+	background: #f9d950;
+	box-shadow: 2px 2px 10px 0px #f9d950;;
 	cursor: pointer;
 }
 
 .formulario-tarjeta .btn-enviar:hover {
-	background: #ffd724;
-	transition: all 0.8s;
-	transform: scale(1.1);
+	background: #f9d950;
 }
 /* ---------- Cuadrito morado ----------*/
-.contenedor2{
-	float: right;
-	width: 400px;
-	height: 400px;
+.detalles-envio{
+	float: left;
+	width: 40%;
+	height: 600px;
     background-image: linear-gradient(355deg, #a745ff 0, #772efc 25%, #2414ea 50%, #0002d8 75%, #000ac8 100%);
 	border-radius: 50px;
-    margin-left: 240px;
+    margin:auto;
 	align-items: center; 
 	position: relative;
 	display: table-column;
-	
 }
 
 .no-envio{
-	
-	width: 300px;
-	height: 300px;
+	width: 80%;
+	height: 500px;
 	background-image: radial-gradient(circle at 56.16% 120.44%, #e4beff 0, #c1a2ff 25%, #9a84f3 50%, #6f68de 75%, #3e51cb 100%);
 	border-radius: 50px;
 	margin-left: 50px;
@@ -455,14 +519,14 @@ article {
 .envio-texto{
 	color: #fff;
 	font-family: "Oswald", sans-serif;
-	font-size: 25px;
-	width: fit-content;
+	font-size: 40px;
+	width: 80%;
 	height: fit-content;
-	margin-top: 5px;
-	margin-left: 60px;
+	margin-top: 100px;
+	margin-left: 45px;
 	position: absolute;
-	align-items: center;
-	
+	text-align: center;
+
 }
 .btn-pagar button
 {
@@ -497,13 +561,93 @@ article {
 	height: 80px;
 	width: fit-content;
 	position: relative;
+	margin:auto;
 	margin-top: -10px;
 }
-
-.titulo-pagina{
-	color: #f9d950;
-	font-size: 40px;
+/* guardar tarjeta*/
+.mycheckbox{
+	margin-top: 10px;
+	margin-top: -10px;
+	display: flex;
+	flex-direction: column;
 }
+.texto{
+	float: right;
+	position: relative;
+	margin-right:410px;
+	margin-top: 4px;
+}
+.mycheckbox input:checked ~ span::after{
+	background: rgb(12, 167, 12);
+	transform: scale(0.85) translate(35px);
+  }
+  .mycheckbox input:checked ~ span .on{
+	transform: translate(30px);
+	opacity: 1;
+  }
+  
+  .mycheckbox input:checked ~ span .off{
+	transform: translate(30px);
+	opacity: 0;
+  }
+  
+  .mycheckbox input:checked ~ span .on-bell{
+	transform: translate(31px);
+  }
+  
+  .mycheckbox input {
+	display: none;
+  }
+  
+  .mycheckbox span {
+	display: inline-block;
+	width: 60px;
+	height: 30px;
+	border-radius: 30px;
+	background: rgb(187, 186, 186);
+	cursor: pointer;
+	box-shadow: inset 0px 0px 2px rgb(15, 15, 15);
+	position: relative;
+  }
+  
+  .mycheckbox span::after {
+	content: "";
+	display: block;
+	width: 30px;
+	height: 30px;
+	transform: scale(0.85);
+	border-radius: 30px;
+	background: rgb(248, 22, 22);
+	transition: 0.5s;
+	box-shadow: inset 0px 0px 2px rgb(37, 37, 37);
+  }
+  
+  .mycheckbox i {
+	position: relative;
+	left: 7px;
+	top: 7px;
+	z-index: 1;
+	color: white;
+	transition: 0.5s;
+  }
+  
+  .mycheckbox .on {
+	opacity: 0;
+	left: 7px;
+	top: 7px;
+  }
+  
+  .mycheckbox .off {
+	left: 9px;
+	top: 7px;
+  }
+  
+  .mycheckbox .off-bell {
+	left: 5px;
+  }
+
+
+
 
 /************************************************************************************
                                         Footer

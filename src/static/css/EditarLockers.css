@@ -139,7 +139,6 @@ article {
 	transform: scale(1.1);
 }
 
-
 /************************************************************************************
                                         Main
 ************************************************************************************/
@@ -155,18 +154,6 @@ article {
 /* .main div:hover {
 	border: 1px solid red;
 } */
-.main .col-izq{
-	display: grid;
-	grid-template-rows: 90% 10%;
-}
-
-.main .col-izq .contenido {
-	display: grid;
-	grid-template-rows: 20% 60% 20%;
-	text-align: center;
-	place-content: center;
-	align-items: center;
-}
 
 .main .contenido {
 	display: grid;
@@ -196,7 +183,6 @@ article {
 	text-align: center;
 	place-content: center;
 	align-items: center;
-	margin-top: 20px;
 }
 
 .main .locker {
@@ -248,7 +234,7 @@ small {
 	transition: all 0.5s ease 0s;
 }
 
-.btn-confirmar button {
+.btn-guardar button {
 	font-weight: bolder;
 	font-size: large;
 	width: 150px;
@@ -261,7 +247,7 @@ small {
 	transition: all 0.5s ease 0s;
 }
 
-.btn-confirmar button:hover,
+.btn-guardar button:hover,
 .btn-cancelar button:hover {
 	transform: scale(1.1);
 }
@@ -272,21 +258,13 @@ input {
 	border-radius: 8px;
 	border: 1px solid #000;
 }
-
-select {
-	height: 35px;
-	width: 405px;
-	border-radius: 8px;
-	border: 1px solid #000;
-}
-
 /************************************************************************************
                                         Footer
 ************************************************************************************/
 
 .footer {
 	display: grid;
-	grid-template-columns: 40% 60%;
+	grid-template-columns:50% 50%;
 	grid-template-rows: 100%;
 	text-align: center;
 	align-items: center;
@@ -302,7 +280,7 @@ select {
 
 .footer .redes {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(4, 0.1fr);
 	grid-template-rows: 100%;
 }
 

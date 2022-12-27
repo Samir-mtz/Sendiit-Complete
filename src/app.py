@@ -82,69 +82,34 @@ def jsonroutedestino(ubicacion):
 
 @app.route('/')
 def index():
-    DATA = {
-        'title': 'Principal',
-        'stylesheet': 'inicio.css',
-    }
-    return render_template('index.html', data=DATA)
-
-# Ruta raíz
-
+    return render_template('inicio.html')
 
 @app.route('/conocenos')
 def conocenos():
-    DATA = {
-        'title': 'Conócenos',
-        'stylesheet': 'Conocenos.css',
-    }
-    return render_template('conocenos.html', data=DATA)
-
-# Ruta raíz
-
+    return render_template('Conocenos.html')
 
 @app.route('/sucursales')
 def sucursales():
-    DATA = {
-        'title': 'Sucursales',
-        'stylesheet': 'Sucursales.css',
-    }
-    return render_template('Sucursales.html', data=DATA)
-
+    return render_template('Sucursales.html')
 
 @app.route('/sucursales/valle')
 def sucursalesValle():
-    DATA = {
-        'title': 'Colonia del valle',
-        'stylesheet': 'Maps.css',
-    }
-    return render_template('Valle.html', data=DATA)
+    return render_template('Valle.html')
 
 
 @app.route('/sucursales/lindavista')
 def sucursalesLindavista():
-    DATA = {
-        'title': 'Colonia lindavista',
-        'stylesheet': 'Maps.css',
-    }
-    return render_template('Lindavista.html', data=DATA)
+    return render_template('Lindavista.html')
 
 
 @app.route('/sucursales/satelite')
 def sucursalesSatelite():
-    DATA = {
-        'title': 'Satélite',
-        'stylesheet': 'Maps.css',
-    }
-    return render_template('Satelite.html', data=DATA)
+    return render_template('Satelite.html')
 
 
 @app.route('/sucursales/aragon')
 def sucursalesAragon():
-    DATA = {
-        'title': 'Colonia aragón',
-        'stylesheet': 'Maps.css',
-    }
-    return render_template('aragon.html', data=DATA)
+    return render_template('Aragon.html')
 
 #########################################################################################
 ##################################### Usuario cliente ###################################
@@ -169,14 +134,19 @@ def login():
                     confirmed_user = ModelUser.consulta_email(
                         db, logged_user.email)
                     print(confirmed_user.tipo)
+                    
                     if confirmed_user.confirmed:  # En caso de no ser confirmado reenvia un correo para confirmar
+                        
                         if confirmed_user.tipo == 'usuario':
                             # print('si entro')
                             return redirect(url_for('home'))
+                    
                         elif confirmed_user.tipo == 'admin':
                             return redirect(url_for('admin'))
+                    
                         elif confirmed_user.tipo == 'repartidor':
                             return redirect(url_for('homeRepartidor'))
+                    
                         else:
                             # flash("algo salio mal.")
                             return redirect(url_for('index'))
@@ -204,8 +174,6 @@ def login():
 
     else:
         return redirect(url_for('home'))
-
-        # return  render_template('ingresar.html', data=DATA)
 
 # Cerrar sesion
 
@@ -599,16 +567,15 @@ def lockersActualizado():
 # Lockers - eliminar
 @app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
 def lockersEliminar():
-    # ModelLocker.delete(db, id_locker)
-    # return redirect(url_for('lockers'))
-    id_recibido = request.form['id']
-    cursor = db.connection.cursor()
-    # sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+ "' WHERE id="+id_recibido
-    cursor.execute('DELETE FROM lockers WHERE id = '+id_recibido)
-    db.connection.commit()
-    return redirect(url_for('lockers'))
-    # return render_template('AgregarLocker.html', data=DATA)
-
+    try:
+        id_recibido = request.form['id']
+        ModelLocker.delete(db, id_recibido)
+        flash("Locker eliminado con éxito")
+        return redirect(url_for('lockers'))
+    except:
+        flash("Ha ocurrido un error al eliminar locker")
+        return redirect(url_for('lockers'))
+    
 # Lockers - modificar estado
 
 

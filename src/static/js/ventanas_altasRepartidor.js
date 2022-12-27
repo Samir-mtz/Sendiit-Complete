@@ -9,9 +9,7 @@ const modalRechazar = document.querySelector(".modal-btn-rechazar");            
 
 
 
-function abrirAlta(numId){
-    myId = document.querySelector('#estado_id');
-    myId.value = numId;
+function abrirAlta(){
     modalAlta.showModal();
 }
 
@@ -21,9 +19,7 @@ function cerrarAlta(){
 
 
 
-function abrirRechazar(numId2){
-    myId = document.querySelector('#estado_id2');
-    myId.value = numId2;
+function abrirRechazar(){
     modalRechazar.showModal();
 }
 

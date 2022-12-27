@@ -23,9 +23,7 @@ function cerrarAgregar(){
     modalAgregar.close()
 }
 
-function abrirEstado(numId){
-    myId = document.querySelector('#estado_id');
-    myId.value = numId;
+function abrirEstado(){
     modalEstado.showModal();
 }
 
@@ -41,9 +39,7 @@ function cerrarEditar(){
     modalEditar.close();
 }
 
-function abrirEliminar(numId){
-    myId = document.querySelector('#num_id');
-    myId.value = numId;
+function abrirEliminar(){
     modalEliminar.showModal();
 }
 

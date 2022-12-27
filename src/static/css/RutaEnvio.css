@@ -20,6 +20,7 @@ article {
 	grid-template-rows: auto 1fr auto;
 	grid-template-columns: 100%;
 	align-items: center;
+	background-color: aquamarine;
 }
 
 /************************************************************************************
@@ -123,12 +124,13 @@ article {
 ************************************************************************************/
 
 /* Estilos con columnas del cuestionario */
-
 .main {
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	text-align: center;
 	height: 90%;
+	height: fit-content;
+
 }
 .main .cuadro{
 	text-align: left;
@@ -139,32 +141,76 @@ article {
     box-shadow: 3px 3px 3px rgb(218, 218, 218);
     border-radius: 25px;
     margin-left: 30px;
+	margin-top: 20px;
     padding: 20px 20px;
+	width: 370px;
+	height: 460px;
+	font-size: 10px;
 }
-.main .cuadro .cubo{
-	text-align: left;
+.cubo
+{
+	width: 170px;
+	height: 70px;
+	margin-top: 16px;
+	margin-left: 5px;
 }
-.main .cuadro .reloj{
-	text-align: right;
-	
+
+.reloj
+{
+	width: 170px;
+	height: 70px;
+	margin-top: -70px;
+	margin-left: 190px;
+	float: left;
+
 }
-.main .cuadro .Estados{
+.recolectados
+{
+	font-size: 10px;
+	float: right;
+	margin-top: 20px;
+	height: fit-content;
+}
+.ruta
+{
+	font-size: 10px;
+	float: right;
+	margin-top: 20px;
+	margin-right: 30px;
+	height: fit-content;
+}
+.main .nuevo2{
+	display: flex;
+	flex-direction: column;
+	height: 22%;
+	width: 370px;
+
+}
+.Estados{
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	text-align: center;
-	height: 90%;
+	height: 300px;
+}
+.Estados2{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	text-align: center;
+	height: 100px;
 }
 
 .main .iframe{
 	margin-top: 10px;
 	box-shadow: 5px 5px 3px rgb(174, 174, 174);
 }
-.main .cuadro .estado button{
-	margin: 25px 20px 30px 35px;
+.estado button{
+	margin: 4px 0px 25px 80px;/* arriba, derecha, abajo, izquierda */
+	width: 40%;
+	height: 40px;
 	color: black;
-	font-size: large;
+	font-size: 13px;
 	background: #f5cc4d;
-	padding: 12px 12px;
+	padding: 10px 10px;
 	border: none;
 	border-radius: 4px;
 	cursor: pointer;
@@ -172,6 +218,9 @@ article {
 	font-family: "Oswald", sans-serif;
 }
 
+.botonestado{
+	margin-left: -170px;
+}
 
 .main .cuadro .estado button:hover{
 	cursor: pointer;
@@ -179,33 +228,42 @@ article {
 	transform: scale(1.1);
 	box-shadow: 7px 7px 7px black;
 }
-.main .cuadro .Estados .contenedor{
+.main .nuevo
+{
+   display: flex;
+   flex-direction: column;
+   height: 500px;
+   margin-left: -180px;
+}
+.Estados .contenedor{
 	position: relative;
     display: inline-block;
     text-align: center; 
 }
 .main .cuadro .Estados .contenedor .capsula{
-	height: 80px;
-	width: 200px;
+	height: 40px;
+	width: 150px;
 	margin: auto;
 	padding: 10px 5px 10px 5px;
 	top: 40px;
-	left : 40px;
+	left : 70px;
 	z-index: -1;
 }
 .main .cuadro .Estados .contenedor .centrado{
     position: absolute;
     top: 50%;
-    left: 40%;
+    left: 50%;
+	font-size: 13px;
     transform: translate(-50%, -50%);
 }
 .main .cuadro .Estados .contenedor .plus{
-	height: 50px;
-	width: 50px;
+	height: 30px;
+	width: 30px;
 	position: absolute; 
-	top: 25px;
-	right : 10px;
+	top: 15px;
+	right : 80px;
 	z-index: 1;
+	
 }
 .main .cuadro .finalizarRuta button{
 	margin-top: 30px;
@@ -218,7 +276,8 @@ article {
 	cursor: pointer;
 	transition: all 0.5s ease 0s;
 	font-family: "Oswald", sans-serif;
-	position: relative;
+	position: absolute;
+	margin-left: 120px;
 }
 
 .main .cuadro .finalizarRuta button:hover{
@@ -226,6 +285,14 @@ article {
 	transition: all 1s;
 	transform: scale(1.1);
 	box-shadow: 8px 8px 8px black;
+	
+}
+
+.mapa{
+	float: right;
+	margin-right: 25px;
+    margin-top: 20px;
+	height: 460px;
 }
 
 /************************************************************************************
@@ -240,13 +307,15 @@ article {
 	align-items: center;
 	/* border: solid 1px red; */
 	color: #fff;
-	margin-top: 53px;
+	margin-top: 110px;
+
 }
 
 .footer div {
 	/* border: solid 1px red; */
 	background: #212e46;
 	height: 100%;
+
 }
 
 .footer .redes {
