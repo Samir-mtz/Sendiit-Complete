@@ -1,7 +1,7 @@
 {% extends 'base-admin-3level.html' %}
 {% block body_main %}
 <a href="{{url_for('lockers')}}" class="btn-cancelar"><button>Cancelar</button></a>
-<form class="contenido" action="/admin/lockers/agregado" method="POST">
+<form class="contenido" action="/admin/lockers/agregado	" method="POST">
 	<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
 	<div class="titulo-formulario">
 		<div class="img-catalogo"><img src="../../static/img/iconos/locker.png" alt="MiniLocker" width="35%" height="45%" />

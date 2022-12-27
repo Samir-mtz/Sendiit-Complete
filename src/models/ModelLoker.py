@@ -92,33 +92,74 @@ class ModelLocker():
 
     #############Checar disponibilidad del locker
     @classmethod
-    def checkDisponibilidad(self, db, origen, destino, tamano): 
+    def checkDisponibilidad(self, db, origen, destino): 
         try:
             cursor = db.connection.cursor()
-            if tamano == 'pequeno':
-                sql = f"SELECT cantidadS FROM lockers where ubicacion='{origen}'";
-                cursor.execute(sql)
-                origen = cursor.fetchone()
-                sql = f"SELECT cantidadS FROM lockers where ubicacion='{destino}'";
-                cursor.execute(sql)
-                destino = cursor.fetchone()
-            if tamano == 'mediano':
-                sql = f"SELECT cantidadM  FROM lockers where ubicacion='{origen}'";
-                cursor.execute(sql)
-                origen = cursor.fetchone()
-                sql = f"SELECT cantidadM  FROM lockers where ubicacion='{destino}'";
-                cursor.execute(sql)
-                destino = cursor.fetchone()
-            if tamano == 'grande':
-                sql = f"SELECT cantidadL FROM lockers where ubicacion='{origen}'";
-                cursor.execute(sql)
-                origen = cursor.fetchone()
-                sql = f"SELECT cantidadL FROM lockers where ubicacion='{destino}'";
-                cursor.execute(sql)
-                destino = cursor.fetchone()
-            if origen > 0 and destino > 0:
-                return True
+            dict_lockers={}
+            list_lockers=[]
+            sql = f"SELECT cantidadS, cantidadM, cantidadL FROM lockers where ubicacion='{origen}'";
+            cursor.execute(sql)
+            origen = cursor.fetchone()
+            sql = f"SELECT cantidadS, cantidadM, cantidadL FROM lockers where ubicacion='{destino}'";
+            cursor.execute(sql)
+            destino = cursor.fetchone()
+
+            if origen[0] > 0 and destino[0] > 0:
+                list_lockers.append("Chico (20cm, 35cm, 50cm)")
+            if origen[1] > 0 and destino[1] > 0:
+                list_lockers.append("Mediano(45cm, 35cm, 50cm)")
+                
+            if origen[2] > 0 and destino[2] > 0:
+                list_lockers.append("Grande(85cm, 35cm, 50cm)")
+            
+            dict_lockers['tamanos']=list_lockers
+
+            if len(dict_lockers)>0:
+                return dict_lockers
             else:
-                return False
+                return None
         except Exception as ex:
-            raise Exception(ex)    
+            raise Exception(ex)
+    
+    @classmethod
+    def consultAllDisponibles(self, db): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT ubicacion FROM lockers where activo=1";
+            cursor.execute(sql)
+            dict_lockers={}
+            list_lockers=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_lockers.append(row[0])
+            dict_lockers['ubicaciones']=list_lockers
+            # print(dict_lockers)
+            if len(dict_lockers)>0:
+                return dict_lockers
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    @classmethod
+    def consultDestinos(self, db, ubicacion): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT ubicacion FROM lockers where ubicacion!='{ubicacion}' and activo=1";
+            cursor.execute(sql)
+            dict_lockers={}
+            list_lockers=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_lockers.append(row[0])
+            dict_lockers['ubicaciones']=list_lockers
+            # print(dict_lockers)
+            if len(dict_lockers)>0:
+                return dict_lockers
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
