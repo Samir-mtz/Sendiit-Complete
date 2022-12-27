@@ -26,13 +26,7 @@
 			<p class="texto">Dirección <small>*</small></p>
 			<input class="campo" name="direccion" id="direccion" type="text" value="{{ locker.direccion }}">
 			<p class="texto">Cantidad <small>*</small></p>
-			<input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 1 " value="{{ locker.cantidadM / 5 }}" disabled>
-			<p class="texto">Modelo <small>*</small></p>
-			<select name="modelo-puertas" id="modelo-puertas" disabled>
-				<option value="8" {% if locker.categoria == 8 %} selected {% endif %} >8 Puertas</option>
-				<option value="12" {% if locker.categoria == 12 %} selected {% endif %}>12 Puertas</option>
-				<option value="13" {% if locker.categoria == 13 %} selected {% endif %}>13 Puertas</option>
-			</select>
+			<input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 1 " value="{{ locker.cantidadS / 5 }}" disabled>			
 			<!-- <input class="campo" name="cantidad" id="cantidad" type="text" placeholder=" 5 "> -->
 		</div>
 		<div class="botones-formulario">

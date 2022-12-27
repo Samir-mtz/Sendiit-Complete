@@ -2,10 +2,10 @@ from .entities.Locker import Locker
 class ModelLocker():
 
     @classmethod
-    def register(self, db, locker):
+    def register(self, db, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad):
         try:
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO lockers (ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, enviados, recibidos, registrado) VALUES ('{locker.ubicacion}','{locker.direccion}',{locker.cantidadS}, {locker.cantidadM}, {locker.cantidadL},{locker.cantidad}, 0, 0, CURDATE())" #Cantidad va dos veces ya que en un inicio la disponibilidad es la misma
+            sql = f"INSERT INTO lockers (ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, enviados, recibidos, registrado) VALUES ('{ubicacion}','{direccion}',{cantidadS}, {cantidadM}, {cantidadL},{disponibilidad}, 0, 0, CURDATE())" #Cantidad va dos veces ya que en un inicio la disponibilidad es la misma
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:
@@ -60,10 +60,10 @@ class ModelLocker():
     
 
     @classmethod
-    def update(self, db, id, locker): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+    def update(self, db, id, direccion): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
         try:
             cursor = db.connection.cursor()
-            sql = "UPDATE lockers SET ubicacion='"+locker.ubicacion+"', direccion='"+locker.direccion+"', cantidadS="+locker.cantidadS+",cantidadM="+locker.cantidadM+", cantidadL="+locker.cantidadL+" WHERE id="+id+";"
+            sql = 'UPDATE lockers SET direccion = "' + direccion +'" WHERE id =' + id
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

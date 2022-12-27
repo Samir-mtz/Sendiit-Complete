@@ -12,8 +12,18 @@
   <div class="agregar">
     <button onclick="abrirAgregar()" class="btn3 btn-ventana-agregar">AGREGAR LOCKER</button>
   </div>
+  {% with messages = get_flashed_messages()[-1]%}
+
+  {% if messages %}
+  <br />
+  <div class="alert alert-info" role="alert">
+    {{ messages }}
+  </div>
+  {% endif %}
+  {% endwith %}
 </div>
-<div class="datos-tabla">
+
+<div class="datos-tabla" style="overflow:scroll;">
   <table align="center">
     <thead>
       <!-- Encabezados de la tabla -->
@@ -41,35 +51,36 @@
       <td>{{ locker.cantidadS }}</td>
       <td>{{ locker.cantidadM }}</td>
       <td>{{ locker.cantidadL }}</td>
-      
+
       <!-- <form action="/admin/lockers" method="GET"> -->
-        {% if locker.activo == 1%}
-        <td><button onclick="abrirEstado('{{locker.id}}')" class="btn-estado btn-ventana-estado ocultar"><img
-              src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
-        {% endif %}
-        {% if locker.activo == 0%}
-        <td><button onclick="abrirEstado('{{locker.id}}')" class="btn-estado btn-ventana-estado ocultar" style="opacity: 0.5"><img
-              src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
-        {% endif %}
+      {% if locker.activo == 1%}
+      <td><button onclick="abrirEstado('{{locker.id}}')" class="btn-estado btn-ventana-estado ocultar"><img
+            src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+      {% endif %}
+      {% if locker.activo == 0%}
+      <td><button onclick="abrirEstado('{{locker.id}}')" class="btn-estado btn-ventana-estado ocultar"
+          style="opacity: 0.5"><img src="../static/img/iconos/checked.png" width="40" height="40" /></button></td>
+      {% endif %}
       <!-- </form> -->
-      
+
       <!-- <form action="/admin/lockers/actualizar" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">  -->
-        <!-- <input type="number" name="id" value="{{ locker.id }}" hidden> --> 
-        <!-- <td><button onclick="abrirEditar()" class="btn-editar btn-ventana-editar"><img
+      <!-- <input type="number" name="id" value="{{ locker.id }}" hidden> -->
+      <!-- <td><button onclick="abrirEditar()" class="btn-editar btn-ventana-editar"><img
           src="../static/img/iconos/edit.png" width="40" height="40" /></button></td> -->
-        <!-- <td><a href="#"><button class="btn-editar btn-ventana-editar"><img
+      <!-- <td><a href="#"><button class="btn-editar btn-ventana-editar"><img
               src="../static/img/iconos/edit.png" width="40" height="40" /></button></a></td>
       </form> -->
-      <td><a href="{{ url_for('lockersActualizar', id_locker = locker.id) }}"><button class="btn-editar btn-ventana-editar"><img
-        src="../static/img/iconos/edit.png" width="40" height="40" /></button></a></td>
-        
-        <td>
-          <button onclick="abrirEliminar('{{locker.id}}')" class="btn-eliminar btn-ventana-eliminar">
+      <td><a href="{{ url_for('lockersActualizar', id_locker = locker.id) }}"><button
+            class="btn-editar btn-ventana-editar"><img src="../static/img/iconos/edit.png" width="40"
+              height="40" /></button></a></td>
+
+      <td>
+        <button onclick="abrirEliminar('{{locker.id}}')" class="btn-eliminar btn-ventana-eliminar">
           <img src="../static/img/iconos/close.png" width="40" height="40" /></button>
-        </td>
-       
-        <!-- <td><a href="{{ url_for('lockersEliminar', id_locker = locker.id) }}"></a><button class="btn-eliminar btn-ventana-eliminar"><img
+      </td>
+
+      <!-- <td><a href="{{ url_for('lockersEliminar', id_locker = locker.id) }}"></a><button class="btn-eliminar btn-ventana-eliminar"><img
           src="../static/img/iconos/close.png" width="40" height="40" /></button></a></td>
            -->
       <!-- <form action="/admin/lockers/eliminar" method="POST">
