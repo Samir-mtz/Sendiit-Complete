@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Nombre de la pagina -->
-	<title>Sendiit - Registro Nuevo Usuario</title>
+	<!-- Titulo de pagina -->
+	<title>SENDIIT - REGISTRAR</title>
 	<!-- Favicon de la empresa -->
 	<link href="../static/img/empresa/favicon.png" rel="icon" />
 	<!-- Estilos -->
@@ -15,163 +15,171 @@
 </head>
 
 <body>
-	<article>
-		<header class="header">
-			<!-- Logo de la empresa -->
-			<div class="logo">
-				<a href="{{ url_for('index') }}">
-					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
-				</a>
+	<!-- Header -->
+	<header class="header">
+		<div class="logo">
+			<a href="{{ url_for('index') }}">
+				<img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+			</a>
+		</div>
+		<div class="links">
+			<div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+			<div class="link-header"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+			<div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
+		</div>
+		<div class="botones">
+			<a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+			<a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+			<a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
+	</header>
+
+	<!-- Main -->
+	<main class="main">
+		<section class="izq">
+			<div class="titulo-logo">
+				<img src="../static/img/empresa/logo.png" alt="Logo empresa" />
 			</div>
-			<!-- Barra de navegacion dentro de la pagina -->
-			<div class="secciones">
-				<div class="nav-contenido">
-					<a href="{{ url_for('index') }}">INICIO</a>
-				</div>
-				<div class="nav-contenido">
-					<a href="{{ url_for('sucursales') }}">SUCURSALES</a>
-				</div>
-				<div class="nav-contenido">
-					<a href="{{ url_for('conocenos') }}">CONÓCENOS</a>
-				</div>
+
+			<div class="titulo-pagina">
+				<h1>REGISTRO</h1>
 			</div>
-			<!-- Botones de acciones del sistema -->
-			<div class="botones">
-				<div class="nav-botones">
-					<a href="{{ url_for('login') }}" class="btn btn-enviar"><button>ENVIAR</button></a>
-				</div>
-				<div class="nav-botones">
-					<a href="{{ url_for('login') }}" class="btn btn-ingresar"><button>INGRESAR</button></a>
-				</div>
-				<div class="nav-botones">
-					<a href="{{ url_for('register') }}" class="btn btn-registarse"><button>REGISTRARSE</button></a>
-				</div>
+
+			<div class="descripcion-pagina">
+				<h6>Registro de un nuevo usuario</h6>
 			</div>
-		</header>
-		<main class="main">
-			<div class="contenido">
-				<div class="titulo-pagina">
-					<img src="../static/img/empresa/logo.png" alt="" class="logo-encabezado" />
-					<br />
-					<h2>REGISTRO</h2>
-					<h5>Registro de nuevo usuario</h5>
-				</div>
+
+			<div class="formulario-registrar">
 				<form action="/registro" class="formulario" id="formulario" method="POST">
 					{% with messages = get_flashed_messages() %}
-
-					{% if messages %}
-					<br />
-					{% for message in messages %}
-					{%if message == 'Ese email ya esta registrado'%}
-					<div>
-						<strong style="color: #e41f1a;">{{ message }}</strong>
-					</div>
-					{% endif %}
-					{% endfor %}
-					{% endif %}
-
+						{% if messages %}
+							<br />
+							{% for message in messages %}
+								{%if message == 'El correo ingresado ya ha sido registrado'%}
+									<div>
+										<strong style="color: #e41f1a;">{{ message }}</strong>
+									</div>
+								{% endif %}
+							{% endfor %}
+						{% endif %}
 					{% endwith %}
 					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-					<div>
-						<!-- Grupo: Nombre -->
-						<div class="form-control">
-							<label for="nombre">Nombre <label style="color: red;">*</label></label>
-							<input type="text" name="nombre" id="nombre" placeholder="Juan Perez" />
-							<i class="fas fa-check-circle"></i>
-							<i class="fas fa-exclamation-circle"></i><br>
-							<small>Error message</small>
+					<div class="campos">
+						<div class="col-izq">
+							<!-- izquierda -->
+							<!-- Grupo: Nombre -->
+							<div class="form-control campo">
+								<label for="nombre">Nombre <label style="color: red;">*</label></label>
+								<input type="text" name="nombre" id="nombre" placeholder="Juan Pérez" autocomplete="off" />
+								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-exclamation-circle"></i>
+								<small>Mensaje de error</small><br>
+							</div>
+							<!-- Grupo: Correo Electronico -->
+							<div class="form-control campo">
+								<label for="email">E-mail <label style="color: red;">*</label></label>
+								<input type="email" name="email" id="email" placeholder="juanperez@gmail.com" autocomplete="off" />
+								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-exclamation-circle"></i>
+								<small>Mensaje de error</small><br>
+							</div>
+							<!-- Grupo: Contraseña -->
+							<div class="form-control campo">
+								<label for="password">Contraseña <label style="color: red;">*</label></label>
+								<input type="password" name="password" id="password" placeholder="$1234567Abc" autocomplete="off" />
+								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-exclamation-circle"></i>
+								<small>Mensaje de error</small><br>
+							</div>
+							<!-- Grupo: Confirmar Contraseña -->
+							<div class="form-control campo">
+								<label for="password">Confirmar Contraseña <label style="color: red;">*</label></label>
+								<input type="password" name="password_confirm" id="password_confirm" placeholder="$1234567Abc"
+									autocomplete="off" />
+								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-exclamation-circle"></i>
+								<small>Mensaje de error</small><br>
+							</div>
 						</div>
+						<div class="col-der">
+							<!-- Grupo: Telefono -->
+							<div class="form-control campo">
+								<label for="telefono">Teléfono <label style="color: red;">*</label></label>
+								<input type="text" name="telefono" id="telefono" placeholder="5578963158" autocomplete="off" />
+								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-exclamation-circle"></i>
+								<small>Mensaje de error</small><br>
+							</div>
+							<!-- Grupo: Dirección -->
+							<div class="form-control campo">
+								<label for="direccion">Dirección <label style="color: red;">*</label></label>
+								<input type="text" name="direccion" id="direccion" placeholder="Casa 1 Calle 2 C.P. 09214"
+									autocomplete="off" />
+								<i class="fas fa-check-circle"></i>
+								<i class="fas fa-exclamation-circle"></i>
+								<small>Mensaje de error</small><br>
+							</div>
 
-						<!-- Grupo: Correo Electronico -->
-						<div class="form-control">
-							<label for="email">Email <label style="color: red;">*</label></label>
-							<input type="email" name="email" id="email" placeholder="juanperez@gmail.com" />
-							<i class="fas fa-check-circle"></i>
-							<i class="fas fa-exclamation-circle"></i><br>
-							<small>Error message</small>
-						</div>
-
-						<!-- Grupo: Contraseña -->
-						<div class="form-control">
-							<label for="password">Contraseña <label style="color: red;">*</label></label>
-							<input type="password" name="password" id="password" placeholder="$1234567Abc" />
-							<i class="fas fa-check-circle"></i>
-							<i class="fas fa-exclamation-circle"></i><br>
-							<small>Error message</small>
-						</div>
-
-						<!-- Grupo: Contraseña 2 -->
-						<div class="form-control">
-							<label for="password_confirm">Confirmar Contraseña <label style="color: red;">*</label></label>
-							<input type="password" name="password_confirm" id="password_confirm" placeholder="$1234567Abc" />
-							<i class="fas fa-check-circle"></i>
-							<i class="fas fa-exclamation-circle"></i><br>
-							<small>Error message</small>
+							<!-- Grupo: Terminos y condiciones -->
+							<div class="form-control terminosCondiciones">
+								<label for="username">Al dar clic en "Crear Cuenta" acepta los
+									<a href="../static/docs/Terminos_Y_Condiciones.pdf" class="terminos" target="_blank">Terminos y
+										Condiciones</a>.</label>
+							</div>
+							<!-- Grupo: Extra -->
+							<div class="form-control campo">
+								<!-- <label for="password">Contraseña <label style="color: red;">*</label></label>
+                <input type="password" name="password" id="password" placeholder="$1234567Abc" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br> -->
+							</div>
 						</div>
 					</div>
-					<div>
-						<!-- Grupo: Teléfono -->
-						<div class="form-control">
-							<label for="telefono">Teléfono <label style="color: red;">*</label></label>
-							<input type="text" name="telefono" id="telefono" placeholder="4491234567" />
-							<i class="fas fa-check-circle"></i>
-							<i class="fas fa-exclamation-circle"></i><br>
-							<small>Error message</small>
-						</div>
-						<!-- Grupo: Direccion -->
-						<div class="form-control">
-							<label for="direccion">Dirección <label style="color: red;">*</label></label>
-							<input type="text" name="direccion" id="direccion" placeholder="Casa 1 Calle 2 C.P. 09214" />
-							<i class="fas fa-check-circle"></i>
-							<i class="fas fa-exclamation-circle"></i><br>
-							<small>Error message</small>
-						</div>
-						<!-- Grupo: Terminos y condiciones -->
-						<br>
-						<div class="form-control">
-							<label for="username">Al dar clic en "Crear Cuenta" acepta los
-								<a href="../static/docs/Terminos_Y_Condiciones.pdf" class="terminos" target="_blank">Terminos y
-									Condiciones</a>.</label>
-						</div>
+					<!-- Grupo: Boton ingresar -->
+					<div class="form-control">
+						<button type="submit" class="btn-form registrar">Crear Cuenta</button>
 					</div>
-					<button type="submit" class="btn-form">Crear Cuenta</button>
 				</form>
+
 				<!-- Grupo: Pregunta externa -->
-				<div class="formulario__grupo formulario__grupo-btn-enviar">
-					<div>
-						<h1 class="pregunta"><img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" />¿Ya tienes
-							cuenta?<img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" /></h1>
-					</div>
-					<a href="{{ url_for('login') }}"><button type="submit" class="btn-ingresar-extra">Ingresa</button></a>
+				<div class="pregunta">
+					<br><br>
+					<h6 class="pregunta"><img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" />¿Ya tienes
+						cuenta?<img src="../static/img/iconos/raya.png" style="width: 15%;" alt="" /></h6>
+					<br>
 				</div>
+
+				<!-- Grupo: Boton Registrar -->
+				<div class="ingresar">
+					<br><br><br>
+					<a href="{{ url_for('login') }}" class="btn-form">Ingresar</a>
+				</div>
+
 			</div>
-			<div class="repartidor">
-				<img class="img-repartidor" src="../static/img/repartidores/Repartidor_5.png" alt="" />
+
+		</section>
+		<section class="der">
+			<div class="img-repartidor">
+				<img src="../static/img/repartidores/Repartidor_5.png" alt="Imagen mujer" />
 			</div>
-		</main>
-		<footer class="footer">
-			<div class="derechos">
-				<div class="copyright">
-					<span>&copy;2022 México. Todos los derechos reservados.</span>
-				</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="derechos">
+			<div class="copyright">
+				<span>&copy;2022 México. Todos los derechos reservados.</span>
 			</div>
-			<div class="redes">
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-				</div>
-			</div>
-		</footer>
-	</article>
-	<script src="../static/js/validacionesRegistro.js"></script>
+		</div>
+		<div class="redes">
+			<a href="#"><i class="red bi bi-facebook"></i></a>
+			<a href="#"><i class="red bi bi-instagram"></i></a>
+			<a href="#"><i class="red bi bi-telegram"></i></a>
+			<a href="#"><i class="red bi bi-envelope-fill"></i></a>
+		</div>
+	</footer>
+	<script src="../static/js/validaciones/registrar.js"></script>
 </body>
 
 </html>

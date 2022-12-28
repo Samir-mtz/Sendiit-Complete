@@ -141,7 +141,7 @@ def login():
                         
                         if confirmed_user.tipo == 'usuario':
                             # print('si entro')
-                            return redirect(url_for('home'))
+                            return redirect(url_for('homeCliente'))
                     
                         elif confirmed_user.tipo == 'admin':
                             return redirect(url_for('admin'))
@@ -175,7 +175,7 @@ def login():
             return render_template('ingresar.html')
 
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('homeCliente'))
 
 # Cerrar sesion
 
@@ -188,18 +188,14 @@ def logout():
 # Home principal de usuario
 
 
-@app.route('/home')
+@app.route('/homeCliente')
 @login_required
-def home():
-    DATA = {
-        'title': 'Home',
-        'stylesheet': 'bienvenida.css',
-    }
+def homeCliente():
     # # print(current_user)
     user = ModelUser.consulta_email(db, current_user.email)
     print(user.tipo)
     if user.tipo == 'usuario':
-        return render_template('home.html', data=DATA)
+        return render_template('InicioCliente.html')
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     elif user.tipo == 'repartidor':
@@ -247,15 +243,7 @@ def register():
 
                 # login_user(execution) # Marco sus datos como logeado para que vea verificacion
                 logout_user()
-                return render_template('validacionCorreo.html',
-                                       data={
-                                           'title': 'Confirmacion de correo',
-                                           'stylesheet': 'validacionCorreo.css',
-                                       },
-                                       nombre=user.nombre,
-                                       email=user.email
-                                       )
-
+                return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)
             else:
                 flash("Algo salió mal, intenta de nuevo")
                 return render_template('ingresar.html',
@@ -298,12 +286,7 @@ def confirm_email(token):
             ModelUser.confirm_user(db, email)
             # flash('Cuenta Confirmada, inicia sesión.', 'success')
             # return redirect(url_for('login')) # Pantalla de succes confirmation!
-            return render_template('ingresarVerificado.html',
-                                   data={
-                                       'title': 'Sucess',
-                                       'stylesheet': 'ingresarVerificado.css',
-                                   }
-                                   )  # En caso de cuenta creada pero no confirmada
+            return render_template('ingresarVerificado.html')  # En caso de cuenta creada pero no confirmada
 
     else:  # Codigo expiro
         return render_template('tokenError.html',
