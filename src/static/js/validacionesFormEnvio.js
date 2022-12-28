@@ -17,7 +17,8 @@ const campos = {
 	telefono: false,
 	origen: false,
 	destino: false,
-	tamano: false
+	tamano: false,
+	peso: false
 }
 
 inputs.forEach((input) => {
@@ -49,7 +50,6 @@ function precio(){
 	let inicio = tamano.options[tamano.selectedIndex].value;
 	let extra = fragil.options[fragil.selectedIndex].text;
 
-	console.log(extra);
 	let valor = 80.00;
 	if(inicio=="Mediano(45cm, 35cm, 50cm)"){
 		valor +=25.50;
@@ -64,10 +64,11 @@ function precio(){
 	const iva = document.getElementById("ivaFinal");
 	let precioF = document.getElementById("precioFinal");
 	let iva1 = valor * 0.16;
-	precio.innerHTML= "$" + valor + "MXN";
-	iva.innerHTML = "$" + iva1 + "MXN";
+	
+	precio.innerHTML= "$" + valor.toFixed(2); + "MXN";
+	iva.innerHTML = "$" + iva1.toFixed(2); + "MXN";
 	let total =iva1 + valor;
-	precioF.innerHTML = "$" + total + "MXN";
+	precioF.innerHTML = "$" + total.toFixed(2); + "MXN";
 }
 
 function tamanos(){
@@ -142,9 +143,8 @@ function checkInputs() {
 	const nombreValue = nombre.value.trim();
 	const emailValue = email.value.trim();
 	const telefonoValue = telefono.value.trim();
-	const origenValue = origen.value.trim();
-	const destinoValue = destino.value.trim();
-	const tamanoValue = tamano.value.trim();
+	const pesoValue = peso.value.trim();
+	
 
 	// Comparacion del nombre
 	if (nombreValue === "") {
@@ -180,6 +180,18 @@ function checkInputs() {
 	} else {
 		setSuccessFor(telefono);
 		campos['telefono'] = true;
+	}
+	
+	// Comparacion del peso
+	if (pesoValue === "") {
+		setErrorFor(peso, "No puede dejar el Peso en blanco.");
+		campos['telefono'] = false;
+	} else if (!comprobarPeso(pesoValue)) {
+		setErrorFor(peso, "El peso debe de contener unicamente valores numericos. Los pesos validos son entre 1 y 30 kg. Use 2 decimales de precisión");
+		campos['telefono'] = false;
+	} else {
+		setSuccessFor(peso);
+		campos['peso'] = true;
 	}
 	//comprobar origen
 	let opcion = origen.selectedIndex;
@@ -234,6 +246,11 @@ function comprobarEmail(email) {
 
 function comprobarTelefono(telefono) {
     return /^[1-9]{2}[0-9]{8}$/.test(telefono);
+}
+
+function comprobarPeso(peso) {
+	// console.log(peso);
+    return /(^[1-9].?([0-9]{2})?$|^1[1-9].?([0-9]{2})?$|^2[1-9].?([0-9]{2})?$|^30$)/.test(peso);
 }
 
 form.addEventListener("submit", (e) => {

@@ -225,6 +225,20 @@ map.on('load', () => {
                     'type': 'Feature',
                     'properties': {
                         'description':
+                            '<strong>Colonia del Valle</strong><p>CDMX</p>',
+                        'icon': 'post'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [-99.16479674838662, 19.38370135021779]
+                    }
+                }
+                ,
+							
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
                             '<strong>Villa de Aragón</strong><p>CDMX</p>',
                         'icon': 'post'
                     },
@@ -269,6 +283,9 @@ coordinatesPoints.set('Lindavista',[-99.13241777989998, 19.503812618644453])
             
                 
 coordinatesPoints.set('Sátelite',[-99.23202789711353, 19.510418491079623])
+            
+                
+coordinatesPoints.set('Colonia del Valle',[-99.16479674838662, 19.38370135021779])
             
                 
 coordinatesPoints.set('Villa de Aragón',[-99.0612996325149, 19.46156136421477])
