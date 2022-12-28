@@ -155,8 +155,7 @@ def login():
                     else:
                         if confirmed_user.tipo == 'usuario':
                             logout_user()
-                            token = generate_confirmation_token(
-                                logged_user.email)
+                            token = generate_confirmation_token(logged_user.email)
                             return redirect(url_for('resend_confirmation', email=user.email))
                         else:
                             flash("Su usuario ha sido deshabilitado")
@@ -171,7 +170,6 @@ def login():
                 return render_template('ingresar.html')
 
         else:  # Se pide por get
-
             return render_template('ingresar.html')
 
     else:
@@ -186,12 +184,9 @@ def logout():
     return redirect(url_for('index'))
 
 # Home principal de usuario
-
-
 @app.route('/homeCliente')
 @login_required
 def homeCliente():
-    # # print(current_user)
     user = ModelUser.consulta_email(db, current_user.email)
     print(user.tipo)
     if user.tipo == 'usuario':
@@ -234,29 +229,20 @@ def register():
 
                 msg = Message(
                     subject,
-                    # Cambiar al correo de usuario
                     recipients=[''+request.form['email']],
                     html=template,
                     sender="sendiitadsscrumios@gmail.com"
                 )
                 mail.send(msg)
-
                 # login_user(execution) # Marco sus datos como logeado para que vea verificacion
                 logout_user()
                 return render_template('validacionCorreo.html', nombre=user.nombre, email=user.email)
             else:
                 flash("Algo salió mal, intenta de nuevo")
-                return render_template('ingresar.html',
-                                       data={
-                                           'title': 'Iniciar sesion',
-                                           'stylesheet': 'ingresar.css',
-                                       }
-                                       )
-
+                return render_template('ingresar.html')
         else:
             flash("El correo ingresado ya ha sido registrado")
             return render_template('registrar.html')
-
     else:
         return render_template('registrar.html')
 
@@ -267,27 +253,21 @@ def register():
 def confirm_email(token):
     try:
         email = confirm_token(token)  # Regresa el email!
-
     except:
-        flash('Algo salió mal. Por favor intenta de nuevo')
         # En caso de cuenta creada pero no confirmada
+        flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
 
     # print(email)
     user = ModelUser.consulta_email(db, email)
     if user != None:
-
         if user.confirmed:
             flash('Tu cuenta ya está confirmada. Por favor inicia sesión.', 'success')
             return redirect(url_for('login'))
-
         else:
-            print('llego')
+            # print('llego')
             ModelUser.confirm_user(db, email)
-            # flash('Cuenta Confirmada, inicia sesión.', 'success')
-            # return redirect(url_for('login')) # Pantalla de succes confirmation!
             return render_template('ingresarVerificado.html')  # En caso de cuenta creada pero no confirmada
-
     else:  # Codigo expiro
         return render_template('tokenError.html')  # En caso de cuenta creada pero no confirmada
 
@@ -311,7 +291,7 @@ def resend_confirmation(email):
     )
     mail.send(msg)
 
-    flash('Tu cuenta sigue son confirmar, hemos enviado un nuevo correo de confirmación.')
+    flash('Tu cuenta sigue sin confirmar, hemos enviado un nuevo correo de confirmación.')
     return render_template('ingresar.html')
 
 
@@ -342,14 +322,7 @@ def resend_email():
         mail.send(msg)
 
         flash('Se ha enviado un nuevo correo de confirmación.')
-        return render_template('validacionCorreo.html',
-                               data={
-                                   'title': 'Confirmacion de correo',
-                                   'stylesheet': 'validacionCorreo.css',
-                               },
-                               nombre=nombre,
-                               email=email
-                               )
+        return render_template('validacionCorreo.html', nombre=nombre, email=email)
     except:  # Intenta ingresar con un correo no registrado
         flash('Error. Usuario no registrado')
         return redirect(url_for('register'))
@@ -388,10 +361,11 @@ def tarjetasActualizado():
     id_recibido = request.form['id']
     nombre = request.form['nombre']
     numtarjeta = request.form['numtarjeta']
+    expiracion = request.form['mes'] + "-" + request.form['year']
     cvv = request.form['cvv']
     
     try:
-        ModelTarjeta.update(db, id_recibido, nombre, numtarjeta, cvv)
+        ModelTarjeta.update(db, id_recibido, nombre, numtarjeta, expiracion, cvv)
         flash("Tarjeta actualizado con éxito")
         return redirect(url_for('userTarjetas'))
     except:

@@ -8,10 +8,12 @@
   <!-- Definiciond el titulo -->
   <title>Sendiit- Inicio cliente</title>
   <!-- Favicon de la empresa -->
-  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <link href="../../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="../static/css/main-principal.css" />
-  <link rel="stylesheet" href="../static/css/InicioCliente.css" />
+  <!-- <link rel="stylesheet" href="../../static/css/main-principal.css" /> -->
+  <!-- <link rel="stylesheet" href="../../static/css/InicioCliente.css" /> -->
+  <link rel="stylesheet" href="../../static/css/agregarTarjeta.css" />
+
   <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
 
   <!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
@@ -24,32 +26,21 @@
     <header class="header">
       <!-- Logo de la empresa -->
       <div class="logo">
-        <a href="/">
-          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        <a href="{{ url_for('index') }}">
+          <img src="../../static/img/empresa/logo.png" alt="Logo de la empresa" />
         </a>
       </div>
-      <!-- Barra de navegacion dentro de la pagina -->
-      <div class="secciones">
-        <div class="nav-contenido">
-          <a href="/">INICIO</a>
-        </div>
-        <div class="nav-contenido">
-          <a href="/sucursales">SUCURSALES</a>
-        </div>
-        <div class="nav-contenido">
-          <a href="/conocenos">CONÓCENOS</a>
-        </div>
-      </div>
-      <!-- Botones de acciones del sistema -->
-      <div class="botones">
-        <div class="nav-botones">
-          <a href="{{ url_for('formularioEnvio') }}" class="btn btn-enviar"><button>ENVIAR</button></a>
-        </div>
-        <div class="nav-botones">
-          <a href="{{ url_for('agregarTarjeta') }}" class="btn btn-ingresar"><button>AGREGAR TARJETA</button></a>
-        </div>
-        <div class="nav-botones">
-          <a href="{{ url_for('userTarjetas') }}" class="btn btn-registarse"><button>Administrar tarjetas</button></a>
+      <div class="titulo-pagina">EDITAR TARJETA</div>
+      <div class="user">
+        <div class="perfil"><i class="bi bi-person-circle"></i></div>
+        <div class="campos-user">
+          <div class="name-user">{{ current_user.nombre }}</div>
+          <div class="btn-user">
+            <div class="pantalla-user"><a href="{{ url_for('homeCliente') }}">Inicio</a></div>
+            <div class="pantalla-user"><a href="#">Historial</a></div>
+            <div class="pantalla-user"><a href="#">Rastrear</a></div>
+            <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
+          </div>
         </div>
       </div>
     </header>
@@ -67,16 +58,45 @@
             </div>
           </div>
           <div class="datos-locker">
-            <p class="texto">Nombre <small>*</small></p>
+            <p class="texto">Nombre <small>*</small></p><br>
             <input class="campo" name="nombre" id="nombre" type="text" value="{{ tarjeta.nombre }}">
 
-            <p class="texto">Numero de tarjeta <small>*</small></p>
+            <p class="texto">Numero de tarjeta <small>*</small></p><br>
             <input class="campo" name="numtarjeta" id="numtarjeta" type="text" value="{{ tarjeta.numtarjeta}}">
 
-            <p class="texto">Expiracion <small>*</small></p>
-            <input class="campo" name="expiracion" id="expiracion" type="text" value="{{ tarjeta.expiracion}}" disabled>
-
-            <p class="texto">CVV <small>*</small></p>
+            <div class="grupo expira">
+              <label for="selectMes">Expiracion</label>
+              <div class="flexbox">
+                <div class="grupo-select">
+                  <select name="mes" id="selectMes">
+                    {% for i in range(1,11) %}
+                      <option> {{ i }} </option>
+                    {% endfor %}
+                    <option selected disabled>
+                      {{ tarjeta.expiracion[0] }}
+                      {% if tarjeta.expiracion[1] != '-' %}
+                        {{ tarjeta.expiracion[1] }}
+                      {% endif %}
+                    </option>
+                  </select>
+                  <!-- <i class="fas fa-angle-down"></i> -->
+                </div>
+                  <select name="year" id="selectYear">
+                    {% for i in range(2022,2031) %}
+                    <option> {{ i }} </option>
+                    {% endfor %}
+                    <option selected disabled>
+                      {% if tarjeta.expiracion[2] == '-' %}
+                        {{ tarjeta.expiracion[3:] }}
+                      {% else %}
+                        {{ tarjeta.expiracion[2:] }}
+                      {% endif %}
+                    </option>
+                  </select>
+                  <!-- <i class="fas fa-angle-down"></i> -->
+                </div>
+            </div>
+            <p class="texto">CVV <small>*</small></p><br>
             <input class="campo" name="cvv" id="cvv" type="text" value="{{ tarjeta.cvv }}">
 
           </div>
@@ -85,6 +105,8 @@
           </div>
         </form>
         <a href="{{ url_for('userTarjetas') }}" class="btn-cancelar"><button>Cancelar</button></a>
+        <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+    <script src="../../static/js/agregarTarjeta.js"></script>
     </main>
 
 </body>

@@ -46,10 +46,10 @@ class ModelTarjeta():
             raise Exception(ex)
     
     @classmethod
-    def update(self, db, id_recibido, nombre, numtarjeta, cvv): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+    def update(self, db, id_recibido, nombre, numtarjeta, expiracion, cvv): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
         try:
             cursor = db.connection.cursor()
-            sql = 'UPDATE tarjetas SET nombre="'+ nombre +'", numtarjeta="'+ numtarjeta +'", cvv="'+ cvv +'" where id =' + id_recibido
+            sql = 'UPDATE tarjetas SET nombre="'+ nombre +'", numtarjeta="'+ numtarjeta +'", expiracion="'+expiracion+'" , cvv="'+ cvv +'" where id =' + id_recibido
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

@@ -13,7 +13,7 @@
 	<link rel="stylesheet" href="../static/css/main-principal.css" />
 	<link rel="stylesheet" href="../static/css/InicioCliente.css" />
 	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-	
+
 	<!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
 	<link rel="stylesheet" href="../static/css/footer-principal.css" />
 	<link rel="stylesheet" href="../static/css/main.css" /> -->
@@ -56,79 +56,90 @@
 		<main class="main">
 			<div class="contenido">
 
-        {% with messages = get_flashed_messages()[-1]%}
+				{% with messages = get_flashed_messages()[-1]%}
 
-        {% if messages %}
-        <br />
-        <div class="alert alert-info" role="alert">
-          {{ messages }}
-        </div>
-        {% endif %}
-        {% endwith %}
+				{% if messages %}
+				<br />
+				<div class="alert alert-info" role="alert">
+					{{ messages }}
+				</div>
+				{% endif %}
+				{% endwith %}
 
 				<table align="center" border="1px">
-          <thead>
-            <!-- Encabezados de la tabla -->
-            <tr>
-              <th rowspan="2">Nombre</th>
-              <th rowspan="2">Numero de tarjeta</th>
-              <th colspan="2">Expiracion</th>
-              <th rowspan="2">CVV</th>
-              <th colspan="2">Acciones</th>
-            <tr style="background-color: #f9d950; font-size: 13px;">
-              <th>Mes</th>
-              <th>Año</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
-            </tr>
-            </tr>
-          </thead>
-          <!-- Fila -->
-          {% for tarjeta in tarjetas %}
-          <tr>
-            <td>{{ tarjeta.nombre }}</td>
-            <td>{{ tarjeta.numtarjeta }}</td>
-            <td>{{ tarjeta.expiracion }}</td>
-            <td>{{ tarjeta.expiracion }}</td>
-            <td>{{ tarjeta.cvv }}</td>
-            
-            <td><a href="{{ url_for('tarjetasActualizar', id_tarjeta = tarjeta.id) }}"><button
-                  class="btn-editar btn-ventana-editar"><img src="../static/img/iconos/edit.png" width="40"
-                    height="40" /></button></a></td>
-            <td>
-              <button onclick="abrirEliminar('{{tarjeta.id}}')" class="btn-eliminar btn-ventana-eliminar">
-                <img src="../static/img/iconos/close.png" width="40" height="40" /></button>
-            </td>
-          </tr>
-          {% endfor %}
-        </table>
+					<thead>
+						<!-- Encabezados de la tabla -->
+						<tr>
+							<th rowspan="2">Nombre</th>
+							<th rowspan="2">Numero de tarjeta</th>
+							<th colspan="2">Expiracion</th>
+							<th rowspan="2">CVV</th>
+							<th colspan="2">Acciones</th>
+						<tr style="background-color: #f9d950; font-size: 13px;">
+							<th>Mes</th>
+							<th>Año</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+						</tr>
+					</thead>
+					<!-- Fila -->
+					{% for tarjeta in tarjetas %}
+					<tr>
+						<td>{{ tarjeta.nombre }}</td>
+						<td>{{ tarjeta.numtarjeta }}</td>
+						<td>
+							{{ tarjeta.expiracion[0] }}
+							{% if tarjeta.expiracion[1] != '-' %}
+								{{ tarjeta.expiracion[1] }}
+							{% endif %}
+						</td>
+						<td>
+							{% if tarjeta.expiracion[2] == '-' %}
+								{{ tarjeta.expiracion[3:] }}
+							{% else %}
+								{{ tarjeta.expiracion[2:] }}
+							{% endif %}
+						</td>
+						<td>{{ tarjeta.cvv }}</td>
+
+						<td><a href="{{ url_for('tarjetasActualizar', id_tarjeta = tarjeta.id) }}"><button
+									class="btn-editar btn-ventana-editar"><img src="../static/img/iconos/edit.png" width="40"
+										height="40" /></button></a></td>
+						<td>
+							<button onclick="abrirEliminar('{{tarjeta.id}}')" class="btn-eliminar btn-ventana-eliminar">
+								<img src="../static/img/iconos/close.png" width="40" height="40" /></button>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
 			</div>
 		</main>
-    
-    <!-- Modal para eliminar -->
-    <dialog class="modal-btn-eliminar" id="modal-btn">
-      <center>
-        <div class="contenido-modal">
-          <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
-                class="bi bi-x-circle"></i></button></div>
-          <div class="titulo-modal">
-            <h2>¿Desea eliminar la tarjeta?</h2>
-          </div>
-          <!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
-          <div class="botones-modal">
-            <form action="{{ url_for('tarjetasEliminar') }}" method="POST">
-              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-              <input type="number" name="id" value="" id='num_id' hidden>
-              <button class="confirmar">Confirmar</button>
-            </form>
-            <button class=" cancelar" onclick="cerrarEliminar()">Cancelar</button>
-            <!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
-            <!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
-          </div>
-        </div>
-      </center>
-    </dialog>
-    <!-- End Modal eliminar -->
+
+		<!-- Modal para eliminar -->
+		<dialog class="modal-btn-eliminar" id="modal-btn">
+			<center>
+				<div class="contenido-modal">
+					<div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
+								class="bi bi-x-circle"></i></button></div>
+					<div class="titulo-modal">
+						<h2>¿Desea eliminar la tarjeta?</h2>
+					</div>
+					<!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+					<div class="botones-modal">
+						<form action="{{ url_for('tarjetasEliminar') }}" method="POST">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+							<input type="number" name="id" value="" id='num_id' hidden>
+							<button class="confirmar">Confirmar</button>
+						</form>
+						<button class=" cancelar" onclick="cerrarEliminar()">Cancelar</button>
+						<!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+						<!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+					</div>
+				</div>
+			</center>
+		</dialog>
+		<!-- End Modal eliminar -->
 
 		<footer class="footer">
 			<div class="derechos">
@@ -167,7 +178,7 @@
 			}
 		});
 	</script>
-  <script src="../static/js/Ventanas_TablaLockers.js"></script>
+	<script src="../static/js/Ventanas_TablaLockers.js"></script>
 </body>
 
 </html>
