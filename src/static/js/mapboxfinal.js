@@ -197,7 +197,7 @@ map.on('load', () => {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Lindavista</strong><p>CDMX</p>',
+                            '<strong>Lindavista</strong><p>Av. Juan de Dios Bátiz 523, Zacatenco, Gustavo A. Madero, 07340 Ciudad de México, CDMX</p>',
                         'icon': 'post'
                     },
                     'geometry': {
@@ -211,7 +211,7 @@ map.on('load', () => {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Sátelite</strong><p>CDMX</p>',
+                            '<strong>Sátelite</strong><p>Cto. Cirujanos 1-Local 3, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>',
                         'icon': 'post'
                     },
                     'geometry': {
@@ -225,7 +225,7 @@ map.on('load', () => {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Colonia del Valle</strong><p>CDMX</p>',
+                            '<strong>Colonia del Valle</strong><p>C. Gabriel Mancera 916, Col del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX</p>',
                         'icon': 'post'
                     },
                     'geometry': {
@@ -239,7 +239,7 @@ map.on('load', () => {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Villa de Aragón</strong><p>CDMX</p>',
+                            '<strong>Villa de Aragón</strong><p>Av.608, 4a Sección, San Juan de Aragón, Gustavo A. Madero, 07979 Ciudad de México, CDMX</p>',
                         'icon': 'post'
                     },
                     'geometry': {
