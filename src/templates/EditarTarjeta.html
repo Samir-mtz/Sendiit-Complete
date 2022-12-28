@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Definiciond el titulo -->
+  <title>Sendiit- Inicio cliente</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/main-principal.css" />
+  <link rel="stylesheet" href="../static/css/InicioCliente.css" />
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+  <!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
+	<link rel="stylesheet" href="../static/css/footer-principal.css" />
+	<link rel="stylesheet" href="../static/css/main.css" /> -->
+</head>
+
+<body>
+  <article>
+    <header class="header">
+      <!-- Logo de la empresa -->
+      <div class="logo">
+        <a href="/">
+          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+        </a>
+      </div>
+      <!-- Barra de navegacion dentro de la pagina -->
+      <div class="secciones">
+        <div class="nav-contenido">
+          <a href="/">INICIO</a>
+        </div>
+        <div class="nav-contenido">
+          <a href="/sucursales">SUCURSALES</a>
+        </div>
+        <div class="nav-contenido">
+          <a href="/conocenos">CONÓCENOS</a>
+        </div>
+      </div>
+      <!-- Botones de acciones del sistema -->
+      <div class="botones">
+        <div class="nav-botones">
+          <a href="{{ url_for('formularioEnvio') }}" class="btn btn-enviar"><button>ENVIAR</button></a>
+        </div>
+        <div class="nav-botones">
+          <a href="{{ url_for('agregarTarjeta') }}" class="btn btn-ingresar"><button>AGREGAR TARJETA</button></a>
+        </div>
+        <div class="nav-botones">
+          <a href="{{ url_for('userTarjetas') }}" class="btn btn-registarse"><button>Administrar tarjetas</button></a>
+        </div>
+      </div>
+    </header>
+    <main class="main">
+      <div class="contenido">
+        <form class="contenido" action="/user/tarjetas/actualizado" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
+          <input type="number" name="id" value="{{ tarjeta.id }}" hidden>
+          <div class="titulo-formulario">
+            <div class="img-catalogo"><img src="../../static/img/iconos/locker.png" alt="MiniLocker" width="35%"
+                height="45%" />
+            </div>
+            <div>
+              <h1 class="tituloAgregar">Editar Tarjeta</h1>
+            </div>
+          </div>
+          <div class="datos-locker">
+            <p class="texto">Nombre <small>*</small></p>
+            <input class="campo" name="nombre" id="nombre" type="text" value="{{ tarjeta.nombre }}">
+
+            <p class="texto">Numero de tarjeta <small>*</small></p>
+            <input class="campo" name="numtarjeta" id="numtarjeta" type="text" value="{{ tarjeta.numtarjeta}}">
+
+            <p class="texto">Expiracion <small>*</small></p>
+            <input class="campo" name="expiracion" id="expiracion" type="text" value="{{ tarjeta.expiracion}}" disabled>
+
+            <p class="texto">CVV <small>*</small></p>
+            <input class="campo" name="cvv" id="cvv" type="text" value="{{ tarjeta.cvv }}">
+
+          </div>
+          <div class="botones-formulario">
+            <a href="#" class="btn-confirmar"><button>Guardar</button></a>
+          </div>
+        </form>
+        <a href="{{ url_for('userTarjetas') }}" class="btn-cancelar"><button>Cancelar</button></a>
+    </main>
+
+</body>
+
+</html>

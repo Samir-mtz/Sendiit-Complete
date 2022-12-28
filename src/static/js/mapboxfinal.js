@@ -197,12 +197,54 @@ map.on('load', () => {
                     'type': 'Feature',
                     'properties': {
                         'description':
-                            '<strong>Valle</strong><p>Av. Luis Enrique Erro S/N</p>',
+                            '<strong>Lindavista</strong><p>Av. Luis Enrique Erro S/N</p>',
                         'icon': 'post'
                     },
                     'geometry': {
                         'type': 'Point',
-                        'coordinates': [12, 451]
+                        'coordinates': [12, 2]
+                    }
+                }
+                ,
+							
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            '<strong>Colonia del valle</strong><p>Av. Luis Enrique Erro S/N</p>',
+                        'icon': 'post'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [12, 12]
+                    }
+                }
+                ,
+							
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            '<strong>Satelite</strong><p>Av. Luis Enrique Erro S/N</p>',
+                        'icon': 'post'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [12, 1]
+                    }
+                }
+                ,
+							
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                        'description':
+                            '<strong>Aragon</strong><p>Av. Luis Enrique Erro S/N</p>',
+                        'icon': 'post'
+                    },
+                    'geometry': {
+                        'type': 'Point',
+                        'coordinates': [1, 1]
                     }
                 }
                 ,
@@ -223,7 +265,16 @@ map.on('load', () => {
         
 let coordinatesPoints = new Map();
                 
-coordinatesPoints.set('Valle',[12, 451])
+coordinatesPoints.set('Lindavista',[12, 2])
+            
+                
+coordinatesPoints.set('Colonia del valle',[12, 12])
+            
+                
+coordinatesPoints.set('Satelite',[12, 1])
+            
+                
+coordinatesPoints.set('Aragon',[1, 1])
             
 function convertMyRoute(inicio, fin){
                     getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))

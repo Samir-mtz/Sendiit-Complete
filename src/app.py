@@ -157,7 +157,7 @@ def login():
                             logout_user()
                             token = generate_confirmation_token(
                                 logged_user.email)
-                            return redirect(url_for('resend_confirmation', email=token))
+                            return redirect(url_for('resend_confirmation', email=user.email))
                         else:
                             flash("Su usuario ha sido deshabilitado")
                             return render_template('ingresar.html')
@@ -289,12 +289,7 @@ def confirm_email(token):
             return render_template('ingresarVerificado.html')  # En caso de cuenta creada pero no confirmada
 
     else:  # Codigo expiro
-        return render_template('tokenError.html',
-                               data={
-                                   'title': 'Token no encontrado',
-                                   'stylesheet': 'tokenError.css',
-                               }
-                               )  # En caso de cuenta creada pero no confirmada
+        return render_template('tokenError.html')  # En caso de cuenta creada pero no confirmada
 
 
 # Reenvío de correo
@@ -317,12 +312,7 @@ def resend_confirmation(email):
     mail.send(msg)
 
     flash('Tu cuenta sigue son confirmar, hemos enviado un nuevo correo de confirmación.')
-
-    return render_template('ingresar.html',
-                           data={
-                               'title': 'Iniciar sesion',
-                               'stylesheet': 'ingresar.css',
-                           })
+    return render_template('ingresar.html')
 
 
 # No llego ningun correo
@@ -364,6 +354,12 @@ def resend_email():
         flash('Error. Usuario no registrado')
         return redirect(url_for('register'))
 
+@app.route('/user/tarjetas', methods=['GET', 'POST'])
+@login_required
+def userTarjetas():
+    list_tarjetas = ModelTarjeta.consultAll(db, current_user.id)
+    return render_template('tarjetasUsuario.html', tarjetas = list_tarjetas)
+
 
 @app.route('/user/agregarTarjeta', methods=['GET', 'POST'])
 @login_required
@@ -378,6 +374,41 @@ def agregarTarjeta():
 
     return render_template('AgregarTarjeta.html')
 
+
+@app.route('/user/tarjetas/<int:id_tarjeta>')
+def tarjetasActualizar(id_tarjeta):
+    try:
+        current = ModelTarjeta.consult_by_id(db, id_tarjeta)
+        return render_template('EditarTarjeta.html', tarjeta=current)
+    except:
+        return render_template('EditarTarjeta.html', tarjeta={})
+
+@app.route('/user/tarjetas/actualizado', methods=['GET', 'POST'])
+def tarjetasActualizado():
+    id_recibido = request.form['id']
+    nombre = request.form['nombre']
+    numtarjeta = request.form['numtarjeta']
+    cvv = request.form['cvv']
+    
+    try:
+        ModelTarjeta.update(db, id_recibido, nombre, numtarjeta, cvv)
+        flash("Tarjeta actualizado con éxito")
+        return redirect(url_for('userTarjetas'))
+    except:
+        flash("Ha ocurrido un error al actualizar valores de tarjeta")
+        return redirect(url_for('userTarjetas'))
+
+
+@app.route('/user/tarjetas/eliminar', methods=['GET', 'POST'])
+def tarjetasEliminar():
+    id_recibido = request.form['id']
+    try:
+        ModelTarjeta.delete(db, id_recibido)
+        flash("Tarjeta eliminada con éxito")
+        return redirect(url_for('userTarjetas'))
+    except:
+        flash("Ha ocurrido un error al eliminar tarjeta")
+        return redirect(url_for('userTarjetas'))
 
 @app.route('/user/formularioEnvio', methods=['GET', 'POST'])
 @login_required
@@ -595,10 +626,15 @@ def lockersAgregado():
 def lockersActualizado():
     id_recibido = request.form['id']
     direccion = request.form['direccion']
+    cantidad = request.form['cantidad']
     latitud = request.form['latitud']
     longitud = request.form['longitud']
+    cantidadS = 5 * int(cantidad)
+    cantidadM = 6 * int(cantidad)
+    cantidadL = 3 * int(cantidad)
+    
     try:
-        ModelLocker.update(db, id_recibido, direccion, latitud, longitud)
+        ModelLocker.update(db, id_recibido, direccion, cantidadS, cantidadM, cantidadL, latitud, longitud)
         flash("Locker actualizado con éxito")
         return redirect(url_for('lockers'))
     except:
