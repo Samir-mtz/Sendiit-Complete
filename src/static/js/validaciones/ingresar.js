@@ -66,7 +66,7 @@ function comprobarEmail(email) {
 }
 
 function comprobarPassword(password) {
-    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&-_.])[A-Za-z\d$@$!%*?&-_.]{8,15}$/.test(password);
+    return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&-._+])[A-Za-z\d$@$!%*?&-._+]{8,15}$/.test(password);
 }
 
 form.addEventListener("submit", (e) => {

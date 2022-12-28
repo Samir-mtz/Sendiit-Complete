@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Definiciond el titulo -->
+	<title>Sendiit- Inicio cliente</title>
+	<!-- Favicon de la empresa -->
+	<link href="../static/img/empresa/favicon.png" rel="icon" />
+	<!-- Estilos -->
+	<link rel="stylesheet" href="../static/css/main-principal.css" />
+	<link rel="stylesheet" href="../static/css/InicioCliente.css" />
+	<script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+	<!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
+	<link rel="stylesheet" href="../static/css/footer-principal.css" />
+	<link rel="stylesheet" href="../static/css/main.css" /> -->
+</head>
+
+<body>
+	<article>
+		<header class="header">
+			<!-- Logo de la empresa -->
+			<div class="logo">
+				<a href="/">
+					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
+				</a>
+			</div>
+			<!-- Barra de navegacion dentro de la pagina -->
+			<div class="secciones">
+				<div class="nav-contenido">
+					<a href="/">INICIO</a>
+				</div>
+				<div class="nav-contenido">
+					<a href="/sucursales">SUCURSALES</a>
+				</div>
+				<div class="nav-contenido">
+					<a href="/conocenos">CONÓCENOS</a>
+				</div>
+			</div>
+			<!-- Botones de acciones del sistema -->
+			<div class="botones">
+				<div class="nav-botones">
+					<a href="{{ url_for('formularioEnvio') }}" class="btn btn-enviar"><button>ENVIAR</button></a>
+				</div>
+				<div class="nav-botones">
+					<a href="{{ url_for('agregarTarjeta') }}" class="btn btn-ingresar"><button>AGREGAR TARJETA</button></a>
+				</div>
+				<div class="nav-botones">
+					<a href="{{ url_for('userTarjetas') }}" class="btn btn-registarse"><button>Administrar tarjetas</button></a>
+				</div>
+			</div>
+		</header>
+		<main class="main">
+			<div class="contenido">
+
+				{% with messages = get_flashed_messages()[-1]%}
+
+				{% if messages %}
+				<br />
+				<div class="alert alert-info" role="alert">
+					{{ messages }}
+				</div>
+				{% endif %}
+				{% endwith %}
+
+				<table align="center" border="1px">
+					<thead>
+						<!-- Encabezados de la tabla -->
+						<tr>
+							<th rowspan="2">Nombre</th>
+							<th rowspan="2">Numero de tarjeta</th>
+							<th colspan="2">Expiracion</th>
+							<th rowspan="2">CVV</th>
+							<th colspan="2">Acciones</th>
+						<tr style="background-color: #f9d950; font-size: 13px;">
+							<th>Mes</th>
+							<th>Año</th>
+							<th>Editar</th>
+							<th>Eliminar</th>
+						</tr>
+						</tr>
+					</thead>
+					<!-- Fila -->
+					{% for tarjeta in tarjetas %}
+					<tr>
+						<td>{{ tarjeta.nombre }}</td>
+						<td>{{ tarjeta.numtarjeta }}</td>
+						<td>
+							{{ tarjeta.expiracion[0] }}
+							{% if tarjeta.expiracion[1] != '-' %}
+								{{ tarjeta.expiracion[1] }}
+							{% endif %}
+						</td>
+						<td>
+							{% if tarjeta.expiracion[2] == '-' %}
+								{{ tarjeta.expiracion[3:] }}
+							{% else %}
+								{{ tarjeta.expiracion[2:] }}
+							{% endif %}
+						</td>
+						<td>{{ tarjeta.cvv }}</td>
+
+						<td><a href="{{ url_for('tarjetasActualizar', id_tarjeta = tarjeta.id) }}"><button
+									class="btn-editar btn-ventana-editar"><img src="../static/img/iconos/edit.png" width="40"
+										height="40" /></button></a></td>
+						<td>
+							<button onclick="abrirEliminar('{{tarjeta.id}}')" class="btn-eliminar btn-ventana-eliminar">
+								<img src="../static/img/iconos/close.png" width="40" height="40" /></button>
+						</td>
+					</tr>
+					{% endfor %}
+				</table>
+			</div>
+		</main>
+
+		<!-- Modal para eliminar -->
+		<dialog class="modal-btn-eliminar" id="modal-btn">
+			<center>
+				<div class="contenido-modal">
+					<div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
+								class="bi bi-x-circle"></i></button></div>
+					<div class="titulo-modal">
+						<h2>¿Desea eliminar la tarjeta?</h2>
+					</div>
+					<!-- <div class="icono-modal"><i class="bi bi-check2-circle"></i></div> -->
+					<div class="botones-modal">
+						<form action="{{ url_for('tarjetasEliminar') }}" method="POST">
+							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+							<input type="number" name="id" value="" id='num_id' hidden>
+							<button class="confirmar">Confirmar</button>
+						</form>
+						<button class=" cancelar" onclick="cerrarEliminar()">Cancelar</button>
+						<!-- <a href="#"><button class="aceptar">Aceptar</button></a> -->
+						<!-- <a href="#"><button class="intentar">Intentar de nuevo</button></a> -->
+					</div>
+				</div>
+			</center>
+		</dialog>
+		<!-- End Modal eliminar -->
+
+		<footer class="footer">
+			<div class="derechos">
+				<div class="copyright">
+					<span>&copy;2022 México. Todos los derechos reservados.</span>
+				</div>
+			</div>
+			<div class="redes">
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
+				</div>
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
+				</div>
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
+				</div>
+				<div class="logo-red">
+					<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
+				</div>
+			</div>
+		</footer>
+	</article>
+	<script>
+		let pass = document.getElementById("passorigin");
+		let pass_confirmation = document.getElementById("passconfirm");
+		let warning = document.getElementById("warning");
+
+		$("#passconfirm").on("change", function () {
+			// console.log("entre")
+			if (pass.value !== pass_confirmation.value) {
+				warning.innerHTML = "Las contraseñas no coinciden";
+				pass_confirmation.value = "";
+			} else {
+				warning.innerHTML = "";
+			}
+		});
+	</script>
+	<script src="../static/js/Ventanas_TablaLockers.js"></script>
+</body>
+
+</html>

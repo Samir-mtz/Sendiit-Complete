@@ -202,7 +202,7 @@ map.on('load', () => {
                     },
                     'geometry': {
                         'type': 'Point',
-                        'coordinates': [-99.13241777989998, 19.503812618644453]
+                        'coordinates': [12, 2]
                     }
                 }
                 ,
@@ -216,7 +216,7 @@ map.on('load', () => {
                     },
                     'geometry': {
                         'type': 'Point',
-                        'coordinates': [-99.23202789711353, 19.510418491079623]
+                        'coordinates': [12, 12]
                     }
                 }
                 ,
@@ -230,7 +230,7 @@ map.on('load', () => {
                     },
                     'geometry': {
                         'type': 'Point',
-                        'coordinates': [-99.16479674838662, 19.38370135021779]
+                        'coordinates': [12, 1]
                     }
                 }
                 ,
@@ -244,21 +244,7 @@ map.on('load', () => {
                     },
                     'geometry': {
                         'type': 'Point',
-                        'coordinates': [-99.0612996325149, 19.46156136421477]
-                    }
-                }
-                ,
-							
-                    {
-                    'type': 'Feature',
-                    'properties': {
-                        'description':
-                            '<strong>Polanco</strong><p>Av. Ejército Nacional Mexicano 598, Polanco, CDMX</p>',
-                        'icon': 'post'
-                    },
-                    'geometry': {
-                        'type': 'Point',
-                        'coordinates': [-99.1949207882933, 19.43566665558206]
+                        'coordinates': [1, 1]
                     }
                 }
                 ,
@@ -279,19 +265,16 @@ map.on('load', () => {
         
 let coordinatesPoints = new Map();
                 
-coordinatesPoints.set('Lindavista',[-99.13241777989998, 19.503812618644453])
+coordinatesPoints.set('Lindavista',[12, 2])
             
                 
-coordinatesPoints.set('Sátelite',[-99.23202789711353, 19.510418491079623])
+coordinatesPoints.set('Colonia del valle',[12, 12])
             
                 
-coordinatesPoints.set('Colonia del Valle',[-99.16479674838662, 19.38370135021779])
+coordinatesPoints.set('Satelite',[12, 1])
             
                 
-coordinatesPoints.set('Villa de Aragón',[-99.0612996325149, 19.46156136421477])
-            
-                
-coordinatesPoints.set('Polanco',[-99.1949207882933, 19.43566665558206])
+coordinatesPoints.set('Aragon',[1, 1])
             
 function convertMyRoute(inicio, fin){
                     getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))

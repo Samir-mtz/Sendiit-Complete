@@ -62,10 +62,10 @@ class ModelLocker():
     
 
     @classmethod
-    def update(self, db, id_recibido, direccion, latitud, longitud): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+    def update(self, db, id_recibido, direccion, cantidadS, cantidadM, cantidadL, latitud, longitud): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
         try:
             cursor = db.connection.cursor()
-            sql = 'UPDATE lockers SET direccion="'+direccion+'", latitud="'+latitud+'", longitud="'+longitud+'" WHERE id='+id_recibido
+            sql = 'UPDATE lockers SET direccion="'+direccion+'", cantidadS='+str(cantidadS)+', cantidadM='+str(cantidadM)+', cantidadL='+str(cantidadL)+', latitud="'+latitud+'", longitud="'+longitud+'" WHERE id='+id_recibido
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:
