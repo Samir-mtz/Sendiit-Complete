@@ -23,9 +23,11 @@ function cerrarAgregar(){
     modalAgregar.close()
 }
 
-function abrirEstado(numId){
+function abrirEstado(numId, statusId){
     myId = document.querySelector('#estado_id');
+    myStatus = document.querySelector('#estado_confirmed');
     myId.value = numId;
+    myStatus.value = statusId;
     modalEstado.showModal();
 }
 

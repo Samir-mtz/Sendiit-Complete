@@ -429,8 +429,8 @@
 .form-control i {
 	visibility: hidden;
 	position: absolute;
-	top: 55%;
-	right: 20px;
+	top: 57%;
+	right: 2%;
 }
 
 .form-control.success i.fa-check-circle {

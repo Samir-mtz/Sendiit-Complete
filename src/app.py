@@ -658,11 +658,11 @@ def lockersModificarEstado():
 
 @app.route('/admin/repartidores')
 def repartidores():
-    list_repartdores = ModelUser.consultRepartidoresAll(db)
-    if list_repartdores != None:
-
+    try:
+        list_repartdores = ModelUser.consultRepartidoresAll(db)
         return render_template('tablaRepartidores.html', repartidores=list_repartdores)
-    else:
+    except:
+        flash("Ha ocurrido un error al consultar reprtidores")
         return render_template('tablaRepartidores.html', repartidores=[])
 
 
@@ -697,31 +697,28 @@ def repartidoresAgregar():
     else:
         return render_template('agregarRepartidor.html')
 
-@app.route('/admin/repartidores/modificar-estado', methods=['GET', 'POST'])
-def repartidoresModificarEstado():
-    id_recibido = request.form['id']
-    cursor = db.connection.cursor()
-    sql_consulta = f"SELECT confirmed from user WHERE id={id_recibido}"
-    cursor.execute(sql_consulta)
-    estado = cursor.fetchone()
-    estadoFin = -1
-    if estado[0] == 0:
-        estadoFin = 1
-    else:
-        estadoFin = 0
-    sql = f"UPDATE user SET confirmed={estadoFin} WHERE id={id_recibido}"
-    cursor.execute(sql)
-    db.connection.commit()
-
-    return redirect(url_for('repartidores'))
+@app.route('/admin/repartidores/modificar-estado', methods=['POST'])
+def repartidoresModificarEstado():    
+        try:
+            id_recibido = request.form['id']
+            estado_recibido = int(request.form['confirmed'])
+            estado_recibido = 1 - estado_recibido
+            ModelUser.modificar_estado(db, id_recibido, estado_recibido)
+            flash("Estado de repartidor actualizado con éxito")
+            return redirect(url_for('repartidores'))
+        except:
+            flash("Ha ocurrido un error al actualizar el estado repartidor")
+            return redirect(url_for('repartidores'))
 
 @app.route('/admin/repartidores/editar')
 def repartidoresActualizar():
     id_repartidor = request.form['id']
     try:
         current = ModelUser.consult_repartidor_by_id(db, id_repartidor)
+        flash("Repartidor actualizado con éxito")
         return render_template('EditarLockers.html', repartidor=current)
     except:
+        flash("Ha ocurrido un error al actualizar al repartidor")
         return render_template('EditarLockers.html', repartidor={})
 
 
@@ -736,13 +733,14 @@ def repartidoresEliminar():
         flash("Ha ocurrido un error al eliminar al repartidor")
         return redirect(url_for('repartidores'))
 
-
+# Administracion de clientes
 @app.route('/admin/clientes')
 def clientes():
     try:
         list_clientes = ModelUser.consultClientesAll(db)
         return render_template('tablaClientes.html', clientes=list_clientes)
     except:
+        flash("Ha ocurrido un error al consultar clientes")
         return render_template('tablaClientes.html', clientes=[])
 
 @app.route('/admin/clientes/actualizar', methods=['GET','POST'])
@@ -750,20 +748,20 @@ def clientesActualizar():
     try:
         id_recibido = request.form['id']
         current = ModelUser.consult_cliente_by_id(db, id_recibido)
-        return render_template('EditarCliente.html', cliente = current)
+        return render_template('editarUsuarios.html', cliente = current)
     except:
         flash("Ha ocurrido un error al eliminar al cliente")
-        return render_template('EditarCliente.html', cliente = current)
+        return render_template('editarUsuarios.html', cliente = current)
 
 @app.route('/admin/clientes/actualizado', methods=['GET', 'POST'])
 def clientesActualizado():
-    id_recibido = request.form['id']
-    nombre = request.form['nombre']
-    email = request.form['email']
-    telefono = request.form['telefono']
-    # direccion = request.form['longitud']
     try:
-        ModelUser.update_cliente(db, id_recibido,nombre, email, telefono)
+        id_recibido = request.form['id']
+        nombre = request.form['Nombre']
+        email = request.form['Email']
+        telefono = request.form['Telefono']
+        direccion = request.form['Direccion']
+        ModelUser.update_cliente(db, id_recibido,nombre, email, telefono, direccion)
         flash("Usuario actualizado con éxito")
         return redirect(url_for('clientes'))
     except:

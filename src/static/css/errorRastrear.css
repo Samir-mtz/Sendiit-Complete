@@ -55,15 +55,16 @@
 	height: calc(10vh);
 	justify-content: center;
 	align-items: center;
+	/* border: 1px solid red; */
 }
 
 .link-header {
-	width: min-content;
+	width: max-content;
 	height: auto;
 	justify-content: center;
 	align-items: center;
-	color: #e41f1a;
-	letter-spacing: calc(0.25rem);
+	color: #f3ba00;
+	letter-spacing: calc(0.08rem);
 	font-size: calc(2vw);
 	font-style: italic;
 }
@@ -80,7 +81,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: calc(50vh);
+	width: calc(60vh);
 	height: calc(8vh);
 	background: rgb(255, 243, 212);
 	border: calc(0.8vh) solid rgb(16, 73, 158);
@@ -148,8 +149,8 @@
 	height: 100%;
 	color: rgb(80, 80, 80);
 	width: auto;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 .contenido-elemento h6 {
@@ -168,7 +169,7 @@ h5 {
 	z-index: 1;
 	background-color: rgba(0, 163, 238, 0.331);
 	border-radius: 10px;
-	padding: calc(0.08rem) calc(0.3rem);
+	padding: calc(0.05rem) calc(0.1rem);
 	box-shadow: calc(1px) 1px 1px rgb(16, 73, 158);
 	margin-right: 2%;
 	margin-left: 2%;
@@ -185,7 +186,7 @@ h5 {
 }
 
 .activo i {
-	margin-right: -5%;
+	margin-right: -3%;
 }
 
 .elemento:hover {
@@ -199,314 +200,136 @@ h5 {
 ************************************************************************************/
 
 .main {
+	width: 100%;
+	height: calc(100vh - 10vh - 6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.izq {
+	height: calc(90vh - 10vh - 5vh);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	width: 90%;
-	margin: auto;
-	height: calc(100vh - 10vh - 6vh);
-	/* border: 1px solid red; */
+	/* margin-left: 10%; */
+	padding: 10% -1%;
+	height: calc(55vh);
+	width: calc(25%);
+	border-radius: calc(5vh);
+	background: rgb(250, 250, 250);
+	box-shadow: 1px 5px 10px #bebebe;
 }
 
-.arriba {
+.der {
+	margin-left: 10%;
+	width: 30%;
+	height: calc(90vh - 10vh - 5vh);
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 80%;
-	height: calc(25vh);
 }
 
-.boton-regreso {
+.titulo-logo {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: calc(20%);
-	height: calc(90%);
+	margin-bottom: 3%;
+	margin-top: 8%;
+	height: calc(4vh);
+	width: 100%;
 }
 
-.boton-regreso a {
-	height: max-content;
-	text-decoration: none;
-	color: #fff;
-	cursor: pointer;
-	font-weight: 500;
-	transition: all 0.2s;
-	padding: calc(2vh) calc(3vh);
-	border-radius: calc(3.5vh);
-	background: #212e46;
-	display: flex;
-	align-items: center;
-	font-size: calc(3vh);
-	box-shadow: 5px 5px 3px rgb(174, 174, 174);
+.titulo-logo img {
+	height: calc(6vh);
 }
 
-.boton-regreso a > i {
-	width: calc(7vh);
-}
-
-.boton-regreso a:hover {
-	transition: transform 0.5s ease-in-out;
-	transform: scale(1.2);
-}
-
-.barra-busqueda {
+.titulo-pagina {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 60%;
-	height: calc(90%);
-}
-
-.buscar input {
-	width: calc(60vh);
 	height: calc(5vh);
-	font-size: calc(3vh);
-	color: #000;
-	outline: none;
-	border: calc(0.05rem) solid silver;
-	border-radius: calc(3vh);
+	color: #e4c01d;
+	font-size: calc(2.5vh);
+	font-style: italic;
+	font-weight: bold;
+	text-transform: uppercase;
+	/* margin-top: 5%; */
+	width: 100%;
 }
 
-.lupa {
-	color: #fff;
-	font-size: calc(3vh);
-	padding: calc(2vh);
-	border-radius: 50%;
-	transform: translateX(-100%);
-	background-color: #212e46;
-	/* margin-right: 20%; */
-}
-
-.logo-categoria {
-	display: flex;
+.contenido{
+    display: flex;
 	justify-content: center;
 	align-items: center;
-	width: 20%;
-	height: calc(90%);
-}
-
-.logo-categoria img {
-	height: calc(12vh);
-	width: calc(12vh);
-	border-radius: 50%;
-	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.225);
-}
-
-.logo-categoria img:hover {
-	cursor: pointer;
-	transition: all 0.5s;
-	transform: scale(1.2);
-	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
-}
-
-.tabla {
-	display: flex;
-	justify-content: center;
-	align-items: start;
-	width: calc(140vh);
-	height: calc(60vh);
-}
-
-table {
-	width: calc(100%);
-  text-align: center;
-	border-collapse: collapse;
-}
-
-th{
-  font-size: calc(2vh);
-  height: calc(1vh);
-}
-
-td{
-	height: calc(1vh);
-	font-size: calc(2.0vh);
-	/* text-align: left;
-	padding-left: 2%; */
-}
-
-thead {
-	background-color: #f9d950;
-	border-bottom: solid 5px #212e46;
-	color: #212e46;
-}
-
-.nombre,
-.correo,
-.direccion {
-	width: calc(40vh);
-}
-
-.nombre-cliente,
-.correo-cliente {
-	text-align: left;
-	padding-left: 5%;
-}
-
-.telefono,
-.envios {
-	width: calc(15vh);
-}
-
-.acciones {
-	width: calc(5vh);
-}
-
-.accion {
-	width: calc(10vh);
-	font-size: calc(1.8vh);
-}
-
-tr:nth-child(even) {
-	background-color: #ddd;
-}
-
-.btn-visualizar,
-.btn-editar,
-.btn-eliminar{
-  border: none;
-	background: none;
-  height: fit-content;
-}
-
-.btn-visualizar img,
-.btn-editar img,
-.btn-eliminar img{
-  height: calc(3.5vh);
-  width: calc(3.5vh);
-}
-
-.btn-visualizar:hover,
-.btn-editar:hover,
-.btn-eliminar:hover{
-	transform: scale(1.1);
-	cursor: pointer;
-	transition: all 0.5s ease 0s;
-}
-
-.tablatest th:last-child,
-.tablatest td:last-child{
-  border-right: 0;
-}
-
-.tabla{
-  max-height: 50%;
-  overflow-y: scroll;
-}
-
-.tablatest .sticky{
-  position: sticky;
-  top: 0;
-}
-
-.tabla::-webkit-scrollbar {
-    -webkit-appearance: none;
-}
-
-.tabla::-webkit-scrollbar:vertical {
-    width:10px;
-}
-
-.tabla::-webkit-scrollbar-thumb {
-    background-color: #797979;
-    border-radius: 20px;
-    border: 2px solid #f1f2f3;
-}
-
-/* Modal */
-
-dialog{
-	background: #fff;
-  margin: auto;
-}
-
-.encabezado-modal {
-	border-radius: 10px;
-	height: 30px;
-	text-align: end;
-}
-
-.encabezado-modal button {
-	height: 30px;
-	color: #e41f1a;
-	font-size: 30px;
-	border: none;
-	background: none;
-}
-
-.encabezado-modal button:hover {
-	transform: scale(1.2);
-	cursor: pointer;
-	transition: all 0.5s;
-}
-
-.titulo-modal {
-	/* margin-top: -20%; */
-	color: #ffc800;
-	font-size: 150%;
-	font-style: italic;
-	height: auto;
-}
-
-.icono-modal {
-	margin-top: -5%;
-	color: #009d03;
-	font-size: 100px;
-	font-style: italic;
-}
-
-.texto-modal {
-	color: #212e46;
-	font-size: 20px;
-	font-style: italic;
-}
-
-#modal-btn::backdrop {
-	background-color: rgba(0, 0, 0, 0.9);
-}
-
-#modal-btn {
-	border-radius: 30px;
-	max-width: 100ch;
-}
-
-.botones-modal button {
-	padding: 10px 30px;
+	height: calc(35vh);
+    margin: 0% 10%;
+    font-size: calc(2vh);
+    flex-direction: column;
+	width: 80%;
 	text-align: center;
+}
+
+.contenido img{
+	height: calc(9vh);
+	border-radius: 50%;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.225);
+}
+.textgeneral{
+    text-align: center;
+    color: #212e46;
+    line-height: 170%;
+}
+
+.textgeneral b{
+    color: #000000;
+    font-weight: 800;
+    background-color: #e7d99bb4;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.botones{
+	display: flex;
 	justify-content: center;
-	margin: 20px;
+	align-items: center;
+	height: calc(15vh);
+	width: calc(60vh);
+}
+
+.btn-form {
+	width: max-content;
+	position: relative;
+	display: inline-block;
+	padding: calc(2vh) calc(5vh);
+	text-align: center;
+	font-size: calc(2vh);
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: #212e46;
+	cursor: pointer;
+	transition: ease-out 0.5s;
 	border: none;
-	border-radius: 5px;
-	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+	background: #f9d950;
+	border-radius: calc(0.5rem);
+	box-shadow: 2px 2px 2px #787878;
+}
+
+.pdf{
+	background: #e41f1a;
 	color: #fff;
 }
 
-.botones-modal button:hover {
+.btn-form:hover {
+	transition: all 0.8s;
 	transform: scale(1.2);
-	cursor: pointer;
-	transition: all 0.5s;
+	box-shadow: 5px 5px 5px hsl(49, 93%, 0.3);
 }
 
-.confirmar,.intentar, .aceptar{
-	background-color: #3dbc56;
-}
-.cancelar{
-	background-color: #e76c3c;
-}
-
-.info-message{
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding: 10px 30px 10px 30px;
-	margin: 0px 0px 10px 0px;
-	min-width: 50vh;
-	max-width: 120;
-	background-color: rgb(201, 255, 252);
-	border-radius: 5px;
-	border: 1px solid rgba(75, 209, 203, 0.2);
-	color: rgb(52, 131, 127);
+.img-repartidor img {
+	height: calc(70vh);
 }
 
 

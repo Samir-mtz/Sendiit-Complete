@@ -172,14 +172,14 @@ class ModelUser():
     def consultClientesAll(self, db):
         try:
             cursor = db.connection.cursor()
-            sql = 'SELECT id, nombre, email, telefono, numpaquetes, confirmed FROM user where tipo="usuario"'
+            sql = 'SELECT id, nombre, email, telefono, direcion, numpaquetes, confirmed FROM user where tipo="usuario"'
             cursor.execute(sql)
             list_clientes=[]
             while True:
                 row = cursor.fetchone()
                 if row == None:
                     break
-                list_clientes.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,numPaq=row[4], password='', confirmed=row[5], tipo=''))
+                list_clientes.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3], direccion=row[4], numPaq=row[5], password='', confirmed=row[6], tipo=''))
             
             if len(list_clientes)>0:
                 return list_clientes
@@ -213,10 +213,20 @@ class ModelUser():
             raise Exception(ex)
     
     @classmethod
-    def update_cliente(self, db, id_recibido, nombre, email, telefono): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+    def update_cliente(self, db, id_recibido, nombre, email, telefono, direccion): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
         try:
             cursor = db.connection.cursor()
-            sql = 'UPDATE user SET nombre="'+nombre+'", email="'+email+'", telefono="'+telefono+'" WHERE id='+id_recibido
+            sql = 'UPDATE user SET nombre="'+nombre+'", email="'+email+'", telefono="'+telefono+'", direcion="'+direccion+'" WHERE id='+id_recibido
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def modificar_estado(self, db, id_user, estado):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'UPDATE user SET confirmed="'+str(estado)+'" WHERE id='+id_user
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:
