@@ -812,11 +812,16 @@ def listaDePaquetes():
     fly = 0
     if request.method == 'POST' and request.form['estado'] != 'ELEGIR ESTADO':
         estado = request.form['estado']
-        list_paquetes = ModelRepartidor.paquetesAllCondition(
-            db, estado, current_user.id)
+        usuario = ModelUser.get_by_id(db,current_user.id)
+
+        if estado=="EN ESPERA DEL REPARTIDOR":
+            list_paquetes = ModelRepartidor.paquetesRecolectar(db, usuario.sucursal)
+        elif estado=="EN CAMINO":
+            list_paquetes = ModelRepartidor.paquetesEntregar(db, usuario.sucursal)
         fly = 1
     else:
-        list_paquetes = ModelRepartidor.paquetesAll(db, current_user.id)
+        usuario = ModelUser.get_by_id(db,current_user.id)
+        list_paquetes = ModelRepartidor.paquetesAll(db, usuario.sucursal)
     # print(list_paquetes)
     if list_paquetes != None:
         return render_template('pendientesRepartidor.html', paquetes=list_paquetes, fly=fly)
