@@ -832,6 +832,21 @@ def rutaEnvio():
     repartidor = ModelUser.infoRepartidor(db, current_user.email)
     return render_template('RutaEnvio.html', repartidor=repartidor)
 
+@app.route('/repartidor/modificar-estado', methods=['GET', 'POST'])
+def repartidorModificarEstado():
+    try:
+        id_recibido = request.form['id']
+        estado = ModelEnvio.consultaEstado(db, id_recibido)
+        if estado == "EN ESPERA DEL REPARTIDOR":
+            new_estado = "EN CAMINO"
+        elif estado == "EN CAMINO":
+            new_estado = "ENTREGADO EN LOCKER DESTINO"
+        ModelEnvio.ChangeStatus(db, id_recibido, new_estado)
+        flash("Estado de locker modificado con éxito")
+        return redirect(url_for('listaDePaquetes'))
+    except:
+        flash("Ha ocurrido un error al actualizar el estado del paquete")
+        return redirect(url_for('listaDePaquetes'))
 
 #############################################################################################################
 ############################# Funciones de redireccionamineto despues de un error ###########################

@@ -7,11 +7,23 @@ class ModelRepartidor():
     @classmethod
     def paquetesAll(self, db, sucursal):
         try:
+            list_paquetes=[]
             cursor = db.connection.cursor()
             sql = """SELECT estado, origen, destino, id FROM envios 
-                    WHERE origen = '{}' or destino = '{}' """.format(sucursal, sucursal)
+                    WHERE origen = '{}' and estado = 'EN ESPERA DEL REPARTIDOR' """.format(sucursal)
             cursor.execute(sql)
-            list_paquetes=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                if row[0]=="EN ESPERA DEL REPARTIDOR":
+                    list_paquetes.append(Envio(estado="RECOLECTAR", origen=row[1],destino=row[2], id=row[3]))
+                else:
+                    list_paquetes.append(Envio(estado="ENTREGAR", origen=row[1],destino=row[2], id=row[3]))
+            
+            sql = """SELECT estado, origen, destino, id FROM envios 
+                    WHERE destino = '{}' and estado = 'EN CAMINO' """.format(sucursal)
+            cursor.execute(sql)
             while True:
                 row = cursor.fetchone()
                 if row == None:

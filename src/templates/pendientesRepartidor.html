@@ -130,7 +130,7 @@
 						<td>{{paquete.destino}}</td>
 						<td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60"
 								onclick="abrirImagen(this.src)" /></td>
-						<td><button onclick="abrirEstado('{{ paquete.id }}')">actualizar</button></td>
+						<td><button onclick="abrirEstado('{{ paquete.id }}', '1')">actualizar</button></td>
 					</tr>
 					{% endfor %}
 					<!-- <tr>
@@ -183,7 +183,7 @@
 						<h2>¿Desea actualizar el estado del paquete?</h2>
 					</div>
 					<div class="botones-modal">	
-						<form action="{{ url_for('lockersModificarEstado') }}" method="POST">
+						<form action="{{ url_for('repartidorModificarEstado') }}" method="POST">
 							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 							<input type="number" name="id" value="" id='estado_id' hidden>
 							<button class="confirmar">Confirmar</button>
@@ -221,7 +221,7 @@
 		<span onclick="cerrarImagen()">X</span>
 	</div>
 	<script src="../static/js/modal-qr.js"></script>
-	<script src="../static/js/ventanas/acciones.js"></script>
+	<script src="../static/js/ventanas/accionesRepartidor.js"></script>
 </body>
 
 </html>

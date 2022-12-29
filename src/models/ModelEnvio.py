@@ -6,23 +6,6 @@ class ModelEnvio():
     @classmethod
     def register(self, db, envio):
         try:
-            # ASIGNAR AL REPARTIDOR ENCONTRANDO EL QUE TENGA MENOS PAQUETES ASIGNADOS
-            cursor = db.connection.cursor()
-            sql = f"SELECT id, numpaquetes FROM user where tipo='repartidor'"
-            cursor.execute(sql)
-            minimo = 1000000
-            asignacion = -1
-            while True:
-                row = cursor.fetchone()
-                if row == None:
-                    break
-                if minimo >= row[1]:
-                    minimo = row[1]
-                    asignacion = row[0]
-            sql = f"UPDATE user SET numpaquetes = { minimo + 1} WHERE id={asignacion}"
-            cursor.execute(sql)
-            db.connection.commit()
-            ##
             # INSERTAMOS EN LA TABLA ENVIOS
             cursor = db.connection.cursor()
             sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario, idrepartidor) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', '{envio.nombre}', '{envio.email}', '{envio.telefono}', {envio.costo}, {envio.idusuario}, {asignacion})"
@@ -69,5 +52,29 @@ class ModelEnvio():
         except Exception as ex:
             raise Exception(ex)
 
+    @classmethod
+    def consultaEstado(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT estado FROM envios where id={id}"
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return row[0]
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
 
+    @classmethod
+    def ChangeStatus(self, db, id, estado): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+        try:
+            cursor = db.connection.cursor()
+            sql = f"UPDATE envios SET estado='{estado}' WHERE id='{id}'"
+            print(sql)
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+    
 # SELECT * FROM envios ORDER BY id DESC LIMIT 1;
