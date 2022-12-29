@@ -160,11 +160,64 @@ class ModelUser():
             cursor = db.connection.cursor()
             sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where id='+id_repartidor
             cursor.execute(sql)
-            list_repartidores=[]
             row = cursor.fetchone()
             if row != None:
                 return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='')
             else:
                 return None
+        except Exception as ex:
+            raise Exception(ex)
+
+    @classmethod
+    def consultClientesAll(self, db):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'SELECT id, nombre, email, telefono, numpaquetes, confirmed FROM user where tipo="usuario"'
+            cursor.execute(sql)
+            list_clientes=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_clientes.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,numPaq=row[4], password='', confirmed=row[5], tipo=''))
+            
+            if len(list_clientes)>0:
+                return list_clientes
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def consult_cliente_by_id(self, db, id_recibido):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where id='+id_recibido
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='')
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def delete(self, db, id_user):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'DELETE FROM user WHERE id ='+ id_user
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def update_cliente(self, db, id_recibido, nombre, email, telefono): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+        try:
+            cursor = db.connection.cursor()
+            sql = 'UPDATE user SET nombre="'+nombre+'", email="'+email+'", telefono="'+telefono+'" WHERE id='+id_recibido
+            cursor.execute(sql)
+            db.connection.commit()
         except Exception as ex:
             raise Exception(ex)

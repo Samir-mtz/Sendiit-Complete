@@ -727,11 +727,60 @@ def repartidoresActualizar():
 
 @app.route('/admin/repartidores/eliminar', methods=['GET', 'POST'])
 def repartidoresEliminar():
+    try:
+        id_recibido = request.form['id']
+        ModelUser.delete(db, id_recibido)
+        flash("Repartidor eliminado con éxito")
+        return redirect(url_for('repartidores'))
+    except:
+        flash("Ha ocurrido un error al eliminar al repartidor")
+        return redirect(url_for('repartidores'))
+
+
+@app.route('/admin/clientes')
+def clientes():
+    try:
+        list_clientes = ModelUser.consultClientesAll(db)
+        return render_template('tablaClientes.html', clientes=list_clientes)
+    except:
+        return render_template('tablaClientes.html', clientes=[])
+
+@app.route('/admin/clientes/actualizar', methods=['GET','POST'])
+def clientesActualizar():
+    try:
+        id_recibido = request.form['id']
+        current = ModelUser.consult_cliente_by_id(db, id_recibido)
+        return render_template('EditarCliente.html', cliente = current)
+    except:
+        flash("Ha ocurrido un error al eliminar al cliente")
+        return render_template('EditarCliente.html', cliente = current)
+
+@app.route('/admin/clientes/actualizado', methods=['GET', 'POST'])
+def clientesActualizado():
     id_recibido = request.form['id']
-    cursor = db.connection.cursor()
-    cursor.execute('DELETE FROM user WHERE id = '+id_recibido)
-    db.connection.commit()
-    return redirect(url_for('repartidores'))
+    nombre = request.form['nombre']
+    email = request.form['email']
+    telefono = request.form['telefono']
+    # direccion = request.form['longitud']
+    try:
+        ModelUser.update_cliente(db, id_recibido,nombre, email, telefono)
+        flash("Usuario actualizado con éxito")
+        return redirect(url_for('clientes'))
+    except:
+        flash("Ha ocurrido un error al actualizar valores del cliente")
+        return redirect(url_for('clientes'))
+
+@app.route('/admin/clientes/eliminar', methods=['GET','POST'])
+def clientesEliminar():
+    try:
+        id_recibido = request.form['id']
+        ModelUser.delete(db, id_recibido)
+        flash("Cliente eliminado con éxito")
+        return redirect(url_for('clientes'))
+    except:
+        flash("Ha ocurrido un error al eliminar al cliente")
+        return redirect(url_for('clientes'))
+
 #########################################################################################
 ################################## Usuario repartidor ###################################
 #########################################################################################

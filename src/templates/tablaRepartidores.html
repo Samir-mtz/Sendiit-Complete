@@ -96,6 +96,16 @@
         <a href="{{ url_for('repartidoresAgregar') }}"><button class="btn3 btn-ventana-agregar">ALTAS</button></a>
       </div>
     </section>
+    {% with messages = get_flashed_messages()[-1]%}
+
+    {% if messages %}
+    <br />
+    <div class="">
+      {{ messages }}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <br>
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">

@@ -18,7 +18,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio.html">
+      <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -33,7 +33,7 @@
         <div class="tarjeta-der">
           <div class="nombre-tarjeta">ADMINISTRADOR</div>
           <div class="iconos-tarjeta">
-            <a href="./catalogos.html" class="elemento ">
+            <a href="{{ url_for('admin') }}" class="elemento ">
               <div class="contenido-elemento activo">
                 <i class="bi bi-house"></i>
                 <!-- <h6>Inicio</h6> -->
@@ -55,7 +55,7 @@
               </div>
             </a>
             <h5>|</h5> -->
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -71,7 +71,7 @@
   <main class="main">
     <section class="arriba">
       <div class="boton-regreso">
-        <a href="./catalogos.html">
+        <a href="{{ url_for('admin') }}">
           <i class="bi bi-arrow-left-circle"></i>
           <span>Regresar</span>
         </a>
@@ -83,11 +83,21 @@
         </div>
       </div>
       <div class="logo-categoria">
-        <a href="./tablaClientes.html" class="link-categoria">
+        <a href="{{ url_for('clientes') }}" class="link-categoria">
           <img src="../static/img/categorias/clientes.png" alt="Categoria Clientes">
         </a>
       </div>
     </section>
+    {% with messages = get_flashed_messages()[-1]%}
+
+    {% if messages %}
+    <br />
+    <div class="">
+      {{ messages }}
+    </div>
+    {% endif %}
+    {% endwith %}
+    <br>
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
@@ -106,11 +116,12 @@
           </tr>
         </thead>
         <tbody>
+          {% for cliente in clientes %}
           <tr>
-            <td class="nombre-cliente">Juan Fernando Perez Corral</td>
-            <td class="correo-cliente">juanfe@hotmail.com</td>
-            <td>55 67 78 89 90</td>
-            <td>2</td>
+            <td class="nombre-cliente">{{ cliente.nombre }}</td>
+            <td class="correo-cliente">{{ cliente.email }}</td>
+            <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.numPaq }}</td>
             <td>
               <a href="historialCliente.html">
                 <button class="btn-visualizar">
@@ -119,62 +130,17 @@
               </a>
             </td>
             <td>
-              <button onclick="abrirEditar()" class="btn-editar btn-ventana-editar">
+              <button onclick="abrirEditar('{{ cliente.id }}')" class="btn-editar btn-ventana-editar">
                 <img src="../static/img/Admin/acciones/editar.png" />
               </button>
             </td>
             <td>
-              <button onclick="abrirEliminar()" class="btn-eliminar btn-ventana-eliminar">
+              <button onclick="abrirEliminar('{{ cliente.id }}')" class="btn-eliminar btn-ventana-eliminar">
                 <img src="../static/img/Admin/acciones/eliminar.png" />
               </button>
             </td>
           </tr>
-          <tr>
-            <td class="nombre-cliente">Valentina Laverde Rosa</td>
-            <td class="correo-cliente">valro@gmail.com</td>
-            <td>56 12 36 47 69</td>
-            <td>3</td>
-            <td>
-              <a href="historialCliente.html">
-                <button class="btn-visualizar">
-                  <img src="../static/img/Admin/acciones/visualizar.png" />
-                </button>
-              </a>
-            </td>
-            <td>
-              <button onclick="abrirEditar()" class="btn-editar btn-ventana-editar">
-                <img src="../static/img/Admin/acciones/editar.png" />
-              </button>
-            </td>
-            <td>
-              <button onclick="abrirEliminar()" class="btn-eliminar btn-ventana-eliminar">
-                <img src="../static/img/Admin/acciones/eliminar.png" />
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td class="nombre-cliente">Oscar de la Renta</td>
-            <td class="correo-cliente">osre@live.com</td>
-            <td>56 24 46 79 36</td>
-            <td>1</td>
-            <td>
-              <a href="historialCliente.html">
-                <button class="btn-visualizar">
-                  <img src="../static/img/Admin/acciones/visualizar.png" />
-                </button>
-              </a>
-            </td>
-            <td>
-              <button onclick="abrirEditar()" class="btn-editar btn-ventana-editar">
-                <img src="../static/img/Admin/acciones/editar.png" />
-              </button>
-            </td>
-            <td>
-              <button onclick="abrirEliminar()" class="btn-eliminar btn-ventana-eliminar">
-                <img src="../static/img/Admin/acciones/eliminar.png" />
-              </button>
-            </td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </section>
@@ -190,8 +156,12 @@
           <h2>¿Desea editar la información del cliente?</h2>
         </div>
         <div class="botones-modal">
-          <a href="./editarCliente.html"><button class="confirmar">Confirmar</button></a>
-          <a href="./tablaClientes.html"><button class="cancelar">Cancelar</button></a>
+          <form action="{{ url_for('clientesActualizar') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="number" name="id" value="" id='editar_id' hidden>
+            <button class="confirmar">Confirmar</button>
+          </form>
+          <button onclick="cerrarEditar()" class="cancelar">Cancelar</button>
         </div>
       </div>
     </center>
@@ -207,8 +177,12 @@
           <h2>¿Desea eliminar al cliente?</h2>
         </div>
         <div class="botones-modal">
-          <a href="#"><button class="confirmar">Confirmar</button></a>
-          <a href="./tablaClientes.html"><button class="cancelar">Cancelar</button></a>
+          <form action="{{ url_for('clientesEliminar') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="number" name="id" value="" id='eliminar_id' hidden>
+            <button class="confirmar">Confirmar</button>
+          </form>
+          <button onclick="cerrarEliminar()" class="cancelar">Cancelar</button>
         </div>
       </div>
     </center>
