@@ -1,0 +1,599 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 35% 50%;
+	grid-template-rows: 100%;
+	height:  140px;
+	text-align: center;
+	align-items: center;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	/* border: solid 1px red; */
+}
+
+.headersendit{
+	display: flex;
+	flex-direction: column;
+	height: 120px;
+}
+
+/* .header div {
+	height: 1fr;
+} */
+
+.header .logo {
+	display: grid;
+	place-content: center;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	/* border: solid 1px red; */
+}
+.botones {
+	display: grid;
+	position: relative;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-left: 80px;
+}
+
+
+.tituloForm {
+	color: #f9d950;
+	font-size:25px;
+	font-family:Arial 50px, Helvetica, sans-serif;
+	font-style: italic;
+	letter-spacing: 1px;
+}
+
+.header .logo1 img {
+	height: 100%;
+	width: 40%;
+	/* border: solid 1px red; */
+}
+
+.header .raya img{
+  height: 20px;
+  width: 90%;
+  opacity: 0.5;
+}
+
+
+.header .user{
+	display: grid;
+	grid-template-columns: 15% 85%;
+	grid-template-rows: 100%;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+	margin-right: 50px;
+	margin-left: 50px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: rgb(255, 243, 212);
+}
+
+.header .user .perfil{
+	font-size: 300%;
+	color: rgb(16, 73, 158);
+	margin-left: 30px;
+}
+
+.header .user .campos-user{
+	display: grid;
+	grid-template-rows: repeat(2,1fr);
+	grid-template-columns: 100%;
+}
+
+.header .user .campos-user .name-user{
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
+
+/*.header div:hover{
+    border: 1px solid red;
+}
+*/
+.header .user .campos-user .btn-user{
+	display: flex;
+	flex-direction: row;
+	margin-top: 4px;
+}
+
+.header .user .campos-user .btn-user a{
+	text-decoration: none;
+}
+
+.pantalla-user{
+	border-right: 1px solid rgb(114, 114, 114);
+	border-left: 1px solid rgb(114, 114, 114);
+	width: 200px;
+
+}
+
+.pantalla-user a{
+	color: rgb(114, 114, 114);
+
+}
+
+.cerrar-sesion a{
+	color: rgb(255, 0, 0);
+	margin-left: 40px;
+	width: 300px;
+}
+
+.historial a{
+	color: rgb(114, 114, 114);
+	margin-left: 40px;
+	margin-right: 20px;
+}
+
+
+.header .user .campos-user .btn-user .pantalla-user a:hover {
+	transform: scale(1.1);
+}
+
+
+/*********************************************************************
+                               MAIN 
+*********************************************************************/
+.main {
+	display: grid;
+	text-align: center;
+	height: 100%;
+	width: 100%;
+}
+
+/*
+.main div:hover{
+    border: 1px solid red;
+}*/
+
+marquee #camion{
+	position: absolute;
+	width: 55px;
+	height: 50px;
+	margin-top: 40px;
+}
+
+
+progress{
+	display:block;
+	align-items: center;
+	-webkit-appearance: none;
+	margin: auto;
+	margin-top: 15%;
+	width: 75%;
+	height: 30px;
+	
+}
+::-webkit-progress-bar{
+	background-color: grey;
+	border-radius: 50px;
+	padding: 2px;
+}
+::-webkit-progress-value{
+	background-color: green;
+	border-radius: 50px;
+}
+::-moz-progress-bar{
+	background-color: grey;
+	border-radius: 50px;
+	padding: 2px;
+}
+
+
+#circle1 {
+	position: absolute;
+	margin-top: 190px;
+	margin-left: 12.5%;
+    background: rgb(75, 247, 75);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+#circle11 {
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 180px;
+    background: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+#circle2 {
+	position: absolute;
+	margin-top: 190px;
+	margin-left: 29.75%;
+    background:	rgb(75, 247, 75);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+#circle22 {
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 416px;
+    background: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+#circle3 {
+	position: absolute;
+	margin-top: 190px;
+	margin-left: 47%;
+    background: rgb(75, 247, 75);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+#circle33 {
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 652px;
+    background: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+#circle4 {
+	position: absolute;
+	margin-top: 190px;
+	margin-left: 67.5%;
+    background: rgb(75, 247, 75);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+#circle44 {
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 932px;
+    background: green;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+#circle5 {
+	position: absolute;
+	margin-top: 190px;
+	margin-left: 85%;
+    background: black;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+}
+#circle55	 {
+	position: absolute;
+	margin-top: 200px;
+	margin-left: 1171px;
+    background: grey;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+/** BARRA BUSQUEDA  **/
+
+.form-control {
+	width: 400px;
+	margin-left: 70%;
+	margin-top: 10px;
+	position: absolute;
+}
+
+.form-control label {
+	display: inline-block;
+	font-weight: 100px;
+	font-size:14px;
+	font-family: Arial , Helvetica, sans-serif;
+
+    text-align: left;
+	margin-right: 70px;
+    margin-top: 15px;
+	opacity: 0.5;
+}
+
+.form-control input {
+	width: 90%;
+	background: rgb(255, 255, 255);
+	border: 3px solid rgb(129, 129, 129);
+	border-radius: 50px;
+	height: 25px;
+	line-height: 45px;
+	padding: 0 30px 0 10px;
+	transition: .3s ease all;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: rgb(19, 17, 17);
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input {
+	border-color: #e74c3c;
+}
+
+.form-control i {
+	visibility: hidden;
+	position: absolute;
+	top: 50px;
+	right: 20px;
+}
+
+.form-control.success i.fa-check-circle {
+	color: #2ecc71;
+	visibility: visible;
+}
+
+.form-control.error i.fa-exclamation-circle {
+	color: #e74c3c;
+	visibility: visible;
+}
+
+.form-control small {
+	color: #e74c3c;
+	position: absolute;
+	left: 0;
+	visibility: hidden;
+}
+
+.form-control.error small {
+	visibility: visible;
+}
+
+
+
+.botones {
+	display: grid;
+	text-align: center;
+	place-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-left: 80px;
+}
+
+.btn-busqueda button {
+	position: relative;
+	top: -40px;
+	font-weight: bolder;
+	font-size: normal;
+	margin-right: 80px;
+	width: 100px;
+	color: black;
+	background: #f9d950;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 0.5s ease 0s;
+}
+
+.btn-busqueda button:hover {
+	transform: scale(1.1);
+}
+
+.contenedor-busq{
+	display: grid;
+	grid-template-columns:70% 30%;
+}
+
+.main #txt1{
+	position: absolute;
+	font-size: large;
+	font-weight: bolder;
+	color: #212e46;
+	font-style: italic;
+	width: 200px;
+	font-family: Arial 10px, Helvetica, sans-serif;
+	margin-top: 270px;
+	margin-left: 80px;
+	}
+
+.main #txt2{
+	position: absolute;
+	font-size: large;
+	font-weight: bolder;
+	color: #212e46;
+	font-style: italic;
+	width: 100px;
+	font-family: Arial 10px, Helvetica, sans-serif;
+	margin-top: 120px;
+	margin-left: 390px;
+	}
+
+.main #txt3{
+	position: absolute;
+	font-size: large;
+	font-weight: bolder;
+	color: #212e46;
+	font-style: italic;
+	width: 200px;
+	font-family: Arial 10px, Helvetica, sans-serif;
+	margin-top: 270px;
+	margin-left: 570px;
+	}
+
+.main #txt4{
+	position: absolute;
+	font-size: large;
+	font-weight: bolder;
+	color: #212e46;
+	font-style: italic;
+	width: 150px;
+	font-family: Arial 10px, Helvetica, sans-serif;
+	margin-top: 120px;
+	margin-left: 880px;
+	}
+
+.main #txt5{
+	position: absolute;
+	font-size:x-large;
+	font-weight: bolder;
+	color: black;
+	font-style: italic;
+	width: 200px;
+	font-family: Arial 10px, Helvetica, sans-serif;
+	margin-top: 270px;
+	margin-left: 1080px;
+	}
+
+.Ubicacion img{
+	position: absolute;
+	margin-top: 130px;
+	margin-left: 200px;
+	width: 55px;
+	height: 80px;
+}
+.main .contenedorUbic{
+display: grid;
+grid-template-columns: 40% 60%;
+height: 110px;
+
+}
+.main .contenedorUbic2{
+	margin-top: 150px;
+	margin-left: 0px;
+	display: grid;
+	width:400px;
+	height: 100px;
+	grid-template-columns: 30% 32% 5% 32%;
+}
+
+.main .contenedorfecha1{
+	display: grid;
+    position: absolute;
+	grid-template-columns: 5% 10% 25% 30% 10% 15%;
+	width: 100%;
+	height: 50px;
+	margin-top: 95px;
+}
+
+.c1{
+	margin-left: 100px;
+	width: 40px;
+	opacity: 0.6;
+}
+
+.c2{
+	width: 40px;
+}
+.f1{
+	text-align: left;
+	margin-left: 10px;
+	margin-top: -2px;
+}
+#caja img{
+display: grid;
+position: absolute;
+margin-top: -200px;
+margin-left: 100px;
+	width: 150px;
+	height: 150px;
+}
+
+#recogido img{
+	display: grid;
+	position: absolute;
+	margin-top: -90px;
+	margin-left: 1230px;
+		width: 120px;
+		height: 120px;
+	}
+
+.textb{
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 25px;
+	font-style:oblique;
+	color: #212e46;
+}
+
+.contenedorabajo{
+	display: grid;
+	grid-template-rows: repeat(2,1fr);
+}
+/*********************************************************************
+                               FOOTER 
+*********************************************************************/
+
+
+.footer {
+	display: grid;
+	grid-template-columns:50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
+}
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
+}

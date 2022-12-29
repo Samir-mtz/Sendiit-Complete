@@ -48,14 +48,6 @@ article {
 	place-content: center;
 	cursor: pointer;
 }
-.header .nav-contenido .Titulo {
-	display: grid;
-	align-items: center;
-	place-content: center;
-	color: #e41f1a;
-	text-transform: uppercase;
-	font-style: italic;
-}
 
 .header .logo img {
 	height: 85%;
@@ -68,22 +60,17 @@ article {
 	transform: scale(1.1);
 }
 
+.header .secciones,
 .header .botones {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
 	grid-template-rows: 100%;
 }
 
-.header .secciones{
-	display: grid;
-	grid-template-columns: 100%;
-	grid-template-rows: 100%;
-}
-
 .header .secciones a,
 .header .botones a {
 	text-decoration: none;
-	color: #e41f1a;
+	color: #212e46;
 	font-size: x-large;
 	/* border: solid 1px red; */
 }
@@ -113,24 +100,17 @@ article {
 	margin-left: auto;
 }
 
-.header .botones .btn-imgAdmin img {
-	display: grid;
-	place-content: center;
-	height: 50px;
+.header .botones .btn-enviar button {
+	background-color: #e41f1a;
+	color: #fff;
 }
 
-.header .botones .btn-imgAdmin img:hover {
-	transform: scale(1.1);
-	cursor: pointer;
-	transition: all 0.5s ease 0s;
-}
-
-.header .botones .btn-administrador button {
+.header .botones .btn-ingresar button {
 	background-color: #f9d950;
-	color: #e41f1a;
+	color: #212e46;
 }
 
-.header .botones .btn-cerrarsesion button {
+.header .botones .btn-registrarse button {
 	background-color: #212e46;
 	color: #fff;
 }
@@ -143,128 +123,76 @@ article {
                                         Main
 ************************************************************************************/
 
+/* Estilos con columnas del cuestionario */
+
 .main {
 	display: grid;
 	grid-template-columns: 60% 40%;
 	text-align: center;
-	height: 90%;
+}
+
+.contenido {
+	z-index: 100;
+	flex-direction: column;
+    display: grid;
+	place-content: center;
+	/* border-radi  us: 20px; */
+}
+
+.main div {
 	background: #fff;
 }
 
-/* .main div:hover {
-	border: 1px solid red;
+/* .main div:hover{
+    border: 1px solid red;
 } */
 
-.main .contenido {
-	display: grid;
-	grid-template-rows: 20% 60% 20%;
-	text-align: center;
-	place-content: center;
-	align-items: center;
+.main .titulo-pagina {
+	grid-column: 1/2;
 }
 
-.main .img-lateral {
-	display: grid;
-	place-content: center;
-	text-align: center;
+.main .titulo-pagina img {
+	height: 80px;
+	margin-bottom: 10px;
+	margin-top: 10px;
+	width: auto;
 }
 
-.titulo-formulario {
-	display: grid;
-	grid-template-columns: 50% 50%;
-	text-align: center;
-	place-content: center;
-	align-items: center;
+.main h1 {
+	color: #f5cc16;
+	margin-top: 25px;
 }
 
-.botones-formulario {
-	display: grid;
-	grid-template-columns: 50% 50%;
-	text-align: center;
-	place-content: center;
-	align-items: center;
-	margin-top: 20px;
+.main h3 {
+	color: #212e46;
+	margin-top: -20px;
 }
 
-.main .locker {
-	width: 250px;
-	height: 430px;
-	margin: auto;
-}
-
-.main .Texto3 {
-	color: #4e519b;
-	font-family: "Oswald", sans-serif bold;
-	font-size: 170%;
-	letter-spacing: 2px;
-}
-
-.tituloAgregar {
-	color: #f9d950;
-	font-size: 40px;
-}
-
-.datos-locker {
-	display: grid;
-	grid-template-rows: repeat(8, 0.3fr);
-	text-align: center;
-	place-content: center;
-	align-items: center;
-}
-
-.texto {
-	text-align: left;
-	margin-left: -10px;
-	font-size: medium;
-}
-
-small {
-	color: red;
-}
-
-.btn-cancelar button {
-	font-weight: bolder;
-	font-size: large;
-	width: 150px;
-	color: white;
-	background: #e41f1a;
+.btn-siguiente button {
+	font-weight: 700;
+	background-color: #f9da50d4;
+	color: #212e46;
 	padding: 10px 30px;
 	border: none;
-	border-radius: 10px;
+	border-radius: 15px;
 	cursor: pointer;
-	transition: all 0.5s ease 0s;
+	margin-left: 270px;
 }
 
-.btn-confirmar button {
-	font-weight: bolder;
-	font-size: large;
-	width: 150px;
-	color: white;
-	background: green;
-	padding: 10px 30px;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: all 0.5s ease 0s;
-}
-
-.btn-confirmar button:hover,
-.btn-cancelar button:hover {
+.btn-siguiente button:hover {
+	transition: all 0.5s;
 	transform: scale(1.1);
+	box-shadow: 5px 5px 5px #e41f1a;
+	
 }
 
-input {
-	height: 30px;
-	width: 400px;
-	border-radius: 8px;
-	border: 1px solid #000;
+.main .img-repartidor .repartidor img {
+	width: 530px;
+	height: 600px;
 }
 
-select {
-	height: 35px;
-	width: 405px;
-	border-radius: 8px;
-	border: 1px solid #000;
+marquee{
+	width: 130%;
 }
 
 /************************************************************************************

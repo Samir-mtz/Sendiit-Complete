@@ -29,172 +29,183 @@ article {
 
 .header {
 	display: grid;
-	grid-template-columns: 15% 45% 40%;
+	grid-template-columns: 15% 35% 50%;
 	grid-template-rows: 100%;
+	height:  140px;
 	text-align: center;
 	align-items: center;
-	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 6px;
+
 	/* border: solid 1px red; */
 }
 
-.header div {
-	/* border: solid 1px red; */
-	background: #fff;
-	height: 1fr;
+.headersendit{
+	display: flex;
+	flex-direction: column;
+	height: 120px;
 }
+
+/* .header div {
+	height: 1fr;
+} */
 
 .header .logo {
 	display: grid;
+    margin-bottom: 50px;
 	place-content: center;
-	cursor: pointer;
 }
 
 .header .logo img {
 	height: 85%;
 	width: 85%;
-	transition: all 0.5s;
 	/* border: solid 1px red; */
 }
-
-.header .logo img:hover {
-	transform: scale(1.1);
-}
-
-.header .secciones,
-.header .botones {
+.botones {
 	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: 100%;
-}
-
-.header .secciones a,
-.header .botones a {
-	text-decoration: none;
-	color: #212e46;
-	font-size: x-large;
-	/* border: solid 1px red; */
-}
-
-.header .secciones .nav-contenido,
-.header .botones .nav-botones {
-	display: grid;
+	text-align: center;
 	place-content: center;
+	align-items: center;
+	margin-top: 50px;
+	margin-left: 80px;
 }
 
-.header .secciones .nav-contenido a:hover {
-	color: #e41f1a;
-	transform: scale(1.1);
-}
-
-.header .botones .btn button {
-	display: grid;
-	color: white;
-	background: #212e46;
-	padding: 10px 10px;
+.btn-mostrar button {
+	position: relative;
+	top: 60px;
+	font-weight: bolder;
+	font-size: large;
+	margin-left: 20px;
+	width: 200px;
+	color: black;
+	background: #f9d950;
+	padding: 10px 30px;
 	border: none;
-	border-radius: 8px;
-	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	border-radius: 10px;
 	cursor: pointer;
 	transition: all 0.5s ease 0s;
-	font-size: large;
-	margin-left: auto;
 }
 
-.header .botones .btn-enviar button {
-	background-color: #e41f1a;
-	color: #fff;
-}
-
-.header .botones .btn-ingresar button {
-	background-color: #f9d950;
-	color: #212e46;
-}
-
-.header .botones .btn-registrarse button {
-	background-color: #212e46;
-	color: #fff;
-}
-
-.header .botones .btn button:hover {
+.btn-mostrar button:hover {
 	transform: scale(1.1);
 }
+.tituloForm {
+	color: #f9d950;
+	font-size: 320%;
+	font-family:Arial , Helvetica, sans-serif;
+	font-style: italic;
+    padding: auto;
+
+}
+
+.header .logo1 img {
+	height: 100%;
+	width: 40%;
+	/* border: solid 1px red; */
+}
+
+.header .raya img{
+  height: 20px;
+  width: 90%;
+  opacity: 0.5;
+}
+
+
+.header .Bienvenida{
+	display: grid;
+    color: #f5cc16;
+	grid-template-columns: 60% 40%;
+	grid-template-rows: 100%;
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+	margin-right: 50px;
+	margin-left: 50px;
+
+}
+
+.header .Bienvenida .perfil{
+	font-size: 170%;
+	color: #f5cc16;
+	margin-left: 30px;
+}
+
+.header .Bienvenida .campos-user{
+	display: grid;
+	grid-template-rows: repeat(2,1fr);
+	grid-template-columns: 100%;
+}
+
+.header .Bienvenida .campos-user .name-user{
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
 
 /************************************************************************************
                                         Main
 ************************************************************************************/
 
-/* Estilos con columnas del cuestionario */
 
 .main {
 	display: grid;
-	grid-template-columns: 60% 40%;
+	grid-template-columns: 40% 20% 40%;
 	text-align: center;
+	height: 90%;
 }
 
-.contenido {
-	z-index: 100;
-	flex-direction: column;
-    display: grid;
-	place-content: center;
-	/* border-radi  us: 20px; */
-}
-
-.main div {
-	background: #fff;
-}
-
-/* .main div:hover{
+/*
+.main div:hover{
     border: 1px solid red;
-} */
-
-.main .titulo-pagina {
-	grid-column: 1/2;
 }
-
-.main .titulo-pagina img {
-	height: 80px;
-	margin-bottom: 10px;
-	margin-top: 10px;
-	width: auto;
-}
-
-.main h1 {
+*/
+.main h2 {
 	color: #f5cc16;
-	margin-top: 25px;
+	margin-top: -15px;
 }
 
-.main h3 {
-	color: #212e46;
-	margin-top: -20px;
+.contenedor {
+	float: left;
+	width: 50%;
+	height: 120px;
+	padding: 40px 20px;
+	margin-top: 5px;
+	align-items: center;
 }
-
-.btn-siguiente button {
-	font-weight: 700;
-	background-color: #f9da50d4;
-	color: #212e46;
-	padding: 10px 30px;
-	border: none;
-	border-radius: 15px;
-	cursor: pointer;
-	margin-left: 270px;
+.main .Enviar
+{
+    height: 300px;
+    width: 300px;
+    margin-top: 30px; 
+    right: 200px;
+    align-items: right;
 }
-
-.btn-siguiente button:hover {
-	transition: all 0.5s;
-	transform: scale(1.1);
-	box-shadow: 5px 5px 5px #e41f1a;
+.main .Repartidor{
+    height: 400px;
+    width: 500px;
+    margin-top: 40px;
+    align-items: center;
+}
+.main .Rastrear{
+	margin-top: 250px;
+}
+.main .Panel
+{
+	grid-template-columns: 60% 40%;
 	
 }
-
-.main .img-repartidor .repartidor img {
-	width: 530px;
-	height: 600px;
+.main .Panel .Historial {
+	margin-top: 420px;
+	height: 300px;
+    width: 300px;
+    right: 120px;
+    align-items: right;
 }
+main .Panel .PanelAmarillo{
+	margin-bottom: 200px;	
 
-marquee{
-	width: 130%;
 }
-
 /************************************************************************************
                                         Footer
 ************************************************************************************/

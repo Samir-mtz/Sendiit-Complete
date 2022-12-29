@@ -55,15 +55,16 @@
 	height: calc(10vh);
 	justify-content: center;
 	align-items: center;
+	/* border: 1px solid red; */
 }
 
 .link-header {
-	width: calc(80vh);
+	width: max-content;
 	height: auto;
 	justify-content: center;
 	align-items: center;
-	color: #e41f1a;
-	letter-spacing: calc(0.1rem);
+	color: #f3ba00;
+	letter-spacing: calc(0.08rem);
 	font-size: calc(2vw);
 	font-style: italic;
 }
@@ -80,7 +81,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	width: calc(50vh);
+	width: calc(60vh);
 	height: calc(8vh);
 	background: rgb(255, 243, 212);
 	border: calc(0.8vh) solid rgb(16, 73, 158);
@@ -148,8 +149,8 @@
 	height: 100%;
 	color: rgb(80, 80, 80);
 	width: auto;
-	padding-left: 10%;
-	padding-right: 10%;
+	padding-left: 3%;
+	padding-right: 3%;
 }
 
 .contenido-elemento h6 {
@@ -168,7 +169,7 @@ h5 {
 	z-index: 1;
 	background-color: rgba(0, 163, 238, 0.331);
 	border-radius: 10px;
-	padding: calc(0.08rem) calc(0.3rem);
+	padding: calc(0.05rem) calc(0.1rem);
 	box-shadow: calc(1px) 1px 1px rgb(16, 73, 158);
 	margin-right: 2%;
 	margin-left: 2%;
@@ -185,7 +186,7 @@ h5 {
 }
 
 .activo i {
-	margin-right: -5%;
+	margin-right: -3%;
 }
 
 .elemento:hover {
@@ -207,273 +208,135 @@ h5 {
 }
 
 .izq {
-	width: 60%;
 	height: calc(90vh - 10vh - 5vh);
 	display: flex;
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	margin-left: 10%;
+	/* margin-left: 10%; */
 	padding: 10% -1%;
 	height: calc(70vh);
-	width: calc(80vh);
-	border-radius: 30px;
+	width: calc(40%);
+	border-radius: calc(5vh);
 	background: rgb(250, 250, 250);
-	box-shadow: 2px 5px 10px #bebebe;
+	box-shadow: 1px 5px 10px #bebebe;
 }
 
 .der {
 	margin-left: 10%;
-	width: 40%;
+	width: 30%;
 	height: calc(90vh - 10vh - 5vh);
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.pdf-generado{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	display: none;
 }
 
 .titulo-logo {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	margin-bottom: 3%;
 	height: calc(4vh);
-	margin-top: 3%;
+	width: 100%;
 }
 
 .titulo-logo img {
-	height: calc(5vh + 0.1rem);
+	height: calc(6vh + 0.1rem);
 }
 
 .titulo-pagina {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-
-.titulo-pagina {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: calc(4vh);
-	color: #e4c01d;
-	font-size: calc(2.5vh + 0.1rem);
-	font-style: italic;
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.descripcion-pagina {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: calc(2vh);
-	color: #212e46;
-	font-size: calc(2vh + 0.1rem);
-	font-style: italic;
-	font-weight: bold;
-	text-transform: uppercase;
-	margin-bottom: 3%;
-
-}
-
-.formulario-registrar{
-	height: auto;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-	margin-top: -3%;
-}
-
-.formulario {
-	width: calc(90vh);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
-}
-
-.col-izq{
-	width: calc(50%);
-}
-
-.col-der{
-	width: calc(50%);
-}
-
-.campos{
-	width: calc(75vh);
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	/* border: 1px solid blue; */
-}	 
-
-.campo {
-	height: calc(9vh);
-	margin: 1%;
-}
-
-.boton-main {
 	height: calc(5vh);
+	color: #e4c01d;
+	font-size: calc(2.0vh + 0.1rem);
+	font-style: italic;
+	font-weight: bold;
+	text-transform: uppercase;
+	/* margin-top: 5%; */
+	width: 100%;
 }
 
-.form-control {
-	height: calc(10vh);
-	display: flex;
+.contenido{
+    display: flex;
 	justify-content: center;
 	align-items: center;
-	flex-direction: column;
-	width: 80%;
-	margin: 1% auto;
-	margin-top: 3%;
+	height: calc(30vh);
+    margin: 0% 10%;
+    font-size: calc(2vh + 0.1rem);
+    flex-direction: column;
+	width: 100%;
 }
 
-.form-control label {
-	font-size: calc(2.0vh);
-	font-weight: 600;
-	cursor: pointer;
-	/* text-align: left; */
+.contenido img{
+	height: calc(9vh);
+	border-radius: 50%;
+	box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.225);
+}
+.textgeneral{
+    text-align: justify;
+    color: #212e46;
+    line-height: 170%;
 }
 
-.form-control small {
-	font-size: calc(1.3vh + 0.3rem);
-	font-weight: 300;
+.textgeneral b{
+    color: #000000;
+    font-weight: 800;
+    background-color: #e7d99bb4;
+    border-radius: 5px;
+    padding-left: 8px;
+    padding-right: 8px;
 }
 
-.form-control input {
-	font-size: calc(1.5vh + 0.1rem);
-	width: calc(8vh);
-	background: rgb(255, 255, 255);
-	border: 1px solid rgb(203, 203, 203);
-	border-radius: 10px;
-	height: calc(3vh + 0.1rem);
-	line-height: 45px;
-	/* padding: 0 30px 0 10px;	 */
-	transition: 0.3s ease all;
-}
-
-.terminosCondiciones label{
-	font-size: calc(1.8vh);
-}
-
-.terminos{
-	text-decoration: none;
-	color: blue;
-	text-align: justify;
+.botones{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	height: calc(15vh);
+	width: calc(65vh);
 }
 
 .btn-form {
+	width: max-content;
 	position: relative;
 	display: inline-block;
-	padding: 3px 40px;
+	padding: calc(2vh) calc(5vh);
 	text-align: center;
-	font-size: calc(1.5vh + 0.3rem);
+	font-size: calc(2vh);
 	letter-spacing: 1px;
 	text-decoration: none;
 	color: #212e46;
 	cursor: pointer;
 	transition: ease-out 0.5s;
-	border: 1px solid #f9d950;
+	border: none;
 	background: #f9d950;
-	border-radius: 10px;
-	box-shadow: 5px 5px 5px #f9d950;
+	border-radius: calc(0.5rem);
+	box-shadow: 2px 2px 2px #787878;
+}
+
+.pdf{
+	background: #e41f1a;
+	color: #fff;
 }
 
 .btn-form:hover {
-	color: #212e46;
-	background: rgb(246, 201, 0);
 	transition: all 0.8s;
-	transform: scale(1.3);
+	transform: scale(1.2);
 	box-shadow: 5px 5px 5px hsl(49, 93%, 0.3);
-}
-
-.registrar {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	width: calc(50%);
-	margin-top: -5%;
-	/* margin-bottom: 3%; */
 }
 
 .img-repartidor img {
 	height: calc(70vh);
 }
 
-/* Validaciones */
-
-.formulario__mensaje-exito-activo {
-	display: block;
-}
-
-.form-control {
-	/* margin-bottom: 	10px; */
-	position: relative;
-}
-
-.form-control label {
-	display: inline-block;
-	font-weight: 600;
-	cursor: pointer;
-	text-align: left;
-	padding-top: 10px;
-}
-
-.form-control input {
-	width: 90%;
-	background: rgb(255, 255, 255);
-	border: 3px solid rgb(203, 203, 203);
-	border-radius: 10px;
-	height: 25px;
-	line-height: 45px;
-	padding: 0 30px 0 10px;
-	transition: 0.3s ease all;
-}
-
-.form-control input:focus {
-	outline: 0;
-	border-color: #777;
-}
-
-.form-control.success input {
-	border-color: #2ecc71;
-}
-
-.form-control.error input {
-	border-color: #e74c3c;
-}
-
-.form-control i {
-	visibility: hidden;
-	position: absolute;
-	top: 52%;
-	right: 0.5%;
-}
-
-.form-control.success i.fa-check-circle {
-	color: #2ecc71;
-	visibility: visible;
-}
-
-.form-control.error i.fa-exclamation-circle {
-	color: #e74c3c;
-	visibility: visible;
-}
-
-.form-control small {
-	color: #e74c3c;
-	position: absolute;
-	left: 0;
-	top: 80%;
-	text-align: left;
-	visibility: hidden;
-}
-
-.form-control.error small {
-	visibility: visible;
-	font-size: calc(0.9vh + 0.3rem);
-	height: calc(3vh);
-}
 
 /************************************************************************************
                                         Footer
@@ -515,4 +378,134 @@ h5 {
 	cursor: pointer;
 	transition: all 0.5s;
 	transform: scale(1.2);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* PDF Orden generada */
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header-pdf {
+	display: grid;
+	grid-template-columns: 50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); */
+}
+
+.header-pdf .logo img {
+	height: 50px;
+	width: 180px; 
+}
+
+.header-pdf .texto-id{
+    font-size: 20px;
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main-pdf {
+	display: grid;
+	grid-template-rows: 5% 30% 5% 20% 5% 35%;
+	text-align: center;
+    align-items: center;
+	height: 90%;
+    /* border: 1px solid red; */
+}
+
+.datos-personas,
+.descripcion-paquete{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    text-align: left;
+    align-items: center;
+    height: 100%;
+    /* border: 1px solid red; */
+}
+
+.persona-origen,
+.persona-destino{
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    align-items: center;
+    height: 100%;
+}
+
+.paquete{
+	display: grid;
+	grid-template-rows: repeat(10, 1fr);
+	align-items: center;
+	height: 100%;
+}
+
+.persona-origen{
+    border-right: 1px solid rgb(144, 144, 144);
+}
+
+.titulo-seccion{
+    text-align: center;
+}
+
+.dato-remitente,
+.dato-destinario,
+.dato-paquete{
+    margin-left: 50px;
+    font-size: 11px;
+}
+
+
+.datos-paquete{
+    margin-top: 50px;
+	display: grid;
+    grid-template-rows: 20% 10% 70%;
+    text-align: left;
+    align-items: center;
+}
+
+.img-paquete img{
+    height: 100px;
+    margin-left: 120px;
+}
+
+.codigo img{
+    height: 200px;
+	margin-top: 30px;
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer-pdf {
+	display: grid;
+	grid-template-columns:100%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: rgb(142, 142, 142);
+	margin-top: 20px;
 }

@@ -97,15 +97,12 @@
       </div>
     </section>
     {% with messages = get_flashed_messages()[-1]%}
-
     {% if messages %}
-    <br />
-    <div class="">
+    <div class="info-message">
       {{ messages }}
     </div>
     {% endif %}
     {% endwith %}
-    <br>
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
@@ -134,13 +131,13 @@
             <td class="direccion-repartidor">{{ repartidor.direccion }}</td>
             {% if repartidor.confirmed == 1%}
             <td>
-              <button onclick="abrirEstado('{{ repartidor.id }}')" class="btn-estado btn-ventana-estado">
+              <button onclick="abrirEstado('{{ repartidor.id }}','{{ repartidor.confirmed }}')" class="btn-estado btn-ventana-estado">
                 <img src="../static/img/Admin/acciones/estado.png" />
               </button>
             </td>
             {% else %}
             <td>
-              <button onclick="abrirEstado('{{ repartidor.id }}')" class="btn-estado btn-ventana-estado" style="opacity: 0.5;">
+              <button onclick="abrirEstado('{{ repartidor.id }}','{{ repartidor.confirmed }}')" class="btn-estado btn-ventana-estado" style="opacity: 0.5;">
                 <img src="../static/img/Admin/acciones/estado.png" />
               </button>
             </td>
@@ -174,8 +171,9 @@
         <div class="botones-modal">
           <form action="{{ url_for('repartidoresModificarEstado') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            <input type="number" name="id" value="" id='estado_id' hidden>
-            <button class="confirmar">Confirmar</button>
+            <input type="text" name="id" value="" id='estado_id' hidden>
+            <input type="text" name="confirmed" value="" id='estado_confirmed' hidden>
+            <button type="submit" class="confirmar">Confirmar</button>
           </form>
           <button onclick="cerrarEstado()" class="cancelar">Cancelar</button>
         </div>
@@ -193,7 +191,7 @@
           <h2>¿Desea editar los datos del repartidor?</h2>
         </div>
         <div class="botones-modal">
-          <form action="{{ url_for('lockers') }}" method="POST">
+          <form action="{{ url_for('repartidoresActualizar') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='editar_id' hidden>
             <button class="confirmar">Confirmar</button>

@@ -8,7 +8,7 @@
   <!-- Titulo de pagina -->
   <title>ADMIN - CLIENTES</title>
   <!-- Favicon de la empresa -->
-  <link href="../static/img/empresa/favicon.png" rel="icon"/>
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
   <link rel="stylesheet" href="../static/css/tablaClientes.css" />
   <script src="https://kit.fontawesome.com/0daeb1a0d1.js" crossorigin="anonymous"></script>
@@ -89,15 +89,12 @@
       </div>
     </section>
     {% with messages = get_flashed_messages()[-1]%}
-
     {% if messages %}
-    <br />
-    <div class="">
+    <div class="info-message">
       {{ messages }}
     </div>
     {% endif %}
     {% endwith %}
-    <br>
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
@@ -106,6 +103,7 @@
             <th rowspan="2" class="nombre">NOMBRE</th>
             <th rowspan="2" class="correo">CORREO</th>
             <th rowspan="2" class="telefono">TÉLEFONO</th>
+            <th rowspan="2" class="direccion">DIRECCIÓN</th>
             <th rowspan="2" class="envios">No. ENVÍOS</th>
             <th colspan="3" class="acciones">ACCIONES</th>
           <tr style="background-color: #f9d950; font-size: 13px; height: 10px;">
@@ -121,6 +119,7 @@
             <td class="nombre-cliente">{{ cliente.nombre }}</td>
             <td class="correo-cliente">{{ cliente.email }}</td>
             <td>{{ cliente.telefono }}</td>
+            <td>{{ cliente.direccion }}</td>
             <td>{{ cliente.numPaq }}</td>
             <td>
               <a href="historialCliente.html">
