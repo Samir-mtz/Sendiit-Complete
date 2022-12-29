@@ -214,7 +214,7 @@ h5 {
 	justify-content: center;
 	align-items: center;
 	width: 80%;
-	height: calc(20vh);
+	height: calc(25vh);
 }
 
 .boton-regreso {
@@ -275,6 +275,7 @@ h5 {
 	border-radius: 50%;
 	transform: translateX(-100%);
 	background-color: #212e46;
+	/* margin-right: 20%; */
 }
 
 .logo-categoria {
@@ -299,35 +300,6 @@ h5 {
 	box-shadow: 3px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-.botones-main {
-	display: flex;
-	align-items: center;
-	justify-content: space-evenly;
-	width: calc(60vh);
-	height: calc(5vh);
-	margin-bottom: 3%;
-}
-
-.btn3 {
-	border: none;
-	background: none;
-	height: fit-content;
-	font-weight: 760;
-	color: #e41f1a;
-	background: #f9d950;
-	padding: calc(1.5vh) calc(2vh);
-	border: none;
-	border-radius: calc(2vh);
-	font-size: calc(2vh);
-	box-shadow: 5px 3px 3px rgb(174, 174, 174);
-}
-
-.btn3:hover {
-	transform: scale(1.1);
-	cursor: pointer;
-	transition: all 0.5s;
-}
-
 .tabla {
 	display: flex;
 	justify-content: center;
@@ -338,18 +310,20 @@ h5 {
 
 table {
 	width: calc(100%);
-	text-align: center;
+  text-align: center;
 	border-collapse: collapse;
 }
 
-th {
-	font-size: calc(2vh);
-	height: calc(1vh);
+th{
+  font-size: calc(2vh);
+  height: calc(1vh);
 }
 
-td {
+td{
 	height: calc(1vh);
-	font-size: calc(1.8vh);
+	font-size: calc(2.0vh);
+	/* text-align: left;
+	padding-left: 2%; */
 }
 
 thead {
@@ -358,100 +332,92 @@ thead {
 	color: #212e46;
 }
 
+.nombre,
+.correo {
+	width: calc(30vh);
+}
+
+.nombre-cliente,
+.correo-cliente {
+	text-align: left;
+	padding-left: 5%;
+}
+
+.telefono,
+.envios {
+	width: calc(15vh);
+}
+
+.acciones {
+	width: calc(5vh);
+}
+
+.accion {
+	width: calc(10vh);
+	font-size: calc(1.8vh);
+}
+
 tr:nth-child(even) {
 	background-color: #ddd;
 }
 
-.id{
-	width: calc(5vh);
-}
-
-.nombre,
-.correo {
-	width: calc(40vh);
-}
-
-.nombre-repartidor,
-.direccion-repartidor,
-.correo-repartidor {
-	text-align: left;
-	padding-left: 2%;
-}
-
-.direccion{
-	width: calc(50vh);
-}
-
-.telefono{
-	width: calc(20vh);
-}
-
-.acciones {
-	width: calc(35vh);
-}
-
-.accion {
-	width: calc(7vh);
-	font-size: calc(1.8vh);
-}
-
-.btn-estado,
+.btn-visualizar,
 .btn-editar,
-.btn-eliminar {
-	border: none;
+.btn-eliminar{
+  border: none;
 	background: none;
-	height: fit-content;
+  height: fit-content;
 }
 
-.btn-estado img,
+.btn-visualizar img,
 .btn-editar img,
-.btn-eliminar img {
-	height: calc(3.5vh);
-	width: calc(3.5vh);
+.btn-eliminar img{
+  height: calc(3.5vh);
+  width: calc(3.5vh);
 }
 
-.btn-estado:hover,
+.btn-visualizar:hover,
 .btn-editar:hover,
-.btn-eliminar:hover {
+.btn-eliminar:hover{
 	transform: scale(1.1);
 	cursor: pointer;
 	transition: all 0.5s ease 0s;
 }
 
 .tablatest th:last-child,
-.tablatest td:last-child {
-	border-right: 0;
+.tablatest td:last-child{
+  border-right: 0;
 }
 
-.tabla {
-	max-height: 50%;
-	overflow-y: scroll;
+.tabla{
+  max-height: 50%;
+  overflow-y: scroll;
 }
 
-.tablatest .sticky {
-	position: sticky;
-	top: 0;
+.tablatest .sticky{
+  position: sticky;
+  top: 0;
 }
 
 .tabla::-webkit-scrollbar {
-	-webkit-appearance: none;
+    -webkit-appearance: none;
 }
 
 .tabla::-webkit-scrollbar:vertical {
-	width: 10px;
+    width:10px;
 }
 
 .tabla::-webkit-scrollbar-thumb {
-	background-color: #797979;
-	border-radius: 20px;
-	border: 2px solid #f1f2f3;
+    background-color: #797979;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
 }
 
 /* Modal */
 
-dialog {
+dialog{
 	background: #fff;
-	margin: auto;
+  margin: auto;
 }
 
 .encabezado-modal {
@@ -521,14 +487,13 @@ dialog {
 	transition: all 0.5s;
 }
 
-.confirmar,
-.intentar,
-.aceptar {
+.confirmar,.intentar, .aceptar{
 	background-color: #3dbc56;
 }
-.cancelar {
+.cancelar{
 	background-color: #e76c3c;
 }
+
 
 /************************************************************************************
                                         Footer

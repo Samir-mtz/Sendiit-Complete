@@ -537,16 +537,11 @@ def admin():
 # Lockers - tabla
 @app.route('/admin/lockers')
 def lockers():
-    DATA = {
-        'title': 'Lockers',
-        'stylesheet': '../static/css/tablalockers.css',
-    }
-
     try:
         list_lockers = ModelLocker.consultAll(db)
-        return render_template('TablaLockers.html', data=DATA, lockers=list_lockers)
+        return render_template('TablaLockers.html', lockers=list_lockers)
     except:
-        return render_template('TablaLockers.html', data=DATA, lockers=[])
+        return render_template('TablaLockers.html', lockers=[])
     
 # Lockers - formulario registrar
 @app.route('/admin/lockers/agregar')
@@ -561,12 +556,13 @@ def lockersAgregar():
 # Salvar datos post, insertamos, y redireccionamos a admin lockers
 
 # Lockers - actualizar
-@app.route('/admin/lockers/<int:id_locker>')
-def lockersActualizar(id_locker):
+@app.route('/admin/lockers/editar', methods=['GET','POST'])
+def lockersActualizar():
     DATA = {
         'title': 'Agregar Locker',
         'stylesheet': '../../static/css/EditarLockers.css',
     }
+    id_locker = request.form['id']
     try:
         current = ModelLocker.consult_by_id(db, id_locker)
         return render_template('EditarLockers.html', data=DATA, locker=current)
@@ -665,9 +661,9 @@ def repartidores():
     list_repartdores = ModelUser.consultRepartidoresAll(db)
     if list_repartdores != None:
 
-        return render_template('altaRepartidores.html', repartidores=list_repartdores)
+        return render_template('tablaRepartidores.html', repartidores=list_repartdores)
     else:
-        return render_template('altaRepartidores.html', repartidores=[])
+        return render_template('tablaRepartidores.html', repartidores=[])
 
 
 @app.route('/admin/repartidores/agregar', methods=['GET', 'POST'])
@@ -700,19 +696,6 @@ def repartidoresAgregar():
 
     else:
         return render_template('agregarRepartidor.html')
-    # return render_template('agregarRepartidor.html')
-
-
-# @app.route('/admin/lockers/agregar')
-# def lockersAgregar():
-#     DATA = {
-#             'title' : 'Agregar Locker',
-#             'stylesheet' : '../../static/css/AgregarLocker.css',
-#             }
-#     list_locations = ModelLocation.consultAll(db)
-
-#     return render_template('AgregarLocker.html', data=DATA, locations = list_locations)
-
 
 @app.route('/admin/repartidores/modificar-estado', methods=['GET', 'POST'])
 def repartidoresModificarEstado():
@@ -731,6 +714,15 @@ def repartidoresModificarEstado():
     db.connection.commit()
 
     return redirect(url_for('repartidores'))
+
+@app.route('/admin/repartidores/editar')
+def repartidoresActualizar():
+    id_repartidor = request.form['id']
+    try:
+        current = ModelUser.consult_repartidor_by_id(db, id_repartidor)
+        return render_template('EditarLockers.html', repartidor=current)
+    except:
+        return render_template('EditarLockers.html', repartidor={})
 
 
 @app.route('/admin/repartidores/eliminar', methods=['GET', 'POST'])

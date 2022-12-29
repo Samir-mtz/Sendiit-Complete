@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Titulo de pagina -->
-  <title>ADMIN - LOCKERS</title>
+  <title>ADMIN - REPARTIDORES</title>
   <!-- Favicon de la empresa -->
   <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="../static/css/tablaLockers.css" />
+  <link rel="stylesheet" href="../static/css/tablaRepartidores.css" />
   <script src="https://kit.fontawesome.com/0daeb1a0d1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -23,7 +23,7 @@
       </a>
     </div>
     <div class="links">
-      <div class="link-header">LOCKERS</div>
+      <div class="link-header">REPARTIDORES</div>
     </div>
     <div class="usuario">
       <div class="tarjeta">
@@ -83,38 +83,31 @@
         </div>
       </div>
       <div class="logo-categoria">
-        <a href="{{ url_for('lockers') }}" class="link-categoria">
-          <img src="../static/img/categorias/lockers.png" alt="Categoria Clientes">
+        <a href="{{ url_for('repartidores') }}" class="link-categoria">
+          <img src="../static/img/categorias/repartidores.png" alt="Categoria Repartidores">
         </a>
       </div>
     </section>
-
     <section class="botones-main">
-      <div class="agregar">
-        <button onclick="abrirAgregar()" class="btn3 btn-ventana-agregar">AGREGAR LOCKER</button>
+      <div class="">
+        <button onclick="abrirAgregar()" class=" btn3 btn-ventana-agregar">REGISTRADOS</button>
+      </div>
+      <div class="">
+        <a href="{{ url_for('repartidoresAgregar') }}"><button class="btn3 btn-ventana-agregar">ALTAS</button></a>
       </div>
     </section>
-    {% with messages = get_flashed_messages()[-1]%}
-
-    {% if messages %}
-    <br />
-    <div class="">
-      {{ messages }}
-    </div>
-    {% endif %}
-    {% endwith %}
-    <br>
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
+          <!-- Encabezados de la tabla -->
           <tr>
-            <th rowspan="2" class="ubicacion">UBICACIÓN</th>
-            <th colspan="3" class="modelo">MODELO 13 PUERTAS</th>
+            <th rowspan="2" class="id">ID</th>
+            <th rowspan="2" class="nombre">NOMBRE</th>
+            <th rowspan="2" class="correo">CORREO</th>
+            <th rowspan="2" class="telefono">TÉLEFONO</th>
+            <th rowspan="2" class="direccion">DIRECCIÓN</th>
             <th colspan="3" class="acciones">ACCIONES</th>
-          <tr style="background-color: #f9d950;">
-            <th class="tamanio">S</th>
-            <th class="tamanio">M</th>
-            <th class="tamanio">G</th>
+          <tr style="background-color: #f9d950; font-size: 13px; height: 10px;">
             <th class="accion">ESTADO</th>
             <th class="accion">EDITAR</th>
             <th class="accion">ELIMINAR</th>
@@ -122,33 +115,33 @@
           </tr>
         </thead>
         <tbody>
-          {% for locker in lockers %}
+          {% for repartidor in repartidores %}
           <tr>
-            <td class="nombre-ubicacion">{{ locker.ubicacion }}</td>
-            <td>{{ locker.cantidadS }}</td>
-            <td>{{ locker.cantidadM }}</td>
-            <td>{{ locker.cantidadL }}</td>
-            {% if locker.activo == 1%}
+            <td>{{ repartidor.id }}</td>
+            <td class="nombre-repartidor">{{ repartidor.nombre }}</td>
+            <td class="correo-repartidor">{{ repartidor.email }}</td>
+            <td>{{ repartidor.telefono }}</td>
+            <td class="direccion-repartidor">{{ repartidor.direccion }}</td>
+            {% if repartidor.confirmed == 1%}
             <td>
-              <button onclick="abrirEstado('{{ locker.id }}')" class="btn-estado btn-ventana-estado">
+              <button onclick="abrirEstado('{{ repartidor.id }}')" class="btn-estado btn-ventana-estado">
                 <img src="../static/img/Admin/acciones/estado.png" />
               </button>
             </td>
             {% else %}
             <td>
-              <button onclick="abrirEstado('{{ locker.id }}')" class="btn-estado btn-ventana-estado"
-                style="opacity: 0.5;">
+              <button onclick="abrirEstado('{{ repartidor.id }}')" class="btn-estado btn-ventana-estado" style="opacity: 0.5;">
                 <img src="../static/img/Admin/acciones/estado.png" />
               </button>
             </td>
             {% endif %}
             <td>
-              <button onclick="abrirEditar('{{ locker.id }}')" class="btn-editar btn-ventana-editar">
+              <button onclick="abrirEditar()" class="btn-editar btn-ventana-editar">
                 <img src="../static/img/Admin/acciones/editar.png" />
               </button>
             </td>
             <td>
-              <button onclick="abrirEliminar('{{ locker.id }}')" class="btn-eliminar btn-ventana-eliminar">
+              <button onclick="abrirEliminar('{{ repartidor.id }}')" class="btn-eliminar btn-ventana-eliminar">
                 <img src="../static/img/Admin/acciones/eliminar.png" />
               </button>
             </td>
@@ -159,23 +152,6 @@
     </section>
   </main>
 
-  <!-- Modal para agregar locker -->
-  <dialog class="modal-btn-agregar" id="modal-btn">
-    <center>
-      <div class="contenido-modal">
-        <div class="encabezado-modal"><button onclick="cerrarAgregar()" class="modal-btn-cerrar-agregar"><i
-              class="bi bi-x-circle"></i></button></div>
-        <div class="titulo-modal">
-          <h2>¿Desea agregar un locker?</h2>
-        </div>
-        <div class="botones-modal">
-          <a href="{{ url_for('lockersAgregar') }}"><button class="confirmar">Confirmar</button></a>
-          <button onclick="cerrarAgregar()" class="cancelar">Cancelar</button>
-        </div>
-      </div>
-    </center>
-  </dialog>
-
   <!-- Modal para activar/desacrtivar -->
   <dialog class="modal-btn-estado" id="modal-btn">
     <center>
@@ -183,10 +159,10 @@
         <div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea cambiar el estado del locker?</h2>
+          <h2>¿Desea cambiar el estado del repartdidor?</h2>
         </div>
         <div class="botones-modal">
-          <form action="{{ url_for('lockersModificarEstado') }}" method="POST">
+          <form action="{{ url_for('repartidoresModificarEstado') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='estado_id' hidden>
             <button class="confirmar">Confirmar</button>
@@ -204,10 +180,10 @@
         <div class="encabezado-modal"><button onclick="cerrarEditar()" class="modal-btn-cerrar-editar"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea editar el locker?</h2>
+          <h2>¿Desea editar los datos del repartidor?</h2>
         </div>
         <div class="botones-modal">
-          <form action="{{ url_for('lockersActualizar') }}" method="POST">
+          <form action="{{ url_for('lockers') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='editar_id' hidden>
             <button class="confirmar">Confirmar</button>
@@ -225,10 +201,10 @@
         <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea eliminar el locker?</h2>
+          <h2>¿Desea eliminar al repartidor?</h2>
         </div>
         <div class="botones-modal">
-          <form action="{{ url_for('lockersEliminar') }}" method="POST">
+          <form action="{{ url_for('repartidoresEliminar') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='eliminar_id' hidden>
             <button class="confirmar">Confirmar</button>
