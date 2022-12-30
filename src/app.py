@@ -135,7 +135,7 @@ def login():
                     login_user(logged_user)
                     confirmed_user = ModelUser.consulta_email(
                         db, logged_user.email)
-                    print(confirmed_user.tipo)
+                    # print(confirmed_user.tipo)
                     
                     if confirmed_user.confirmed:  # En caso de no ser confirmado reenvia un correo para confirmar
                         
@@ -188,7 +188,7 @@ def logout():
 @login_required
 def homeCliente():
     user = ModelUser.consulta_email(db, current_user.email)
-    print(user.tipo)
+    # print(user.tipo)
     if user.tipo == 'usuario':
         return render_template('InicioCliente.html')
     elif user.tipo == 'admin':
@@ -489,7 +489,7 @@ def formularioPago():
         ModelEnvio.register(db, datos)
         return render_template('PagoExitoso.html')
     listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
-    print(listTarjetas[0].numtarjeta)
+    # print(listTarjetas[0].numtarjeta)
 
     return render_template('formularioPago.html', tarjetas=listTarjetas)
 
@@ -499,8 +499,8 @@ def formularioPago():
 def ordenGenerada():
     last_delivery = ModelEnvio.consultLast(db)
     sender = ModelUser.consulta_telefono(db, current_user.id)
-    print(last_delivery)
-    print(sender)
+    # print(last_delivery)
+    # print(sender)
     return render_template('OrdenGenerada.html', datos=last_delivery, sender=sender)
 
 
@@ -617,7 +617,7 @@ def lockersActualizado():
 @app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
 def lockersEliminar():
     id_recibido = request.form['id']
-    print(id_recibido)
+    # print(id_recibido)
     try:
         ModelLocker.delete(db, id_recibido)
         flash("Locker eliminado con éxito")
