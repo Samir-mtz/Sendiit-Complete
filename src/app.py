@@ -395,26 +395,23 @@ def formularioEnvio():
         return redirect(url_for('homeRepartidor'))
     if user.tipo == 'usuario':    
         if request.method == 'POST':
-            envio = {
-                "destino": request.form['destino'],
-                "origen": request.form['origen'],
-                "tamano": request.form['tamano'],
-                "fragil": request.form['fragil'],
-                "nombre": request.form['nombre'],
-                "email": request.form['email'],
-                "telefono": request.form['telefono'],
-                "costo": request.form['costo'],
-                "estado": 'EN ESPERA DE ENTREGA',
-                "idusuario": current_user.id}
-            # g.envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
-            # print(g.envio)
-            # ModelEnvio.register(db, envio)
-            listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
-            if listTarjetas != None:
-                return render_template('formularioPago.html', envio=envio, tarjetas=listTarjetas)
-            else:
-                return render_template('formularioPago.html', envio=envio, tarjetas=[])
+            
+            destino: request.form['destino']
+            origen: request.form['origen']
+            tamano: request.form['tamano']
+            fragil: request.form['cbox']
+            nombre: request.form['nombre']
+            email: request.form['email']
+            telefono: request.form['telefono']
+            costo: request.form['costo']
+            estado: 'POR DEPOSITARSE EN LOCKER POR EL CLIENTE'
+            idusuario: current_user.id
+            datos = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
+
+            ModelEnvio.register(db, datos)
+            return render_template('PagoExitoso.html')
         
+        ###Funcionalidad del mapbox
         lockers = ModelMapbox.consultaCoordenadas(db)
         shutil.copy("src/static/js/origen.js", "src/static/js/mapbox2.js")
         destFile = r"src/static/js/mapbox2.js"
@@ -472,9 +469,11 @@ def formularioEnvio():
                         getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))\n\
                     }")
         shutil.copy("src/static/js/mapbox2.js", "src/static/js/mapboxfinal.js")
+        ##Fin funcionalidad Map Box
+        ##Cargamos tarjetas
+        listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
 
-
-        return render_template('FormularioEnvio.html')
+        return render_template('FormularioEnvio.html', tarjetas=listTarjetas)
     else:
         return redirect(url_for('index'))
 
@@ -492,12 +491,10 @@ def formularioPago():
         costo = request.form['costo']
         estado = request.form['estado']
         idusuario = request.form['idusuario']
-        datos = Envio(origen, destino, tamano, fragil, estado,
-                      nombre, email, telefono, costo, idusuario)
+        datos = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
         ModelEnvio.register(db, datos)
         return render_template('PagoExitoso.html')
     listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
-    # print(listTarjetas[0].numtarjeta)
 
     return render_template('formularioPago.html', tarjetas=listTarjetas)
 
@@ -540,7 +537,7 @@ def userRastrear(id):
 
     elif estado == "RECOGIDO":
         return render_template('PagoFracasado.html')
-        
+
     return render_template('PagoFracasado.html')
 
 #########################################################################################

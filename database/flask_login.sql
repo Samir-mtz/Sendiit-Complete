@@ -50,7 +50,6 @@ CREATE TABLE envios (
   `telefono` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `costo` FLOAT COLLATE utf8_unicode_ci NOT NULL,
   `idusuario` INTEGER COLLATE utf8_unicode_ci NOT NULL,
-  `idrepartidor` INTEGER COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY(`id`)
 );
 

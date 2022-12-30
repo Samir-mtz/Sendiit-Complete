@@ -197,12 +197,12 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
-                                '<strong>Aragon</strong><p>Av. Luis Enrique Erro S/N</p>',
+                                '<strong>Sátelite</strong><p>Cto. Cirujanos 1-Local 3, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>',
                             'icon': 'post'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [-99.14456344504508, 19.50619981463728]
+                            'coordinates': [-99.23202789711353, 19.510418491079623]
                         }
                     }
                     ,
@@ -211,12 +211,40 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
-                                '<strong>Satelite</strong><p>Av. Luis Enrique Erro S/N</p>',
+                                '<strong>Colonia del Valle</strong><p>C. Gabriel Mancera 916, Col del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX</p>',
                             'icon': 'post'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [-99.23783357545507, 19.5134808947239]
+                            'coordinates': [-99.16479674838662, 19.38370135021779]
+                        }
+                    }
+                    ,
+							
+                        {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Villa de Aragón</strong><p>Av.608, 4a Sección, San Juan de Aragón, Gustavo A. Madero, 07979 Ciudad de México, CDMX</p>',
+                            'icon': 'post'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-99.0612996325149, 19.46156136421477]
+                        }
+                    }
+                    ,
+							
+                        {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
+                                '<strong>Polanco</strong><p>Av. Ejército Nacional Mexicano 598, Polanco, CDMX</p>',
+                            'icon': 'post'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-99.1949207882933, 19.43566665558206]
                         }
                     }
                     ,
@@ -237,10 +265,16 @@ map.on('load', () => {
             
 let coordinatesPoints = new Map();
                     
-coordinatesPoints.set('Aragon',[-99.14456344504508, 19.50619981463728])
+coordinatesPoints.set('Sátelite',[-99.23202789711353, 19.510418491079623])
                 
                     
-coordinatesPoints.set('Satelite',[-99.23783357545507, 19.5134808947239])
+coordinatesPoints.set('Colonia del Valle',[-99.16479674838662, 19.38370135021779])
+                
+                    
+coordinatesPoints.set('Villa de Aragón',[-99.0612996325149, 19.46156136421477])
+                
+                    
+coordinatesPoints.set('Polanco',[-99.1949207882933, 19.43566665558206])
                 
 function convertMyRoute(inicio, fin){
                         getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))
