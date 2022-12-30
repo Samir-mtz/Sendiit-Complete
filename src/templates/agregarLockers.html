@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Titulo de pagina -->
-  <title>ADMIN - EDITAR LOCKER</title>
+  <title>ADMIN - AGREGAR LOCKER</title>
   <!-- Favicon de la empresa -->
-  <link href="../../static/img/empresa/favicon.png" rel="icon" />
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="../../static/css/editarLockers.css" />
+  <link rel="stylesheet" href="../../static/css/agregarLockers.css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
       </a>
     </div>
     <div class="links">
-      <div class="link-header">EDITAR LOCKER</div>
+      <div class="link-header">AGREGAR LOCKER</div>
     </div>
     <div class="usuario">
       <div class="tarjeta">
@@ -60,13 +60,12 @@
       </div>
 
       <div class="titulo-pagina">
-        <h1>EDITAR LOCKER</h1>
+        <h1>AGREGAR LOCKER</h1>
       </div>
 
       <div class="contenido">
-        <form action="{{ url_for('lockersActualizado') }}" method="POST" id="formulario" class="formulario">
+        <form action="{{ url_for('lockersAgregado') }}" method="POST" id="formulario" class="formulario">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-		<input type="number"  name="id" value="{{ locker.id }}" hidden>
           <div class="campos-fomulario">
             <div class="campos">
               <!-- Campo: Ubicación -->
@@ -74,8 +73,8 @@
                 <label for="Ubicacion">
                   <p>Ubicación<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Ubicacion" id="Ubicacion" value="{{ locker.ubicacion }}" class="texto-input"
-                  autocomplete="off" disabled /><br>
+                <input type="text" name="Ubicacion" id="Ubicacion" placeholder="Lindavista" class="texto-input"
+                  autocomplete="off" /><br>
                 <small></small>
               </div>
               <!-- Campo: Direccion -->
@@ -83,7 +82,7 @@
                 <label for="Direccion">
                   <p>Direccion<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Direccion" id="Direccion" value="{{ locker.direccion }}"
+                <input type="text" name="Direccion" id="Direccion" placeholder="Av. luis Enrrique Erro S/N."
                   class="texto-input" autocomplete="off" /><br>
                 <small></small>
               </div>
@@ -92,7 +91,7 @@
                 <label for="Cantidad">
                   <p>Cantidad<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Cantidad" id="Cantidad" value="{{ cantidad }}"  class="texto-input"
+                <input type="text" name="Cantidad" id="Cantidad" placeholder="1" class="texto-input"
                   autocomplete="off" /><br>
                 <small></small>
               </div>
@@ -101,7 +100,7 @@
                 <label for="Latitud">
                   <p>Latitud<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Latitud" id="Latitud" value="{{ locker.latitud }}"  class="texto-input"
+                <input type="text" name="Latitud" id="Latitud" placeholder="1.000" class="texto-input"
                   autocomplete="off" /><br>
                 <small></small>
               </div>
@@ -110,7 +109,7 @@
                 <label for="Longitud">
                   <p>Longitud<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Longitud" id="Longitud" value="{{ locker.longitud }}"  class="texto-input"
+                <input type="text" name="Longitud" id="Longitud" placeholder="1.000" class="texto-input"
                   autocomplete="off" /><br>
                 <small></small>
               </div>

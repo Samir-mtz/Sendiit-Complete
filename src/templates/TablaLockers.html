@@ -31,7 +31,7 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">ADMINISTRADOR</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
             <a href="{{ url_for('admin') }}" class="elemento ">
               <div class="contenido-elemento activo">
@@ -95,15 +95,12 @@
       </div>
     </section>
     {% with messages = get_flashed_messages()[-1]%}
-
     {% if messages %}
-    <br />
-    <div class="">
+    <div class="info-message">
       {{ messages }}
     </div>
     {% endif %}
     {% endwith %}
-    <br>
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
@@ -130,13 +127,13 @@
             <td>{{ locker.cantidadL }}</td>
             {% if locker.activo == 1%}
             <td>
-              <button onclick="abrirEstado('{{ locker.id }}')" class="btn-estado btn-ventana-estado">
+              <button onclick="abrirEstado('{{ locker.id }}','{{ locker.activo }}')" class="btn-estado btn-ventana-estado">
                 <img src="../static/img/Admin/acciones/estado.png" />
               </button>
             </td>
             {% else %}
             <td>
-              <button onclick="abrirEstado('{{ locker.id }}')" class="btn-estado btn-ventana-estado"
+              <button onclick="abrirEstado('{{ locker.id }}', '{{ locker.activo }}')" class="btn-estado btn-ventana-estado"
                 style="opacity: 0.5;">
                 <img src="../static/img/Admin/acciones/estado.png" />
               </button>
@@ -189,6 +186,7 @@
           <form action="{{ url_for('lockersModificarEstado') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='estado_id' hidden>
+            <input type="text" name="confirmed" value="" id='estado_confirmed' hidden>
             <button class="confirmar">Confirmar</button>
           </form>
           <button onclick="cerrarEstado()" class="cancelar">Cancelar</button>

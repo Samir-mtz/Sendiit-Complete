@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Nombre de la pagina -->
-  <title>Admin - Agregar Repartidor</title>
+  <!-- Titulo de pagina -->
+  <title>ADMIN - AGREGAR REPARTIDOR</title>
   <!-- Favicon de la empresa -->
   <link href="../../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
@@ -15,147 +15,178 @@
 </head>
 
 <body>
-  <article>
-    <header class="header">
-      <!-- Logo de la empresa -->
-      <div class="logo">
-        <a href="{{ url_for('index') }}">
-          <img src="../../static/img/empresa/logo.png" alt="Logo de la empresa" />
-        </a>
-      </div>
-      <!-- Barra de navegacion dentro de la pagina -->
-      <div class="secciones">
-        <div class="nav-contenido">
-          <a href="{{ url_for('repartidoresAgregar') }}">AGREGAR REPARTIDOR</a>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="{{ url_for('index') }}">
+        <img src="../../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header">AGREGAR REPARTIDOR</div>
+    </div>
+    <div class="usuario">
+      <div class="tarjeta">
+        <div class="tarjeta-izq">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="tarjeta-der">
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
+          <div class="iconos-tarjeta">
+            <a href="{{ url_for('admin') }}" class="elemento ">
+              <div class="contenido-elemento activo">
+                <i class="bi bi-house"></i>
+                <!-- <h6>Inicio</h6> -->
+                <h6>Catálogo</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="{{ url_for('logout') }}" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-box-arrow-in-left cerrar"></i>
+                <h6 class="cerrar">Salir</h6>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
-      <!-- Botones de acciones del sistema -->
-      <div class="botones">
-        <div class="nav-botones">
-          <a href="#" class="btn btn-imgAdmin"><img src="../static/img/iconos/admin.webp" alt=""></a>
-        </div>
-        <div class="nav-botones">
-          <a href="{{ url_for('admin') }}" class="btn btn-administrador"
-            ><button>ADMINISTRADOR</button></a
-          >
-        </div>
-        <div class="nav-botones">
-          <a href="{{ url_for('logout') }}" class="btn btn-cerrarsesion"
-            ><button>CERRAR SESIÓN</button></a
-          >
-        </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="izq">
+      <div class="titulo-logo">
+        <img src="../../static/img/empresa/logo.png" alt="Logo empresa" />
+        <br><br>
       </div>
-    </header>
-    <main class="main">
-      <div class="contenido">
-        <div class="titulo-pagina">
-          <img src="../static/img/empresa/logo.png" alt="" class="logo-encabezado" />
-          <br />
-          <h2>AGREGAR REPARTIDOR</h2>
-          <h5>Registro de nuevo repartidor</h5>
+
+      <div class="titulo-pagina">
+        <h1>AGREGAR REPARTIDOR</h1>
+      </div>
+
+      <div class="descripcion-pagina">
+        <h6>Registro de un nuevo repartidor</h6>
+      </div>
+
+      <div class="formulario-registrar">
+        <form action="{{ url_for('repartidoresAgregado') }}" method="POST" class="formulario" id="formulario">
           {% with messages = get_flashed_messages() %}
-
-            {% if messages %}
-              <br />
-              <!-- {% for message in messages %}
-                {%if message == 'Ese email ya esta registrado'%} -->
-                <div>
-                  <strong style="color: #e41f1a;">{{ messages[-1]}}</strong>
-                </div>
-                <!-- {% endif %}
-              {% endfor %} -->
-            {% endif %}
-
+          {% if messages %}
+          <br />
+          <div>
+            <strong style="color: #e41f1a;">{{ messages[-1]}}</strong>
+          </div>
+          {% endif %}
           {% endwith %}
-        </div>
-        <form action="{{ url_for('repartidoresAgregar') }}" method="POST" class="formulario" id="formulario">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-          <div>
-            <!-- Grupo: Nombre -->
-            <div class="form-control">
-              <label for="nombre">Nombre <label style="color: red;">*</label></label>
-              <input type="text" name="nombre" id="nombre" placeholder="Juan Perez" />
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i><br>
-              <small>Error message</small>
+          <div class="campos">
+            <div class="col-izq">
+              <!-- izquierda -->
+              <!-- Grupo: Nombre -->
+              <div class="form-control campo">
+                <label for="nombre">Nombre <label style="color: red;">*</label></label>
+                <input type="text" name="nombre" id="nombre" placeholder="Juan Pérez" autocomplete="off" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
+              <!-- Grupo: Correo Electronico -->
+              <div class="form-control campo">
+                <label for="email">E-mail <label style="color: red;">*</label></label>
+                <input type="email" name="email" id="email" placeholder="juanperez@gmail.com" autocomplete="off" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
+              <!-- Grupo: Contraseña -->
+              <div class="form-control campo">
+                <label for="password">Contraseña <label style="color: red;">*</label></label>
+                <input type="password" name="password" id="password" placeholder="$1234567Abc" autocomplete="off" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
+              <!-- Grupo: Confirmar Contraseña -->
+              <div class="form-control campo">
+                <label for="password">Confirmar Contraseña <label style="color: red;">*</label></label>
+                <input type="password" name="password_confirm" id="password_confirm" placeholder="$1234567Abc"
+                  autocomplete="off" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
             </div>
+            <div class="col-der">
+              <!-- Grupo: Telefono -->
+              <div class="form-control campo">
+                <label for="telefono">Teléfono <label style="color: red;">*</label></label>
+                <input type="text" name="telefono" id="telefono" placeholder="5578963158" autocomplete="off" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
+              <!-- Grupo: Dirección -->
+              <div class="form-control campo">
+                <label for="direccion">Dirección <label style="color: red;">*</label></label>
+                <input type="text" name="direccion" id="direccion" placeholder="Casa 1 Calle 2 C.P. 09214"
+                  autocomplete="off" />
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
 
-            <!-- Grupo: Correo Electronico -->
-            <div class="form-control">
-              <label for="email">Email <label style="color: red;">*</label></label>
-              <input type="email" name="email" id="email" placeholder="juanperez@sendiit.com" />
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i><br>
-              <small>Error message</small>
-            </div>
-
-            <!-- Grupo: Contraseña -->
-            <div class="form-control">
-              <label for="password">Contraseña <label style="color: red;">*</label></label>
-              <input type="password" name="password" id="password" placeholder="$1234567Abc" />
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i><br>
-              <small>Error message</small>
-            </div>
-
-            <!-- Grupo: Contraseña 2 -->
-            <div class="form-control">
-              <label for="password_confirm">Confirmar Contraseña <label style="color: red;">*</label></label>
-              <input type="password" name="password_confirm" id="password_confirm" placeholder="$1234567Abc" />
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i><br>
-              <small>Error message</small>
+              <!-- Grupo: Extra -->
+              <div class="form-control campo">
+                <label for="direccion">Sucursal <label style="color: red;">*</label></label>
+                <select name="sucursal" id="sucursal" class="selector">
+                  <option value="0">Seleccionar</option>
+                  <option value="Lindavista">Lindavista</option>
+                  <option value="Colonia del Valle">Colonia del Valle</option>
+                  <option value="Sátelite">Sátelite</option>
+                  <option value="Villa de Aragón">Villa de Aragón</option>
+                </select>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
+              </div>
+              <!-- Grupo: Extra -->
+              <div class="form-control campo">
+              </div>
             </div>
           </div>
-          <div>
-            <!-- Grupo: Teléfono -->
-            <div class="form-control">
-              <label for="telefono">Teléfono <label style="color: red;">*</label></label>
-              <input type="text" name="telefono" id="telefono" placeholder="4491234567" />
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i><br>
-              <small>Error message</small>
-            </div>
-            <!-- Grupo: Direccion -->
-            <div class="form-control">
-              <label for="direccion">Dirección <label style="color: red;">*</label></label>
-              <input type="text" name="direccion" id="direccion" placeholder="Casa 1 Calle 2 C.P. 09214" />
-              <i class="fas fa-check-circle"></i>
-              <i class="fas fa-exclamation-circle"></i><br>
-              <small>Error message</small>
-            </div>
+          <!-- Grupo: Boton ingresar -->
+          <div class="form-control">
+            <button type="submit" class="btn-form registrar">Agregar Repartidor</button>
           </div>
-          <button type="submit" class="btn-form">Agregar Repartidor</button>
         </form>
-      </div>
-      <div class="repartidor">
-        <img class="img-repartidor" src="../../static/img/repartidores/Repartidor_5.png" alt="" />
-      </div>
-    </main>
 
-    <footer class="footer">
-      <div class="derechos">
-        <div class="copyright">
-          <span>&copy;2022 México. Todos los derechos reservados.</span>
-        </div>
+
       </div>
-      <div class="redes">
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-        </div>
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-        </div>
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-        </div>
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-        </div>
+
+    </section>
+    <section class="der">
+      <div class="img-repartidor">
+        <img src="../../static/img/repartidores/Repartidor_5.png" alt="Imagen mujer" />
       </div>
-    </footer>
-  </article>
-  <script src="/static/js/validacionesRegistroRepartidor.js"></script>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+  <script src="../../static/js/validaciones/registrar.js"></script>
 </body>
 
 </html>

@@ -387,88 +387,96 @@ def tarjetasEliminar():
 @app.route('/user/formularioEnvio', methods=['GET', 'POST'])
 @login_required
 def formularioEnvio():
-    if request.method == 'POST':
-        envio = {
-            "destino": request.form['destino'],
-            "origen": request.form['origen'],
-            "tamano": request.form['tamano'],
-            "fragil": request.form['fragil'],
-            "nombre": request.form['nombre'],
-            "email": request.form['email'],
-            "telefono": request.form['telefono'],
-            "costo": request.form['costo'],
-            "estado": 'EN ESPERA DE ENTREGA',
-            "idusuario": current_user.id}
-        # g.envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
-        # print(g.envio)
-        # ModelEnvio.register(db, envio)
-        listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
-        if listTarjetas != None:
-            return render_template('formularioPago.html', envio=envio, tarjetas=listTarjetas)
-        else:
-            return render_template('formularioPago.html', envio=envio, tarjetas=[])
-    
-    lockers = ModelMapbox.consultaCoordenadas(db)
-    shutil.copy("src/static/js/origen.js", "src/static/js/mapbox2.js")
-    destFile = r"src/static/js/mapbox2.js"
-    with open(destFile, 'a', encoding="utf-8") as f:
-
-        f.write("\nmap.on('load', () => {\n\
-        // make an initial directions request that\n\
-        // starts and ends at the same location\n\
-        map.addSource('places', {\n\
-            'type': 'geojson',\n\t\
-            'data': {\n\t\t\
-                'type': 'FeatureCollection',\n\t\t\t\
-                'features': [")
-        for i in range(len(lockers)):
-            f.write(f"""
-                    {{
-                    'type': 'Feature',
-                    'properties': {{
-                        'description':
-                            '<strong>{lockers[i][0]}</strong><p>{lockers[i][1]}</p>',
-                        'icon': 'post'
-                    }},
-                    'geometry': {{
-                        'type': 'Point',
-                        'coordinates': [{lockers[i][2]}, {lockers[i][3]}]
-                    }}
-                }}
-                """)
-            if i!=len(lockers):
-                f.write(",\n\t\t\t\t\t\t\t")
+    user = ModelUser.consulta_email(db, current_user.email)
+    print(user.tipo)
+    if user.tipo == 'admin':
+        return redirect(url_for('admin'))
+    elif user.tipo == 'repartidor':
+        return redirect(url_for('homeRepartidor'))
+    if user.tipo == 'usuario':    
+        if request.method == 'POST':
+            envio = {
+                "destino": request.form['destino'],
+                "origen": request.form['origen'],
+                "tamano": request.form['tamano'],
+                "fragil": request.form['fragil'],
+                "nombre": request.form['nombre'],
+                "email": request.form['email'],
+                "telefono": request.form['telefono'],
+                "costo": request.form['costo'],
+                "estado": 'EN ESPERA DE ENTREGA',
+                "idusuario": current_user.id}
+            # g.envio = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
+            # print(g.envio)
+            # ModelEnvio.register(db, envio)
+            listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
+            if listTarjetas != None:
+                return render_template('formularioPago.html', envio=envio, tarjetas=listTarjetas)
+            else:
+                return render_template('formularioPago.html', envio=envio, tarjetas=[])
         
-        f.write("\
-                            ]\n\t\t\t\
-                        }\n\t\t\
-                    });\n\t\
-                    map.addLayer({\n\t\
-                        'id': 'places',\n\t\t\
-                        'type': 'symbol',\n\t\t\
-                        'source': 'places',\n\t\t\
-                        'layout': {\n\t\t\
-                            'icon-image': ['get', 'icon'],\n\t\t\t\
-                            'icon-size': 0.5,\n\t\t\t\
-                            'icon-allow-overlap': true\n\t\t\t\
-                        }\n\t\t\
+        lockers = ModelMapbox.consultaCoordenadas(db)
+        shutil.copy("src/static/js/origen.js", "src/static/js/mapbox2.js")
+        destFile = r"src/static/js/mapbox2.js"
+        with open(destFile, 'a', encoding="utf-8") as f:
+
+            f.write("\nmap.on('load', () => {\n\
+            // make an initial directions request that\n\
+            // starts and ends at the same location\n\
+            map.addSource('places', {\n\
+                'type': 'geojson',\n\t\
+                'data': {\n\t\t\
+                    'type': 'FeatureCollection',\n\t\t\t\
+                    'features': [")
+            for i in range(len(lockers)):
+                f.write(f"""
+                        {{
+                        'type': 'Feature',
+                        'properties': {{
+                            'description':
+                                '<strong>{lockers[i][0]}</strong><p>{lockers[i][1]}</p>',
+                            'icon': 'post'
+                        }},
+                        'geometry': {{
+                            'type': 'Point',
+                            'coordinates': [{lockers[i][2]}, {lockers[i][3]}]
+                        }}
+                    }}
+                    """)
+                if i!=len(lockers):
+                    f.write(",\n\t\t\t\t\t\t\t")
+            
+            f.write("\
+                                ]\n\t\t\t\
+                            }\n\t\t\
+                        });\n\t\
+                        map.addLayer({\n\t\
+                            'id': 'places',\n\t\t\
+                            'type': 'symbol',\n\t\t\
+                            'source': 'places',\n\t\t\
+                            'layout': {\n\t\t\
+                                'icon-image': ['get', 'icon'],\n\t\t\t\
+                                'icon-size': 0.5,\n\t\t\t\
+                                'icon-allow-overlap': true\n\t\t\t\
+                            }\n\t\t\
+                        });\n\
                     });\n\
-                });\n\
-        ")
+            ")
 
-        f.write("\nlet coordinatesPoints = new Map();")
-        for i in range(len(lockers)):
-            f.write(f"""
-                \ncoordinatesPoints.set('{lockers[i][0]}',[{lockers[i][2]}, {lockers[i][3]}])
-            """)
-        f.write("\nfunction convertMyRoute(inicio, fin){\n\
-                    getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))\n\
-                }")
-    shutil.copy("src/static/js/mapbox2.js", "src/static/js/mapboxfinal.js")
+            f.write("\nlet coordinatesPoints = new Map();")
+            for i in range(len(lockers)):
+                f.write(f"""
+                    \ncoordinatesPoints.set('{lockers[i][0]}',[{lockers[i][2]}, {lockers[i][3]}])
+                """)
+            f.write("\nfunction convertMyRoute(inicio, fin){\n\
+                        getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))\n\
+                    }")
+        shutil.copy("src/static/js/mapbox2.js", "src/static/js/mapboxfinal.js")
 
 
-    return render_template('FormularioEnvio.html')
-
+        return render_template('FormularioEnvio.html')
+    else:
+        return redirect(url_for('index'))
 
 @app.route('/user/formularioPago', methods=['GET', 'POST'])
 @login_required
@@ -519,64 +527,36 @@ def pagoFracasado():
 ################################## Usuario administrador ################################
 #########################################################################################
 # Ruta raíz
-
-
 @app.route('/admin')
 @login_required
 def admin():
-    DATA = {
-        'title': 'Catalogos',
-        'stylesheet': '../static/css/Catalogos.css',
-    }
     user = ModelUser.consulta_email(db, current_user.email)
     if user.tipo == 'admin':
-        return render_template('Catalogos.html', data=DATA)
+        return render_template('Catalogos.html')
     else:
         return redirect(url_for('home'))
 
-# Lockers - tabla
+# Administracion de lockers
 @app.route('/admin/lockers')
 def lockers():
     try:
         list_lockers = ModelLocker.consultAll(db)
         return render_template('TablaLockers.html', lockers=list_lockers)
     except:
+        flash("Ha ocurrido un error al consultar reprtidores")
         return render_template('TablaLockers.html', lockers=[])
-    
-# Lockers - formulario registrar
+
 @app.route('/admin/lockers/agregar')
 def lockersAgregar():
-    DATA = {
-        'title': 'Agregar Locker',
-        'stylesheet': '../../static/css/AgregarLocker.css',
-    }
+    return render_template('agregarLockers.html')
 
-    return render_template('AgregarLocker.html', data=DATA)
-    
-# Salvar datos post, insertamos, y redireccionamos a admin lockers
-
-# Lockers - actualizar
-@app.route('/admin/lockers/editar', methods=['GET','POST'])
-def lockersActualizar():
-    DATA = {
-        'title': 'Agregar Locker',
-        'stylesheet': '../../static/css/EditarLockers.css',
-    }
-    id_locker = request.form['id']
-    try:
-        current = ModelLocker.consult_by_id(db, id_locker)
-        return render_template('EditarLockers.html', data=DATA, locker=current)
-    except:
-        return render_template('EditarLockers.html', data=DATA, locker={})
-
-# Lockers - registrar
-@app.route('/admin/lockers/agregado', methods=['GET', 'POST'])
+@app.route('/admin/lockers/agregado', methods=['POST'])
 def lockersAgregado():
-    ubicacion = request.form['ubicacion']
-    direccion = request.form['direccion']
-    cantidad = request.form['cantidad']
-    latitud = request.form['latitud']
-    longitud = request.form['longitud']
+    ubicacion = request.form['Ubicacion']
+    direccion = request.form['Direccion']
+    cantidad = request.form['Cantidad']
+    latitud = request.form['Latitud']
+    longitud = request.form['Longitud']
     cantidadS = 5 * int(cantidad)
     cantidadM = 6 * int(cantidad)
     cantidadL = 3 * int(cantidad)
@@ -584,25 +564,50 @@ def lockersAgregado():
 
     try:
         ModelLocker.register(db, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, latitud, longitud)
-        flash("Locker con ubicación " + ubicacion + " agregado con éxito")
-        return redirect(url_for('lockersAgregar'))
+        flash("Locker con ubicación '" + ubicacion + "' agregado con éxito")
+        return redirect(url_for('lockers'))
     except:
         flash("Ha ocurrido un error al agregar locker")
-        return redirect(url_for('lockersAgregar'))
+        return redirect(url_for('lockers'))
 
+@app.route('/admin/lockers/modificar-estado', methods=['GET', 'POST'])
+def lockersModificarEstado():
+    try:
+        id_recibido = request.form['id']
+        estado_recibido = int(request.form['confirmed'])
+        estado_recibido = 1 - estado_recibido
+        ModelLocker.modificar_estado(db, id_recibido, estado_recibido)
+        flash("Estado de locker actualizado con éxito")
+        return redirect(url_for('lockers'))
+    except:
+        flash("Ha ocurrido un error al actualizar el estado locker")
+        return redirect(url_for('lockers'))
 
-# Lockers - eliminar
-@app.route('/admin/lockers/actualizado', methods=['GET', 'POST'])
+@app.route('/admin/lockers/actualizar', methods=['GET','POST'])
+def lockersActualizar():
+    try:
+        id_locker = request.form['id']
+        current = ModelLocker.consult_by_id(db, id_locker)
+        cantidad = str(current.cantidadS/5)
+        i=0
+        nolockers = ''
+        while cantidad[i] != '.' and i < len(cantidad):
+            nolockers += cantidad[i]
+            i+=1
+        return render_template('EditarLockers.html', locker=current, cantidad=nolockers)
+    except:
+        return render_template('EditarLockers.html', locker={}, cantidad='')
+
+@app.route('/admin/lockers/actualizado', methods=['POST'])
 def lockersActualizado():
     id_recibido = request.form['id']
-    direccion = request.form['direccion']
-    cantidad = request.form['cantidad']
-    latitud = request.form['latitud']
-    longitud = request.form['longitud']
+    direccion = request.form['Direccion']
+    cantidad = request.form['Cantidad']
+    latitud = request.form['Latitud']
+    longitud = request.form['Longitud']
     cantidadS = 5 * int(cantidad)
     cantidadM = 6 * int(cantidad)
     cantidadL = 3 * int(cantidad)
-    
     try:
         ModelLocker.update(db, id_recibido, direccion, cantidadS, cantidadM, cantidadL, latitud, longitud)
         flash("Locker actualizado con éxito")
@@ -611,51 +616,19 @@ def lockersActualizado():
         flash("Ha ocurrido un error al actualizar valores del locker")
         return redirect(url_for('lockers'))
     
-
-
-# Lockers - eliminar
-@app.route('/admin/lockers/eliminar', methods=['GET', 'POST'])
+@app.route('/admin/lockers/eliminar', methods=['POST'])
 def lockersEliminar():
-    id_recibido = request.form['id']
-    # print(id_recibido)
     try:
+        id_recibido = request.form['id']
         ModelLocker.delete(db, id_recibido)
         flash("Locker eliminado con éxito")
         return redirect(url_for('lockers'))
     except:
         flash("Ha ocurrido un error al eliminar locker")
         return redirect(url_for('lockers'))
-    
-# Lockers - modificar estado
 
 
-@app.route('/admin/lockers/modificar-estado', methods=['GET', 'POST'])
-def lockersModificarEstado():
-    try:
-        id_recibido = request.form['id']
-        cursor = db.connection.cursor()
-        sql_consulta = f"SELECT activo from lockers WHERE id={id_recibido}"
-        cursor.execute(sql_consulta)
-        estado = cursor.fetchone()
-        estadoFin = -1
-        if estado[0] == 0:
-            estadoFin = 1
-        else:
-            estadoFin = 0
-        sql = f"UPDATE lockers SET activo={estadoFin} WHERE id={id_recibido}"
-        cursor.execute(sql)
-        db.connection.commit()
-        
-        flash("Estado de locker modificado con éxito")
-        return redirect(url_for('lockers'))
-    except:
-        flash("Ha ocurrido un error al actualizar el estado del locker")
-        return redirect(url_for('lockers'))
-
-
-# Lockers - tabla
-
-
+# Administracion de repartidores
 @app.route('/admin/repartidores')
 def repartidores():
     try:
@@ -665,37 +638,34 @@ def repartidores():
         flash("Ha ocurrido un error al consultar reprtidores")
         return render_template('tablaRepartidores.html', repartidores=[])
 
-
-@app.route('/admin/repartidores/agregar', methods=['GET', 'POST'])
+@app.route('/admin/repartidores/agregar')
 def repartidoresAgregar():
-    # ModelUser.registerRepartidor(db)
+    return render_template('agregarRepartidor.html')
 
-    if request.method == 'POST':
-
-        # ¿El correo no esta registrado?
-        if ModelUser.check_email(db, request.form['email']) == False:
-            user = User(1, request.form['email'],
-                        request.form['password'],
-                        request.form['nombre'],
-                        request.form['telefono'],
-                        request.form['direccion']
-                        )
-            execution = ModelUser.registerRepartidor(
-                db, user)  # Registralo en la BD
-
+@app.route('/admin/repartidores/agregado', methods=['POST'])
+def repartidoresAgregado():
+    try:
+        email = request.form['email']
+        password = request.form['password']
+        nombre = request.form['nombre']
+        telefono = request.form['telefono']
+        direccion = request.form['direccion']
+        sucursal =request.form['sucursal']  
+        
+        if ModelUser.check_email(db, email) == False:
+            execution = ModelUser.registerRepartidor(db, email, password, nombre, telefono, direccion, sucursal)  # Registralo en la BD
             if execution != None:  # Se registro con exito entonces tengo sus datos
-                # flash("Repartidor Agregado con exito")
-                return render_template('agregarRepartidor.html')
+                flash("Repartidor "+ nombre +" agregado con exito")
+                return redirect(url_for('repartidores'))
             else:
                 flash("Algo salió mal, intenta de nuevo")
-                return render_template('agregarRepartidor.html')
-
+                return redirect(url_for('repartidores'))
         else:
             flash("Ese email ya esta registrado")
             return render_template('agregarRepartidor.html')
-
-    else:
-        return render_template('agregarRepartidor.html')
+    except:
+        flash("Algo salió mal, intenta de nuevo")
+        return redirect(url_for('repartidores'))
 
 @app.route('/admin/repartidores/modificar-estado', methods=['POST'])
 def repartidoresModificarEstado():    
@@ -710,17 +680,30 @@ def repartidoresModificarEstado():
             flash("Ha ocurrido un error al actualizar el estado repartidor")
             return redirect(url_for('repartidores'))
 
-@app.route('/admin/repartidores/editar')
+@app.route('/admin/repartidores/editar', methods=['GET','POST'])
 def repartidoresActualizar():
-    id_repartidor = request.form['id']
     try:
+        id_repartidor = request.form['id']
         current = ModelUser.consult_repartidor_by_id(db, id_repartidor)
-        flash("Repartidor actualizado con éxito")
-        return render_template('EditarLockers.html', repartidor=current)
+        return render_template('editarRepartidores.html', repartidor = current)
     except:
-        flash("Ha ocurrido un error al actualizar al repartidor")
-        return render_template('EditarLockers.html', repartidor={})
+        flash("Ha ocurrido un error al obtener datos del repartidor")
+        return render_template('editarRepartidores.html', repartidor = {})
 
+@app.route('/admin/repartidores/actualizado', methods=['GET', 'POST'])
+def repartidoresActualizado():
+    try:
+        id_recibido = request.form['id']
+        nombre = request.form['Nombre']
+        email = request.form['Email']
+        telefono = request.form['Telefono']
+        direccion = request.form['Direccion']
+        ModelUser.update_cliente(db, id_recibido,nombre, email, telefono, direccion)
+        flash("Repartidor actualizado con éxito")
+        return redirect(url_for('repartidores'))
+    except:
+        flash("Ha ocurrido un error al actualizar valores del repartidor")
+        return redirect(url_for('repartidores'))
 
 @app.route('/admin/repartidores/eliminar', methods=['GET', 'POST'])
 def repartidoresEliminar():
@@ -750,7 +733,7 @@ def clientesActualizar():
         current = ModelUser.consult_cliente_by_id(db, id_recibido)
         return render_template('editarUsuarios.html', cliente = current)
     except:
-        flash("Ha ocurrido un error al eliminar al cliente")
+        flash("Ha ocurrido un error al obtener datos del cliente")
         return render_template('editarUsuarios.html', cliente = current)
 
 @app.route('/admin/clientes/actualizado', methods=['GET', 'POST'])
@@ -779,11 +762,10 @@ def clientesEliminar():
         flash("Ha ocurrido un error al eliminar al cliente")
         return redirect(url_for('clientes'))
 
+
 #########################################################################################
 ################################## Usuario repartidor ###################################
 #########################################################################################
-
-
 @app.route('/repartidor')
 @login_required
 def homeRepartidor():

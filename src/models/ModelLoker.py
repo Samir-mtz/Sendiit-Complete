@@ -70,18 +70,28 @@ class ModelLocker():
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
-
+    
     @classmethod
     def active_desactive(self, db, id, locker): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
         try:
             locker.activo = ~locker.activo
             cursor = db.connection.cursor()
-            sql = f"UPDATE lockers SET activo={locker.activo} WHERE id='{id}'"
+            sql = f"UPDATE lockers SET activo={locker.activo} WHERE id={id}"
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:
             raise Exception(ex)
     
+    @classmethod
+    def modificar_estado(self, db, id_locker, estado):
+        try:
+            cursor = db.connection.cursor()
+            sql = 'UPDATE lockers SET activo='+str(estado)+' WHERE id='+id_locker
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+
     @classmethod
     def delete(self, db, id_locker): 
         try:

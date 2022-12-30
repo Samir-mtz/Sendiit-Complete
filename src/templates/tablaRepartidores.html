@@ -31,7 +31,7 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">ADMINISTRADOR</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
             <a href="{{ url_for('admin') }}" class="elemento ">
               <div class="contenido-elemento activo">
@@ -113,6 +113,7 @@
             <th rowspan="2" class="correo">CORREO</th>
             <th rowspan="2" class="telefono">TÉLEFONO</th>
             <th rowspan="2" class="direccion">DIRECCIÓN</th>
+            <th rowspan="2" class="sucursal">SUCURSAL</th>
             <th colspan="3" class="acciones">ACCIONES</th>
           <tr style="background-color: #f9d950; font-size: 13px; height: 10px;">
             <th class="accion">ESTADO</th>
@@ -129,6 +130,7 @@
             <td class="correo-repartidor">{{ repartidor.email }}</td>
             <td>{{ repartidor.telefono }}</td>
             <td class="direccion-repartidor">{{ repartidor.direccion }}</td>
+            <td class="sucursal-repartidor">{{ repartidor.sucursal }}</td>
             {% if repartidor.confirmed == 1%}
             <td>
               <button onclick="abrirEstado('{{ repartidor.id }}','{{ repartidor.confirmed }}')" class="btn-estado btn-ventana-estado">
