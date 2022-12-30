@@ -810,11 +810,16 @@ def listaDePaquetes():
     fly = 0
     if request.method == 'POST' and request.form['estado'] != 'ELEGIR ESTADO':
         estado = request.form['estado']
-        list_paquetes = ModelRepartidor.paquetesAllCondition(
-            db, estado, current_user.id)
+        usuario = ModelUser.get_by_id(db,current_user.id)
+
+        if estado=="EN ESPERA DEL REPARTIDOR":
+            list_paquetes = ModelRepartidor.paquetesRecolectar(db, usuario.sucursal)
+        elif estado=="EN CAMINO":
+            list_paquetes = ModelRepartidor.paquetesEntregar(db, usuario.sucursal)
         fly = 1
     else:
-        list_paquetes = ModelRepartidor.paquetesAll(db, current_user.id)
+        usuario = ModelUser.get_by_id(db,current_user.id)
+        list_paquetes = ModelRepartidor.paquetesAll(db, usuario.sucursal)
     # print(list_paquetes)
     if list_paquetes != None:
         return render_template('pendientesRepartidor.html', paquetes=list_paquetes, fly=fly)
@@ -827,6 +832,21 @@ def rutaEnvio():
     repartidor = ModelUser.infoRepartidor(db, current_user.email)
     return render_template('RutaEnvio.html', repartidor=repartidor)
 
+@app.route('/repartidor/modificar-estado', methods=['GET', 'POST'])
+def repartidorModificarEstado():
+    try:
+        id_recibido = request.form['id']
+        estado = ModelEnvio.consultaEstado(db, id_recibido)
+        if estado == "EN ESPERA DEL REPARTIDOR":
+            new_estado = "EN CAMINO"
+        elif estado == "EN CAMINO":
+            new_estado = "ENTREGADO EN LOCKER DESTINO"
+        ModelEnvio.ChangeStatus(db, id_recibido, new_estado)
+        flash("Estado de locker modificado con éxito")
+        return redirect(url_for('listaDePaquetes'))
+    except:
+        flash("Ha ocurrido un error al actualizar el estado del paquete")
+        return redirect(url_for('listaDePaquetes'))
 
 #############################################################################################################
 ############################# Funciones de redireccionamineto despues de un error ###########################

@@ -14,7 +14,7 @@ CREATE TABLE `user` (
   `confirmed`  BOOLEAN NOT NULL DEFAULT 0,
   `tipo` varchar(20) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'usuario',
   `confirmed_on` DATE,
-  `numpaquetes` INTEGER COLLATE utf8_unicode_ci NOT NULL DEFAULT 0,
+  `sucursal` varchar(80) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   PRIMARY KEY(`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci COMMENT='Stores the user''s data.';
 
@@ -92,3 +92,5 @@ INSERT INTO `user` (`email`, `password`, `nombre`, `telefono`, `direcion`) VALUE
 --Contraseña: root123
 
 
+-- cambiar a numpaquetes a sucursal
+ALTER TABLE user  CHANGE `numpaquetes` `sucursal` VARCHAR(80);
