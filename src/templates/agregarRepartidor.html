@@ -31,7 +31,7 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">ADMINISTRADOR</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
             <a href="{{ url_for('admin') }}" class="elemento ">
               <div class="contenido-elemento activo">
@@ -70,7 +70,7 @@
       </div>
 
       <div class="formulario-registrar">
-        <form action="{{ url_for('repartidoresAgregar') }}" method="POST" class="formulario" id="formulario">
+        <form action="{{ url_for('repartidoresAgregado') }}" method="POST" class="formulario" id="formulario">
           {% with messages = get_flashed_messages() %}
           {% if messages %}
           <br />
@@ -138,6 +138,17 @@
 
               <!-- Grupo: Extra -->
               <div class="form-control campo">
+                <label for="direccion">Sucursal <label style="color: red;">*</label></label>
+                <select name="sucursal" id="sucursal" class="selector">
+                  <option value="0">Seleccionar</option>
+                  <option value="Lindavista">Lindavista</option>
+                  <option value="Colonia del Valle">Colonia del Valle</option>
+                  <option value="Sátelite">Sátelite</option>
+                  <option value="Villa de Aragón">Villa de Aragón</option>
+                </select>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                <small>Mensaje de error</small><br>
               </div>
               <!-- Grupo: Extra -->
               <div class="form-control campo">

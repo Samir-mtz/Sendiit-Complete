@@ -30,7 +30,7 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">ADMINISTRADOR</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
             <a href="{{ url_for('admin') }}" class="elemento ">
               <div class="contenido-elemento activo">
