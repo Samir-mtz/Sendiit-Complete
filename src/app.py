@@ -523,6 +523,26 @@ def pagoExitoso():
 def pagoFracasado():
     return render_template('PagoFracasado.html')
 
+@app.route('/user/rastrearEnvio/<id>')
+@login_required
+def userRastrear(id):
+    estado = ModelEnvio.rastreoEnvio(id)
+    if estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
+        return render_template('PagoFracasado.html')
+    elif estado == "EN ESPERA DEL REPARTIDOR":
+        return render_template('PagoFracasado.html')
+
+    elif estado == "EN CAMINO":
+        return render_template('PagoFracasado.html')
+
+    elif estado == "ENTREGADO EN LOCKER DESTINO":
+        return render_template('PagoFracasado.html')
+
+    elif estado == "RECOGIDO":
+        return render_template('PagoFracasado.html')
+        
+    return render_template('PagoFracasado.html')
+
 #########################################################################################
 ################################## Usuario administrador ################################
 #########################################################################################

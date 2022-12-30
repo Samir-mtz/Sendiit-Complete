@@ -77,4 +77,18 @@ class ModelEnvio():
         except Exception as ex:
             raise Exception(ex)
     
+    @classmethod
+    def rastreoEnvio(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT estado FROM envios where id={id}"
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return row[0]
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
 # SELECT * FROM envios ORDER BY id DESC LIMIT 1;
