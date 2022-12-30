@@ -78,8 +78,11 @@
       </div>
       <div class="barra-busqueda">
         <div class="buscar">
-          <input type="text" placeholder="Buscar" id="myInput">
-          <i class="fa-search lupa fas"></i>
+          <form action="{{ url_for('repartidores') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="Buscar" id="myInput" name="dato_consulta">
+            <button type="submit" class='fa-search lupa fas boton-buscar'></button>
+          </form>
         </div>
       </div>
       <div class="logo-categoria">

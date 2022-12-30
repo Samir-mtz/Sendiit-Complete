@@ -155,6 +155,26 @@ class ModelUser():
             raise Exception(ex)
     
     @classmethod
+    def consult_to_search_repartidor(self, db, dato):
+        try:
+            cursor = db.connection.cursor()
+            sql = "SELECT id, nombre, email, telefono, direcion, sucursal, confirmed FROM user where tipo='repartidor' and id like '%"+dato+"%' or nombre like '%"+dato+"%' or email like '%"+dato+"%' or telefono like '%"+dato+"%' or direcion like '%"+dato+"%' or sucursal like '%"+dato+"%'"
+            cursor.execute(sql)
+            list_repartidores=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_repartidores.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', sucursal=row[5], confirmed=row[6], tipo=''))
+            
+            if len(list_repartidores)>0:
+                return list_repartidores
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
     def consult_repartidor_by_id(self, db, id_repartidor):
         try:
             cursor = db.connection.cursor()
@@ -173,6 +193,26 @@ class ModelUser():
         try:
             cursor = db.connection.cursor()
             sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where tipo="usuario"'
+            cursor.execute(sql)
+            list_clientes=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_clientes.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3], direccion=row[4], password='', confirmed=row[5], tipo=''))
+            
+            if len(list_clientes)>0:
+                return list_clientes
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def consult_to_search_cliente(self, db, dato):
+        try:
+            cursor = db.connection.cursor()
+            sql = "SELECT id, nombre, email, telefono, direcion, confirmed FROM user where tipo='usuario' and nombre like '%"+dato+"%' or email like '%"+dato+"%' or telefono like '%"+dato+"%' or direcion like '%"+dato+"%'"
             cursor.execute(sql)
             list_clientes=[]
             while True:

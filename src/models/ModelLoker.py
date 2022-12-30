@@ -46,6 +46,26 @@ class ModelLocker():
             raise Exception(ex)
     
     @classmethod
+    def consult_to_search(self, db, dato): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, latitud, longitud, enviados, recibidos, activo, registrado FROM lockers WHERE ubicacion LIKE '%"+dato+"%'"
+            cursor.execute(sql)
+            list_lockers=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_lockers.append( Locker(id=row[0], ubicacion=row[1],direccion=row[2] ,cantidadS=row[3], cantidadM=row[4], cantidadL=row[5], disponibilidad=row[6], latitud=row[7], longitud=row[8], enviados=row[9], recibidos=row[10], activo=row[11], registrado=row[12]))
+            
+            if len(list_lockers)>0:
+                return list_lockers
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)        
+        
+    @classmethod
     def consult_by_location(self, db, ubicacion): #Nota esta consulta es para obtener el registro que contengan la ubicacion que enviamos retorna un objeto de tipo locker
         try:
             cursor = db.connection.cursor()
