@@ -123,14 +123,14 @@ class ModelUser():
             raise Exception(ex)    
 
     @classmethod
-    def registerRepartidor(self, db, user):
+    def registerRepartidor(self, db, email, password, nombre, telefono, direccion):
         try:
-            encrypted_password = User.generate_password(user.password)
+            encrypted_password = User.generate_password(password)
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO user (email, password, nombre, telefono, direcion, tipo, confirmed, confirmed_on ) VALUES ('{user.email}','{encrypted_password}','{user.nombre}','{user.telefono}','{user.direccion}', 'repartidor', 1, CURDATE())"
+            sql = f"INSERT INTO user (email, password, nombre, telefono, direcion, tipo, confirmed, confirmed_on ) VALUES ('{email}','{encrypted_password}','{nombre}','{telefono}','{direccion}', 'repartidor', 1, CURDATE())"
             cursor.execute(sql)
             db.connection.commit()
-            
+            return 1
         except Exception as ex:
             raise Exception(ex)
     

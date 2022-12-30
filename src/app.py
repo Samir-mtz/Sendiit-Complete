@@ -674,17 +674,16 @@ def repartidoresAgregar():
 
         # ¿El correo no esta registrado?
         if ModelUser.check_email(db, request.form['email']) == False:
-            user = User(1, request.form['email'],
+            execution = ModelUser.registerRepartidor(db, 
+                        request.form['email'],
                         request.form['password'],
                         request.form['nombre'],
                         request.form['telefono'],
                         request.form['direccion']
-                        )
-            execution = ModelUser.registerRepartidor(
-                db, user)  # Registralo en la BD
+                        )  # Registralo en la BD
 
             if execution != None:  # Se registro con exito entonces tengo sus datos
-                # flash("Repartidor Agregado con exito")
+                flash("Repartidor "+request.form['nombre']+"Agregado con exito")
                 return render_template('agregarRepartidor.html')
             else:
                 flash("Algo salió mal, intenta de nuevo")
@@ -710,17 +709,30 @@ def repartidoresModificarEstado():
             flash("Ha ocurrido un error al actualizar el estado repartidor")
             return redirect(url_for('repartidores'))
 
-@app.route('/admin/repartidores/editar')
+@app.route('/admin/repartidores/editar', methods=['GET','POST'])
 def repartidoresActualizar():
-    id_repartidor = request.form['id']
     try:
+        id_repartidor = request.form['id']
         current = ModelUser.consult_repartidor_by_id(db, id_repartidor)
-        flash("Repartidor actualizado con éxito")
-        return render_template('EditarLockers.html', repartidor=current)
+        return render_template('editarRepartidores.html', repartidor = current)
     except:
-        flash("Ha ocurrido un error al actualizar al repartidor")
-        return render_template('EditarLockers.html', repartidor={})
+        flash("Ha ocurrido un error al obtener datos del repartidor")
+        return render_template('editarRepartidores.html', repartidor = {})
 
+@app.route('/admin/repartidores/actualizado', methods=['GET', 'POST'])
+def repartidoresActualizado():
+    try:
+        id_recibido = request.form['id']
+        nombre = request.form['Nombre']
+        email = request.form['Email']
+        telefono = request.form['Telefono']
+        direccion = request.form['Direccion']
+        ModelUser.update_cliente(db, id_recibido,nombre, email, telefono, direccion)
+        flash("Repartidor actualizado con éxito")
+        return redirect(url_for('repartidores'))
+    except:
+        flash("Ha ocurrido un error al actualizar valores del repartidor")
+        return redirect(url_for('repartidores'))
 
 @app.route('/admin/repartidores/eliminar', methods=['GET', 'POST'])
 def repartidoresEliminar():
@@ -750,7 +762,7 @@ def clientesActualizar():
         current = ModelUser.consult_cliente_by_id(db, id_recibido)
         return render_template('editarUsuarios.html', cliente = current)
     except:
-        flash("Ha ocurrido un error al eliminar al cliente")
+        flash("Ha ocurrido un error al obtener datos del cliente")
         return render_template('editarUsuarios.html', cliente = current)
 
 @app.route('/admin/clientes/actualizado', methods=['GET', 'POST'])
