@@ -563,18 +563,14 @@ def lockers():
         except:
             flash("Ha ocurrido un error al consultar lockers")
             return render_template('TablaLockers.html', lockers=[])
-    elif request.method == 'POST': # Por post
+    if request.method == 'POST': # Por post
         try:
             dato = request.form['dato_consulta']
             list_lockers = ModelLocker.consult_to_search(db, dato)
             flash("Resultados de búsqueda para '"+dato+"'")
             return render_template('TablaLockers.html', lockers=list_lockers)
         except:
-            flash("Ha ocurrido un error al consultar la informacion")
             return render_template('TablaLockers.html', lockers=[])
-    else:
-        flash("Ha ocurrido un error al consultar la informacion")
-        return render_template('TablaLockers.html', lockers=[])
         
 
 @app.route('/admin/lockers/agregar')
@@ -669,19 +665,15 @@ def repartidores():
         except:
             flash("Ha ocurrido un error al consultar reprtidores")
             return render_template('tablaRepartidores.html', repartidores=[])
-    elif request.method == 'POST': # Por post
+    if request.method == 'POST': # Por post
         try:
             dato = request.form['dato_consulta']
             list_repartdores = ModelUser.consult_to_search_repartidor(db, dato)
             flash("Resultados de búsqueda para '"+dato+"'")
             return render_template('tablaRepartidores.html', repartidores=list_repartdores)
         except:
-            flash("Ha ocurrido un error al consultar la informacion")
             return render_template('tablaRepartidores.html', repartidores=[])
-    else:
-        flash("Ha ocurrido un error al consultar la informacion")
-        return render_template('tablaRepartidores.html', repartidores=[])
-
+    
 @app.route('/admin/repartidores/agregar')
 def repartidoresAgregar():
     return render_template('agregarRepartidor.html')
@@ -770,18 +762,14 @@ def clientes():
         except:
             flash("Ha ocurrido un error al consultar clientes")
             return render_template('tablaClientes.html', clientes=[])
-    elif request.method == 'POST': # Por post
+    if request.method == 'POST': # Por post
         try:
             dato = request.form['dato_consulta']
             list_clientes = ModelUser.consult_to_search_cliente(db, dato)
             flash("Resultados de búsqueda para '"+dato+"'")
             return render_template('tablaClientes.html', clientes=list_clientes)
         except:
-            flash("Ha ocurrido un error al consultar la informacion")
             return render_template('tablaClientes.html', clientes=[])
-    else:
-        flash("Ha ocurrido un error al consultar la informacion")
-        return render_template('tablaClientes.html', clientes=[])
 
 @app.route('/admin/clientes/actualizar', methods=['GET','POST'])
 def clientesActualizar():

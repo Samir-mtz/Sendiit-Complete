@@ -93,9 +93,9 @@
     </section>
     {% with messages = get_flashed_messages()[-1]%}
     {% if messages %}
-    <div class="info-message">
+    <p class="info-message">
       {{ messages }}
-    </div>
+    </p>
     {% endif %}
     {% endwith %}
     <section class="tabla">
@@ -141,9 +141,14 @@
             </td>
           </tr>
           {% endfor %}
+          {% if clientes == [] %}
+          <tr><td colspan="11"></td></tr>
+          <tr><td colspan="11"><p class="error-message">No se encontraron resultados</p></td></tr>
+          {% endif %}
         </tbody>
       </table>
     </section>
+    
   </main>
 
   <!-- Modal para editar -->
