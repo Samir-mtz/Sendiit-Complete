@@ -277,6 +277,17 @@ class ModelUser():
             raise Exception(ex)
     
     @classmethod
+    def update_contrasena(self, db, id_recibido, contrasena): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+        try:
+            encrypted_password = User.generate_password(contrasena)
+            cursor = db.connection.cursor()
+            sql = 'UPDATE user SET password="'+encrypted_password+'" WHERE id='+id_recibido
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
     def modificar_estado(self, db, id_user, estado):
         try:
             cursor = db.connection.cursor()

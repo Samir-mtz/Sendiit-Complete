@@ -2,21 +2,21 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Titulo de pagina -->
-  <title>SENDIIT - INGRESAR</title>
-  <!-- Favicon de la empresa -->
-  <link href="../static/img/empresa/favicon.png" rel="icon" />
-  <!-- Estilos -->
-  <link rel="stylesheet" href="../static/css/ingresar.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<!-- Titulo de pagina -->
+	<title>SENDIIT - RESTABLECIMIENTO</title>
+	<!-- Favicon de la empresa -->
+	<link href="../static/img/empresa/favicon.png" rel="icon" />
+	<!-- Estilos -->
+	<link rel="stylesheet" href="../static/css/ingresarVerificado.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
 </head>
 
 <body>
-  <!-- Header -->
-  <header class="header">
+	<!-- Header -->
+	<header class="header">
     <div class="logo">
       <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
@@ -33,22 +33,22 @@
       <a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
   </header>
 
-  <!-- Main -->
-  <main class="main">
-    <section class="izq">
-      <div class="titulo-logo">
-        <img src="../static/img/empresa/logo.png" alt="Logo empresa" />
-      </div>
+	<!-- Main -->
+	<main class="main">
+		<section class="izq">
+			<div class="titulo-logo">
+				<img src="../static/img/empresa/logo.png" alt="Logo empresa" />
+			</div>
 
-      <div class="titulo-pagina">
-        <h1>Inicio de sesión</h1>
-      </div>
+			<div class="titulo-pagina">
+				<h1>Inicio de sesión</h1>
+			</div>
 
-      <div class="descripcion-pagina">
-        <h6>Ingresa a tu cuenta</h6>
-      </div>
+			<div class="descripcion-pagina">
+				<h6>Ingresa a tu cuenta</h6>
+			</div>
 
-      <div class="formulario-ingresar">
+			<div class="formulario-ingresar">
         <form action="/login" class="formulario" id="formulario" method="POST">
           {% with messages = get_flashed_messages()[-1]%}
             {% if messages %}
@@ -79,7 +79,7 @@
 
           <!-- Grupo: Link recuperar contraseña -->
           <div class="form-control campo recuperar">
-            <a class="recuperacion" href="{{ url_for('recuperar') }}">¿Olvidaste tu contraseña?</a>
+            <a class="recuperacion" href="#">¿Olvidaste tu contraseña?</a>
           </div>
 
           <!-- Grupo: Boton ingresar -->
@@ -101,29 +101,29 @@
 
       </div>
 
-    </section>
-    <section class="der">
-      <div class="img-repartidor">
-        <img src="../static/img/repartidores/Repartidor_2.png" alt="Imagen mujur" />
-      </div>
-    </section>
-  </main>
+		</section>
+		<section class="der">
+			<div class="img-verificado">
+				<img src="../static/img/empresa/recuperacion.png" alt="Imagen de verificacion" />
+			</div>
+		</section>
+	</main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="derechos">
-      <div class="copyright">
-        <span>&copy;2022 México. Todos los derechos reservados.</span>
-      </div>
-    </div>
-    <div class="redes">
-      <a href="#"><i class="red bi bi-facebook"></i></a>
-      <a href="#"><i class="red bi bi-instagram"></i></a>
-      <a href="#"><i class="red bi bi-telegram"></i></a>
-      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
-    </div>
-  </footer>
-  <script src="../static/js/validaciones/ingresar.js"></script>
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="derechos">
+			<div class="copyright">
+				<span>&copy;2022 México. Todos los derechos reservados.</span>
+			</div>
+		</div>
+		<div class="redes">
+			<a href="#"><i class="red bi bi-facebook"></i></a>
+			<a href="#"><i class="red bi bi-instagram"></i></a>
+			<a href="#"><i class="red bi bi-telegram"></i></a>
+			<a href="#"><i class="red bi bi-envelope-fill"></i></a>
+		</div>
+	</footer>
+	<script src="../static/js/validaciones/ingresar.js"></script>
 </body>
 
 </html>

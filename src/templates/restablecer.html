@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>SENDIIT - RESTABLECER</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/restablecer.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+		<div class="logo">
+			<a href="{{ url_for('index') }}">
+				<img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+			</a>
+		</div>
+		<div class="links">
+			<div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+			<div class="link-header"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+			<div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
+		</div>
+		<div class="botones">
+			<a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+			<a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+			<a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
+	</header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="izq">
+      <div class="titulo-logo">
+        <img src="../static/img/empresa/logo.png" alt="Logo empresa" />
+      </div>
+
+      <div class="titulo-pagina">
+        <h1>Restablecer Contraseña</h1>
+      </div>
+
+      <div class="descripcion-pagina">
+        <h6>Captura y confirma la nueva contraseña</h6>
+      </div>
+
+      <div class="formulario-ingresar">
+        <form action="{{ url_for('contrasenaRestablecido') }}" class="formulario" id="formulario" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="text" name="id" value="{{ usuario.id }}" hidden>
+          <!-- Grupo: Contraseña -->
+          <div class="form-control campo">
+            <label for="password">Nueva Contraseña <label style="color: red;">*</label></label>
+            <input type="password" name="password" id="password" placeholder="$1234567Abc" />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Mensaje de error</small><br>
+          </div>
+          <br>
+          <!-- Grupo: Confirmar Contraseña -->
+          <div class="form-control campo">
+            <label for="password">Confirmar Contraseña <label style="color: red;">*</label></label>
+            <input type="password" name="password_confirm" id="password_confirm" placeholder="$1234567Abc" autocomplete="off"/>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <small>Mensaje de error</small><br>
+          </div>
+
+          <!-- Grupo: Boton Cambiar -->
+          <div class="form-control">
+            <button type="submit" class="btn-form cambiar">Cambiar Contraseña</button>
+          </div>
+
+        </form>
+
+        <!-- Grupo: Boton Cancelar -->
+        <div class="cancelar">
+          <a href="{{ url_for('login') }}" class="btn-form">Cancelar</a>
+        </div>
+
+      </div>
+
+    </section>
+    <section class="der">
+      <div class="img-repartidor">
+        <img src="../static/img/repartidores/Repartidor_2.png" alt="Imagen mujer" />
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+  <script src="../static/js/validaciones/restablecer.js"></script>
+</body>
+
+</html>
