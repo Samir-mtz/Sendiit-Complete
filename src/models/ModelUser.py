@@ -127,7 +127,7 @@ class ModelUser():
         try:
             encrypted_password = User.generate_password(password)
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO user (email, password, nombre, telefono, direcion, sucursal, tipo, confirmed, confirmed_on ) VALUES ('{email}','{encrypted_password}','{nombre}','{telefono}','{direccion}', '{sucursal}', 'repartidor', 1, CURDATE())"
+            sql = f"INSERT INTO user (email, password, nombre, telefono, direcion, sucursal, tipo, confirmed, confirmed_on ) VALUES ('{email}','{encrypted_password}','{nombre}','{telefono}','{direccion}', '{sucursal}', 'repartidor', 0, null)"
             cursor.execute(sql)
             db.connection.commit()
             return 1
