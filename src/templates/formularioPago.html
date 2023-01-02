@@ -30,7 +30,7 @@
 				<div class="campos-user">
 					<div class="name-user">{{ current_user.nombre }}</div>
 					<div class="btn-user">
-						<div class="pantalla-user"><a href="{{ url_for('home') }}">Inicio</a></div>
+						<div class="pantalla-user"><a href="{{ url_for('homeCliente') }}">Inicio</a></div>
 						<div class="pantalla-user"><a href="#">Historial</a></div>
 						<div class="pantalla-user"><a href="#">Rastrear</a></div>
 						<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
@@ -85,7 +85,7 @@
 						<a href="#" class="btn-pagar"><button>PAGAR</button></a>
 					</div>
 					<div class="cancelar">
-						<a href="{{url_for('home')}}" id="CancelarEnvio"class="btn-cancelar">CANCELAR</a>
+						<a href="{{url_for('homeCliente')}}" id="CancelarEnvio"class="btn-cancelar">CANCELAR</a>
 					</div>
 				</div>
 			</div>

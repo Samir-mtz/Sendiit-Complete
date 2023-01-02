@@ -450,7 +450,7 @@ def tarjetasEliminar():
         flash("Ha ocurrido un error al eliminar tarjeta")
         return redirect(url_for('userTarjetas'))
 
-@app.route('/user/formularioEnvio', methods=['GET', 'POST'])
+@app.route('/user/formularioEnvio', methods=['GET', 'POST'])    
 @login_required
 def formularioEnvio():
     user = ModelUser.consulta_email(db, current_user.email)
@@ -538,8 +538,9 @@ def formularioEnvio():
         ##Fin funcionalidad Map Box
         ##Cargamos tarjetas
         listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
-
-        return render_template('FormularioEnvio.html', tarjetas=listTarjetas)
+        if listTarjetas != None:
+            return render_template('formularioPago.html', tarjetas=listTarjetas)
+        return render_template('formularioPago.html', tarjetas=[])
     else:
         return redirect(url_for('index'))
 

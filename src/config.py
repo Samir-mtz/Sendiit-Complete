@@ -7,7 +7,7 @@ class DevelopmentConfig(Config):
     DEBUG = True
     MYSQL_HOST = 'localhost'
     MYSQL_USER = 'root'
-    MYSQL_PASSWORD = 'JairoSQL'
+    MYSQL_PASSWORD = 'root123'
     MYSQL_DB = 'flask_login' #Nombre de la base de datos
 
 config = {
