@@ -1,0 +1,412 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+
+* {
+	margin: 0;
+	font-family: "Oswald", sans-serif;
+	text-align: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	width: 100%;
+	height: calc(10vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(250, 250, 250, 0.3);
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.225); /*Propuesta*/
+	text-transform: uppercase;
+	font-size: calc(1vw + 0.5rem);
+}
+
+.logo {
+	display: flex;
+	width: 15%;
+	height: calc(10vh);
+	margin-top: 5px;
+	margin-left: 10%;
+	justify-content: center;
+	align-items: center;
+}
+
+.logo-header {
+	height: calc(2vw + 0.5rem);
+	width: max-content;
+}
+.logo-header:hover {
+	cursor: pointer;
+	transition: all 1s;
+	transform: scale(1.2);
+}
+
+.links {
+	display: flex;
+	width: 50%;
+	height: calc(10vh);
+	justify-content: center;
+	align-items: center;
+	/* border: 1px solid red; */
+}
+
+.link-header {
+	width: max-content;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+	color: #f3ba00;
+	letter-spacing: calc(0.08rem);
+	font-size: calc(2vw);
+	font-style: italic;
+}
+
+.usuario {
+	display: flex;
+	width: 50%;
+	height: calc(10vh);
+	justify-content: center;
+	align-items: center;
+}
+
+.tarjeta {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: calc(60vh);
+	height: calc(8vh);
+	background: rgb(255, 	243, 212);
+	border: calc(0.8vh) solid rgb(16, 73, 158);
+	border-radius: calc(3vh);
+}
+
+.tarjeta-izq {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15%;
+	height: calc(8vh);
+	font-size: calc(6vh);
+	margin-bottom: calc(2%);
+	color: rgb(16, 73, 158);
+}
+
+.tarjeta-der {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	width: 80%;
+	height: calc(7vh);
+}
+
+.nombre-tarjeta {
+	height: 50%;
+	width: 100%;
+	font-size: calc(2vh);
+	letter-spacing: calc(0.1rem);
+	font-style: italic;
+	color: rgb(16, 73, 158);
+}
+
+.iconos-tarjeta {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 50%;
+	width: 30%;
+	font-size: calc(2.0vh);
+}
+
+.elemento div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: max-content;
+	font-size: calc(3vh);
+	font-weight: bold;
+	height: 100%;
+	color: rgb(80, 80, 80);
+}
+
+.elemento {
+	text-decoration: none;
+	display: flex;
+	justify-content: center;
+	letter-spacing: calc(0.1vh);
+	align-items: center;
+	font-weight: bold;
+	height: 100%;
+	color: rgb(80, 80, 80);
+}
+
+.elemento div:first-child{
+	padding-right: 1.5vh;
+}
+
+.elemento div:first-child{
+	padding-left: 1.5vh;
+}
+
+.contenido-elemento h6 {
+	font-size: calc(1.3vh);
+}
+
+h5 {
+	color: rgb(151, 151, 151);
+}
+
+.cerrar {
+	color: #e41f1a;
+}
+
+.activo {
+	z-index: 1;
+	background-color: rgba(0, 163, 238, 0.331);
+	border-radius: calc(2vh);
+}
+
+.activo i,
+.activo h6 {
+	color: #000;
+}
+
+.activo h6 {
+	margin-left: calc(1vh);
+}
+
+.elemento:hover {
+	cursor: pointer;
+	transition: all 0.1s;
+	transform: scale(1.1);
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: column;
+	width: 100%;
+	height: calc(100vh - 10vh - 6vh);
+}
+
+.arriba {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	height: calc(20vh);
+}
+
+.boton-regreso {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: calc(30%);
+	height: calc(90%);
+    margin-left: 8%;
+}
+
+.boton-regreso a {
+	height: max-content;
+	text-decoration: none;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 500;
+	transition: all 0.2s;
+	padding: calc(1.5vh) calc(2.5vh);
+	border-radius: calc(3.5vh);
+	background: #212e46;
+	display: flex;
+	align-items: center;
+	font-size: calc(3vh);
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
+}
+
+.boton-regreso a > i {
+	width: calc(7vh);
+}
+
+.boton-regreso a:hover {
+	transition: transform 0.5s ease-in-out;
+	transform: scale(1.1);
+}
+
+.barra-busqueda {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: row;
+	width: 80%;
+	height: calc(90%);
+}
+
+.formulario{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.buscar{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    height: calc(10vh);
+    width: calc(100vh);
+}
+
+.boton-buscar{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    height: calc(25vh);
+    width: calc(30vh);
+}
+
+.btn-form {
+	width: max-content;
+	position: relative;
+	display: inline-block;
+	padding: calc(2vh) calc(5vh);
+	text-align: center;
+	font-size: calc(2vh);
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: #212e46;
+	cursor: pointer;
+	transition: ease-out 0.5s;
+	border: none;
+	background-color: #f9d950;
+	border-radius: calc(2vh);
+	box-shadow: 2px 2px 2px #787878;
+    margin-top: 5%;
+}
+
+.btn-form:hover {
+	transition: all 0.5s;
+	transform: scale(1.1);
+	box-shadow: 5px 5px 5px hsl(49, 93%, 0.3);
+}
+
+.form-control input {
+	width: calc(60vh);
+	height: calc(5vh);
+	font-size: calc(3vh);
+	color: #000;
+	outline: none;
+	border: calc(0.05rem) solid silver;
+	border-radius: calc(3vh);
+    font-size: calc(2vh);
+}
+
+.texto-input input{
+	justify-content: center;
+	align-items: center;
+	width: calc(45vh);
+	height: calc(2vh);
+	border-radius: calc(2vh);
+}
+
+.abajo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+    height: calc(40vh);
+}
+
+.img-repartidor img {
+	height: calc(30vh);
+}
+
+/* Validaciones */
+
+.formulario__mensaje-exito-activo {
+	display: inline-block;
+}
+
+.form-control p {
+	/* display: inline-block; */
+	font-size: calc(2vh);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input{
+	border-color: #e74c3c;
+}
+
+.form-control small {
+	color: #e74c3c;
+	visibility: hidden;
+	left: 0;
+    top: 0;
+}
+
+.form-control.error small {
+	visibility: visible;
+	font-size: calc(2.5vh);
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer,
+.footer a {
+	width: 100%;
+	height: calc(6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #212e46;
+	text-decoration: none;
+	color: #fff;
+}
+
+.derechos {
+	width: calc(60%);
+	height: calc(6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: calc(1.5vw);
+}
+
+.redes {
+	width: calc(40%);
+	height: calc(6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 10%;
+	font-weight: 1000;
+	font-size: calc(1.5vw);
+}
+
+.red:hover {
+	cursor: pointer;
+	transition: all 0.5s;
+	transform: scale(1.2);
+}

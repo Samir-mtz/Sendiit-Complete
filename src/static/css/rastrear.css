@@ -1,0 +1,396 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+
+* {
+	margin: 0;
+	font-family: "Oswald", sans-serif;
+	text-align: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	width: 100%;
+	height: calc(10vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(250, 250, 250, 0.3);
+	/* box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); */
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.225); /*Propuesta*/
+	text-transform: uppercase;
+	font-size: calc(1vw);
+}
+
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 15%;
+	height: calc(10vh);
+}
+
+.logo-header {
+	height: calc(5vh);
+	width: max-content;
+}
+.logo-header:hover {
+	cursor: pointer;
+	transition: all 1s;
+	transform: scale(1.1);
+}
+
+.links {
+	display: flex;
+	width: 40%;
+	height: calc(10vh);
+	font-size: calc(1.5vw);
+	justify-content: center;
+	align-items: center;
+}
+
+.link-header {
+	width: max-content;
+	height: auto;
+	justify-content: center;
+	align-items: center;
+	margin: calc(5%);
+}
+
+.link-header a {
+	width: max-content;
+	height: max-content;
+	text-decoration: none;
+	color: #212e46;
+}
+
+.link-header:hover,
+.link-header:hover a {
+	color: red;
+	cursor: pointer;
+	transition: all 0.5s;
+	transform: scale(1.3);
+}
+
+.botones {
+	display: flex;
+	height: calc(10vh);
+	width: 40%;
+	height: max-content;
+	color: #170505;
+}
+
+.boton-header a {
+	text-decoration: none;
+	/* color: #fff; */
+}
+
+.boton-header {
+	text-decoration: none;
+	justify-content: center;
+	width: max-content;
+	align-items: center;
+	margin: 5%;
+	padding: calc(2vh) calc(2vh);
+	border: unset;
+	z-index: 1;
+	border-radius: calc(2vh);
+	position: relative;
+	font-weight: 1000;
+	font-size: calc(1vw);
+	box-shadow: 4px 5px 5px -3px rgba(0, 0, 0, 0.2);
+	transition: all 250ms;
+	overflow: hidden;
+	letter-spacing: 1px;
+}
+
+.botonEnviar {
+	background-color: rgb(228, 31, 26, 1);
+	color: #fff;
+	width: 20%;
+}
+
+.botonIngresar {
+	background-color: rgba(249, 217, 80, 1);
+	color: #000;
+	width: 30%;
+}
+
+.botonRegistrarse {
+	background-color: rgba(33, 46, 70, 1);
+	color: #fff;
+	width: 40%;
+}
+
+.botonEnviar:hover {
+	color: rgb(228, 31, 26, 1);
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.botonIngresar:hover {
+	color: #f9d950;
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.botonRegistrarse:hover .botonRegistrarse:hover {
+	color: #fff;
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.boton-header::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	border-radius: calc(2vh);
+	z-index: -1;
+	box-shadow: 2px 5px 5px -3px rgba(0, 0, 0, 0.588);
+	transition: all 250ms;
+	background-color: #000;
+}
+
+.boton-header:hover::before {
+	width: 100%;
+	cursor: pointer;
+}
+
+.activo a {
+	color: red;
+	font-size: 120%;
+	text-decoration: underline;
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: column;
+	width: 100%;
+	height: calc(100vh - 10vh - 6vh);
+}
+
+.arriba {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+	height: calc(20vh);
+}
+
+.boton-regreso {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: calc(30%);
+	height: calc(90%);
+    margin-left: 8%;
+}
+
+.boton-regreso a {
+	height: max-content;
+	text-decoration: none;
+	color: #fff;
+	cursor: pointer;
+	font-weight: 500;
+	transition: all 0.2s;
+	padding: calc(1.5vh) calc(2.5vh);
+	border-radius: calc(3.5vh);
+	background: #212e46;
+	display: flex;
+	align-items: center;
+	font-size: calc(3vh);
+	box-shadow: 5px 5px 3px rgb(174, 174, 174);
+}
+
+.boton-regreso a > i {
+	width: calc(7vh);
+}
+
+.boton-regreso a:hover {
+	transition: transform 0.5s ease-in-out;
+	transform: scale(1.1);
+}
+
+.barra-busqueda {
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    flex-direction: row;
+	width: 80%;
+	height: calc(90%);
+}
+
+.formulario{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.buscar{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    height: calc(10vh);
+    width: calc(100vh);
+}
+
+.boton-buscar{
+    display: flex;
+	justify-content: center;
+	align-items: center;
+    height: calc(25vh);
+    width: calc(30vh);
+}
+
+.btn-form {
+	width: max-content;
+	position: relative;
+	display: inline-block;
+	padding: calc(2vh) calc(5vh);
+	text-align: center;
+	font-size: calc(2vh);
+	letter-spacing: 1px;
+	text-decoration: none;
+	color: #212e46;
+	cursor: pointer;
+	transition: ease-out 0.5s;
+	border: none;
+	background-color: #f9d950;
+	border-radius: calc(2vh);
+	box-shadow: 2px 2px 2px #787878;
+    margin-top: 5%;
+}
+
+.btn-form:hover {
+	transition: all 0.5s;
+	transform: scale(1.1);
+	box-shadow: 5px 5px 5px hsl(49, 93%, 0.3);
+}
+
+.form-control input {
+	width: calc(60vh);
+	height: calc(5vh);
+	font-size: calc(3vh);
+	color: #000;
+	outline: none;
+	border: calc(0.05rem) solid silver;
+	border-radius: calc(3vh);
+    font-size: calc(2vh);
+}
+
+.texto-input input{
+	justify-content: center;
+	align-items: center;
+	width: calc(45vh);
+	height: calc(2vh);
+	border-radius: calc(2vh);
+}
+
+.abajo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 90%;
+    height: calc(40vh);
+}
+
+.img-repartidor img {
+	height: calc(30vh);
+}
+
+/* Validaciones */
+
+.formulario__mensaje-exito-activo {
+	display: inline-block;
+}
+
+.form-control p {
+	/* display: inline-block; */
+	font-size: calc(2vh);
+	font-weight: 600;
+	cursor: pointer;
+}
+
+.form-control input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control.success input {
+	border-color: #2ecc71;
+}
+
+.form-control.error input{
+	border-color: #e74c3c;
+}
+
+.form-control small {
+	color: #e74c3c;
+	visibility: hidden;
+	left: 0;
+    top: 0;
+}
+
+.form-control.error small {
+	visibility: visible;
+	font-size: calc(2.5vh);
+}
+
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer,
+.footer a {
+	width: 100%;
+	height: calc(6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #212e46;
+	text-decoration: none;
+	color: #fff;
+}
+
+.derechos {
+	width: calc(60%);
+	height: calc(6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: calc(1.5vw);
+}
+
+.redes {
+	width: calc(40%);
+	height: calc(6vh);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 10%;
+	font-weight: 1000;
+	font-size: calc(1.5vw);
+}
+
+.red:hover {
+	cursor: pointer;
+	transition: all 0.5s;
+	transform: scale(1.2);
+}

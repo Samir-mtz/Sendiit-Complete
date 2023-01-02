@@ -1,182 +1,190 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Nombre de la pagina -->
-  <title>Agregar tarjeta</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
+  <!-- Titulo de pagina -->
+  <title>CLIENTE - AGREGAR TARJETA</title>
   <!-- Favicon de la empresa -->
   <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
   <link rel="stylesheet" href="../static/css/agregarTarjeta.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <article>
-    <header class="header">
-      <!-- Logo de la empresa -->
-      <div class="logo">
-        <a href="{{ url_for('index') }}">
-          <img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
-        </a>
-      </div>
-      <div class="titulo-pagina">AGREGAR TARJETA</div>
-      <div class="user">
-        <div class="perfil"><i class="bi bi-person-circle"></i></div>
-        <div class="campos-user">
-          <div class="name-user">{{ current_user.nombre }}</div>
-          <div class="btn-user">
-            <div class="pantalla-user"><a href="{{ url_for('homeCliente') }}">Inicio</a></div>
-            <div class="pantalla-user"><a href="#">Historial</a></div>
-            <div class="pantalla-user"><a href="#">Rastrear</a></div>
-            <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="./inicio">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header">AGREGAR TARJETA</div>
+    </div>
+    <div class="usuario">
+      <div class="card">
+        <div class="tarjeta-izq">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="tarjeta-der">
+          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="iconos-tarjeta">
+            <a href="./inicioCliente.html" class="elemento ">
+              <!-- <div class="contenido-elemento activo"> -->
+              <div class="contenido-elemento">
+                <i class="bi bi-house"></i>
+                <h6>Inicio</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./infoCliente.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-person-rolodex"></i>
+                <h6>Info. General</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./rastrearCliente.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-geo-alt"></i>
+                <h6>Rastrear</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./inicio.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-box-arrow-in-left cerrar"></i>
+                <h6 class="cerrar">Salir</h6>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-    </header>
-    <main class="main">
-
-      <div id="main">
-        <center>
-        <div class="contenedor">
-          <!-- Tarjeta -->
-          <section class="tarjeta" id="tarjeta">
-            <div class="delantera">
-              <div class="logo-marca" id="logo-marca">
-                <img src="../static/img/iconos/logos/visa.png" alt="">
-              </div>
-              <img src="../static/img/iconos/chip-tarjeta.png" class="chip" alt="">
-              <div class="datos">
-                <div class="grupo" id="numero">
-                  <p class="label">Número Tarjeta</p>
-                  <p class="numero">#### #### #### ####</p>
-                </div>
-                <div class="flexbox">
-                  <div class="grupo" id="nombre">
-                    <p class="label">Nombre Tarjeta</p>
-                    <p class="nombre">Jhon Doe</p>
-                  </div>
-
-                  <div class="grupo" id="expiracion">
-                    <p class="label">Expiracion</p>
-                    <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="trasera">
-              <div class="barra-magnetica"></div>
-              <div class="datos">
-                <div class="grupo" id="firma">
-                  <p class="label">Firma</p>
-                  <div class="firma">
-                    <p></p>
-                  </div>
-                </div>
-                <div class="grupo" id="ccv">
-                  <p class="label">CCV</p>
-                  <p class="ccv"></p>
-                </div>
-              </div>
-              <p class="leyenda">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus
-                exercitationem, voluptates illo.</p>
-              <!-- <a href="#" class="link-banco">www.tubanco.com</a> -->
-            </div>
-          </section>
-
-    <!-- Contenedor Boton Abrir Formulario -->
-    <div class="contenedor-btn">
-      <button class="btn-abrir-formulario" id="btn-abrir-formulario">
-        AGREGAR</i>
-      </button>
     </div>
+  </header>
 
-    <!-- Formulario -->
-    <form action="/user/agregarTarjeta" method="POST" id="formulario-tarjeta" class="formulario-tarjeta">
-      {% with messages = get_flashed_messages()[-1]%}
+  <!-- Main -->
+  <main class="main">
+    <section class="central">
+      <div class="contenedor">
+        <!-- Tarjeta -->
+        <section class="tarjeta" id="tarjeta">
+          <div class="delantera">
+            <div class="logo-marca" id="logo-marca">
+              <img src="../static/img/tarjeta/logos/visa.png" alt="">
+            </div>
+            <img src="../static/img/tarjeta/icono/chip-tarjeta.png" class="chip" alt="">
+            <div class="datos">
+              <div class="grupo" id="numero">
+                <p class="label">Número Tarjeta</p>
+                <p class="numero">#### #### #### ####</p>
+              </div>
+              <div class="flexbox">
+                <div class="grupo" id="nombre">
+                  <p class="label">Nombre Tarjeta</p>
+                  <p class="nombre">Jhon Doe</p>
+                </div>
 
-      {% if messages %}
-      <br />
-      <div>
-        <strong style="color: #e41f1a;">{{ messages }}</strong>
-      </div>
-      {% endif %}
-      {% endwith %}
-      <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
-      <div class="grupo">
-        <label for="inputNumero">Número Tarjeta</label>
-        <input type="text" id="inputNumero" name="inputNumero" maxlength="19" autocomplete="off">
-      </div>
-      <div class="grupo">
-        <label for="inputNombre">Nombre</label>
-        <input type="text" id="inputNombre" name="inputNombre" maxlength="19" autocomplete="off">
-      </div>
-      <div class="flexbox">
-        <div class="grupo expira">
-          <label for="selectMes">Expiracion</label>
+                <div class="grupo" id="expiracion">
+                  <p class="label">Expiracion</p>
+                  <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="trasera">
+            <div class="barra-magnetica"></div>
+            <div class="datos">
+              <div class="grupo" id="firma">
+                <p class="label">Firma</p>
+                <div class="firma">
+                  <p></p>
+                </div>
+              </div>
+              <div class="grupo" id="ccv">
+                <p class="label">CCV</p>
+                <p class="ccv"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        
+        <!-- Formulario -->
+        <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+            <!-- Contenedor Boton Abrir Formulario -->
+            <div class="contenedor-btn">
+              <button type="submit" class="btn-form registrar btn-abrir-formulario" id="btn-abrir-formulario">
+                AGREGAR
+              </button>
+            </div>
+          <div class="grupo form-control">
+            <label for="inputNumero">Número Tarjeta <label style="color: red;">*</label></label><br>
+            <input type="text" id="inputNumero" maxlength="19" autocomplete="off"><br>
+            <small>Mensaje de error</small>
+          </div>
+          <div class="grupo form-control">
+            <label for="inputNombre">Nombre en la tarjeta <label style="color: red;">*</label></label><br>
+            <input type="text" id="inputNombre" maxlength="19" autocomplete="off"><br>
+            <small>Mensaje de error</small>
+          </div>
           <div class="flexbox">
-            <div class="grupo-select">
-              <select name="mes" id="selectMes">
-                <option disabled selected>Mes</option>
-              </select>
-              <!-- <i class="fas fa-angle-down"></i> -->
+            <div class="grupo expira form-control">
+              <label for="selectMes">Expiracion <label style="color: red;">*</label></label>
+              <div class="flexbox">
+                <div class="grupo-select chicos form-control  fomr-control-chico">
+                  <select name="mes" id="selectMes">
+                    <option disabled selected value="Mes">Mes</option>
+                  </select><br>
+                  <small class="mensaje-chico">Mensaje de error</small>
+                </div>
+                <div class="grupo-select chicos form-control  fomr-control-chico">
+                </div>
+                <div class="grupo-select chicos form-control fomr-control-chico">
+                  <select name="year" id="selectYear">
+                    <option disabled selected value="Anio">Año</option>
+                  </select><br>
+                  <small class="mensaje-chico">Mensaje de error</small>
+                </div>
+                <div class="grupo-select chicos form-control  fomr-control-chico">
+                </div>
+              </div>
             </div>
-            <div class="grupo-select">
-              <select name="year" id="selectYear">
-                <option disabled selected>Año</option>
-              </select>
-              <!-- <i class="fas fa-angle-down"></i> -->
+
+            <div class="grupo ccv chicos form-control">
+              <label for="inputCCV">CCV <label style="color: red;">*</label></label>
+              <input type="text" id="inputCCV" maxlength="3"><br>
+              <small class="mensaje-chico">Mensaje de error</small>
             </div>
           </div>
-        </div>
+        </form>
+      </div>
+      <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+      <script src="../static/js/tarjetas/agregar.js"></script>
+      <script src="../static/js/validaciones/tarjeta.js"></script>
+  </main>
 
-        <div class="grupo ccv">
-          <label for="inputCCV">CCV</label>
-          <input type="text" id="inputCCV" name="inputCCV" maxlength="3">
-        </div>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
       </div>
-      <button type="submit" class="btn-enviar" onclick="cerrarPestana()">Guardar</button>
-    </form>
     </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
     </div>
-    <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-    <script src="../static/js/agregarTarjeta.js"></script>
-    </main>
-  </center>
-    <!--Footer-->
-    <footer class="footer">
-      <div class="derechos">
-        <div class="copyright">
-          <span>&copy;2022 México. Todos los derechos reservados.</span>
-        </div>
-      </div>
-      <div class="redes">
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-        </div>
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-        </div>
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-        </div>
-        <div class="logo-red">
-          <a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-        </div>
-      </div>
-    </footer>
+  </footer>
 
-  </article>
-</main>
 </body>
-<script>
-  function cerrarPestana(){
-    window.close();
-  }
-</script>
 
 </html>

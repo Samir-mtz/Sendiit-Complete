@@ -1,113 +1,193 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Definiciond el titulo -->
-  <title>Sendiit- Inicio cliente</title>
+  <!-- Titulo de pagina -->
+  <title>CLIENTE - EDITAR TARJETA</title>
   <!-- Favicon de la empresa -->
-  <link href="../../static/img/empresa/favicon.png" rel="icon" />
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <!-- <link rel="stylesheet" href="../../static/css/main-principal.css" /> -->
-  <!-- <link rel="stylesheet" href="../../static/css/InicioCliente.css" /> -->
-  <link rel="stylesheet" href="../../static/css/agregarTarjeta.css" />
-
-  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-
-  <!-- <link rel="stylesheet" href="../static/css/header-principal.css" />
-	<link rel="stylesheet" href="../static/css/footer-principal.css" />
-	<link rel="stylesheet" href="../static/css/main.css" /> -->
+  <link rel="stylesheet" href="../static/css/editarTarjeta.css" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 </head>
 
 <body>
-  <article>
-    <header class="header">
-      <!-- Logo de la empresa -->
-      <div class="logo">
-        <a href="{{ url_for('index') }}">
-          <img src="../../static/img/empresa/logo.png" alt="Logo de la empresa" />
-        </a>
-      </div>
-      <div class="titulo-pagina">EDITAR TARJETA</div>
-      <div class="user">
-        <div class="perfil"><i class="bi bi-person-circle"></i></div>
-        <div class="campos-user">
-          <div class="name-user">{{ current_user.nombre }}</div>
-          <div class="btn-user">
-            <div class="pantalla-user"><a href="{{ url_for('homeCliente') }}">Inicio</a></div>
-            <div class="pantalla-user"><a href="#">Historial</a></div>
-            <div class="pantalla-user"><a href="#">Rastrear</a></div>
-            <div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="./inicio">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header">EDITAR TARJETA</div>
+    </div>
+    <div class="usuario">
+      <div class="card">
+        <div class="tarjeta-izq">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="tarjeta-der">
+          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="iconos-tarjeta">
+            <a href="./inicioCliente.html" class="elemento ">
+              <!-- <div class="contenido-elemento activo"> -->
+              <div class="contenido-elemento">
+                <i class="bi bi-house"></i>
+                <h6>Inicio</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./infoCliente.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-person-rolodex"></i>
+                <h6>Info. General</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./rastrearCliente.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-geo-alt"></i>
+                <h6>Rastrear</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./inicio.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-box-arrow-in-left cerrar"></i>
+                <h6 class="cerrar">Salir</h6>
+              </div>
+            </a>
           </div>
         </div>
       </div>
-    </header>
-    <main class="main">
-      <div class="contenido">
-        <form class="contenido" action="/user/tarjetas/actualizado" method="POST">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
-          <input type="number" name="id" value="{{ tarjeta.id }}" hidden>
-          <div class="titulo-formulario">
-            <div class="img-catalogo"><img src="../../static/img/iconos/locker.png" alt="MiniLocker" width="35%"
-                height="45%" />
-            </div>
-            <div>
-              <h1 class="tituloAgregar">Editar Tarjeta</h1>
-            </div>
-          </div>
-          <div class="datos-locker">
-            <p class="texto">Nombre <small>*</small></p><br>
-            <input class="campo" name="nombre" id="nombre" type="text" value="{{ tarjeta.nombre }}">
+    </div>
+  </header>
 
-            <p class="texto">Numero de tarjeta <small>*</small></p><br>
-            <input class="campo" name="numtarjeta" id="numtarjeta" type="text" value="{{ tarjeta.numtarjeta}}">
-
-            <div class="grupo expira">
-              <label for="selectMes">Expiracion</label>
+  <!-- Main -->
+  <main class="main">
+    <section class="central">
+      <div class="contenedor">
+        <!-- Tarjeta -->
+        <section class="tarjeta" id="tarjeta">
+          <div class="delantera">
+            <div class="logo-marca" id="logo-marca">
+              <img src="../static/img/tarjeta/logos/visa.png" alt="">
+            </div>
+            <img src="../static/img/tarjeta/icono/chip-tarjeta.png" class="chip" alt="">
+            <div class="datos">
+              <div class="grupo" id="numero">
+                <p class="label">Número Tarjeta</p>
+                <p class="numero">#### #### #### ####</p>
+              </div>
               <div class="flexbox">
-                <div class="grupo-select">
-                  <select name="mes" id="selectMes">
-                    {% for i in range(1,11) %}
-                      <option> {{ i }} </option>
-                    {% endfor %}
-                    <option selected disabled>
-                      {{ tarjeta.expiracion[0] }}
-                      {% if tarjeta.expiracion[1] != '-' %}
-                        {{ tarjeta.expiracion[1] }}
-                      {% endif %}
-                    </option>
-                  </select>
-                  <!-- <i class="fas fa-angle-down"></i> -->
+                <div class="grupo" id="nombre">
+                  <p class="label">Nombre Tarjeta</p>
+                  <p class="nombre">Jhon Doe</p>
                 </div>
-                  <select name="year" id="selectYear">
-                    {% for i in range(2022,2031) %}
-                    <option> {{ i }} </option>
-                    {% endfor %}
-                    <option selected disabled>
-                      {% if tarjeta.expiracion[2] == '-' %}
-                        {{ tarjeta.expiracion[3:] }}
-                      {% else %}
-                        {{ tarjeta.expiracion[2:] }}
-                      {% endif %}
-                    </option>
-                  </select>
-                  <!-- <i class="fas fa-angle-down"></i> -->
-                </div>
-            </div>
-            <p class="texto">CVV <small>*</small></p><br>
-            <input class="campo" name="cvv" id="cvv" type="text" value="{{ tarjeta.cvv }}">
 
+                <div class="grupo" id="expiracion">
+                  <p class="label">Expiracion</p>
+                  <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="botones-formulario">
-            <a href="#" class="btn-confirmar"><button>Guardar</button></a>
+
+          <div class="trasera">
+            <div class="barra-magnetica"></div>
+            <div class="datos">
+              <div class="grupo" id="firma">
+                <p class="label">Firma</p>
+                <div class="firma">
+                  <p></p>
+                </div>
+              </div>
+              <div class="grupo" id="ccv">
+                <p class="label">CCV</p>
+                <p class="ccv"></p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+
+        
+        <!-- Formulario -->
+        <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+            <!-- Contenedor Boton Abrir Formulario -->
+            <div class="contenedor-btn">
+              <button type="submit" class="btn-form registrar btn-abrir-formulario" id="btn-abrir-formulario">
+                GUARDAR
+              </button>
+              <br>
+              <a href="./formulariosPaquete.html" class="btn-abrir-formulario salir">
+                SALIR
+              </a>
+            </div>
+          <div class="grupo form-control">
+            <label for="inputNumero">Número Tarjeta <label style="color: red;">*</label></label><br>
+            <input type="text" id="inputNumero" maxlength="19" autocomplete="off"><br>
+            <small>Mensaje de error</small>
+          </div>
+          <div class="grupo form-control">
+            <label for="inputNombre">Nombre en la tarjeta <label style="color: red;">*</label></label><br>
+            <input type="text" id="inputNombre" maxlength="19" autocomplete="off"><br>
+            <small>Mensaje de error</small>
+          </div>
+          <div class="flexbox">
+            <div class="grupo expira form-control">
+              <label for="selectMes">Expiracion <label style="color: red;">*</label></label>
+              <div class="flexbox">
+                <div class="grupo-select chicos form-control  fomr-control-chico">
+                  <select name="mes" id="selectMes">
+                    <option disabled selected value="Mes">Mes</option>
+                  </select><br>
+                  <small class="mensaje-chico">Mensaje de error</small>
+                </div>
+                <div class="grupo-select chicos form-control  fomr-control-chico">
+                </div>
+                <div class="grupo-select chicos form-control fomr-control-chico">
+                  <select name="year" id="selectYear">
+                    <option disabled selected value="Anio">Año</option>
+                  </select><br>
+                  <small class="mensaje-chico">Mensaje de error</small>
+                </div>
+                <div class="grupo-select chicos form-control  fomr-control-chico">
+                </div>
+              </div>
+            </div>
+
+            <div class="grupo ccv chicos form-control">
+              <label for="inputCCV">CCV <label style="color: red;">*</label></label>
+              <input type="text" id="inputCCV" maxlength="3"><br>
+              <small class="mensaje-chico">Mensaje de error</small>
+            </div>
           </div>
         </form>
-        <a href="{{ url_for('userTarjetas') }}" class="btn-cancelar"><button>Cancelar</button></a>
-        <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-    <script src="../../static/js/agregarTarjeta.js"></script>
-    </main>
+      </div>
+      <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
+      <script src="../static/js/tarjetas/agregar.js"></script>
+      <script src="../static/js/validaciones/tarjeta.js"></script>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
 
 </body>
 

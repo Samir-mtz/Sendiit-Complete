@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>ENVIO - CLIENTE</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/formulariosPaquete.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+  <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.js'></script>
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-language/v1.0.0/mapbox-gl-language.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.1/mapbox-gl.css' rel='stylesheet' />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="./inicio.html">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header">FORMULARIOS DEL PAQUETE</div>
+    </div>
+    <div class="usuario">
+      <div class="tarjeta">
+        <div class="tarjeta-izq">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="tarjeta-der">
+          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="iconos-tarjeta">
+            <a href="" class="elemento ">
+              <!-- <div class="contenido-elemento activo"> -->
+              <div class="contenido-elemento">
+                <i class="bi bi-house"></i>
+                <h6>Inicio</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-clipboard-check"></i>
+                <h6>Historial</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-geo-alt"></i>
+                <h6>Rastrear</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./inicio.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-box-arrow-in-left cerrar"></i>
+                <h6 class="cerrar">Salir</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="central">
+      <div class="slider">
+        <div class="slides">
+          <input type="radio" name="btn-paso" id="paso1" class="botonpaso">
+          <input type="radio" name="btn-paso" id="paso2" class="botonpaso">
+          <div class="slide primero">
+            <div class="slide-izq">
+              <form action="/user/formularioEnvio" method="POST" id="formulario" class="formulario">
+
+                <div class="campos-fomulario">
+
+                  <div class="campos-izq">
+                    <!-- Campo: Origen -->
+
+                    <div class="form-control">
+                      <br>
+                      <label for="Origen">
+                        <p>Origen:<label style="color: red;">*</label></p>
+                      </label>
+                      <select name="origen" id="Origen" class="selector">
+                        <option value="0">Seleccionar</option>
+                        <option value="Lindavista">Lindavista</option>
+                        <option value="Colonia del Valle">Colonia del Valle</option>
+                        <option value="Sátelite">Sátelite</option>
+                        <option value="Villa de Aragón">Villa de Aragón</option>
+                      </select>
+                      <small></small>
+                    </div>
+
+                    <!-- Campo: Destino -->
+
+                    <div class="form-control">
+                      <br>
+                      <label for="Destino">
+                        <p>Destino:<label style="color: red;">*</label></p>
+                      </label>
+                      <select name="destino" id="Destino" class="selector">
+                        <option value="0">Seleccionar</option>
+                        <option value="Lindavista">Lindavista</option>
+                        <option value="Colonia del Valle">Colonia del Valle</option>
+                        <option value="Sátelite">Sátelite</option>
+                        <option value="Villa de Aragón">Villa de Aragón</option>
+                      </select>
+                      <small></small>
+                    </div>
+
+                    <!-- Campo: Tamaño -->
+
+                    <div class="form-control">
+                      <br>
+                      <label for="Tamaño">
+                        <p>Tamaño del paquete<label style="color: red;">*</label></p>
+                      </label>
+                      <select name="tamano" id="Tamaño" class="selector">
+                        <option value="0">Seleccionar</option>
+                        <option value="Chico">Chico (20cm, 35cm, 50cm)</option>
+                        <option value="Mediano">Mediano(45cm, 35cm, 50cm)</option>
+                        <option value="Grande">Grande(85cm, 35cm, 50cm)</option>
+                      </select>
+                      <small></small>
+                    </div>
+
+                    <!-- Campo: Fragil -->
+
+                    <div class="form-control">
+                      <br>
+                      <label for="Tamaño">
+                        <p>¿Es fragil?</p>
+                      </label>
+                      <select name="fragil" id="cbox" class="selector fragil">
+                        <option value="0" selected>No</option>
+                        <option value="1">Si</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="campos-der">
+
+                    <!-- Campo: Peso -->
+
+                    <div class="form-control">
+                      <br>
+                      <label for="Peso">
+                        <p>Peso del paquete en Kg.<label style="color: red;">*</label></p>
+                      </label>
+                      <input type="text" name="peso" id="Peso" placeholder="12.50" class="texto-input"
+                        autocomplete="off" /><br>
+                      <small></small>
+                    </div>
+
+                    <!-- Campo: Nombre persona destino -->
+
+                    <div class="form-control">
+                      <br>
+                      <p>Nombre y apellido de la persona que recibe el paquete.<label style="color: red;">*</label></p>
+                      <input type="Destinatario" name="nombre" id="Destinatario" placeholder="Jose Lopez"
+                        class="texto-input input" autocomplete="off" /><br>
+                      <small></small>
+                    </div>
+
+                    <!-- Campo: Correo persona destino-->
+
+                    <div class="form-control">
+                      <br>
+                      <p>Email de la persona que recibe el paquete<label style="color: red;">*</label></p>
+                      <input type="EmailDestinatario" name="email" id="EmailDestinatario"
+                        placeholder="correojuan_lopez@ejemplo.com" class="texto-input input" autocomplete="off" /><br>
+                      <small></small>
+                    </div>
+
+                    <!-- Campo: Telefono persona destino -->
+
+                    <div class="form-control">
+                      <br>
+                      <p>Teléfono de la persona que recibe el paquete </Obj><label style="color: red;">*</label></p>
+                      <input style="width:50%;" type="TelefonoDestinatario" name="telefono" id="TelefonoDestinatario"
+                        placeholder="55 55 55 55 55" class="texto-input" autocomplete="off" /><br>
+                      <small></small>
+                    </div>
+                  </div>
+
+                </div>
+
+                <div class="boton-formulario">
+                  <button type="submit" class="btn-siguiente"> SIGUIENTE PASO</button>
+                </div>
+              </form>
+            </div>
+            <div class="slide-der">
+              <!-- Mapbox  -->
+              <!-- <div class="mapa">mapa</div> -->
+              <div id='map' class="mapa"></div>
+              <!-- end Mapbox -->
+
+              <div class="costos">
+                <div class="cantidad">
+                  <h1>precio</h1>
+                  <div class="pago">
+                    <h2 id="precioTotal">$ 0</h2>
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp; MXN</h2>
+                  </div>
+                </div>
+                <div class="cantidad">
+                  <h1>IVA</h1>
+                  <div class="pago">
+                    <h2 id="ivaFinal">$ 0</h2>
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp; MXN</h2>
+                  </div>
+                </div>
+                <div class="cantidad">
+                  <h1>costo total</h1>
+                  <div class="pago">
+                    <h2 id="precioFinal">$ 0</h2>
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp; MXN</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="boton-formulario">
+                <a href="{{ url_for('homeCliente') }}"></a><button type="submit" class="btn-salir"> SALIR</button></a>
+              </div>
+            </div>
+          </div>
+          <div class="slide">
+            <div class="slide-izq">
+              <form action="" method="POST" id="formularioPago" class="formularioPago">
+                <div class="campos-fomulario">
+                  <div class="campos-izq-tarjeta">
+
+                    <!-- Campo: AgregarTarjetas -->
+                    <div class="agregar-tarjeta">
+                      <a href="./AgregarTarjeta.html" target="_blank" class="btn-agregar"> AGREGAR TARJETA</a>
+                    </div>
+
+                    <div class="leyenda">
+                      <h4>*Solo aceptamos pagos con tarjetas de crédito/débito.</h4>
+                    </div>
+
+                    <!-- Campo: Tarjetas -->
+                    <div class="form-control tarjetasAgregadas">
+                      <br>
+                      <label for="Tarjetas">
+                        <p>Sus tarjetas almacenadas:<label style="color: red;">*</label></p>
+                      </label>
+                      <select name="tarjetas" id="Tarjetas" class="selector">
+                        <option value="0">Seleccionar</option>
+                        <option value="**** **** **** 1234 ">**** **** **** 1234</option>
+                        <option value="**** **** **** 5678 ">**** **** **** 5678</option>
+                        <option value="**** **** **** 9012 ">**** **** **** 9012</option>
+                        <option value="**** **** **** 3456 ">**** **** **** 3456</option>
+                      </select>
+                      <small></small>
+                    </div>
+
+                  </div>
+                  <div class="campos-der-tarjeta">
+                    <img src="../static/img/tarjetas/tarjeta.png" alt="">
+                  </div>
+                </div>
+
+                <div class="boton-formulario">
+                  <button type="submit" class="btn-pagar">PAGAR</button>
+                </div>
+              </form>
+            </div>
+            <div class="slide-der">
+              <div class="img-paquete"><img src="../static/img/paquetes/entrega.png" alt=""></div>
+              <div class="numEnvio">XXXX - XXXX</div>
+              <div class="costos">
+                <div class="cantidad">
+                  <h1>precio</h1>
+                  <div class="pago">
+                    <h2 id="precioTotal">$ 0</h2>
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp; MXN</h2>
+                  </div>
+                </div>
+                <div class="cantidad">
+                  <h1>IVA</h1>
+                  <div class="pago">
+                    <h2 id="ivaFinal">$ 0</h2>
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp; MXN</h2>
+                  </div>
+                </div>
+                <div class="cantidad">
+                  <h1>costo total</h1>
+                  <div class="pago">
+                    <h2 id="precioFinal">$ 0</h2>
+                    <h2>&nbsp;&nbsp;&nbsp;&nbsp; MXN</h2>
+                  </div>
+                </div>
+              </div>
+              <div class="boton-formulario">
+                <a href="{{ url_for('homeCliente') }}"></a><button type="submit" class="btn-salir"> CANCELAR</button></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="botones-pasos">
+        <label for="paso1" class="btn-seleccionar">
+          <h6>PASO #1</h6>
+          <h6>FORMULARIO DE ENVÍO</h6>
+        </label>
+        <label for="paso2" class="btn-seleccionar">
+          <h6>PASO #2</h6>
+          <h6>FORMULARIO DE PAGO</h6>
+        </label>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+  <script src="../static/js/mapbox/mapboxfinal.js"></script>
+  <script src="../static/js/validaciones/formularioEnvio.js"></script>
+</body>
+
+</html>

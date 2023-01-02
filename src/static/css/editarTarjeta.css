@@ -360,10 +360,19 @@ h5 {
 }
 
 /* ---------- Contenedor Boton ----------*/
+
+.contenedor-btn {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(30vh);
+}
+
 .contenedor-btn .btn-abrir-formulario {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: row;
 	width: calc(12vh);
 	height: calc(5vh);
 	font-size: calc(2vh);
@@ -377,6 +386,30 @@ h5 {
 	border: none;
 	cursor: pointer;
 }
+
+.contenedor-btn a{
+	text-decoration: none;
+}
+
+.contenedor-btn .salir {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	width: calc(12vh);
+	height: calc(5vh);
+	font-size: calc(2vh);
+	background: #e41f1a;
+	color: #ffffff;
+	position: relative;
+	top: -50%;
+	z-index: 10;
+	border-radius: calc(2vh);
+	transition: all 0.2s ease;
+	border: none;
+	cursor: pointer;
+}
+
 
 .contenedor-btn .btn-abrir-formulario:hover {
 	background: #ffffff;

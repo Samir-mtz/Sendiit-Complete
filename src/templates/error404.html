@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Nombre de la pagina -->
-	<title>PÁGINA NO ENCONTRADA</title>
+	<!-- Titulo de pagina -->
+	<title>SENDIIT - ERROR 404</title>
 	<!-- Favicon de la empresa -->
 	<link href="../static/img/empresa/favicon.png" rel="icon" />
 	<!-- Estilos -->
@@ -14,47 +14,50 @@
 </head>
 
 <body>
-	<article>
-		<header class="header">
-		</header>
-		<main class="main">
-			<div class="contenido">
-				<h1 class="titulo">Vaya...</h1>
-				<h2 class="titulo">No hemos encontrado la página que buscas.</h2>
-				<h3 class="titulo">Código de error: 404</h3>
-				<h3 class="titulo">Aqui tienes algunos enlaces que pueden servirte de ayuda:</h3>
-				<div class="links">
-					<a href="/">Inicio</a><br>
-					<a href="/login">Ingresar</a><br>
-					<a href="/registro">Registrar</a><br>
-				</div>
+	<!-- Header -->
+	<header class="header">
+	</header>
+
+	<!-- Main -->
+	<main class="main">
+		<section class="izq">
+			<div class="img-paquete">
+				<img src="../static/img/paquetes/noEncontrado.jpg" alt="Imagen de repartidor" />
 			</div>
-			<div class="imagen">
-				<img src="../static/img/empresa/noEncontrado.jpg" alt="" />
+		</section>
+		<section class="der">
+			<div class="texto-grande">
+				<p>Vaya...</p>
 			</div>
-		</main>
-		<footer class="footer">
-			<div class="derechos">
-				<div class="copyright">
-					<span>&copy;2022 México. Todos los derechos reservados.</span>
-				</div>
+			<div class="texto-mediano">
+				<p>No hemos encontrado la página que buscas.</p>
 			</div>
-			<div class="redes">
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-				</div>
+			<div class="texto-chico">
+				<br><p>Código de error: 404</p>
+				<p>Aqui tienes algunos enlaces que pueden servirte de ayuda:</p><br>
 			</div>
-		</footer>
-	</article>
+			<div class="texto-link">
+				<a class="btn" href="./inicio.html">Inicio</a>
+				<a class="btn" href="./ingresar.html">Ingresar</a>
+				<a class="btn" href="./registrar.html">Registrar</a>
+			</div>
+		</section>
+	</main>
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="derechos">
+			<div class="copyright">
+				<span>&copy;2022 México. Todos los derechos reservados.</span>
+			</div>
+		</div>
+		<div class="redes">
+			<a href="#"><i class="red bi bi-facebook"></i></a>
+			<a href="#"><i class="red bi bi-instagram"></i></a>
+			<a href="#"><i class="red bi bi-telegram"></i></a>
+			<a href="#"><i class="red bi bi-envelope-fill"></i></a>
+		</div>
+	</footer>
 </body>
 
 </html>
