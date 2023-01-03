@@ -1,5 +1,6 @@
 const inputs = document.querySelectorAll("#formulario input");
 const selects = document.querySelectorAll("#formulario select");
+const tarjeta = document.getElementById("Tarjetas");
 const form = document.getElementById("formulario");
 const nombre = document.getElementById("Destinatario");
 const email = document.getElementById("EmailDestinatario");
@@ -221,6 +222,16 @@ function checkInputs() {
 	}else{
 		setErrorFor(tamano, "Selecciona el tamaño.");
 		campos['tamano'] = false;
+	}
+
+	//comprobar tarjeta
+	let tarjetaSelected = tarjeta.selectedIndex;
+	if(tarjeta.options[tarjetaSelected].text != "Seleccionar") {
+		campos['tarjeta'] = true;
+		setSuccessFor(tarjeta);
+	}else{
+		setErrorFor(tarjeta, "Selecciona una tarjeta.");
+		campos['tarjeta'] = false;
 	}
 }
 

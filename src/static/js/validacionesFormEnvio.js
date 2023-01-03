@@ -18,7 +18,8 @@ const campos = {
 	origen: false,
 	destino: false,
 	tamano: false,
-	peso: false
+	peso: false,
+	tarjeta: false
 }
 
 inputs.forEach((input) => {
@@ -146,14 +147,15 @@ function checkInputs() {
 	const emailValue = email.value.trim();
 	const telefonoValue = telefono.value.trim();
 	const pesoValue = peso.value.trim();
-	
 
 	// Comparacion del nombre
 	if (nombreValue === "") {
 		setErrorFor(nombre, "No puede dejar el nombre en blanco.");
+		nombre.focus()
 		campos['nombre'] = false;
 	} else if (!comprobarNombre(nombreValue)) {
 		setErrorFor(nombre, "El nombre solo puede tener letras mayusculas, minusculas y espacios.");
+		nombre.focus()
 		campos['nombre'] = false;
 	} else {
 		setSuccessFor(nombre);
@@ -222,6 +224,8 @@ function checkInputs() {
 		setErrorFor(tamano, "Selecciona el tamaño.");
 		campos['tamano'] = false;
 	}
+	
+	
 }
 
 function setErrorFor(input, message) {
