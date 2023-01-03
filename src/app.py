@@ -454,7 +454,7 @@ def tarjetasEliminar():
 @login_required
 def formularioEnvio():
     user = ModelUser.consulta_email(db, current_user.email)
-    print(user.tipo)
+    # print(user.tipo)
     if user.tipo == 'admin':
         return redirect(url_for('admin'))
     elif user.tipo == 'repartidor':
@@ -465,7 +465,7 @@ def formularioEnvio():
             destino = request.form['destino']
             origen = request.form['origen']
             tamano = request.form['tamano']
-            fragil = request.form['cbox']
+            fragil = request.form['fragil']
             nombre = request.form['nombre']
             email = request.form['email']
             telefono = request.form['telefono']
@@ -519,7 +519,7 @@ def formularioEnvio():
                             'source': 'places',\n\t\t\
                             'layout': {\n\t\t\
                                 'icon-image': ['get', 'icon'],\n\t\t\t\
-                                'icon-size': 0.5,\n\t\t\t\
+                                'icon-size': 0.25,\n\t\t\t\
                                 'icon-allow-overlap': true\n\t\t\t\
                             }\n\t\t\
                         });\n\
@@ -539,8 +539,8 @@ def formularioEnvio():
         ##Cargamos tarjetas
         listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
         if listTarjetas != None:
-            return render_template('formularioPago.html', tarjetas=listTarjetas)
-        return render_template('formularioPago.html', tarjetas=[])
+            return render_template('formulariosPaquete.html', tarjetas=listTarjetas)
+        return render_template('formulariosPaquete.html', tarjetas=[])
     else:
         return redirect(url_for('index'))
 

@@ -8,7 +8,7 @@ class ModelEnvio():
         try:
             # INSERTAMOS EN LA TABLA ENVIOS
             cursor = db.connection.cursor()
-            sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario, idrepartidor) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', '{envio.nombre}', '{envio.email}', '{envio.telefono}', {envio.costo}, {envio.idusuario}, {asignacion})"
+            sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', '{envio.nombre}', '{envio.email}', '{envio.telefono}', {envio.costo}, {envio.idusuario})"
             cursor.execute(sql)
             db.connection.commit()
 
@@ -42,11 +42,11 @@ class ModelEnvio():
     def consultLast(self, db):
         try:
             cursor = db.connection.cursor()
-            sql = "SELECT origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario, idrepartidor, id FROM envios ORDER BY id DESC LIMIT 1"
+            sql = "SELECT origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario, id FROM envios ORDER BY id DESC LIMIT 1"
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return Envio(origen=row[0], destino=row[1], tamano=row[2], fragil=row[3], estado=row[4], nombre=row[5], email=row[6], telefono=row[7], costo=row[8], idusuario=row[9], idrepartidor=row[10], id=row[11])
+                return Envio(origen=row[0], destino=row[1], tamano=row[2], fragil=row[3], estado=row[4], nombre=row[5], email=row[6], telefono=row[7], costo=row[8], idusuario=row[9], id=row[10])
             else:
                 return None
         except Exception as ex:

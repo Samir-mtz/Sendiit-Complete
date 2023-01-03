@@ -161,7 +161,7 @@ map.on('click', 'places', (e) => {
     // Copy coordinates array.
     const coordinates = e.features[0].geometry.coordinates.slice();
     const description = e.features[0].properties.description;
-
+    
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
     // over the copy being pointed to.
@@ -177,7 +177,7 @@ map.on('click', 'places', (e) => {
 
 // Change the cursor to a pointer when the mouse is over the places layer.
 map.on('mouseenter', 'places', () => {
-    // console.log("entre")
+    
     map.getCanvas().style.cursor = 'pointer';
 });
 
@@ -257,7 +257,7 @@ map.on('load', () => {
 		                            'source': 'places',
 		                            'layout': {
 		                                'icon-image': ['get', 'icon'],
-			                                'icon-size': 0.5,
+			                                'icon-size': 0.25,
 			                                'icon-allow-overlap': true
 			                            }
 		                        });

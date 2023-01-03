@@ -68,6 +68,8 @@ function precio(){
 	iva.innerHTML = "$" + iva1.toFixed(2); + "MXN";
 	let total =iva1 + valor;
 	precioF.innerHTML = "$" + total.toFixed(2); + "MXN";
+	let inputCosto = document.getElementById("inputCosto");
+	inputCosto.value = total.toFixed(2);
 }
 
 function tamanos(){
@@ -113,7 +115,7 @@ function getDisponibilidad(){
 		data.ubicaciones.forEach((dato)=>{
 			let option = document.createElement("option");
 			option.text=dato
-				origen.add(option);
+			origen.add(option);
 			}
 			);
 		})
