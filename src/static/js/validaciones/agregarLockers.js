@@ -130,11 +130,11 @@ function comprobarCantidad(cantidad) {
 }
 
 function comprobarLatitud(latitud) {
-	return /^\d*\.\d+$/.test(latitud);
+	return /^[+-]?\d*\.\d+$/.test(latitud);
 }
 
 function comprobarLongitud(longitud) {
-	return /^\d*\.\d+$/.test(longitud);
+	return /^[+-]?\d*\.\d+$/.test(longitud);
 }
 
 form.addEventListener("submit", (e) => {
