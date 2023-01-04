@@ -503,8 +503,7 @@ def formularioEnvio():
             costo = request.form['costo']
             estado = 'POR DEPOSITARSE EN LOCKER POR EL CLIENTE'
             idusuario = current_user.id
-            datos = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
-
+            datos = Envio(origen,estado, destino, tamano, fragil, nombre, email, telefono, costo, idusuario)
             ModelEnvio.register(db, datos)
             return render_template('PagoCorrecto.html', datos=datos)
         

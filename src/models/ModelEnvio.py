@@ -13,21 +13,21 @@ class ModelEnvio():
             db.connection.commit()
 
             # Decrementamos la cantidad de lockers vacios en origen y destino
-            if envio.tamano == 'Chico':
+            if envio.tamano == 'Chico (20cm, 35cm, 50cm)':
                 sql = f"UPDATE lockers SET cantidadS = cantidadS - 1 WHERE ubicacion='{envio.origen}'"
                 cursor.execute(sql)
                 db.connection.commit()
                 sql = f"UPDATE lockers SET cantidadS = cantidadS - 1 WHERE ubicacion='{envio.destino}'"
                 cursor.execute(sql)
                 db.connection.commit()
-            if envio.tamano == 'Mediano':
+            if envio.tamano == 'Mediano(45cm, 35cm, 50cm)':
                 sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.origen}'"
                 cursor.execute(sql)
                 db.connection.commit()
                 sql = f"UPDATE lockers SET cantidadM = cantidadM - 1 WHERE ubicacion='{envio.destino}'"
                 cursor.execute(sql)
                 db.connection.commit()
-            if envio.tamano == 'Grande':
+            if envio.tamano == 'Grande(85cm, 35cm, 50cm)':
                 sql = f"UPDATE lockers SET cantidadL = cantidadL - 1 WHERE ubicacion='{envio.origen}'"
                 cursor.execute(sql)
                 db.connection.commit()
