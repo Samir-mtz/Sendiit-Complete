@@ -216,12 +216,12 @@
 	justify-content: center;
 	align-items: center;
 	height: calc(4vh);
-	margin-top: 8%;
+	/* margin-top: 8%; */
 	margin-bottom: 3%;
 }
 
 .titulo-logo img {
-	height: calc(6vh + 0.1rem);
+	height: calc(6vh);
 }
 
 .titulo-pagina {
@@ -236,7 +236,7 @@
 	align-items: center;
 	height: calc(5vh);
 	color: #e4c01d;
-	font-size: calc(2.5vh + 0.1rem);
+	font-size: calc(2.5vh);
 	font-style: italic;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -248,7 +248,7 @@
 	align-items: center;
 	height: calc(2vh);
 	color: #212e46;
-	font-size: calc(2vh + 0.1rem);
+	font-size: calc(2vh);
 	font-style: italic;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -258,7 +258,7 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	height: calc(2vh);
+	height: calc(1vh);
 }
 
 .formulario {
@@ -279,7 +279,7 @@
 
 .pregunta {
 	height: calc(2vh);
-	font-size: calc(2vh + 0.1rem);
+	font-size: calc(2vh);
 	opacity: 0.7;
 	margin-top: -7%;
 }
@@ -296,28 +296,28 @@
 	flex-direction: column;
 	width: 80%;
 	margin: 1%;
-	margin-top: 3%;
+	/* margin-top: 3%; */
 }
 
 .form-control label {
-	font-size: calc(2.5vh + 0.1rem);
+	font-size: calc(2.5vh);
 	font-weight: 600;
 	cursor: pointer;
 	text-align: left;
 }
 
 .form-control small {
-	font-size: calc(1.5vh + 0.3rem);
+	font-size: calc(1.5vh);
 	font-weight: 300;
 }
 
 .form-control input {
-	font-size: calc(1.5vh + 0.1rem);
+	font-size: calc(2vh);
 	width: calc(10vh);
 	background: rgb(255, 255, 255);
 	border: 1px solid rgb(203, 203, 203);
 	border-radius: 10px;
-	height: calc(3vh + 0.1rem);
+	height: calc(3vh);
 	line-height: 45px;
 	/* padding: 0 30px 0 10px;	 */
 	transition: 0.3s ease all;
@@ -337,9 +337,10 @@
 	text-decoration: none;
 	/* height: calc(2vh); */
 	color: rgb(0, 47, 255);
-	font-size: calc(1.5vh + 0.3rem);
+	font-size: calc(2.5vh);
 	font-style: italic;
 	font-weight: bold;
+	margin-top: -5%;
 }
 
 .btn-form {
@@ -347,7 +348,7 @@
 	display: inline-block;
 	padding: 3px 40px;
 	text-align: center;
-	font-size: calc(1.5vh + 0.3rem);
+	font-size: calc(2.5vh);
 	letter-spacing: 1px;
 	text-decoration: none;
 	color: #212e46;
@@ -380,7 +381,7 @@
 }
 
 .img-verificado img {
-	height: calc(45vh + 1rem);
+	height: calc(50vh);
 }
 
 /* Validaciones */
