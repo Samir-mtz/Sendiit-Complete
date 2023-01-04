@@ -25,41 +25,40 @@
 	align-items: center;
 	background-color: rgba(250, 250, 250, 0.3);
 	/* box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1); */
-	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.225); /*Propuesta*/
+	box-shadow: 0px calc(1vh) calc(1vh) rgba(0, 0, 0, 0.225); /*Propuesta*/
 	text-transform: uppercase;
-	font-size: calc(1vw + 0.5rem);
+	font-size: calc(1vw);
 }
 
 .logo {
 	display: flex;
-	width: 15%;
-	height: calc(10vh);
-	margin-top: 5px;
 	justify-content: center;
 	align-items: center;
+	width: 15%;
+	height: calc(10vh);
 }
 
 .logo-header {
-	height: calc(2vw + 0.5rem);
+	height: calc(5vh);
 	width: max-content;
 }
 .logo-header:hover {
 	cursor: pointer;
 	transition: all 1s;
-	transform: scale(1.2);
+	transform: scale(1.1);
 }
 
 .links {
 	display: flex;
 	width: 40%;
 	height: calc(10vh);
-	font-size: calc(1.5vw + 0.25rem);
+	font-size: calc(1.5vw);
 	justify-content: center;
 	align-items: center;
 }
 
 .link-header {
-	width: min-content;
+	width: max-content;
 	height: auto;
 	justify-content: center;
 	align-items: center;
@@ -100,13 +99,13 @@
 	width: max-content;
 	align-items: center;
 	margin: 5%;
-	padding: 7px 4px;
+	padding: calc(2vh) calc(2vh);
 	border: unset;
 	z-index: 1;
-	border-radius: 10px;
+	border-radius: calc(2vh);
 	position: relative;
 	font-weight: 1000;
-	font-size: calc(0.8vw + 0.25rem);
+	font-size: calc(1vw);
 	box-shadow: 4px 5px 5px -3px rgba(0, 0, 0, 0.2);
 	transition: all 250ms;
 	overflow: hidden;
@@ -156,9 +155,9 @@
 	left: 0;
 	height: 100%;
 	width: 0;
-	border-radius: 10px;
+	border-radius: calc(2vh);
 	z-index: -1;
-	box-shadow: 4px 5px 5px -3px rgba(0, 0, 0, 0.588);
+	box-shadow: 2px 5px 5px -3px rgba(0, 0, 0, 0.588);
 	transition: all 250ms;
 	background-color: #000;
 }
@@ -205,7 +204,7 @@
 }
 
 .img-mujer img {
-	height: calc(70vh + 1rem);
+	height: calc(70vh);
 }
 
 .titulo-pagina {
@@ -218,7 +217,7 @@
 .titulo-pagina {
 	height: calc(20vh);
 	color: #e41f1a;
-	font-size: calc(5vh + 0.1rem);
+	font-size: calc(5vh);
 	font-style: italic;
 	font-weight: bold;
 	text-transform: uppercase;
@@ -234,7 +233,7 @@
 .texto-conocenos {
 	color: #0f182a;
 	text-align: justify;
-	font-size: calc(4vh + 0.1rem);
+	font-size: calc(4vh);
 	font-style: italic;
 	font-weight: bold;
 }
