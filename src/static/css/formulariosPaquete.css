@@ -260,6 +260,7 @@ h5 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	flex-direction: column;
 	padding: 10% -1%;
 	height: calc(60vh);
 	width: calc(55%);
