@@ -506,7 +506,7 @@ def formularioEnvio():
             datos = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
 
             ModelEnvio.register(db, datos)
-            return render_template('PagoExitoso.html')
+            return render_template('PagoCorrecto.html', datos=datos)
         
         ###Funcionalidad del mapbox
         lockers = ModelMapbox.consultaCoordenadas(db)
