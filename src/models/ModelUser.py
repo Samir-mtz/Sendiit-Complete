@@ -74,11 +74,25 @@ class ModelUser():
     def consulta_email(self, db, email):
         try:
             cursor = db.connection.cursor()
-            sql = "SELECT id, confirmed, nombre, tipo FROM user WHERE email = '{}'".format(email)
+            sql = "SELECT id, confirmed, nombre, tipo, confirmed_on FROM user WHERE email = '{}'".format(email)
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(email="",password=None,id=row[0], confirmed=row[1], nombre=row[2], tipo=row[3])
+                return User(email="",password=None,id=row[0], confirmed=row[1], nombre=row[2], tipo=row[3], confirmed_on=row[4])
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def consulta_email_repartidor(self, db, email):
+        try:
+            cursor = db.connection.cursor()
+            sql = "SELECT id, confirmed, confirmed_on, nombre, tipo FROM user WHERE email = '{}'".format(email)
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            if row != None:
+                return User(email="",password=None,id=row[0], confirmed=row[1], confirmed_on=row[2], nombre=row[3], tipo=row[4])
             else:
                 return None
         except Exception as ex:
@@ -178,11 +192,11 @@ class ModelUser():
     def consult_repartidor_by_id(self, db, id_repartidor):
         try:
             cursor = db.connection.cursor()
-            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where id='+id_repartidor
+            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed, confirmed_on FROM user where id='+id_repartidor
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='')
+                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='repartidor', confirmed_on=row[6])
             else:
                 return None
         except Exception as ex:
@@ -282,6 +296,17 @@ class ModelUser():
             encrypted_password = User.generate_password(contrasena)
             cursor = db.connection.cursor()
             sql = 'UPDATE user SET password="'+encrypted_password+'" WHERE id='+id_recibido
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def update_contrasena_repartidor(self, db, id_recibido, contrasena): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+        try:
+            encrypted_password = User.generate_password(contrasena)
+            cursor = db.connection.cursor()
+            sql = 'UPDATE user SET password="'+encrypted_password+'", confirmed=1, confirmed_on=CURDATE() WHERE id='+id_recibido
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

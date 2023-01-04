@@ -125,7 +125,9 @@ def login():
     if current_user.is_active == False:
         # Mandamos formulario
         if request.method == 'POST':
-            user = User(1, request.form['email'], request.form['password'])
+            email = request.form['email']
+            password = request.form['password']
+            user = User(1, email, password)
             logged_user = ModelUser.login(db, user)
             # print(logged_user.email)
             # ¿Puede loggearse?
@@ -155,8 +157,14 @@ def login():
                     else:
                         if confirmed_user.tipo == 'usuario':
                             logout_user()
-                            token = generate_confirmation_token(logged_user.email)
-                            return redirect(url_for('resend_confirmation', email=user.email))
+                            return redirect(url_for('resend_confirmation', email=email))
+                        elif confirmed_user.tipo == 'repartidor':
+                            if confirmed_user.confirmed_on == None:
+                                logout_user()
+                                return redirect(url_for('resend_confirmation_repartidor', email=email))
+                            else:
+                                flash("Su usuario ha sido deshabilitado")
+                                return render_template('ingresar.html')
                         else:
                             flash("Su usuario ha sido deshabilitado")
                             return render_template('ingresar.html')
@@ -387,11 +395,34 @@ def contrasenaRestablecido():
     try:
         id_usuario = request.form['id']
         contrasena = request.form['password']
-        ModelUser.update_contrasena(db, id_usuario, contrasena)
+        confirmed_on = request.form['confirmed']
+        print(confirmed_on)
+        if confirmed_on == 'None':
+            print('Here')
+            ModelUser.update_contrasena_repartidor(db, id_usuario, contrasena)
+        else:
+            ModelUser.update_contrasena(db, id_usuario, contrasena)
         return render_template('ingresarRecuperado.html')
     except:
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
+
+# Reenvío de correo
+@app.route('/resendRepartidor/<email>')
+def resend_confirmation_repartidor(email):
+    # hash_email = confirm_token(email)
+    token = generate_confirmation_token(email)
+    # Envio de correo
+    confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
+    template = render_template('correoValidacionesRepartidor.html', confirm_url=confirm_url)
+    subject = "Activación de cuenta - Sendiit"
+
+    msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+    mail.send(msg)
+
+    flash('Tu cuenta sigue sin confirmar, hemos enviado un nuevo correo de cambio de contraseña.')
+    return render_template('ingresar.html')
+
 
 @app.route('/user/tarjetas', methods=['GET', 'POST'])
 @login_required
@@ -689,7 +720,8 @@ def lockersModificarEstado():
         estado_recibido = int(request.form['confirmed'])
         estado_recibido = 1 - estado_recibido
         ModelLocker.modificar_estado(db, id_recibido, estado_recibido)
-        flash("Estado de locker actualizado con éxito")
+        currentLocker = ModelLocker.consult_by_id(db, id_recibido)
+        flash(f"Estado de locker {currentLocker.ubicacion} actualizado con éxito")
         return redirect(url_for('lockers'))
     except:
         flash("Ha ocurrido un error al actualizar el estado locker")
@@ -722,7 +754,8 @@ def lockersActualizado():
     cantidadL = 3 * int(cantidad)
     try:
         ModelLocker.update(db, id_recibido, direccion, cantidadS, cantidadM, cantidadL, latitud, longitud)
-        flash("Locker actualizado con éxito")
+        currentLokcer = ModelLocker.consult_by_id(db, id_recibido)
+        flash(f"Locker con ubicación '{currentLokcer.ubicacion}' actualizado con éxito")
         return redirect(url_for('lockers'))
     except:
         flash("Ha ocurrido un error al actualizar valores del locker")
@@ -732,8 +765,9 @@ def lockersActualizado():
 def lockersEliminar():
     try:
         id_recibido = request.form['id']
+        currentLokcer = ModelLocker.consult_by_id(db, id_recibido)
         ModelLocker.delete(db, id_recibido)
-        flash("Locker eliminado con éxito")
+        flash(f"Locker con ubicación {currentLokcer.ubicacion} eliminado con éxito")
         return redirect(url_for('lockers'))
     except:
         flash("Ha ocurrido un error al eliminar locker")
@@ -776,7 +810,17 @@ def repartidoresAgregado():
         if ModelUser.check_email(db, email) == False:
             execution = ModelUser.registerRepartidor(db, email, password, nombre, telefono, direccion, sucursal)  # Registralo en la BD
             if execution != None:  # Se registro con exito entonces tengo sus datos
-                flash("Repartidor "+ nombre +" agregado con exito")
+                token = generate_confirmation_token(email)
+                
+                confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
+                template = render_template('correoValidacionesRepartidor.html', confirm_url=confirm_url)
+                subject = "Activación de cuenta - Sendiit"
+                
+                msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+                
+                mail.send(msg)        
+                
+                flash("Repartidor "+ nombre +" agregado con exito y en espera de activación")
                 return redirect(url_for('repartidores'))
             else:
                 flash("Algo salió mal, intenta de nuevo")
@@ -792,11 +836,16 @@ def repartidoresAgregado():
 def repartidoresModificarEstado():    
         try:
             id_recibido = request.form['id']
-            estado_recibido = int(request.form['confirmed'])
-            estado_recibido = 1 - estado_recibido
-            ModelUser.modificar_estado(db, id_recibido, estado_recibido)
-            flash("Estado de repartidor actualizado con éxito")
-            return redirect(url_for('repartidores'))
+            currentRepartidor = ModelUser.consult_repartidor_by_id(db, id_recibido)
+            if currentRepartidor.confirmed_on == None:
+                flash(f"No es posible modificar estado del repartidor {currentRepartidor.nombre}. La cuenta no ha sido activada")
+                return redirect(url_for('repartidores'))
+            else:
+                estado_recibido = int(request.form['confirmed'])
+                estado_recibido = 1 - estado_recibido
+                ModelUser.modificar_estado(db, id_recibido, estado_recibido)
+                flash(f"Estado de repartidor {currentRepartidor.nombre} actualizado con éxito")
+                return redirect(url_for('repartidores'))
         except:
             flash("Ha ocurrido un error al actualizar el estado repartidor")
             return redirect(url_for('repartidores'))
@@ -820,7 +869,7 @@ def repartidoresActualizado():
         telefono = request.form['Telefono']
         direccion = request.form['Direccion']
         ModelUser.update_cliente(db, id_recibido,nombre, email, telefono, direccion)
-        flash("Repartidor actualizado con éxito")
+        flash(f"Repartidor {nombre} actualizado con éxito")
         return redirect(url_for('repartidores'))
     except:
         flash("Ha ocurrido un error al actualizar valores del repartidor")
@@ -830,8 +879,9 @@ def repartidoresActualizado():
 def repartidoresEliminar():
     try:
         id_recibido = request.form['id']
+        currentRepartidor = ModelUser.consult_repartidor_by_id(db, id_recibido)
         ModelUser.delete(db, id_recibido)
-        flash("Repartidor eliminado con éxito")
+        flash(f"Repartidor {currentRepartidor.nombre} eliminado con éxito")
         return redirect(url_for('repartidores'))
     except:
         flash("Ha ocurrido un error al eliminar al repartidor")
@@ -875,7 +925,7 @@ def clientesActualizado():
         telefono = request.form['Telefono']
         direccion = request.form['Direccion']
         ModelUser.update_cliente(db, id_recibido,nombre, email, telefono, direccion)
-        flash("Usuario actualizado con éxito")
+        flash(f"Usuario {nombre} actualizado con éxito")
         return redirect(url_for('clientes'))
     except:
         flash("Ha ocurrido un error al actualizar valores del cliente")
@@ -885,8 +935,9 @@ def clientesActualizado():
 def clientesEliminar():
     try:
         id_recibido = request.form['id']
+        currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
         ModelUser.delete(db, id_recibido)
-        flash("Cliente eliminado con éxito")
+        flash(f"Usuario {currentUser.nombre} eliminado con éxito")
         return redirect(url_for('clientes'))
     except:
         flash("Ha ocurrido un error al eliminar al cliente")
