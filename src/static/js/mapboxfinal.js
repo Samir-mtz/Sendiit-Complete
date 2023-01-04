@@ -197,6 +197,20 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
+                                '<strong>Lindavista</strong><p>Av. Juan de Dios Bátiz 523, Zacatenco, Gustavo A. Madero, 07340 Ciudad de México, CDMX</p>',
+                            'icon': 'post'
+                        },
+                        'geometry': {
+                            'type': 'Point',
+                            'coordinates': [-99.13241777989998, 19.503812618644453]
+                        }
+                    }
+                    ,
+							
+                        {
+                        'type': 'Feature',
+                        'properties': {
+                            'description':
                                 '<strong>Sátelite</strong><p>Cto. Cirujanos 1-Local 3, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>',
                             'icon': 'post'
                         },
@@ -264,6 +278,9 @@ map.on('load', () => {
                     });
             
 let coordinatesPoints = new Map();
+                    
+coordinatesPoints.set('Lindavista',[-99.13241777989998, 19.503812618644453])
+                
                     
 coordinatesPoints.set('Sátelite',[-99.23202789711353, 19.510418491079623])
                 

@@ -7,7 +7,7 @@ class ModelEnvio():
     def register(self, db, envio):
         try:
             # INSERTAMOS EN LA TABLA ENVIOS
-            cursor = db.connection.cursor()
+            cursor = db.connection.cursor() 
             sql = f"INSERT INTO envios (origen, destino, tamano, estado, nombre, email, telefono, costo, idusuario) VALUES ('{envio.origen}','{envio.destino}','{envio.tamano}', '{envio.estado}', '{envio.nombre}', '{envio.email}', '{envio.telefono}', {envio.costo}, {envio.idusuario})"
             cursor.execute(sql)
             db.connection.commit()

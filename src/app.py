@@ -587,9 +587,9 @@ def formularioPago():
         email = request.form['email']
         telefono = request.form['telefono']
         costo = request.form['costo']
-        estado = request.form['estado']
-        idusuario = request.form['idusuario']
-        datos = Envio(origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario)
+        estado = "POR DEPOSITARSE EN LOCKER POR EL CLIENTE"
+        idusuario = current_user.id
+        datos = Envio(origen,estado ,destino, tamano, fragil, nombre, email, telefono, costo, idusuario)
         ModelEnvio.register(db, datos)
         return render_template('PagoExitoso.html')
     listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
