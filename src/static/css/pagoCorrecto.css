@@ -449,7 +449,7 @@ h5 {
 
 .main-pdf {
 	width: calc(90vh);
-	height: auto;
+	height: calc(90vh -10vh - 10vh);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -462,7 +462,7 @@ h5 {
 	align-items: center;
 	flex-direction: column;
 	width: calc(90vh);
-	height: calc(115vh);
+	height: calc(100vh);
 	margin: auto;
 	/* border: 1px solid blue; */
 }
@@ -473,7 +473,7 @@ h5 {
 	align-items: center;
 	flex-direction: column;
 	width: calc(90vh);
-	height: calc(40vh);
+	height: calc(30vh);
 	/* border: 1px solid purple; */
 }
 
@@ -494,7 +494,7 @@ h5 {
 	justify-content: center;
 	align-items: center;
 	width: calc(90vh);
-	height: calc(30vh);
+	height: calc(20vh);
 	/* border: 1px solid orangered; */
 }
 
@@ -514,7 +514,7 @@ h5 {
 	align-items: center;
 	flex-direction: column;
 	width: calc(45vh);
-	height: calc(30vh);
+	height: calc(25vh);
 	border-right: calc(0.1vh) solid rgb(167, 167, 167);
 	/* border: 1px solid green; */
 }
@@ -565,7 +565,7 @@ h5 {
 	justify-content: start;
 	align-items: center;
 	width: calc(45vh);
-	height: calc(5vh);
+	height: calc(3vh);
 	/* border: 1px solid pink; */
 	font-size: calc(1.8vh);
 	margin-left: 20%;
