@@ -81,11 +81,11 @@ class ModelEnvio():
     def rastreoEnvio(self, db, id):
         try:
             cursor = db.connection.cursor()
-            sql = f"SELECT estado FROM envios where id={id}"
+            sql = f"SELECT estado, origen, destino FROM envios where id={id}"
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return row[0]
+                return Envio(estado=row[0], origen=row[1], destino=row[2])
             else:
                 return None
         except Exception as ex:

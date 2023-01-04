@@ -590,22 +590,40 @@ def pagoFracasado():
 @app.route('/user/rastrearEnvio/<id>')
 @login_required
 def userRastrear(id):
-    estado = ModelEnvio.rastreoEnvio(id)
-    if estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
-        return render_template('PagoFracasado.html')
-    elif estado == "EN ESPERA DEL REPARTIDOR":
-        return render_template('PagoFracasado.html')
+    if(current_user.tipo == None):
+        envio = ModelEnvio.rastreoEnvio(id)
+        if envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
+            return render_template('estatus_1.html', envio)
+        elif estado.estado == "EN ESPERA DEL REPARTIDOR":
+            return render_template('estatus_2.html', envio)
 
-    elif estado == "EN CAMINO":
-        return render_template('PagoFracasado.html')
+        elif estado.estado == "EN CAMINO":
+            return render_template('estatus_3.html', envio)
 
-    elif estado == "ENTREGADO EN LOCKER DESTINO":
-        return render_template('PagoFracasado.html')
+        elif estado.estado == "ENTREGADO EN LOCKER DESTINO":
+            return render_template('estatus_4.html', envio)
 
-    elif estado == "RECOGIDO":
-        return render_template('PagoFracasado.html')
+        elif estado.estado == "RECOGIDO":
+            return render_template('estatus_5.html', envio)
 
-    return render_template('PagoFracasado.html')
+        return render_template('PagoFracasado.html', envio)
+    else:
+        envio = ModelEnvio.rastreoEnvio(id)
+        if envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
+            return render_template('estatusCliente_1.html', envio)
+        elif estado.estado == "EN ESPERA DEL REPARTIDOR":
+            return render_template('estatusCliente_2.html', envio)
+
+        elif estado.estado == "EN CAMINO":
+            return render_template('estatusCliente_3.html', envio)
+
+        elif estado.estado == "ENTREGADO EN LOCKER DESTINO":
+            return render_template('estatusCliente_4.html', envio)
+
+        elif estado.estado == "RECOGIDO":
+            return render_template('estatusCliente_5.html', envio)
+
+        return render_template('PagoFracasado.html', envio)
 
 #########################################################################################
 ################################## Usuario administrador ################################
