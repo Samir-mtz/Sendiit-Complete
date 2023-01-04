@@ -63,12 +63,18 @@ function precio(){
 	const precio = document.getElementById("precioTotal");
 	const iva = document.getElementById("ivaFinal");
 	let precioF = document.getElementById("precioFinal");
+	const precio2 = document.getElementById("precioTotal2");
+	const iva2 = document.getElementById("ivaFinal2");
+	let precioF2 = document.getElementById("precioFinal2");
 	let iva1 = valor * 0.16;
 	
 	precio.innerHTML= "$" + valor.toFixed(2); + "MXN";
 	iva.innerHTML = "$" + iva1.toFixed(2); + "MXN";
+	precio2.innerHTML= "$" + valor.toFixed(2); + "MXN";
+	iva2.innerHTML = "$" + iva1.toFixed(2); + "MXN";
 	let total =iva1 + valor;
 	precioF.innerHTML = "$" + total.toFixed(2); + "MXN";
+	precioF2.innerHTML = "$" + total.toFixed(2); + "MXN";
 	let inputCosto = document.getElementById("inputCosto");
 	inputCosto.value = total.toFixed(2);
 }
@@ -141,6 +147,26 @@ function selecciones(){
 			);
 		})
 }
+
+function NewTarjeta(){
+	let texto = document.getElementById("leyenda");
+	texto.style.display = "None";
+	let selecto = document.getElementById("guardadas");
+	selecto.style.display = "None";
+	let formularioTarjeta = document.getElementById("addTarjeta");
+	formularioTarjeta.style.display = "Block";
+
+}
+function Reset(){
+	let texto = document.getElementById("leyenda");
+	texto.style.display = "Block";
+	let selecto = document.getElementById("guardadas");
+	selecto.style.display = "Block";
+	let formularioTarjeta = document.getElementById("addTarjeta");
+	formularioTarjeta.style.display = "None";
+
+}
+
 function checkInputs() {
 	const nombreValue = nombre.value.trim();
 	const emailValue = email.value.trim();

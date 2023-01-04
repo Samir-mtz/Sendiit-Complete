@@ -505,6 +505,14 @@ def formularioEnvio():
             idusuario = current_user.id
             datos = Envio(origen,estado, destino, tamano, fragil, nombre, email, telefono, costo, idusuario)
             ModelEnvio.register(db, datos)
+
+            nombreTarjeta = request.form['inputNombre']
+            if nombreTarjeta != "":
+                numtarjeta = request.form['inputNumero']
+                expiracion = request.form['mes'] + "-" + request.form['year']
+                cvv = request.form['inputCCV']
+                tarjeta = Tarjeta(numtarjeta, expiracion, nombre, current_user.id, cvv)
+                ModelTarjeta.register(db, tarjeta)
             return render_template('PagoCorrecto.html', datos=datos)
         
         ###Funcionalidad del mapbox
