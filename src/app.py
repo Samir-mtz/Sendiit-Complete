@@ -815,11 +815,16 @@ def repartidoresAgregado():
 def repartidoresModificarEstado():    
         try:
             id_recibido = request.form['id']
-            estado_recibido = int(request.form['confirmed'])
-            estado_recibido = 1 - estado_recibido
-            ModelUser.modificar_estado(db, id_recibido, estado_recibido)
-            flash("Estado de repartidor actualizado con éxito")
-            return redirect(url_for('repartidores'))
+            currentRepartidor = ModelUser.consult_repartidor_by_id(db, id_recibido)
+            if currentRepartidor.confirmed_on == None:
+                flash(f"No es posible modificar estado del repartidor {currentRepartidor.nombre}. La cuenta no ha sido activada")
+                return redirect(url_for('repartidores'))
+            else:
+                estado_recibido = int(request.form['confirmed'])
+                estado_recibido = 1 - estado_recibido
+                ModelUser.modificar_estado(db, id_recibido, estado_recibido)
+                flash("Estado de repartidor actualizado con éxito")
+                return redirect(url_for('repartidores'))
         except:
             flash("Ha ocurrido un error al actualizar el estado repartidor")
             return redirect(url_for('repartidores'))

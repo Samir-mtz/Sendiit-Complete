@@ -192,11 +192,11 @@ class ModelUser():
     def consult_repartidor_by_id(self, db, id_repartidor):
         try:
             cursor = db.connection.cursor()
-            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where id='+id_repartidor
+            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed, confirmed_on FROM user where id='+id_repartidor
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='')
+                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='repartidor', confirmed_on=row[6])
             else:
                 return None
         except Exception as ex:
