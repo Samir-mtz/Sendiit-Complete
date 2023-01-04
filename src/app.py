@@ -622,39 +622,39 @@ def pagoFracasado():
 @login_required
 def userRastrear(id):
     if(current_user.tipo == None):
-        envio = ModelEnvio.rastreoEnvio(id)
+        envio = ModelEnvio.rastreoEnvio(db, id)
         if envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
-            return render_template('estatus_1.html', envio)
-        elif estado.estado == "EN ESPERA DEL REPARTIDOR":
-            return render_template('estatus_2.html', envio)
+            return render_template('estatus_1.html', envio=envio)
+        elif envio.estado == "EN ESPERA DEL REPARTIDOR":
+            return render_template('estatus_2.html', envio=envio)
 
-        elif estado.estado == "EN CAMINO":
-            return render_template('estatus_3.html', envio)
+        elif envio.estado == "EN CAMINO":
+            return render_template('estatus_3.html', envio=envio)
 
-        elif estado.estado == "ENTREGADO EN LOCKER DESTINO":
-            return render_template('estatus_4.html', envio)
+        elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
+            return render_template('estatus_4.html', envio=envio)
 
-        elif estado.estado == "RECOGIDO":
-            return render_template('estatus_5.html', envio)
-
-        return render_template('PagoFracasado.html', envio)
+        elif envio.estado == "RECOGIDO":
+            return render_template('estatus_5.html', envio=envio)
+        else:
+            return render_template('errorRastrear.html', envio=envio)
     else:
-        envio = ModelEnvio.rastreoEnvio(id)
+        envio = ModelEnvio.rastreoEnvio(db, id)
         if envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
-            return render_template('estatusCliente_1.html', envio)
-        elif estado.estado == "EN ESPERA DEL REPARTIDOR":
-            return render_template('estatusCliente_2.html', envio)
+            return render_template('estatusCliente_1.html', envio=envio)
+        elif envio.estado == "EN ESPERA DEL REPARTIDOR":
+            return render_template('estatusCliente_2.html', envio=envio)
 
-        elif estado.estado == "EN CAMINO":
-            return render_template('estatusCliente_3.html', envio)
+        elif envio.estado == "EN CAMINO":
+            return render_template('estatusCliente_3.html', envio=envio)
 
-        elif estado.estado == "ENTREGADO EN LOCKER DESTINO":
-            return render_template('estatusCliente_4.html', envio)
+        elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
+            return render_template('estatusCliente_4.html', envio=envio)
 
-        elif estado.estado == "RECOGIDO":
-            return render_template('estatusCliente_5.html', envio)
-
-        return render_template('PagoFracasado.html', envio)
+        elif envio.estado == "RECOGIDO":
+            return render_template('estatusCliente_5.html', envio=envio)
+        else:
+            return render_template('errorRastrearCliente.html', envio=envio)
 
 #########################################################################################
 ################################## Usuario administrador ################################
@@ -688,7 +688,6 @@ def lockers():
         except:
             return render_template('TablaLockers.html', lockers=[])
         
-
 @app.route('/admin/lockers/agregar')
 def lockersAgregar():
     return render_template('agregarLockers.html')
