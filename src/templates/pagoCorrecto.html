@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>SENDIIT - PAGO EXITOSO</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/pagoCorrecto.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  <script src="../static/js/ordenGenerada/jquery.min.js"></script>
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="./inicio.html">
+        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      </a>
+    </div>
+    <div class="links">
+      <div class="link-header">PAGO EXITOSO</div>
+    </div>
+    <div class="usuario">
+      <div class="tarjeta">
+        <div class="tarjeta-izq">
+          <i class="bi bi-person-circle"></i>
+        </div>
+        <div class="tarjeta-der">
+          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="iconos-tarjeta">
+            <a href="" class="elemento ">
+              <!-- <div class="contenido-elemento activo"> -->
+              <div class="contenido-elemento">
+                <i class="bi bi-house"></i>
+                <h6>Inicio</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-clipboard-check"></i>
+                <h6>Historial</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-geo-alt"></i>
+                <h6>Rastrear</h6>
+              </div>
+            </a>
+            <h5>|</h5>
+            <a href="./inicio.html" class="elemento">
+              <div class="contenido-elemento">
+                <i class="bi bi-box-arrow-in-left cerrar"></i>
+                <h6 class="cerrar">Salir</h6>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="izq">
+      <div class="titulo-logo">
+        <img src="../static/img/empresa/logo.png" alt="Logo empresa" />
+      </div>
+
+      <div class="titulo-pagina">
+        <h1>PAGO REALIZADO CON EXITO</h1>
+      </div>
+
+      <div class="contenido">
+        <br><br>
+        <img src="../static/img/errores/correcto.png" alt="">
+        <br>
+        <p class="textgeneral">
+          ¡ PAGO EXITOSO !
+        </p>
+        <p class="textgeneral">
+          Ahora, se generará, tu orden para tener acceso a los lockers.
+        </p>
+        <br><br>
+      </div>
+
+      <!-- Grupo: Boton ingresar -->
+      <div class="botones">
+        <a href="./historialCliente.html" class="btn-form">CONTINUAR</a>
+        <a href="javascript:void(0)" class="btn-download btn-generar btn-form pdf">DESCARGAR ORDEN</a>
+      </div>
+
+    </section>
+    <section class="der">
+      <div class="img-repartidor">
+        <img src="../static/img/repartidores/Repartidor_7.png" alt="Repartidor con cajas" />
+      </div>
+    </section>
+
+    <div class="pdf-generado">
+      <div class="pdfGenerado">
+        <section id="pdfOrden" class="pdfOrden">
+          <!-- Header -->
+          <header class="header-pdf">
+            <div class="logo-pdf">
+              <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header-pdf" />
+            </div>
+            <div class="id-orden">
+              ID: {{ datos.id }}
+            </div>
+          </header>
+
+          <!-- Main -->
+          <main class="main-pdf">
+            <section class="central">
+              <div class="datos-usuarios-pdf">
+                <div class="titulo-dato-pdf">DATOS DE USUARIOS</div>
+                <div class="datos-usuarios-secciones-pdf">
+                  <div class="datos-usuario-izq-pdf">
+                    <p class="titulo-seccion-pdf">DATOS REMITENTE</p>
+                    <p class="dato-seccion-pdf"> - Nombre: {{nombrePersonaOrigen}}</p>
+                    <p class="dato-seccion-pdf"> - E-mail: {{correoPersonaOrigen}}</p>
+                    <p class="dato-seccion-pdf"> - Teléfono: {{telefonoPersonaOrigen}}</p>
+                    <p class="dato-seccion-pdf"> - Sucursal: {{sucursalOrigen}}</p>
+                  </div>
+                  <div class="datos-usuario-der-pdf">
+                    <p class="titulo-seccion-pdf">DATOS DESTINATARIO</p>
+                    <p class="dato-seccion-pdf"> - Nombre: {{nombrePersonaDestino}}</p>
+                    <p class="dato-seccion-pdf"> - E-mail: {{correoPersonaDestino}}</p>
+                    <p class="dato-seccion-pdf"> - Teléfono: {{telefonoPersonaDestino}}</p>
+                    <p class="dato-seccion-pdf"> - Sucursal: {{sucursalDestino}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="datos-paquete-pdf">
+                <div class="titulo-dato-pdf">DATOS DEL PAQUETE</div>
+                <div class="datos-paquete-secciones-pdf">
+                  <div class="datos-paquete-izq-pdf">
+                    <p class="dato-seccion-pdf"> - Peso: {{pesoPaquete}}</p>
+                    <p class="dato-seccion-pdf"> - ¿Es fragil?: {{fragilPaquete}}</p>
+                    <p class="dato-seccion-pdf"> - Fecha de Envio: {{fechaEnvioPaquete}}</p>
+                    <p class="dato-seccion-pdf"> - Fecha de Recolección: {{fechaRecoleccionPaquete}}</p>
+                    <p class="dato-seccion-pdf"> - Origen: {{sucursalOrigen}}</p>
+                    <p class="dato-seccion-pdf"> - Destino: {{sucursalDestino}}</p>
+                  </div>
+                  <div class="datos-paquete-der-pdf">
+                    <img src="../static/img/paquetes/ordenGenerada.png" alt="">
+                  </div>
+                </div>
+              </div>
+              <div class="qr-pdf">
+                <div class="titulo-dato-pdf">CÓDIGO QR</div>
+                <div class="datos-qr-pdf">
+                  <img src="../static/img/qr/qrOrden.png" alt="">
+                </div>
+              </div>
+            </section>
+          </main>
+
+          <!-- Footer -->
+          <footer class="footer-pdf">
+            <div class="derechos-pdf">
+              <span>&copy;2022 México. Todos los derechos reservados.</span>
+            </div>
+          </footer>
+        </section>
+      </div>
+      <script>
+        const options = {
+          margin: 0.15  ,
+          filename: 'ordenEnvio.pdf',
+          image: {
+            type: 'jpeg',
+            quality: 5000
+          },
+          html2canvas: {
+            scale: 5.0,
+          },
+          jsPDF: {
+            unit: 'in',
+            format: 'letter',
+            orientation: 'portrait'
+          }
+        }
+
+        $('.btn-download').click(function (e) {
+          e.preventDefault();
+          const element = document.getElementById('pdfOrden');
+          html2pdf().from(element).set(options).save();
+        });
+
+
+        function printDiv(divName) {
+          var printContents = document.getElementById(divName).innerHTML;
+          var originalContents = document.body.innerHTML;
+          document.body.innerHTML = printContents;
+          window.print();
+          document.body.innerHTML = originalContents;
+        }
+      </script>
+      <script src="../static/js/ordenGenerada/jspdf.debug.js"></script>
+      <script src="../static/js/ordenGenerada/html2canvas.min.js"></script>
+      <script src="../static/js/ordenGenerada/html2pdf.min.js"></script>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+</body>
+
+</html>
