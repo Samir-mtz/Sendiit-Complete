@@ -125,7 +125,9 @@ def login():
     if current_user.is_active == False:
         # Mandamos formulario
         if request.method == 'POST':
-            user = User(1, request.form['email'], request.form['password'])
+            email = request.form['email']
+            password = request.form['password']
+            user = User(1, email, password)
             logged_user = ModelUser.login(db, user)
             # print(logged_user.email)
             # ¿Puede loggearse?
@@ -155,8 +157,14 @@ def login():
                     else:
                         if confirmed_user.tipo == 'usuario':
                             logout_user()
-                            token = generate_confirmation_token(logged_user.email)
-                            return redirect(url_for('resend_confirmation', email=user.email))
+                            return redirect(url_for('resend_confirmation', email=email))
+                        elif confirmed_user.tipo == 'repartidor':
+                            if confirmed_user.confirmed_on == None:
+                                logout_user()
+                                return redirect(url_for('resend_confirmation_repartidor', email=email))
+                            else:
+                                flash("Su usuario ha sido deshabilitado")
+                                return render_template('ingresar.html')
                         else:
                             flash("Su usuario ha sido deshabilitado")
                             return render_template('ingresar.html')
@@ -387,11 +395,34 @@ def contrasenaRestablecido():
     try:
         id_usuario = request.form['id']
         contrasena = request.form['password']
-        ModelUser.update_contrasena(db, id_usuario, contrasena)
+        confirmed_on = request.form['confirmed']
+        print(confirmed_on)
+        if confirmed_on == 'None':
+            print('Here')
+            ModelUser.update_contrasena_repartidor(db, id_usuario, contrasena)
+        else:
+            ModelUser.update_contrasena(db, id_usuario, contrasena)
         return render_template('ingresarRecuperado.html')
     except:
         flash('Algo salió mal. Por favor intenta de nuevo')
         return redirect(url_for('login'))
+
+# Reenvío de correo
+@app.route('/resendRepartidor/<email>')
+def resend_confirmation_repartidor(email):
+    # hash_email = confirm_token(email)
+    token = generate_confirmation_token(email)
+    # Envio de correo
+    confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
+    template = render_template('correoValidacionesRepartidor.html', confirm_url=confirm_url)
+    subject = "Activación de cuenta - Sendiit"
+
+    msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+    mail.send(msg)
+
+    flash('Tu cuenta sigue sin confirmar, hemos enviado un nuevo correo de cambio de contraseña.')
+    return render_template('ingresar.html')
+
 
 @app.route('/user/tarjetas', methods=['GET', 'POST'])
 @login_required
@@ -758,7 +789,17 @@ def repartidoresAgregado():
         if ModelUser.check_email(db, email) == False:
             execution = ModelUser.registerRepartidor(db, email, password, nombre, telefono, direccion, sucursal)  # Registralo en la BD
             if execution != None:  # Se registro con exito entonces tengo sus datos
-                flash("Repartidor "+ nombre +" agregado con exito")
+                token = generate_confirmation_token(email)
+                
+                confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
+                template = render_template('correoValidacionesRepartidor.html', confirm_url=confirm_url)
+                subject = "Activación de cuenta - Sendiit"
+                
+                msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+                
+                mail.send(msg)        
+                
+                flash("Repartidor "+ nombre +" agregado con exito y en espera de activación")
                 return redirect(url_for('repartidores'))
             else:
                 flash("Algo salió mal, intenta de nuevo")

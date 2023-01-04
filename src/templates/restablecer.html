@@ -52,6 +52,7 @@
         <form action="{{ url_for('contrasenaRestablecido') }}" class="formulario" id="formulario" method="POST">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
           <input type="text" name="id" value="{{ usuario.id }}" hidden>
+          <input type="text" name="confirmed" value="{{ usuario.confirmed_on }}" hidden>
           <!-- Grupo: Contraseña -->
           <div class="form-control campo">
             <label for="password">Nueva Contraseña <label style="color: red;">*</label></label>
