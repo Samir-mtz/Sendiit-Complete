@@ -18,7 +18,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio">
+      <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -31,9 +31,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="./inicioCliente.html" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -41,21 +41,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./infoCliente.html" class="elemento">
+            <a href="{{ url_for('datosCliente') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-person-rolodex"></i>
                 <h6>Info. General</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./rastrearCliente.html" class="elemento activo">
+            <a href="{{ url_for('userRastrear') }}" class="elemento activo">
               <div class="contenido-elemento">
                 <i class="bi bi-geo-alt"></i>
                 <h6>Rastrear</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -71,7 +71,7 @@
   <main class="main">
     <section class="arriba">
       <div class="boton-regreso">
-        <a href="./bienvenidaCliente.html">
+        <a href="{{ url_for('homeCliente') }}">
           <i class="bi bi-arrow-left-circle"></i>
           <span>INICIO</span>
         </a>
@@ -83,7 +83,7 @@
         </div>
       </div>
       <div class="logo-categoria">
-        <a href="./tablaClientes.html" class="link-categoria">
+        <a href="{{ url_for('userHistorial') }}" class="link-categoria">
           <img src="../static/img/categorias/historial.png" alt="Categoria Clientes">
         </a>
       </div>
@@ -110,38 +110,24 @@
           </tr>
         </thead>
         <tbody>
+          {% for envio in envios %}
           <tr>
-            <td>1</td>
-            <td class="nombre-destinatario">José López</td>
-            <td class="correo-destinatario">joselopez@gmail.com</td>
+            <td>{{ envio.id }}</td>
+            <td class="nombre-destinatario">{{ envio.nombre }}</td>
+            <td class="correo-destinatario">{{ envio.email }}</td>
             <!-- <td class="descripcion-paquete">Regalo de navidad</td> -->
-            <td>Lindavista</td>
-            <td>Satélite</td>
+            <td>{{ envio.origen }}</td>
+            <td>{{ envio.destino }}</td>
             <td>22/12/2022</td>
             <td>23/12/2022</td>
-            <td>ENTREGADO</td>
+            <td>{{ envio.estado }}</td>
             <td>
-              <button onclick="abrirRastrear()" class="btn-rastrear btn-ventana-rastrear">
+              <button onclick="abrirRastrear('{{ envio.id }}')" class="btn-rastrear btn-ventana-rastrear">
                 <img src="../static/img/Admin/acciones/rastrear.png" />
               </button>
             </td>
           </tr>
-          <tr>
-            <td>2</td>
-            <td class="nombre-destinatario">María Jimenez</td>
-            <td class="correo-destinatario">mariaj@gmail.com</td>
-            <!-- <td class="descripcion-paquete">Documentos</td> -->
-            <td>Col. del Valle</td>
-            <td>Lindavista</td>
-            <td>26-12-2022</td>
-            <td>-</td>
-            <td>EN TRANSCURSO</td>
-            <td>
-              <button onclick="abrirRastrear()" class="btn-rastrear btn-ventana-rastrear">
-                <img src="../static/img/Admin/acciones/rastrear.png" />
-              </button>
-            </td>
-          </tr>
+          {% endfor %}
         </tbody>
       </table>
     </section>
@@ -158,8 +144,12 @@
           <h2>¿Desea rastrear el paquete?</h2>
         </div>
         <div class="botones-modal">
-          <a href="#"><button class="confirmar">Confirmar</button></a>
-          <a href="./historialEnvios.html"><button class="cancelar">Cancelar</button></a>
+          <form action="{{ url_for('userRastrear') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="number" name="Buscar" value="" id='rastrear_id' hidden>
+            <button class="confirmar">Confirmar</button>
+          </form>
+          <button onclick="cerrarRastrear()" class="cancelar">Cancelar</button>
         </div>
       </div>
     </center>

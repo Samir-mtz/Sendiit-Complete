@@ -14,6 +14,10 @@ const modalEditar = document.querySelector(".modal-btn-editar");                
 const btnAbrirModalEliminar = document.querySelector(".btn-ventana-eliminar");           // Metodo para abrir las ventanas
 const btnCerrarModalEliminar = document.querySelector(".modal-btn-cerrar-eliminar");     // Metodo para cerrar las ventanas
 const modalEliminar = document.querySelector(".modal-btn-eliminar"); 
+
+const btnAbrirModalRastrear = document.querySelector(".btn-ventana-rastrear");           // Metodo para abrir las ventanas
+const btnCerrarModalRastrear = document.querySelector(".modal-btn-cerrar-rastrear");     // Metodo para cerrar las ventanas
+const modalRastrear = document.querySelector(".modal-btn-rastrear"); 
 // Ventana a ocupar
 // Modal de pregunta ¿Desea visualizar al cliente?
 const btnAbrirModalVisualziar = document.querySelector(".btn-ventana-visualizar");           // Metodo para abrir las ventanas
@@ -68,4 +72,14 @@ function abrirVisualizar(numId){
 
 function cerrarVisualizar(){
     modalVisualizar.close();
+}
+
+function abrirRastrear(numId){
+    myId = document.querySelector('#rastrear_id');
+    myId.value = numId;
+    modalRastrear.showModal();
+}
+
+function cerrarRastrear(){
+    modalRastrear.close();
 }

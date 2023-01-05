@@ -682,6 +682,14 @@ def userRastrear():
         return render_template('rastrear.html')
 
 
+@app.route('/user/historial')
+@login_required
+def userHistorial():
+    currentUser = ModelUser.consulta_email(db, current_user.email)
+    print(currentUser.id)
+    enviosUser = ModelEnvio.consult_all_by_user(db, currentUser.id)
+    return render_template('historialEnvios.html', envios = enviosUser)
+
 #########################################################################################
 ################################## Usuario administrador ################################
 #########################################################################################
