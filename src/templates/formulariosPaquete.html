@@ -249,38 +249,72 @@
                       <div class="leyenda" id="leyenda">
                         <h4>*Solo aceptamos pagos con tarjetas de crédito/débito.</h4>
                       </div>
-                      <div id="addTarjeta" style="display: none;">
-                        <input type="number" name="inputNumero" value="">
-                        <input type="text" name="inputNombre" value="">
-                        <input type="number" name="inputCCV" value="">
-                        <select name="mes" id="mes">
-                          <option value="01">01</option>
-                          <option value="02">02</option>
-                          <option value="03">03</option>
-                          <option value="04">04</option>
-                          <option value="05">05</option>
-                          <option value="06">06</option>
-                          <option value="07">07</option>
-                          <option value="08">08</option>
-                          <option value="09">09</option>
-                          <option value="10">10</option>
-                          <option value="11">11</option>
-                          <option value="12">12</option>
-                        </select>
-                        <select name="year" id="year">
-                          <option value="2023">2023</option>
-                          <option value="2024">2024</option>
-                          <option value="2025">2025</option>
-                          <option value="2025">2025</option>
-                          <option value="2027">2027</option>
-                          <option value="2028">2028</option>
-                          <option value="2029">2029</option>
-                          <option value="2030">2030</option>
-                          <option value="2031">2031</option>
-                          <option value="2032">2032</option>
-                        </select>
+                      <div id="addTarjeta" style="display: none;" class="addTarjeta">
+
+                        <!-- Campo : Numero de tarjeta -->
+                        <div class="grupo-tarjeta form-control">
+                          <label for="inputNumero">Número Tarjeta <label style="color: red;">*</label></label>
+                          <input type="number" id="inputNumero" maxlength="19" autocomplete="off" name="inputNumero" class="input-tarjeta">
+                          <small>Mensaje de error</small>
+                        </div>
+
+                        <!-- Campo: Nombre tarjeta -->
+                        <div class="grupo-tarjeta form-control">
+                          <label for="inputNombre">Nombre en la tarjeta <label style="color: red;">*</label></label>
+                          <input type="text" id="inputNombre" maxlength="19" autocomplete="off" name="inputNombre" class="input-tarjeta">
+                          <small>Mensaje de error</small>
+                        </div>
+
+                        <!-- Campo: CVV -->
+                        <div class="grupo-tarjeta form-control">
+                          <label for="inputCCV">CCV <label style="color: red;">*</label></label>
+                          <input type="number" id="inputCCV" name="inputCCV" maxlength="3" class="input-tarjeta input-chico">
+                          <small class="mensaje-chico">Mensaje de error</small>
+                        </div>
+
+                        <!-- Campo: Mes -->
+
+                        <div class="grupo-tarjeta form-control">
+                          <label for="mes">Mes <label style="color: red;">*</label></label>
+                          <select name="mes" id="mes" class="selector-tarjeta  selector-chico">
+                              <option value="Mes">Mes</option>
+                              <option value="01">01</option>
+                              <option value="02">02</option>
+                              <option value="03">03</option>
+                              <option value="04">04</option>
+                              <option value="05">05</option>
+                              <option value="06">06</option>
+                              <option value="07">07</option>
+                              <option value="08">08</option>
+                              <option value="09">09</option>
+                              <option value="10">10</option>
+                              <option value="11">11</option>
+                              <option value="12">12</option>
+                            </select>
+                          <small class="mensaje-chico">Mensaje de error</small>
+                        </div>
+
+                        <!-- Campo: Año -->
+                        <div class="grupo-tarjeta form-control">
+                          <label for="year">Año <label style="color: red;">*</label></label>
+                          <select name="year" id="year" class="selector-tarjeta selector-chico">
+                            <option value="2023">Año</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2025">2025</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                            <option value="2031">2031</option>
+                            <option value="2032">2032</option>
+                          </select>
+                          <small class="mensaje-chico">Mensaje de error</small>
+                        </div>
+
                         <div class="agregar-tarjeta">
-                          <p class="btn-agregar" onclick="Reset()"> CANCELAR</p>
+                          <p class="btn-Noagregar cancelar-tarjeta" onclick="Reset()">NO AGREGAR</p>
                         </div>
                       </div>
                       <!-- Campo: Tarjetas -->
@@ -297,7 +331,7 @@
                           <option value="**** **** **** 5678 ">**** **** **** 5678</option>
                           <option value="**** **** **** 9012 ">**** **** **** 9012</option>
                           <option value="**** **** **** 3456 ">**** **** **** 3456</option>
-                        </select>
+                        </select><br>
                         <small></small>
                       </div>
 

@@ -223,7 +223,7 @@ h5 {
 .slider {
 	height: calc(80vh);
 	width: calc(150vh);
-	border-radius: 10px;
+	border-radius: calc(3vh);
 	overflow: hidden;
 	/* border: 1px solid red; */
 }
@@ -234,7 +234,7 @@ h5 {
 	align-items: center;
 	height: calc(8vh);
 	width: calc(150vh);
-	border-radius: 10px;
+	border-radius: calc(3vh);
 	overflow: hidden;
 }
 
@@ -265,7 +265,7 @@ h5 {
 	height: calc(60vh);
 	width: calc(55%);
 	border: 1px solid rgb(222, 222, 222);
-	border-radius: 15px;
+	border-radius: calc(4vh);
 	background: rgb(250, 250, 250);
 	box-shadow: 2px 5px 10px #bebebe;
 	margin-left: 4%;
@@ -280,7 +280,7 @@ h5 {
 	height: calc(60vh);
 	width: calc(35%);
 	border: 1px solid rgb(229, 229, 229);
-	border-radius: 15px;
+	border-radius: calc(4vh);
 	background: rgb(250, 250, 250);
 	box-shadow: 2px 5px 10px #bebebe;
 	margin-right: 4%;
@@ -320,7 +320,6 @@ h5 {
 	flex-direction: column;
 	height: calc(90%);
 	width: calc(50%);
-    /* border: 1px solid red; */
 }
 
 .campos-der-tarjeta {
@@ -359,7 +358,7 @@ h5 {
 }
 
 .form-control select{
-    height: calc(3.5vh);
+    height: calc(4vh);
     font-size: calc(1.8vh);
     text-align: right;
 }
@@ -378,17 +377,19 @@ h5 {
 
 .boton-formulario {
 	display: flex;
-	justify-content: center;
+	justify-content: end;
 	align-items: center;
 	height: calc(10vh);
 	width: calc(100%);
 	bottom: 0;
+	margin-right: 30%;
 }
 
 .btn-siguiente,
 .btn-pagar,
 .btn-salir,
-.btn-agregar {
+.btn-agregar,
+.btn-Noagregar {
 	position: relative;
 	font-size: calc(2vh);
 	text-transform: uppercase;
@@ -418,10 +419,17 @@ h5 {
     margin-top: 10%;
 }
 
+.btn-Noagregar {
+	background-color: rgb(233, 0, 0);
+    color: #fff;
+    margin-top: 10%;
+}
+
 .btn-siguiente:hover,
 .btn-pagar:hover,
 .btn-salir:hover,
-.btn-agregar:hover {
+.btn-agregar:hover,
+.btn-Noagregar:hover {
 	transform: translateY(-1px);
 	box-shadow: 3px 10px 20px rgba(0, 0, 0, 0.2);
 	cursor: pointer;
@@ -430,7 +438,8 @@ h5 {
 .btn-siguiente::after,
 .btn-pagar::after,
 .btn-salir::after,
-.btn-agregar::after {
+.btn-agregar::after,
+.btn-Noagregar::after {
 	content: "";
 	display: inline-block;
 	height: 100%;
@@ -456,20 +465,25 @@ h5 {
 	background-color: rgb(242, 255, 0);
 }
 
+.btn-Noagregar::after {
+	background-color: rgb(242, 36, 36);
+}
+
 .btn-siguiente:hover::after,
 .btn-salir:hover::after,
-.btn-agregar:hover::after {
+.btn-agregar:hover::after,
+.btn-Noagregar:hover::after {
 	transform: scaleX(1.1) scaleY(1.1);
 	opacity: 0;
 	cursor: pointer;
 }
 
 .btn-seleccionar {
-	border: 2px solid #1feb00;
+	border: 1px solid #1feb00;
     background-color: #1feb0037;
 	padding: calc(1.2vh);
     font-size: calc(2vh);
-	border-radius: calc(0.5rem);
+	border-radius: calc(1.5vh);
 	cursor: pointer;
 	/* transition: 1s; */
 }
@@ -621,6 +635,64 @@ cursor: pointer;
     width: calc(100%);
 }
 
+
+/* Agregar tarjeta */
+
+.addTarjeta{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	z-index: 5;
+	width: calc(90%);
+	height: calc(35vh);
+	margin-top: -70%;
+	border-radius: calc(5vh);
+	background: rgb(250, 250, 250);
+}
+.input-tarjeta,
+.selector-tarjeta{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	width: calc(100%);
+	height: calc(2.0vh);
+	font-size: calc(1.3vh);
+	border: calc(0.5vh) solid silver;
+	border-radius: calc(2vh);
+}
+
+.input-chico,
+.selector-chico{
+		width: calc(15vh);
+		margin: auto;
+}
+
+.grupo-tarjeta{
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	flex-direction: column;
+	height: calc(7vh);
+	margin: auto;
+}
+
+.grupo-tarjeta label{
+	font-size: calc(1.5vh);
+}
+
+.grupo-tarjeta select{
+	font-size: calc(1.5vh);
+}
+
+.cancelar-tarjeta{
+	margin-top: -27%;
+	background-color: #e41f1a;
+	color: #fff;
+}
+
+.cancelar-tarjeta{
+	margin-top: -40%;
+}
 /************************************************************************************
                                         Footer
 ************************************************************************************/
