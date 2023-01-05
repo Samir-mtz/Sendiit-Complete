@@ -682,13 +682,32 @@ def userRastrear():
         return render_template('rastrear.html')
 
 
-@app.route('/user/historial')
+@app.route('/user/historial', methods = ['GET', 'POST'])
 @login_required
 def userHistorial():
-    currentUser = ModelUser.consulta_email(db, current_user.email)
-    print(currentUser.id)
-    enviosUser = ModelEnvio.consult_all_by_user(db, currentUser.id)
-    return render_template('historialEnvios.html', envios = enviosUser)
+    if request.method == 'POST':
+        try:
+            currentUser = ModelUser.consulta_email(db, current_user.email)
+            id_usuario = str(currentUser.id)
+            dato_consulta = request.form['dato_consulta']
+            if dato_consulta == '':
+                enviosUser = ModelEnvio.consult_all_by_user(db, id_usuario)
+                return render_template('historialEnvios.html', envios = enviosUser)
+            else:
+                enviosUser = ModelEnvio.consult_to_search_paquete(db, id_usuario, dato_consulta)
+                flash(f"Resultados de búsqueda para '{dato_consulta}'")
+                return render_template('historialEnvios.html', envios = enviosUser)
+        except:
+            return render_template('historialEnvios.html', envios = [])
+    else:
+        try:
+            currentUser = ModelUser.consulta_email(db, current_user.email)
+            print(currentUser.id)
+            enviosUser = ModelEnvio.consult_all_by_user(db, currentUser.id)
+            return render_template('historialEnvios.html', envios = enviosUser)
+        except:
+            flash("Ha ocurrido un error al realizar la búsqueda")
+            return render_template('historialEnvios.html', envios = enviosUser)
 
 #########################################################################################
 ################################## Usuario administrador ################################

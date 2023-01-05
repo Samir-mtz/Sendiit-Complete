@@ -131,7 +131,7 @@ class ModelEnvio():
     def consult_to_search_paquete(self, db, id_usuario, dato):
         try:
             cursor = db.connection.cursor()
-            sql = "SELECT id, origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario FROM envios where idusuario="+id_usuario+" and id like '%"+dato+"%' or origen like '%"+dato+"%' or destino like '%"+dato+"%' or tamano like '%"+dato+"%' or fragil like '%"+dato+"%' or estado like '%"+dato+"%' or email like '%"+dato+"%' or telefono like '%"+dato+"%' or costo like '%"+dato+"%'"
+            sql = "SELECT id, origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario FROM envios where idusuario="+id_usuario+" and id like '%"+dato+"%' or origen like '%"+dato+"%' or destino like '%"+dato+"%' or tamano like '%"+dato+"%' or fragil like '%"+dato+"%' or estado like '%"+dato+"%' or nombre like '%"+dato+"%' or email like '%"+dato+"%' or telefono like '%"+dato+"%' or costo like '%"+dato+"%'"
             cursor.execute(sql)
             list_paquetes=[]
             while True:
