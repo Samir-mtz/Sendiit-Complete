@@ -109,20 +109,20 @@
       <div class="pdfGenerado">
         <section id="pdfOrden" class="pdfOrden">
           <!-- Header -->
-          <header class="header-pdf">
+          <div class="header-pdf">
             <div class="logo-pdf">
               <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header-pdf" />
             </div>
             <div class="id-orden">
               ID: {{ datos.id }}
             </div>
-          </header>
+          </div>
 
           <!-- Main -->
-          <main class="main-pdf">
+          <div class="main-pdf">
             <section class="central">
               <div class="datos-usuarios-pdf">
-                <div class="titulo-dato-pdf">DATOS DE USUARIOS</div>
+                <div class="titulo-dato-pdf">DATOS DE USUARIOS</div><br>
                 <div class="datos-usuarios-secciones-pdf">
                   <div class="datos-usuario-izq-pdf">
                     <p class="titulo-seccion-pdf">DATOS REMITENTE</p>
@@ -139,7 +139,7 @@
                 </div>
               </div>
               <div class="datos-paquete-pdf">
-                <div class="titulo-dato-pdf">DATOS DEL PAQUETE</div>
+                <br><div class="titulo-dato-pdf">DATOS DEL PAQUETE</div><br>
                 <div class="datos-paquete-secciones-pdf">
                   <div class="datos-paquete-izq-pdf">
                     <!-- <p class="dato-seccion-pdf"> - Peso: {{pesoPaquete}}</p> -->
@@ -165,14 +165,14 @@
                 </div>
               </div>
             </section>
-          </main>
+          </div>
 
           <!-- Footer -->
-          <footer class="footer-pdf">
+          <div class="footer-pdf">
             <div class="derechos-pdf">
               <span>&copy;2022 México. Todos los derechos reservados.</span>
             </div>
-          </footer>
+          </div>
         </section>
       </div>
       <script>
