@@ -251,10 +251,13 @@ h5 {
 	background: none;
 	color: #e41f1a;
 	font-size: calc(2vh);
+	margin-top: 10%;
+	width: auto;
+	background-color: #f9d950;
 }
 
 .btn-filtrar,
-.btn-borrar{
+.btn3{
 	font-size: calc(2vh);
 	color: #fff;
 	background: #212e46;
@@ -264,11 +267,6 @@ h5 {
 	border-radius: calc(2vh);
 	margin-left: calc(5vh);
 	box-shadow: 2px 3px 3px #212e46;
-}
-
-.btn-borrar{
-	margin-top: 5%;
-	background-color: #f9d950;
 }
 
 .btn-filtrar:hover,
