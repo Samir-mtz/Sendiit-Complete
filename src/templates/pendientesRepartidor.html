@@ -5,8 +5,8 @@
 	<meta charset="UTF-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<!-- Nombre de la pagina -->
-	<title>Repartidor - Pendientes</title>
+	<!-- Titulo de pagina -->
+	<title>REPARTIDOR - PENDIENTES</title>
 	<!-- Favicon de la empresa -->
 	<link href="../static/img/empresa/favicon.png" rel="icon" />
 	<!-- Estilos -->
@@ -15,212 +15,370 @@
 </head>
 
 <body>
-	<article>
-		<header class="header">
-			<!-- Logo de la empresa -->
-			<div class="logo">
-				<a href="{{ url_for('index') }}">
-					<img src="../static/img/empresa/logo.png" alt="Logo de la empresa" />
-				</a>
-			</div>
-			<!-- Barra de navegacion dentro de la pagina -->
-			<!-- <div class="secciones">
-					<div class="nav-contenido">
-						<a href="#">INICIO</a>
-					</div>
-					<div class="nav-contenido">
-						<a href="#">SUCURSALES</a>
-					</div>
-					<div class="nav-contenido">
-						<a href="#">CONÓCENOS</a>
-					</div>
-				</div> -->
-			<!-- Botones de acciones del sistema -->
-			<!-- <div class="botones">
-					<div class="nav-botones">
-						<a href="#" class="btn btn-enviar"><button>ENVIAR</button></a>
-					</div>
-					<div class="nav-botones">
-						<a href="./ingresar.html" class="btn btn-ingresar"
-							><button>INGRESAR</button></a
-						>
-					</div>
-					<div class="nav-botones">
-						<a href="./registrar.html" class="btn btn-registarse"
-							><button>REGISTRARSE</button></a
-						>
-					</div>
-				</div> -->
-			<div></div>
-			<div class="user">
-				<div class="perfil"><i class="bi bi-person-circle"></i></div>
-				<div class="campos-user">
-					<div class="name-user">{{current_user.nombre}}</div>
-					<div class="btn-user">
-						<div class="pantalla-user"><a href="{{ url_for('homeRepartidor') }}">Inicio</a></div>
-						<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
+	<!-- Header -->
+	<header class="header">
+		<div class="logo">
+			<a href="{{ url_for('index') }}">
+				<img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+			</a>
+		</div>
+		<div class="links">
+			<div class="link-header">PRENDIENTES DEL REPARTIDOR</div>
+		</div>
+		<div class="usuario">
+			<div class="tarjeta">
+				<div class="tarjeta-izq">
+					<i class="bi bi-person-circle"></i>
+				</div>
+				<div class="tarjeta-der">
+					<div class="nombre-tarjeta">RICARDO SÁNCHEZ CRUZ</div>
+					<div class="iconos-tarjeta">
+						<a href="{{ url_for('homeRepartidor') }}" class="elemento ">
+							<!-- <div class="contenido-elemento activo"> -->
+							<div class="contenido-elemento">
+								<i class="bi bi-house"></i>
+								<h6>Inicio</h6>
+							</div>
+						</a>
+						<h5>|</h5>
+						<a href="./infoRepartidor.html" class="elemento">
+							<div class="contenido-elemento">
+								<i class="bi bi-person-rolodex"></i>
+								<h6>Info. General</h6>
+							</div>
+						</a>
+						<h5>|</h5>
+						<a href="./pendientesRepartidor.html" class="elemento activo">
+							<div class="contenido-elemento">
+								<i class="bi bi-card-checklist"></i>
+								<h6>Pendientes</h6>
+							</div>
+						</a>
+						<h5>|</h5>
+						<a href="{{ url_for('logout') }}" class="elemento">
+							<div class="contenido-elemento">
+								<i class="bi bi-box-arrow-in-left cerrar"></i>
+								<h6 class="cerrar">Salir</h6>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
-		</header>
-		<main class="main">
-			<div class="izq">
-				<!-- Titulo -->
-				<div class="titulo-pagina">
-					<h1> PAQUETES ASIGNADOS AL REPARTIDOR</h1>
-				</div>
-				<!-- Filtrar -->
-				<div class="filtrar">
-					<form action="/repartidor/pendientes" method="POST">
+		</div>
+	</header>
+
+	<!-- Main -->
+	<main class="main">
+		<section class="izq">
+			<div class="filtrar">
+				<form action="/repartidor/pendientes" method="POST"" class=" formulario">
+					<div class="form-selector">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 						<select name="estado" id="estado" class="selector">
 							<option hidden value="ELEGIR ESTADO">ELEGIR ESTADO</option>
 							<option value="EN ESPERA DEL REPARTIDOR">RECOLECTAR</option>
 							<option value="EN CAMINO">ENTREGAR</option>
 						</select>
-
+	
 						<button class="btn-filtrar">FILTRAR</button>
-						<div class="btn-borrar">
-							<!-- {% if fly==1 %} -->
-							<a href="{{ url_for('listaDePaquetes') }}"><button class="btn3">BORRAR FILTRO</button></a>
-							<!-- {% endif %} -->
-						</div>
-					</form>
-				</div>
-
-				<!-- Genenrar ruta -->
-				<div class="generar">
-					<!-- <a href="{{ url_for('rutaEnvio') }}"><button class="btn3">GENERAR RUTA</button></a>	 -->
-				</div>
-				<div class="extra">
-					<!-- Imagen Repartidor -->
-					<div>
-						<img class="img-repartidor" src="../static/img/repartidores/Repartidor_8.png" alt="">
 					</div>
-					<!-- <div class="seccionboton">
-							<div class="botones">
-							  <a href="{{ url_for('homeRepartidor') }}" class="btn-confirmar">
-								<img id="home" src="../static/img/iconos/home.png" alt="home">
-								<button>
-								  <div class="textoI">Inicio</div>
-								</button></a>
-							</div>
-						  </div> -->
-				</div>
+					<div class="btn-borrar">
+						<!-- {% if fly==1 %} -->
+						<a href="{{ url_for('listaDePaquetes') }}"><button class="btn3">BORRAR FILTRO</button></a>
+						<!-- {% endif %} -->
+					</div>
+				</form>
 			</div>
-			<div class="der">
-				<table align="center">
-					<thead>
-						<tr>
-							<th>ID DEL PAQUETE</th>
-							<th>ESTADO DEL PAQUETE</th>
-							<th>LOCKER ORIGEN</th>
-							<th>LOCKER DESTINO</th>
-							<th>QR MASTER</th>
-							<th>ACTUALIZAR ESTADO</th>
 
+			<!-- Genenrar ruta -->
+			<div class="generar">
+				<!-- <a href="{{ url_for('rutaEnvio') }}"><button class="btn3">GENERAR RUTA</button></a>	 -->
+			</div>
+
+			<!-- <div>BOTON AMARILLO</div> -->
+			<div class="img-repartidor">
+				<img src="../static/img/repartidores/Repartidor_8.png" alt="">
+			</div>
+		</section>
+		<section class="der">
+			<section class="tabla">
+				<table align="center" class="tablatest" id="myTable">
+					<thead class="sticky">
+						<tr>
+							<th rowspan="1" class="estado">ID DEL PAQUETE</th>
+							<th rowspan="1" class="estado">ESTADO</th>
+							<th colspan="1" class="origen">LOCKER ORIGEN</th>
+							<th colspan="1" class="destino">LOCKER DESTINO</th>
+							<th colspan="1" class="qr">QR MASTER</th>
+							<th colspan="1" class="actualizar">ACTUALIZAR ESTADO</th>
 						</tr>
 					</thead>
-					<!-- Fila -->
-					{% for paquete in paquetes %}
-					<tr>
-						<td>{{paquete.id}}</td>
-						<td>{{paquete.estado}}</td>
-						<td>{{paquete.origen}}</td>
-						<td>{{paquete.destino}}</td>
-						<td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60"
-								onclick="abrirImagen(this.src)" /></td>
-						<td><button onclick="abrirEstado('{{ paquete.id }}', '1')">actualizar</button></td>
-					</tr>
-					{% endfor %}
-					<!-- <tr>
-						  <td>EN CAMINO</td>
-						  <td>A (LINDAVISTA)</td>
-						  <td>ALMACÉN</td>
-						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
+					<tbody>
+						<!-- Fila -->
+						{% for paquete in paquetes %}
+						<tr>
+							<td>{{paquete.id}}</td>
+							<td>{{paquete.estado}}</td>
+							<td>{{paquete.origen}}</td>
+							<td>{{paquete.destino}}</td>
+							<td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60"
+									onclick="abrirImagen(this.src)" /></td>
+							<td><button onclick="abrirEstado('{{ paquete.id }}', '1')">actualizar</button></td>
+						</tr>
+						{% endfor %}
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
 						</tr>
 						<tr>
-						  <td>EN CAMINO</td>
-						  <td>A (LINDAVISTA)</td>
-						  <td>C (VALLE DE ARAGÓN)</td>
-						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
 						</tr>
 						<tr>
-						  <td>EN RECOLECCION</td>
-						  <td>B (COLONIA DEL VALLE)</td>
-						  <td>A (LINDAVISTA)</td>
-						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
 						</tr>
 						<tr>
-						  <td>EN RECOLECCION</td>
-						  <td>C (VALLE DE ARAGÓN)</td>
-						  <td>D (SÁTELITE)</td>
-						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
 						</tr>
 						<tr>
-						  <td>EN LOCKER DESTINO</td>
-						  <td>D (SÁTELITE)</td>
-						  <td>C (VALLE DE ARAGÓN)</td>
-						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
 						</tr>
 						<tr>
-						  <td>EN LOCKER DESTINO</td>
-						  <td>D (SÁTELITE)</td>
-						  <td>ALMACÉN</td>
-						  <td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60" onclick="abrirImagen(this.src)" /></td>
-						</tr> -->
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+						<tr>
+							<td>1</td>
+							<td>EN CAMINO</td>
+							<td>A (LINDAVISTA)</td>
+							<td>D (SATÉLITE)</td>
+							<td class="modal-qr">
+								<img src="../static/img/qr/qrMaster.png" onclick="abrirImagen(this.src)" />
+							</td>
+						</tr>
+					</tbody>
 				</table>
+			</section>
+		</section>
+	</main>
+	<!-- Modal para activar/desacrtivar -->
+	<dialog class="modal-btn-estado" id="modal-btn">
+		<center>
+			<div class="contenido-modal">
+				<div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
+							class="bi bi-x-circle"></i></button></div>
+				<div class="titulo-modal">
+					<h2 id="estadoSig"></h2>
+				</div>
+				<div class="botones-modal">	
+					<form action="{{ url_for('repartidorModificarEstado') }}" method="POST">
+						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+						<input type="number" name="id" value="" id='estado_id' hidden>
+						<button class="confirmar">Confirmar</button>
+					</form>
+					<button onclick="cerrarEstado()" class="cancelar">Cancelar</button>
+				</div>
+			</div>
+		</center>
+	</dialog>
 
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="derechos">
+			<div class="copyright">
+				<span>&copy;2022 México. Todos los derechos reservados.</span>
 			</div>
-		</main>
-		<!-- Modal para activar/desacrtivar -->
-		<dialog class="modal-btn-estado" id="modal-btn">
-			<center>
-				<div class="contenido-modal">
-					<div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
-								class="bi bi-x-circle"></i></button></div>
-					<div class="titulo-modal">
-						<h2 id="estadoSig"></h2>
-					</div>
-					<div class="botones-modal">	
-						<form action="{{ url_for('repartidorModificarEstado') }}" method="POST">
-							<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-							<input type="number" name="id" value="" id='estado_id' hidden>
-							<button class="confirmar">Confirmar</button>
-						</form>
-						<button onclick="cerrarEstado()" class="cancelar">Cancelar</button>
-					</div>
-				</div>
-			</center>
-		</dialog>
+		</div>
+		<div class="redes">
+			<a href="#"><i class="red bi bi-facebook"></i></a>
+			<a href="#"><i class="red bi bi-instagram"></i></a>
+			<a href="#"><i class="red bi bi-telegram"></i></a>
+			<a href="#"><i class="red bi bi-envelope-fill"></i></a>
+		</div>
+	</footer>
 
-		<footer class="footer">
-			<div class="derechos">
-				<div class="copyright">
-					<span>&copy;2022 México. Todos los derechos reservados.</span>
-				</div>
-			</div>
-			<div class="redes">
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-facebook"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-instagram"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-telegram"></i></a>
-				</div>
-				<div class="logo-red">
-					<a href="#" class="btn red"><i class="bi bi-envelope-fill"></i></a>
-				</div>
-			</div>
-		</footer>
-	</article>
-	<div class="full-img" id="fullImgBox">
-		<img src="../static/img/iconos/qr.png" />
+	<div class="full-img" id="fullImgBox" class>
+		<img src="../static/img/qr/qrMaster.png" />
 		<span onclick="cerrarImagen()">X</span>
 	</div>
-	<script src="../static/js/modal-qr.js"></script>
+	<script src="../static/js/ventanas/qrMaster.js"></script>
 	<script src="../static/js/ventanas/accionesRepartidor.js"></script>
 </body>
 
