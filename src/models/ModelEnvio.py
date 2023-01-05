@@ -108,4 +108,42 @@ class ModelEnvio():
         except Exception as ex:
             raise Exception(ex)
     
+    @classmethod
+    def consult_all_by_user(self, db, id_usuario):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT id, origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario FROM envios where idusuario={id_usuario}"
+            cursor.execute(sql)
+            list_paquetes=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_paquetes.append( Envio(id=row[0], origen=row[1], destino=row[2], tamano=row[3], fragil=row[4], estado=row[5], nombre=row[6], email=row[7], telefono=row[8], costo=row[9], idusuario=row[10]) )
+            if len(list_paquetes)>0:
+                return list_paquetes
+            else:
+                return []
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def consult_to_search_paquete(self, db, id_usuario, dato):
+        try:
+            cursor = db.connection.cursor()
+            sql = "SELECT id, origen, destino, tamano, fragil, estado, nombre, email, telefono, costo, idusuario FROM envios where idusuario="+id_usuario+" and id like '%"+dato+"%' or origen like '%"+dato+"%' or destino like '%"+dato+"%' or tamano like '%"+dato+"%' or fragil like '%"+dato+"%' or estado like '%"+dato+"%' or email like '%"+dato+"%' or telefono like '%"+dato+"%' or costo like '%"+dato+"%'"
+            cursor.execute(sql)
+            list_paquetes=[]
+            while True:
+                row = cursor.fetchone()
+                if row == None:
+                    break
+                list_paquetes.append( Envio(id=row[0], origen=row[1], destino=row[2], tamano=row[3], fragil=row[4], estado=row[5], nombre=row[6], email=row[7], telefono=row[8], costo=row[9], idusuario=row[10]) )
+            if len(list_paquetes)>0:
+                return list_paquetes
+            else:
+                return []
+        except Exception as ex:
+            raise Exception(ex)
+        
 # SELECT * FROM envios ORDER BY id DESC LIMIT 1;

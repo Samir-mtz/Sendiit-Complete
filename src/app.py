@@ -931,14 +931,24 @@ def clientes():
             return render_template('tablaClientes.html', clientes=[])
 
 @app.route('/admin/clientes/visualizar', methods=['GET','POST'])
-def clientesVisualizar():
+def clientesVisualizar():    
     try:
         id_recibido = request.form['id']
-        # current = ModelUser.consult_cliente_by_id(db, id_recibido)
-        return render_template('visualizarCliente.html')
+        dato_consulta = request.form['dato_a_consultar']
+        if dato_consulta == '':
+            print("Sin dato a consultar")
+            currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
+            list_of_paquetes = ModelEnvio.consult_all_by_user(db, id_recibido)
+            return render_template('visualizarCliente.html', paquetes = list_of_paquetes, usuario = currentUser)
+        else:
+            print("Con dato a consultar")
+            currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
+            list_of_paquetes = ModelEnvio.consult_to_search_paquete(db, id_recibido, dato_consulta)
+            flash("Resultados de búsqueda para '"+dato_consulta+"'")
+            return render_template('visualizarCliente.html', paquetes = list_of_paquetes, usuario = currentUser)
     except:
-        flash("Ha ocurrido un error al obtener datos del cliente")
-        return render_template('visualizarCliente.html')
+        flash("Ha ocurrido un error al obtener el hisorial del cliente")
+        return render_template('visualizarCliente.html', paquetes = [], usuario = {})
 
 @app.route('/admin/clientes/actualizar', methods=['GET','POST'])
 def clientesActualizar():

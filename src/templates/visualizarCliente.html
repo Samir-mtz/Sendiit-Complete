@@ -78,9 +78,14 @@
       </div>
       <div class="barra-busqueda">
         <div class="buscar">
-          <input type="text" placeholder="Buscar" id="myInput">
-          <i class="fa-search lupa fas"></i>
+          <form action="{{ url_for('clientesVisualizar') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" name="id" value="{{ usuario.id }}" hidden>
+            <input type="text" placeholder="Buscar" id="myInput" name="dato_a_consultar">
+            <button type="submit" class='fa-search lupa fas boton-buscar'></button>
+          </form>
         </div>
+      </div>
       </div>
       <div class="logo-categoria">
         <a href="#" class="link-categoria">
@@ -88,7 +93,15 @@
         </a>
       </div>
     </section>
-    <p class="nombreCliente">Nombre del Cliente: Juan Pérez</p><br>
+    <p class="nombreCliente">Nombre del Cliente: {{ usuario.nombre }}</p><br>
+    {% with messages = get_flashed_messages()[-1]%}
+    {% if messages %}
+    <p class="info-message">
+      {{ messages }}
+    </p>
+    {% endif %}
+    {% endwith %}
+    
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
@@ -96,7 +109,7 @@
           <tr>
             <th rowspan="1" class="id">ID</th>
             <th rowspan="1" class="origen">LOCKER ORIGEN</th>
-            <th rowspan="1" class="fecha">FECHA DE RECEPCIÓN DE PAGO</th>
+            <!-- <th rowspan="1" class="fecha">FECHA DE RECEPCIÓN DE PAGO</th> -->
             <th rowspan="1" class="destino">LOCKER DESTINO</th>
             <th rowspan="1" class="tamanio">TAMAÑO</th>
             <th rowspan="1" class="nombre">NOMBRE DESTINARIO</th>
@@ -104,15 +117,21 @@
           </tr>
         </thead>
         <tbody>
+          {% for paquete in paquetes %}
           <tr>
-            <td>17/09/2022</td>
-            <td>289 567 456</td>
-            <td>Lindavista</td>
-            <td>Col. del Valle</td>
-            <td>S</td>
-            <td class="nombre-destinatario">Juan Ramírez Corona</td>
-            <td class="correo-destinatario">juan_rami@gmail.com</td>
+            <td>{{ paquete.id }}</td>
+            <td>{{ paquete.origen }}</td>
+            <!-- <td>Pa' saber</td> -->
+            <td>{{ paquete.destino }}</td>
+            <td>{{ paquete.tamano }}</td>
+            <td class="nombre-destinatario">{{ paquete.nombre }}</td>
+            <td class="correo-destinatario">{{ paquete.email }}</td>
           </tr>
+          {% endfor %}
+          {% if paquetes == [] %}
+          <tr><td colspan="11"></td></tr>
+          <tr><td colspan="11"><p class="error-message">No se encontraron resultados</p></td></tr>
+          {% endif %}
         </tbody>
       </table>
     </section>

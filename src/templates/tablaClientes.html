@@ -183,6 +183,7 @@
           <form action="{{ url_for('clientesVisualizar') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='visualizar_id' hidden>
+            <input type="number" name="dato_a_consultar" value="" hidden>
             <button class="confirmar">Confirmar</button>
           </form>
           <button onclick="cerrarVisualizar()" class="cancelar">Cancelar</button>
