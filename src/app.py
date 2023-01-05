@@ -400,9 +400,7 @@ def contrasenaRestablecido():
         id_usuario = request.form['id']
         contrasena = request.form['password']
         confirmed_on = request.form['confirmed']
-        print(confirmed_on)
         if confirmed_on == 'None':
-            print('Here')
             ModelUser.update_contrasena_repartidor(db, id_usuario, contrasena)
         else:
             ModelUser.update_contrasena(db, id_usuario, contrasena)
@@ -632,43 +630,54 @@ def pagoExitoso():
 def pagoFracasado():
     return render_template('PagoFracasado.html')
 
-@app.route('/user/rastrearEnvio/<id>')
-@login_required
-def userRastrear(id):
-    if(current_user.tipo == None):
-        envio = ModelEnvio.rastreoEnvio(db, id)
-        if envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
-            return render_template('estatus_1.html', envio=envio)
-        elif envio.estado == "EN ESPERA DEL REPARTIDOR":
-            return render_template('estatus_2.html', envio=envio)
 
-        elif envio.estado == "EN CAMINO":
-            return render_template('estatus_3.html', envio=envio)
+@app.route('/user/rastrear', methods=['GET', 'POST'])
+def userRastrear():
+    if request.method =='POST':
+        if login_user(current_user) == False:
+            id = request.form['Buscar']
+            envio = ModelEnvio.rastreoEnvio(db, id)
+            if envio == None:
+                return render_template('errorRastrear.html', envio=envio)
 
-        elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
-            return render_template('estatus_4.html', envio=envio)
+            elif envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
+                return render_template('estatus_1.html', envio=envio)
+            elif envio.estado == "EN ESPERA DEL REPARTIDOR":
+                return render_template('estatus_2.html', envio=envio)
 
-        elif envio.estado == "RECOGIDO":
-            return render_template('estatus_5.html', envio=envio)
+            elif envio.estado == "EN CAMINO":
+                return render_template('estatus_3.html', envio=envio)
+
+            elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
+                return render_template('estatus_4.html', envio=envio)
+
+            elif envio.estado == "RECOGIDO":
+                return render_template('estatus_5.html', envio=envio)
+            else:
+                return render_template('errorRastrear.html', envio=envio)
         else:
-            return render_template('errorRastrear.html', envio=envio)
+            id = request.form['Buscar']
+            envio = ModelEnvio.rastreoEnvio(db, id)
+            if envio == None:
+                return render_template('errorRastrear.html', envio=envio)
+            elif envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
+                return render_template('estatusCliente_1.html', envio=envio)
+            elif envio.estado == "EN ESPERA DEL REPARTIDOR":
+                return render_template('estatusCliente_2.html', envio=envio)
+
+            elif envio.estado == "EN CAMINO":
+                return render_template('estatusCliente_3.html', envio=envio)
+
+            elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
+                return render_template('estatusCliente_4.html', envio=envio)
+
+            elif envio.estado == "RECOGIDO":
+                return render_template('estatusCliente_5.html', envio=envio)
+            else:
+                return render_template('errorRastrearCliente.html', envio=envio)
     else:
-        envio = ModelEnvio.rastreoEnvio(db, id)
-        if envio.estado == "POR DEPOSITARSE EN LOCKER POR EL CLIENTE":
-            return render_template('estatusCliente_1.html', envio=envio)
-        elif envio.estado == "EN ESPERA DEL REPARTIDOR":
-            return render_template('estatusCliente_2.html', envio=envio)
+        return render_template('rastrear.html')
 
-        elif envio.estado == "EN CAMINO":
-            return render_template('estatusCliente_3.html', envio=envio)
-
-        elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
-            return render_template('estatusCliente_4.html', envio=envio)
-
-        elif envio.estado == "RECOGIDO":
-            return render_template('estatusCliente_5.html', envio=envio)
-        else:
-            return render_template('errorRastrearCliente.html', envio=envio)
 
 #########################################################################################
 ################################## Usuario administrador ################################

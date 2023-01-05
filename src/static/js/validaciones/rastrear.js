@@ -19,7 +19,7 @@ function checkInputs() {
 		setErrorFor(buscar, "No puede dejar el campo en blanco.");
 		campos["buscar"] = false;
 	} else if (!comprobarBuscar(buscarValue)) {
-		setErrorFor(buscar, "Debe de tener una longitud de 9 carácteres numéricos.");
+		setErrorFor(buscar, "Debe de ser solo carácteres numéricos.");
 		campos["buscar"] = false;
 	} else {
 		setSuccessFor(buscar);
@@ -40,7 +40,7 @@ function setSuccessFor(input) {
 }
 
 function comprobarBuscar(buscar) {
-	return /^\d{9}$/.test(buscar);
+	return /^\d*$/.test(buscar);
 }
 
 form.addEventListener("submit", (e) => {

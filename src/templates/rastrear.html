@@ -10,7 +10,7 @@
     <!-- Favicon de la empresa -->
     <link href="../static/img/empresa/favicon.png" rel="icon" />
     <!-- Estilos -->
-    <link rel="stylesheet" href="../static/css/rastrear.css" />
+    <link rel="stylesheet" href="../../static/css/rastrear.css" />
     <script src="https://kit.fontawesome.com/0daeb1a0d1.js" crossorigin="anonymous"></script>
 </head>
 
@@ -43,7 +43,8 @@
                 </a>
             </div>
             <div class="barra-busqueda">
-                <form action="" id="formulario" class="formulario">
+                <form action="{{url_for('userRastrear')}}" id="formulario" class="formulario" method="POST">
+					<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                     <div class="form-control">
                         <label for="Buscar">
                             <p>ID del paquete<label style="color: red;">*</label></p>
@@ -53,7 +54,7 @@
                         <small></small>
                     </div>
                     <div class="boton-buscar">
-                        <button type="submit" class="btn-form">BUSCAR</button>
+                        <button type="submit" class="btn-form" onclick="ruta()">BUSCAR</button>
                     </div>
                 </form>
             </div>
