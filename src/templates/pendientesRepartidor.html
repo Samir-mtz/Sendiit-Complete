@@ -31,7 +31,7 @@
 					<i class="bi bi-person-circle"></i>
 				</div>
 				<div class="tarjeta-der">
-					<div class="nombre-tarjeta">RICARDO SÁNCHEZ CRUZ</div>
+					<div class="nombre-tarjeta">{{ current_user.nombre }}</div>
 					<div class="iconos-tarjeta">
 						<a href="{{ url_for('homeRepartidor') }}" class="elemento ">
 							<!-- <div class="contenido-elemento activo"> -->
@@ -41,14 +41,14 @@
 							</div>
 						</a>
 						<h5>|</h5>
-						<a href="./infoRepartidor.html" class="elemento">
+						<a href="{{ url_for('datosRepartidor') }}" class="elemento">
 							<div class="contenido-elemento">
 								<i class="bi bi-person-rolodex"></i>
 								<h6>Info. General</h6>
 							</div>
 						</a>
 						<h5>|</h5>
-						<a href="./pendientesRepartidor.html" class="elemento activo">
+						<a href="{{ url_for('listaDePaquetes') }}" class="elemento activo">
 							<div class="contenido-elemento">
 								<i class="bi bi-card-checklist"></i>
 								<h6>Pendientes</h6>
@@ -71,7 +71,7 @@
 	<main class="main">
 		<section class="izq">
 			<div class="filtrar">
-				<form action="/repartidor/pendientes" method="POST"" class=" formulario">
+				<form action="{{ url_for('listaDePaquetes') }}" method="POST" class=" formulario">
 					<div class="form-selector">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 						<select name="estado" id="estado" class="selector">
@@ -121,9 +121,9 @@
 							<td>{{paquete.estado}}</td>
 							<td>{{paquete.origen}}</td>
 							<td>{{paquete.destino}}</td>
-							<td class="modal-qr"><img src="../static/img/iconos/qr.png" width="60" height="60"
+							<td class="modal-qr"><img src="../static/img/qr/qrMaster.png" width="60" height="60"
 									onclick="abrirImagen(this.src)" /></td>
-							<td><button onclick="abrirEstado('{{ paquete.id }}', '1')">actualizar</button></td>
+							<td><button onclick="abrirEstado('{{ paquete.id }}', '1')" class="btn-actualizar">Actualizar</button></td>
 						</tr>
 						{% endfor %}
 					</tbody>
