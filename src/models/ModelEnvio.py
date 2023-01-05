@@ -65,6 +65,23 @@ class ModelEnvio():
                 return None
         except Exception as ex:
             raise Exception(ex)
+    @classmethod
+    def consultaEstado2(self, db, id):
+        try:
+            cursor = db.connection.cursor()
+            sql = f"SELECT estado FROM envios where id={id}"
+            cursor.execute(sql)
+            row = cursor.fetchone()
+            lista_estado = []
+            envio_dict = {}
+            lista_estado.append(row[0])
+            envio_dict["estado"] = lista_estado
+            if len(envio_dict)>0:
+                return envio_dict
+            else:
+                return None
+        except Exception as ex:
+            raise Exception(ex)
 
     @classmethod
     def ChangeStatus(self, db, id, estado): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)

@@ -89,7 +89,7 @@ INSERT INTO `ubicaciones` (`nombre`) VALUES ('Villa de Aragon');
 INSERT INTO `user` (`email`, `password`, `nombre`, `telefono`, `direcion`) VALUES
 ('armando@tecuani.me', 'sha256$lAYb6AT70LOYOI18$fcc7c27512a4d49a8dc6c6ce1f869d0866ad1534dc105f1925745cc3cdd57a30', 'Armando Martinez', '5616029988', 'None');
 --Contraseña: root123
-
+INSERT INTO envios(id,origen,destino,tamano,fragil,estado,nombre,email,telefono,costo,idusuario) VALUES(26,'Lindavista','Almacen','Mediano',0,'EN LOCKER DESTINO','Jorge Ruiz','jorge.ruiz@gmail.com','5516029944',105.35,17);
 
 -- cambiar a numpaquetes a sucursal
 ALTER TABLE user  CHANGE `numpaquetes` `sucursal` VARCHAR(80);

@@ -180,7 +180,7 @@
 					<div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
 								class="bi bi-x-circle"></i></button></div>
 					<div class="titulo-modal">
-						<h2>¿Desea actualizar el estado del paquete?</h2>
+						<h2 id="estadoSig"></h2>
 					</div>
 					<div class="botones-modal">	
 						<form action="{{ url_for('repartidorModificarEstado') }}" method="POST">

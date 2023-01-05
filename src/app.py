@@ -63,6 +63,10 @@ def load_user(id):
 #########################################################################################
 
 
+@app.route('/estado/<id>')
+def estadoSiguiente(id):
+    return jsonify(ModelEnvio.consultaEstado2(db, id))
+
 @app.route('/tamanos/<origen>/<destino>')
 def jsontamanos(origen, destino):
     return jsonify(ModelLocker.checkDisponibilidad(db, origen, destino))

@@ -10,7 +10,7 @@ class ModelRepartidor():
             list_paquetes=[]
             cursor = db.connection.cursor()
             sql = """SELECT estado, origen, destino, id FROM envios 
-                    WHERE origen = '{}' and estado = 'EN ESPERA DEL REPARTIDOR' """.format(sucursal)
+                    WHERE origen = '{}' and estado != 'POR DEPOSITARSE EN LOCKER POR EL CLIENTE' """.format(sucursal)
             cursor.execute(sql)
             while True:
                 row = cursor.fetchone()
@@ -34,6 +34,7 @@ class ModelRepartidor():
                     list_paquetes.append(Envio(estado="ENTREGAR", origen=row[1],destino=row[2], id=row[3]))
             
             if len(list_paquetes)>0:
+                list_paquetes = sorted(list_paquetes, key=lambda x: x.id)
                 return list_paquetes
             else:
                 return None
@@ -55,6 +56,7 @@ class ModelRepartidor():
                 list_paquetes.append(Envio(estado="RECOLECTAR", origen=row[1],destino=row[2], id=row[3]))
             
             if len(list_paquetes)>0:
+                list_paquetes = sorted(list_paquetes, key=lambda x: x.id)
                 return list_paquetes
             else:
                 return None
@@ -76,6 +78,7 @@ class ModelRepartidor():
                 list_paquetes.append(Envio(estado="ENTREGAR", origen=row[1],destino=row[2], id=row[3]))
             
             if len(list_paquetes)>0:
+                list_paquetes = sorted(list_paquetes, key=lambda x: x.id)
                 return list_paquetes
             else:
                 return None
