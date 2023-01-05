@@ -69,6 +69,93 @@
 	font-style: italic;
 }
 
+.botones {
+	display: flex;
+	height: calc(10vh);
+	width: 40%;
+	height: max-content;
+	color: #170505;
+}
+
+.boton-header a {
+	text-decoration: none;
+	/* color: #fff; */
+}
+
+.boton-header {
+	text-decoration: none;
+	justify-content: center;
+	width: max-content;
+	align-items: center;
+	margin: 5%;
+	padding: calc(2vh) calc(2vh);
+	border: unset;
+	z-index: 1;
+	border-radius: calc(2vh);
+	position: relative;
+	font-weight: 1000;
+	font-size: calc(1vw);
+	box-shadow: 4px 5px 5px -3px rgba(0, 0, 0, 0.2);
+	transition: all 250ms;
+	overflow: hidden;
+	letter-spacing: 1px;
+}
+
+.botonEnviar {
+	background-color: rgb(228, 31, 26, 1);
+	color: #fff;
+	width: 20%;
+}
+
+.botonIngresar {
+	background-color: rgba(249, 217, 80, 1);
+	color: #000;
+	width: 30%;
+}
+
+.botonRegistrarse {
+	background-color: rgba(33, 46, 70, 1);
+	color: #fff;
+	width: 30%;
+}
+
+.botonEnviar:hover {
+	color: rgb(228, 31, 26, 1);
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.botonIngresar:hover {
+	color: #f9d950;
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.botonRegistrarse:hover .botonRegistrarse:hover {
+	color: #fff;
+	transform: scale(1.05);
+	cursor: pointer;
+}
+
+.boton-header::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 0;
+	border-radius: calc(2vh);
+	z-index: -1;
+	box-shadow: 2px 5px 5px -3px rgba(0, 0, 0, 0.588);
+	transition: all 250ms;
+	background-color: #000;
+}
+
+.boton-header:hover::before {
+	width: 100%;
+	cursor: pointer;
+}
+
 .usuario {
 	display: flex;
 	width: 50%;
