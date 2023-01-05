@@ -13,7 +13,11 @@ const modalEditar = document.querySelector(".modal-btn-editar");                
 // Modal de pregunta ¿Desea eliminar el locker?
 const btnAbrirModalEliminar = document.querySelector(".btn-ventana-eliminar");           // Metodo para abrir las ventanas
 const btnCerrarModalEliminar = document.querySelector(".modal-btn-cerrar-eliminar");     // Metodo para cerrar las ventanas
-const modalEliminar = document.querySelector(".modal-btn-eliminar");                     // Ventana a ocupar
+// Ventana a ocupar
+// Modal de pregunta ¿Desea visualizar al cliente?
+const btnAbrirModalVisualziar = document.querySelector("btn-ventana-visualizar");           // Metodo para abrir las ventanas
+const btnCerrarModalVisualizar = document.querySelector(".modal-btn-cerrar-visualizar");     // Metodo para cerrar las ventanas
+const modalVisualizar = document.querySelector(".modal-btn-visualizar");                     // Ventana a ocupar
 
 function abrirAgregar(){
     modalAgregar.showModal();
@@ -53,4 +57,14 @@ function abrirEliminar(numId){
 
 function cerrarEliminar(){
     modalEliminar.close();
+}
+
+function abrirVisualizar(numId){
+    myId = document.querySelector('#visualizar_id');
+    myId.value = numId;
+    modalVisualziar.showModal();
+}
+
+function cerrarVisualizar(){
+    modalVisualizar.close();
 }
