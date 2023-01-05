@@ -79,7 +79,7 @@
 							<option value="EN ESPERA DEL REPARTIDOR">RECOLECTAR</option>
 							<option value="EN CAMINO">ENTREGAR</option>
 						</select>
-	
+
 						<button class="btn-filtrar">FILTRAR</button>
 					</div>
 					<div class="btn-borrar">
@@ -102,6 +102,15 @@
 		</section>
 		<section class="der">
 			<section class="tabla">
+				<section style="display: block;">
+					{% with messages = get_flashed_messages()[-1]%}
+					{% if messages %}
+					<div class="info-message">
+						{{ messages }}
+					</div>
+					{% endif %}
+					{% endwith %}
+				</section>
 				<table align="center" class="tablatest" id="myTable">
 					<thead class="sticky">
 						<tr>
@@ -140,7 +149,7 @@
 				<div class="titulo-modal">
 					<h2 id="estadoSig"></h2>
 				</div>
-				<div class="botones-modal">	
+				<div class="botones-modal">
 					<form action="{{ url_for('repartidorModificarEstado') }}" method="POST">
 						<input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 						<input type="number" name="id" value="" id='estado_id' hidden>

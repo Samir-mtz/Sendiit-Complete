@@ -1016,8 +1016,10 @@ def listaDePaquetes():
         usuario = ModelUser.get_by_id(db,current_user.id)
 
         if estado=="EN ESPERA DEL REPARTIDOR":
+            flash("Resultados para 'Paquetes por recolectar'")
             list_paquetes = ModelRepartidor.paquetesRecolectar(db, usuario.sucursal)
         elif estado=="EN CAMINO":
+            flash("Resultados para 'Paquetes por entregar'")
             list_paquetes = ModelRepartidor.paquetesEntregar(db, usuario.sucursal)
         fly = 1
     else:
@@ -1025,6 +1027,7 @@ def listaDePaquetes():
         list_paquetes = ModelRepartidor.paquetesAll(db, usuario.sucursal)
     # print(list_paquetes)
     if list_paquetes != None:
+        # flash("Resultados")
         return render_template('pendientesRepartidor.html', paquetes=list_paquetes, fly=fly)
     else:
         return render_template('pendientesRepartidor.html', paquetes=[], fly=fly)
