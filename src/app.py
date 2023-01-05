@@ -1048,7 +1048,7 @@ def repartidorModificarEstado():
         elif estado == "EN CAMINO":
             new_estado = "ENTREGADO EN LOCKER DESTINO"
         ModelEnvio.ChangeStatus(db, id_recibido, new_estado)
-        flash("Estado de locker modificado con éxito")
+        flash(f"Estado de paquete con ID: {id_recibido} modificado a '{new_estado}' con éxito")
         return redirect(url_for('listaDePaquetes'))
     except:
         flash("Ha ocurrido un error al actualizar el estado del paquete")

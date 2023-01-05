@@ -99,7 +99,7 @@
 	width: max-content;
 	align-items: center;
 	margin: 5%;
-	padding: calc(2vh) calc(2vh);
+	padding: calc(1vh) calc(2vh);
 	border: unset;
 	z-index: 1;
 	border-radius: calc(2vh);

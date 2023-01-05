@@ -18,19 +18,19 @@
     <!-- Header -->
     <header class="header">
         <div class="logo">
-            <a href="./inicio.html">
+            <a href="{{ url_for('index') }}">
                 <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
             </a>
         </div>
         <div class="links">
-            <div class="link-header"><a href="./inicio.html">Inicio</a></div>
-            <div class="link-header"><a href="./sucursales.html">Sucursales</a></div>
-            <div class="link-header"><a href="./conocenos.html">Conócenos</a></div>
+            <div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+            <div class="link-header"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+            <div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
         </div>
         <div class="botones">
-            <a href="./FormularioEnvio.html" class="boton-header botonEnviar">Enviar</a>
-            <a href="./ingresar.html" class="boton-header botonIngresar"> Ingresar </a>
-            <a href="./registrar.html" class="boton-header botonRegistrarse"> Registrar </a>
+            <a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+            <a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+            <a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
     </header>
 
     <!-- Main -->
