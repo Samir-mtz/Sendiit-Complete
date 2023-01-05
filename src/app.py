@@ -735,9 +735,13 @@ def lockers():
     if request.method == 'POST': # Por post
         try:
             dato = request.form['dato_consulta']
-            list_lockers = ModelLocker.consult_to_search(db, dato)
-            flash("Resultados de búsqueda para '"+dato+"'")
-            return render_template('TablaLockers.html', lockers=list_lockers)
+            if dato == '':
+                list_lockers = ModelLocker.consultAll(db)
+                return render_template('TablaLockers.html', lockers=list_lockers)
+            else:
+                list_lockers = ModelLocker.consult_to_search(db, dato)
+                flash("Resultados de búsqueda para '"+dato+"'")
+                return render_template('TablaLockers.html', lockers=list_lockers)
         except:
             return render_template('TablaLockers.html', lockers=[])
         
@@ -840,9 +844,13 @@ def repartidores():
     if request.method == 'POST': # Por post
         try:
             dato = request.form['dato_consulta']
-            list_repartdores = ModelUser.consult_to_search_repartidor(db, dato)
-            flash("Resultados de búsqueda para '"+dato+"'")
-            return render_template('tablaRepartidores.html', repartidores=list_repartdores)
+            if dato == '':
+                list_repartdores = ModelUser.consultRepartidoresAll(db)
+                return render_template('tablaRepartidores.html', repartidores=list_repartdores)
+            else:
+                list_repartdores = ModelUser.consult_to_search_repartidor(db, dato)
+                flash("Resultados de búsqueda para '"+dato+"'")
+                return render_template('tablaRepartidores.html', repartidores=list_repartdores)
         except:
             return render_template('tablaRepartidores.html', repartidores=[])
     
@@ -954,9 +962,13 @@ def clientes():
     if request.method == 'POST': # Por post
         try:
             dato = request.form['dato_consulta']
-            list_clientes = ModelUser.consult_to_search_cliente(db, dato)
-            flash("Resultados de búsqueda para '"+dato+"'")
-            return render_template('tablaClientes.html', clientes=list_clientes)
+            if dato == '':
+                list_clientes = ModelUser.consultClientesAll(db)
+                return render_template('tablaClientes.html', clientes=list_clientes)
+            else:
+                list_clientes = ModelUser.consult_to_search_cliente(db, dato)
+                flash("Resultados de búsqueda para '"+dato+"'")
+                return render_template('tablaClientes.html', clientes=list_clientes)
         except:
             return render_template('tablaClientes.html', clientes=[])
 
