@@ -126,11 +126,6 @@
               <button onclick="abrirVisualizar('{{ cliente.id }}')" class="btn-visualizar btn-ventana-visualizar">
                 <img src="../static/img/Admin/acciones/visualizar.png" />
               </button>
-              <!-- <a href="historialCliente.html">
-                <button class="btn-visualizar">
-                  <img src="../static/img/Admin/acciones/visualizar.png" />
-                </button>
-              </a> -->
             </td>
             <td>
               <button onclick="abrirEditar('{{ cliente.id }}')" class="btn-editar btn-ventana-editar">
@@ -185,7 +180,7 @@
           <h2>¿Desea visualizar la información del cliente?</h2>
         </div>
         <div class="botones-modal">
-          <form action="{{ url_for('clientesActualizar') }}" method="POST">
+          <form action="{{ url_for('clientesVisualizar') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             <input type="number" name="id" value="" id='visualizar_id' hidden>
             <button class="confirmar">Confirmar</button>

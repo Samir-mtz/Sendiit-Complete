@@ -930,6 +930,16 @@ def clientes():
         except:
             return render_template('tablaClientes.html', clientes=[])
 
+@app.route('/admin/clientes/visualizar', methods=['GET','POST'])
+def clientesVisualizar():
+    try:
+        id_recibido = request.form['id']
+        # current = ModelUser.consult_cliente_by_id(db, id_recibido)
+        return render_template('visualizarCliente.html')
+    except:
+        flash("Ha ocurrido un error al obtener datos del cliente")
+        return render_template('visualizarCliente.html')
+
 @app.route('/admin/clientes/actualizar', methods=['GET','POST'])
 def clientesActualizar():
     try:
