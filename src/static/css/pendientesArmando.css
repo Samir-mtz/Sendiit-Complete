@@ -1,0 +1,323 @@
+/* Fuentes */
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap");
+/* Iconos */
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css");
+
+/************************************************************************************
+                                        GENERAL
+************************************************************************************/
+html,
+body {
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	height: 100%;
+	font-family: "Oswald", sans-serif;
+}
+
+article {
+	min-height: 100%;
+	display: grid;
+	grid-template-rows: auto 1fr auto;
+	grid-template-columns: 100%;
+	align-items: center;
+}
+
+/************************************************************************************
+                                        Header
+************************************************************************************/
+
+.header {
+	display: grid;
+	grid-template-columns: 15% 55% 30%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+	/* border: solid 1px red; */
+}
+
+/* .header div {
+	height: 1fr;
+} */
+
+.header .logo {
+	display: grid;
+	place-content: center;
+	cursor: pointer;
+}
+
+.header .logo img {
+	height: 85%;
+	width: 85%;
+	transition: all 0.5s;
+	/* border: solid 1px red; */
+}
+
+.header .logo img:hover {
+	transform: scale(1.1);
+}
+
+.header .user{
+	display: grid;
+	grid-template-columns: 15% 85%;
+	grid-template-rows: 100%;
+	border: 5px solid rgb(16, 73, 158);
+	place-content: center;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin: 5px;
+	margin-right: 100px;
+	box-shadow: 2px 3px 3px rgba(0, 0, 0, 0.3);
+	background: rgb(255, 243, 212);
+}
+
+.header .user .perfil{
+	font-size: 300%;
+	color: rgb(16, 73, 158);
+	margin-left: 30px;
+}
+
+.header .user .campos-user{
+	display: grid;
+	grid-template-rows: repeat(2,1fr);
+	grid-template-columns: 100%;
+}
+
+.header .user .campos-user .name-user{
+	font-size: large;
+	color: rgb(16, 73, 158);
+}
+
+.header .user .campos-user .btn-user{
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+}
+
+.header .user .campos-user .btn-user a{
+	text-decoration: none;
+}
+
+.pantalla-user{
+	border-right: 1px solid rgb(114, 114, 114);
+}
+
+.pantalla-user a{
+	color: rgb(114, 114, 114);
+}
+
+.cerrar-sesion a{
+	color: rgb(255, 0, 0);
+}
+
+
+.header .user .campos-user .btn-user .pantalla-user a:hover {
+	transform: scale(1.1);
+}
+
+/************************************************************************************
+                                        Main
+************************************************************************************/
+
+/* Estilos con columnas del cuestionario */
+
+.main {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	text-align: center;
+	height: 90%;
+}
+
+/* .main div {
+	background: #fff;
+	border: 1px solid red;
+} */
+
+/* .main div:hover{
+    border: 1px solid red;
+} */
+
+.main .izq{
+	display: grid;
+	grid-template-rows: 10% 20% 10% 60% ;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	grid-template-columns: 100%;
+}
+
+.titulo-pagina {
+	color: #f9d950;
+	font-size: 30px;
+}
+
+.filtrar form{
+	display: grid;
+	grid-template-columns: repeat(2,1fr);
+	text-align: center;
+	place-content: center;
+	align-items: center;
+}
+
+.filtrar button{
+	margin-left: 150px;
+}
+
+.selector{
+	width: 90%;
+	margin-left: 150px;
+	height: 40px;
+	padding: 0 20px;
+	font-size: 18px;
+	border: 1px solid silver;
+	border-radius: 15px;
+	text-align: center;
+}
+
+.generar{
+	margin-top: -50px;
+}
+
+.btn-filtrar{
+	font-weight: 860;
+	color: #fff;
+	background: #212e46;
+	padding: 10px 10px;
+	width: 30%;
+	border: none;
+	border-radius: 10px;
+	margin-left: 80px;
+	box-shadow: 5px 3px 3px #212e46;
+}
+
+ .btn3{
+	font-weight: 860;
+	color: #e41f1a;
+	background: #f9d950;
+	padding: 10px 30px;
+	border: none;
+	border-radius: 10px;
+	margin-left: 80px;
+	box-shadow: 5px 3px 3px #212e46;
+}
+
+ .btn3:hover,
+ .btn-filtrar:hover{
+	transform: scale(1.2);
+	cursor: pointer;
+	transition: all 0.5s;
+}
+
+
+.img-repartidor{
+	height: 450px;
+}
+
+
+.main .der{
+	display: grid;
+	text-align: center;
+	align-items: center;
+	place-content: center;
+	grid-template-columns: 100%;
+}
+
+table {
+	text-align: center;
+	border-collapse: collapse;
+	width: 80%;
+}
+
+th,
+td {
+	padding: 10px;
+}
+
+thead {
+	background-color: #f9d950;
+	border-bottom: solid 5px #212e46;
+	color: #212e46;
+}
+
+tr:nth-child(even) {
+	background-color: #ddd;
+}
+
+/* Modal de los QR */
+
+.full-img{
+	width: 100%;
+	height: 100vh;
+	background-color: rgba(0,0,0,0.9);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: none;
+	align-items: center;
+	justify-content: center;
+	z-index: 100;
+}
+
+.full-img span{
+	position: absolute;
+	top: 5%;
+	right: 5%;
+	font-size: 30px;
+	color: #212e46;
+	cursor: pointer;
+	background-color: #fff;
+	padding: 10px 20px;
+	border-radius: 50%;
+}
+
+.full-img img{
+	width: 90%;
+	max-width: 500px;
+}
+/************************************************************************************
+                                        Footer
+************************************************************************************/
+
+.footer {
+	display: grid;
+	grid-template-columns:50% 50%;
+	grid-template-rows: 100%;
+	text-align: center;
+	align-items: center;
+	/* border: solid 1px red; */
+	color: #fff;
+}
+
+.footer div {
+	/* border: solid 1px red; */
+	background: #212e46;
+	height: 100%;
+}
+
+.footer .redes {
+	display: grid;
+	grid-template-columns: repeat(4, 0.1fr);
+	grid-template-rows: 100%;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #fff;
+	text-align: center;
+	font-size: 150%;
+	/* border: solid 1px red; */
+}
+
+.footer .derechos,
+.footer .redes .logo-red {
+	display: grid;
+	place-content: center;
+}
+
+.footer .derechos .copyright {
+	font-size: 80%;
+}

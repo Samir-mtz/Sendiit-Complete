@@ -279,6 +279,10 @@ h5 {
 	transform: scale(1.2);
 }
 
+.lupa:hover{
+	cursor: pointer;
+}
+
 .logo-categoria {
 	display: flex;
 	justify-content: center;
