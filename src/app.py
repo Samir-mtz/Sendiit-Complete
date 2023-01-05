@@ -13,7 +13,7 @@ from flask_mail import Mail, Message
 from models.token import generate_confirmation_token, confirm_token
 from flask import jsonify
 import shutil
-
+from datetime import datetime
 # Clases
 # Models:
 from models.ModelUser import ModelUser
@@ -513,7 +513,10 @@ def formularioEnvio():
                 cvv = request.form['inputCCV']
                 tarjeta = Tarjeta(numtarjeta, expiracion, nombre, current_user.id, cvv)
                 ModelTarjeta.register(db, tarjeta)
-            return render_template('PagoCorrecto.html', datos=datos)
+            datos = ModelEnvio.consultLast(db)
+            now = datetime.now()
+            fecha = str(now.day) + "/" + str(now.month) + "/" + str(now.year)
+            return render_template('PagoCorrecto.html', datos=datos, fecha=fecha)
         
         ###Funcionalidad del mapbox
         lockers = ModelMapbox.consultaCoordenadas(db)

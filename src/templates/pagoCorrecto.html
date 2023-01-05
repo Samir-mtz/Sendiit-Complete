@@ -126,17 +126,15 @@
                 <div class="datos-usuarios-secciones-pdf">
                   <div class="datos-usuario-izq-pdf">
                     <p class="titulo-seccion-pdf">DATOS REMITENTE</p>
-                    <p class="dato-seccion-pdf"> - Nombre: {{nombrePersonaOrigen}}</p>
-                    <p class="dato-seccion-pdf"> - E-mail: {{correoPersonaOrigen}}</p>
-                    <p class="dato-seccion-pdf"> - Teléfono: {{telefonoPersonaOrigen}}</p>
-                    <p class="dato-seccion-pdf"> - Sucursal: {{sucursalOrigen}}</p>
+                    <p class="dato-seccion-pdf"> - Nombre: {{current_user.nombre}}</p>
+                    <p class="dato-seccion-pdf"> - E-mail: {{current_user.email}}</p>
+                    <p class="dato-seccion-pdf"> - Teléfono: {{current_user.telefono}}</p>
                   </div>
                   <div class="datos-usuario-der-pdf">
                     <p class="titulo-seccion-pdf">DATOS DESTINATARIO</p>
-                    <p class="dato-seccion-pdf"> - Nombre: {{nombrePersonaDestino}}</p>
-                    <p class="dato-seccion-pdf"> - E-mail: {{correoPersonaDestino}}</p>
-                    <p class="dato-seccion-pdf"> - Teléfono: {{telefonoPersonaDestino}}</p>
-                    <p class="dato-seccion-pdf"> - Sucursal: {{sucursalDestino}}</p>
+                    <p class="dato-seccion-pdf"> - Nombre: {{datos.nombre}}</p>
+                    <p class="dato-seccion-pdf"> - E-mail: {{datos.email}}</p>
+                    <p class="dato-seccion-pdf"> - Teléfono: {{datos.telefono}}</p>
                   </div>
                 </div>
               </div>
@@ -144,12 +142,16 @@
                 <div class="titulo-dato-pdf">DATOS DEL PAQUETE</div>
                 <div class="datos-paquete-secciones-pdf">
                   <div class="datos-paquete-izq-pdf">
-                    <p class="dato-seccion-pdf"> - Peso: {{pesoPaquete}}</p>
-                    <p class="dato-seccion-pdf"> - ¿Es fragil?: {{fragilPaquete}}</p>
-                    <p class="dato-seccion-pdf"> - Fecha de Envio: {{fechaEnvioPaquete}}</p>
-                    <p class="dato-seccion-pdf"> - Fecha de Recolección: {{fechaRecoleccionPaquete}}</p>
-                    <p class="dato-seccion-pdf"> - Origen: {{sucursalOrigen}}</p>
-                    <p class="dato-seccion-pdf"> - Destino: {{sucursalDestino}}</p>
+                    <!-- <p class="dato-seccion-pdf"> - Peso: {{pesoPaquete}}</p> -->
+                    {%if datos.fragil == 0%}
+                      <p class="dato-seccion-pdf"> - ¿Es fragil?: No</p>
+                    {%else%}
+                      <p class="dato-seccion-pdf"> - ¿Es fragil?: Si</p>
+                    {%endif%}
+                    <p class="dato-seccion-pdf"> - Fecha de Envio: {{fecha}}</p>
+                    <!-- <p class="dato-seccion-pdf"> - Fecha de Recolección: {{fechaRecoleccionPaquete}}</p> -->
+                    <p class="dato-seccion-pdf"> - Origen: {{datos.origen}}</p>
+                    <p class="dato-seccion-pdf"> - Destino: {{datos.destino}}</p>
                   </div>
                   <div class="datos-paquete-der-pdf">
                     <img src="../static/img/paquetes/ordenGenerada.png" alt="">
