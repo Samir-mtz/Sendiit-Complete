@@ -202,7 +202,7 @@ def homeCliente():
     user = ModelUser.consulta_email(db, current_user.email)
     # print(user.tipo)
     if user.tipo == 'usuario':
-        return render_template('InicioCliente.html')
+        return render_template('bienvenidaCliente.html')
     elif user.tipo == 'admin':
         return redirect(url_for('admin'))
     elif user.tipo == 'repartidor':
@@ -994,13 +994,9 @@ def clientesEliminar():
 @app.route('/repartidor')
 @login_required
 def homeRepartidor():
-    DATA = {
-        'title': 'Home',
-        'stylesheet': '../static/css/InicioRepartidor',
-    }
     user = ModelUser.consulta_email(db, current_user.email)
     if user.tipo == 'repartidor':
-        return render_template('InicioRepartidor.html', data=DATA)
+        return render_template('bienvenidaRepartidor.html')
     else:
         return redirect(url_for('home'))
 
@@ -1009,7 +1005,7 @@ def homeRepartidor():
 def datosRepartidor():
     repartidor = ModelUser.infoRepartidor(db, current_user.email)
 
-    return render_template('InfoGeneral.html', repartidor=repartidor)
+    return render_template('infoRepartidor.html', repartidor=repartidor)
 
 
 @app.route('/repartidor/pendientes', methods=['GET', 'POST'])

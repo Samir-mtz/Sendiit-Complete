@@ -17,7 +17,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio.html">
+      <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -30,9 +30,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">RICARDO SÁNCHEZ CRUZ</div>
+          <div class="nombre-tarjeta">{{ repartidor.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="./inicioRepartidor.html" class="elemento ">
+            <a href="{{ url_for('homeRepartidor') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -40,21 +40,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./infoRepartidor.html" class="elemento activo">
+            <a href="{{ url_for('datosRepartidor') }}" class="elemento activo">
               <div class="contenido-elemento">
                 <i class="bi bi-person-rolodex"></i>
                 <h6>Info. General</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./pendientesRepartidor.html" class="elemento">
+            <a href="{{ url_for('listaDePaquetes') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-card-checklist"></i>
                 <h6>Pendientes</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -74,39 +74,39 @@
       </div>
 
       <div class="titulo-pagina">
-        <h1>Información del Usuario</h1>
+        <h1>Información del Repartidor</h1>
       </div>
 
       <div class="contenido">
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-envelope"></i></div>
           <div class="nombre-dato"><i>E-mail</i></div>
-          <div class="valor-dato"><i>ricardosanchez@gmail.com</i></div>
+          <div class="valor-dato"><i>{{ repartidor.email }}</i></div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-person"></i></div>
           <div class="nombre-dato"><i>Nombre</i></div>
-          <div class="valor-dato"><i>Ricardo Sánchez Cruz</i> </div>
+          <div class="valor-dato"><i>{{ repartidor.nombre }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-telephone"></i></i></div>
           <div class="nombre-dato"><i>Teléfono</i></div>
-          <div class="valor-dato"><i>5598653214</i> </div>
+          <div class="valor-dato"><i>{{ repartidor.telefono }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-house"></i></div>
           <div class="nombre-dato"><i>Dirección</i></div>
-          <div class="valor-dato"><i>Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, CDMX.</i> </div>
+          <div class="valor-dato"><i>{{ repartidor.direccion }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-calendar-event"></i></div>
           <div class="nombre-dato"><i>Fecha de ingreso</i></div>
-          <div class="valor-dato"><i>01-02-2020</i> </div>
+          <div class="valor-dato"><i>{{ repartidor.confirmed_on }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-truck"></i></i></div>
           <div class="nombre-dato"><i>Sucursal</i></div>
-          <div class="valor-dato"><i>Lindavista</i> </div>
+          <div class="valor-dato"><i>{{ repartidor.sucursal }}</i> </div>
         </div>
         <div class="dato">
           <spam class="leyenda">
@@ -126,7 +126,7 @@
         <i class="bi bi-person-bounding-box"></i>
       </div>
       <!-- Grupo: Boton ingresar -->
-      <a href="./InicioRepartidor.html" class="btn-form">IR A INICIO</a>
+      <a href="{{ url_for('homeRepartidor') }}" class="btn-form">IR A INICIO</a>
     </section>
   </main>
 

@@ -278,6 +278,18 @@ h5 {
 	/* margin-right: 20%; */
 }
 
+
+.barra-busqueda:hover {
+	cursor: pointer;
+	transition: all 1s ease-in-out;
+	transform: scale(1.2);
+}
+
+.lupa:hover{
+	cursor: pointer;
+}
+
+
 .logo-categoria {
 	display: flex;
 	justify-content: center;
