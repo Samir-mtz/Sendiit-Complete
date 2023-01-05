@@ -27,7 +27,7 @@ class ModelTarjeta():
             if len(list_tarjetas)>0:
                 return list_tarjetas
             else:
-                return None
+                return []
         except Exception as ex:
             raise Exception(ex)
     

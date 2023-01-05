@@ -425,7 +425,11 @@ def resend_confirmation_repartidor(email):
     flash('Tu cuenta sigue sin confirmar, hemos enviado un nuevo correo de cambio de contraseña.')
     return render_template('ingresar.html')
 
-
+@app.route('/user/datos')
+def datosCliente():
+    cliente = ModelUser.infoRepartidor(db, current_user.email)
+    return render_template('infoCliente.html', cliente=cliente)
+    
 @app.route('/user/tarjetas', methods=['GET', 'POST'])
 @login_required
 def userTarjetas():
@@ -656,6 +660,7 @@ def userRastrear():
             else:
                 return render_template('errorRastrear.html', envio=envio)
         else:
+            # nombre = current_user.nombre
             id = request.form['Buscar']
             envio = ModelEnvio.rastreoEnvio(db, id)
             if envio == None:
@@ -674,7 +679,7 @@ def userRastrear():
             elif envio.estado == "RECOGIDO":
                 return render_template('estatusCliente_5.html', envio=envio)
             else:
-                return render_template('errorRastrearCliente.html', envio=envio)
+                return render_template('errorRastrearCliente.html')
     else:
         return render_template('rastrear.html')
 

@@ -17,7 +17,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio.html">
+      <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -30,9 +30,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta"></div>
           <div class="iconos-tarjeta">
-            <a href="" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -40,7 +40,7 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="" class="elemento">
+            <a href="{{ url_for('homeCliente') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-clipboard-check"></i>
                 <h6>Historial</h6>
@@ -54,7 +54,7 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -90,7 +90,7 @@
 
       <!-- Grupo: Boton ingresar -->
       <div class="botones">
-        <a href="./rastrearCliente.html" class="btn-form">REINTENTAR</a>
+        <a href="{{ url_for('userRastrear') }}" class="btn-form">REINTENTAR</a>
       </div>
 
     </section>

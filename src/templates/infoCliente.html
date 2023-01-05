@@ -17,7 +17,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio.html">
+      <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -30,9 +30,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="./inicioCliente.html" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -40,21 +40,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./infoCliente.html" class="elemento activo">
+            <a href="{{ url_for('datosCliente') }}" class="elemento activo">
               <div class="contenido-elemento">
                 <i class="bi bi-person-rolodex"></i>
                 <h6>Info. General</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./rastreaPaquete.html" class="elemento">
+            <a href="{{ url_for('userRastrear') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-geo-alt"></i>
                 <h6>Rastrear</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -81,27 +81,27 @@
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-envelope"></i></div>
           <div class="nombre-dato"><i>E-mail</i></div>
-          <div class="valor-dato"><i>juanperez@gmail.com</i></div>
+          <div class="valor-dato"><i>{{ cliente.email }}</i></div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-person"></i></div>
           <div class="nombre-dato"><i>Nombre</i></div>
-          <div class="valor-dato"><i>Juan Pérez</i> </div>
+          <div class="valor-dato"><i>{{ cliente.nombre }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-telephone"></i></i></div>
           <div class="nombre-dato"><i>Teléfono</i></div>
-          <div class="valor-dato"><i>5598653214</i> </div>
+          <div class="valor-dato"><i>{{ cliente.telefono }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-house"></i></div>
           <div class="nombre-dato"><i>Dirección</i></div>
-          <div class="valor-dato"><i>Av. Juan de Dios Bátiz, Nueva Industrial Vallejo, CDMX.</i> </div>
+          <div class="valor-dato"><i>{{ cliente.direccion }}</i> </div>
         </div>
         <div class="dato">
           <div class="icono-dato"><i class="bi bi-calendar-event"></i></div>
           <div class="nombre-dato"><i>Fecha de ingreso</i></div>
-          <div class="valor-dato"><i>01-02-2020</i> </div>
+          <div class="valor-dato"><i>{{ cliente.confirmed_on }}</i> </div>
         </div>
         <div class="dato">
           <spam class="leyenda">
@@ -121,7 +121,7 @@
         <i class="bi bi-person-bounding-box"></i>
       </div>
       <!-- Grupo: Boton ingresar -->
-      <a href="./InicioCliente.html" class="btn-form">IR A INICIO</a>
+      <a href="{{ url_for('homeCliente') }}" class="btn-form">IR A INICIO</a>
     </section>
   </main>
 
