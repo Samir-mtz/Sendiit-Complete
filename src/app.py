@@ -657,6 +657,12 @@ def userRastrear():
 
             elif envio.estado == "RECOGIDO":
                 return render_template('estatus_5.html', envio=envio)
+            elif envio.estado == "ALMACEN":
+                return render_template('estatus_4_2.html', envio=envio)
+            elif envio.estado == "ALMACEN ENTREGADO":
+                return render_template('estatus_5_2.html', envio=envio)
+            elif envio.estado == "DESECHADO":
+                return render_template('estatus_5_3.html', envio=envio)
             else:
                 return render_template('errorRastrear.html', envio=envio)
         else:
@@ -673,9 +679,14 @@ def userRastrear():
                 return render_template('estatusCliente_3.html', envio=envio)
             elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
                 return render_template('estatusCliente_4.html', envio=envio)
-
             elif envio.estado == "RECOGIDO":
                 return render_template('estatusCliente_5.html', envio=envio)
+            elif envio.estado == "ALMACEN":
+                return render_template('estatusCliente_4_2.html', envio=envio)
+            elif envio.estado == "ALMACEN ENTREGADO":
+                return render_template('estatusCliente_5_2.html', envio=envio)
+            elif envio.estado == "DESECHADO":
+                return render_template('estatusCliente_5_3.html', envio=envio)
             else:
                 return render_template('errorRastrearCliente.html')
     else:

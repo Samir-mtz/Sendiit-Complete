@@ -99,7 +99,7 @@
       </a>
       </div>
       <div class="sec-central historial">
-        <p class="hola">¡HOLA JUAN PÉREZ!</p>
+        <p class="hola">¡HOLA {{ current_user.nombre }}!</p>
         <a href="{{ url_for('userHistorial') }}">
           <div class="contenedor">
             <div class="img-accion">

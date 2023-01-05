@@ -46,7 +46,7 @@ class ModelRepartidor():
         try:
             cursor = db.connection.cursor()
             sql = """SELECT estado, origen, destino, id FROM envios 
-                    WHERE estado = 'EN ESPERA DEL REPARTIDOR' and origen = '{}'""".format( sucursal)
+                    WHERE origen = '{}' and estado != 'POR DEPOSITARSE EN LOCKER POR EL CLIENTE'""".format( sucursal)
             cursor.execute(sql)
             list_paquetes=[]
             while True:
