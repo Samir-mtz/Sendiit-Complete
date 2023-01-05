@@ -669,10 +669,8 @@ def userRastrear():
                 return render_template('estatusCliente_1.html', envio=envio)
             elif envio.estado == "EN ESPERA DEL REPARTIDOR":
                 return render_template('estatusCliente_2.html', envio=envio)
-
             elif envio.estado == "EN CAMINO":
                 return render_template('estatusCliente_3.html', envio=envio)
-
             elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
                 return render_template('estatusCliente_4.html', envio=envio)
 
