@@ -92,11 +92,11 @@
       </div>
     </section>
     <section class="botones-main">
-      <div class="">
+      <!-- <div class="">
         <button onclick="abrirAgregar()" class=" btn3 btn-ventana-agregar">REGISTRADOS</button>
-      </div>
+      </div> -->
       <div class="">
-        <a href="{{ url_for('repartidoresAgregar') }}"><button class="btn3 btn-ventana-agregar">ALTAS</button></a>
+        <a href="{{ url_for('repartidoresAgregar') }}"><button class="btn3 btn-ventana-agregar">AGREGAR REPARTIDOR</button></a>
       </div>
     </section>
     {% with messages = get_flashed_messages()[-1]%}
@@ -148,7 +148,7 @@
             </td>
             {% endif %}
             <td>
-              <button onclick="abrirEditar()" class="btn-editar btn-ventana-editar">
+              <button onclick="abrirEditar('{{ repartidor.id }}')" class="btn-editar btn-ventana-editar">
                 <img src="../static/img/Admin/acciones/editar.png" />
               </button>
             </td>
@@ -175,7 +175,7 @@
         <div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea cambiar el estado del repartdidor?</h2>
+          <h2>¿Desea cambiar el estado del repartidor?</h2>
         </div>
         <div class="botones-modal">
           <form action="{{ url_for('repartidoresModificarEstado') }}" method="POST">

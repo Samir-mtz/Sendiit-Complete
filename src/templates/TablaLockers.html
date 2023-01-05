@@ -23,7 +23,7 @@
       </a>
     </div>
     <div class="links">
-      <div class="link-header">LOCKERS</div>
+      <div class="link-header">SUCURSALES</div>
     </div>
     <div class="usuario">
       <div class="tarjeta">
@@ -94,7 +94,7 @@
 
     <section class="botones-main">
       <div class="agregar">
-        <button onclick="abrirAgregar()" class="btn3 btn-ventana-agregar">AGREGAR LOCKER</button>
+        <button onclick="abrirAgregar()" class="btn3 btn-ventana-agregar">AGREGAR SUCURSAL</button>
       </div>
     </section>
     {% with messages = get_flashed_messages()[-1]%}
@@ -170,7 +170,7 @@
         <div class="encabezado-modal"><button onclick="cerrarAgregar()" class="modal-btn-cerrar-agregar"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea agregar un locker?</h2>
+          <h2>¿Desea agregar una sucursal?</h2>
         </div>
         <div class="botones-modal">
           <a href="{{ url_for('lockersAgregar') }}"><button class="confirmar">Confirmar</button></a>
@@ -187,7 +187,7 @@
         <div class="encabezado-modal"><button onclick="cerrarEstado()" class="modal-btn-cerrar-estado"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea cambiar el estado del locker?</h2>
+          <h2>¿Desea cambiar el estado de la sucursal?</h2>
         </div>
         <div class="botones-modal">
           <form action="{{ url_for('lockersModificarEstado') }}" method="POST">
@@ -209,7 +209,7 @@
         <div class="encabezado-modal"><button onclick="cerrarEditar()" class="modal-btn-cerrar-editar"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea editar el locker?</h2>
+          <h2>¿Desea editar la sucursal?</h2>
         </div>
         <div class="botones-modal">
           <form action="{{ url_for('lockersActualizar') }}" method="POST">
@@ -230,7 +230,7 @@
         <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea eliminar el locker?</h2>
+          <h2>¿Desea eliminar la sucursal?</h2>
         </div>
         <div class="botones-modal">
           <form action="{{ url_for('lockersEliminar') }}" method="POST">

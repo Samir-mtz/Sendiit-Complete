@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- Titulo de pagina -->
-  <title>ADMIN - EDITAR USUARIOS</title>
+  <title>ADMIN - EDITAR REPARTIDOR</title>
   <!-- Favicon de la empresa -->
   <link href="../../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="../../static/css/editarUsuarios.css" />
+  <link rel="stylesheet" href="../../static/css/editarRepartidor.css" />
 </head>
 
 <body>
@@ -22,7 +22,7 @@
       </a>
     </div>
     <div class="links">
-      <div class="link-header">EDITAR USUARIOS</div>
+      <div class="link-header">EDITAR REPARTIDOR</div>
     </div>
     <div class="usuario">
       <div class="tarjeta">
@@ -30,7 +30,7 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
+          <div class="nombre-tarjeta">ADMINISTRADOR</div>
           <div class="iconos-tarjeta">
             <a href="{{ url_for('admin') }}" class="elemento ">
               <div class="contenido-elemento activo">
@@ -56,18 +56,17 @@
   <main class="main">
     <section class="izq">
       <div class="titulo-logo">
-        <img src="../../static/img/categorias/clientes.png" alt="Logo empresa" />
         <img src="../../static/img/categorias/repartidores.png" alt="Logo empresa" />
       </div>
 
       <div class="titulo-pagina">
-        <h1>EDITAR USUARIOS</h1>
+        <h1>EDITAR REPARTIDOR</h1>
       </div>
 
       <div class="contenido">
-        <form action="{{ url_for('clientesActualizado') }}" method="POST" id="formulario" class="formulario">
-          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"> <!-- Keep -->
-          <input type="number" name="id" value="{{ cliente.id }}" hidden>
+        <form action="{{ url_for('repartidoresActualizado') }}" method="POST" id="formulario" class="formulario">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+		      <input type="number"  name="id" value="{{ repartidor.id }}" hidden>
           <div class="campos-fomulario">
             <div class="campos">
               <!-- Campo: Nombre -->
@@ -75,7 +74,7 @@
                 <label for="Nombre">
                   <p>Nombre<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Nombre" id="nombre" value="{{ cliente.nombre }}" class="texto-input"
+                <input type="text" name="Nombre" id="nombre" value="{{ repartidor.nombre }}" class="texto-input"
                   autocomplete="off" /><br>
                 <small></small>
               </div>
@@ -84,7 +83,7 @@
                 <label for="Email">
                   <p>E-mail<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Email" id="email" value="{{ cliente.email }}" class="texto-input"
+                <input type="text" name="Email" id="email" value="{{ repartidor.email }}" class="texto-input"
                   autocomplete="off" readonly/><br>
                 <small></small>
               </div>
@@ -93,7 +92,7 @@
                 <label for="Telefono">
                   <p>Teléfono<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Telefono" id="telefono" value="{{ cliente.telefono }}" class="texto-input"
+                <input type="text" name="Telefono" id="telefono" value="{{ repartidor.telefono }}" class="texto-input"
                   autocomplete="off" /><br>
                 <small></small>
               </div>
@@ -102,17 +101,51 @@
                 <label for="Direccion">
                   <p>Direccion<label style="color: red;">*</label></p>
                 </label>
-                <input type="text" name="Direccion" id="direccion" value="{{ cliente.direccion }}" class="texto-input"
-                  autocomplete="off" /><br>
+                <input type="text" name="Direccion" id="direccion" value="{{ repartidor.direccion }}" 
+                  class="texto-input" autocomplete="off" /><br>
                 <small></small>
               </div>
+              <!-- Grupo: Extra -->
+              <div class="form-control campo">
+                <label for="sucursal">Sucursal <label style="color: red;">*</label></label><br>
+                <select name="sucursal" id="sucursal" class="selector">
+                  <option value="0">Seleccionar</option>
+                  {% if repartidor.sucursal == 'Lindavista' %}
+                    <option value="Lindavista" selected>Lindavista</option>
+                  {% else %}
+                    <option value="Lindavista">Lindavista</option>
+                  {% endif %}
+                  
+                  {% if repartidor.sucursal == 'Colonia del Valle' %}
+                    <option value="Colonia del Valle" selected>Colonia del Valle</option>
+                  {% else %}
+                    <option value="Colonia del Valle">Colonia del Valle</option>
+                  {% endif %}
+                  
+                  {% if repartidor.sucursal == 'Satelite' %}
+                    <option value="Satelite" selected>Satélite</option>
+                  {% else %}
+                    <option value="Satelite">Satélite</option>
+                  {% endif %}
+                  
+                  {% if repartidor.sucursal == 'Villa de Aragon' %}
+                    <option value="Villa de Aragon" selected>Villa de Aragón</option>
+                  {% else %}
+                    <option value="Villa de Aragon">Villa de Aragón</option>
+                  {% endif %}
+                </select>
+                <small>Mensaje de error</small><br><br>
+              </div>
+              <br>
             </div>
+
 
             <!-- Grupo: Boton ingresar -->
             <div class="botones">
               <button type="submit" class="btn-form">GUARDAR</button>
-              <a href="{{ url_for('clientes') }}" class="btn-form cancelar">CANCELAR</a>
+              <a href="{{ url_for('repartidores') }}" class="btn-form cancelar">CANCELAR</a>
             </div>
+
 
             <div class="boton-formulario">
             </div>
@@ -141,7 +174,7 @@
       <a href="#"><i class="red bi bi-envelope-fill"></i></a>
     </div>
   </footer>
-  <script src="../../static/js/validaciones/editarCliente.js"></script>
+  <script src="../../static/js/validaciones/editarRepartidor.js"></script>
 </body>
 
 </html>

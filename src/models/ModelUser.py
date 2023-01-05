@@ -192,11 +192,11 @@ class ModelUser():
     def consult_repartidor_by_id(self, db, id_repartidor):
         try:
             cursor = db.connection.cursor()
-            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed, confirmed_on FROM user where id='+id_repartidor
+            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed, confirmed_on, sucursal FROM user where id='+id_repartidor
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='repartidor', confirmed_on=row[6])
+                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='repartidor', confirmed_on=row[6], sucursal=row[7])
             else:
                 return None
         except Exception as ex:
@@ -317,6 +317,16 @@ class ModelUser():
         try:
             cursor = db.connection.cursor()
             sql = 'UPDATE user SET confirmed="'+str(estado)+'" WHERE id='+id_user
+            cursor.execute(sql)
+            db.connection.commit()
+        except Exception as ex:
+            raise Exception(ex)
+    
+    @classmethod
+    def update_repartidor(self, db, id_recibido, nombre, email, telefono, direccion, sucursal): #Nota al incrementar la cantidad de locker la disponibilidad cambia, este dato se debe de corregir en el objeto que se envie(diccionario)
+        try:
+            cursor = db.connection.cursor()
+            sql = 'UPDATE user SET nombre="'+nombre+'", email="'+email+'", telefono="'+telefono+'", direcion="'+direccion+'", sucursal="'+sucursal+'" WHERE id='+id_recibido
             cursor.execute(sql)
             db.connection.commit()
         except Exception as ex:

@@ -700,7 +700,7 @@ def lockers():
             list_lockers = ModelLocker.consultAll(db)
             return render_template('TablaLockers.html', lockers=list_lockers)
         except:
-            flash("Ha ocurrido un error al consultar lockers")
+            flash("Ha ocurrido un error al consultar sucursales")
             return render_template('TablaLockers.html', lockers=[])
     if request.method == 'POST': # Por post
         try:
@@ -729,10 +729,10 @@ def lockersAgregado():
 
     try:
         ModelLocker.register(db, ubicacion, direccion, cantidadS, cantidadM, cantidadL, disponibilidad, latitud, longitud)
-        flash("Locker con ubicación '" + ubicacion + "' agregado con éxito")
+        flash("Sucursal con ubicación '" + ubicacion + "' agregado con éxito")
         return redirect(url_for('lockers'))
     except:
-        flash("Ha ocurrido un error al agregar locker")
+        flash("Ha ocurrido un error al agregar sucursal")
         return redirect(url_for('lockers'))
 
 @app.route('/admin/lockers/modificar-estado', methods=['GET', 'POST'])
@@ -743,10 +743,10 @@ def lockersModificarEstado():
         estado_recibido = 1 - estado_recibido
         ModelLocker.modificar_estado(db, id_recibido, estado_recibido)
         currentLocker = ModelLocker.consult_by_id(db, id_recibido)
-        flash(f"Estado de locker {currentLocker.ubicacion} actualizado con éxito")
+        flash(f"Estado de sucursal {currentLocker.ubicacion} actualizada con éxito")
         return redirect(url_for('lockers'))
     except:
-        flash("Ha ocurrido un error al actualizar el estado locker")
+        flash("Ha ocurrido un error al actualizar el estado sucursal")
         return redirect(url_for('lockers'))
 
 @app.route('/admin/lockers/actualizar', methods=['GET','POST'])
@@ -777,10 +777,10 @@ def lockersActualizado():
     try:
         ModelLocker.update(db, id_recibido, direccion, cantidadS, cantidadM, cantidadL, latitud, longitud)
         currentLokcer = ModelLocker.consult_by_id(db, id_recibido)
-        flash(f"Locker con ubicación '{currentLokcer.ubicacion}' actualizado con éxito")
+        flash(f"Sucursal con ubicación '{currentLokcer.ubicacion}' actualizada con éxito")
         return redirect(url_for('lockers'))
     except:
-        flash("Ha ocurrido un error al actualizar valores del locker")
+        flash("Ha ocurrido un error al actualizar valores del sucursal")
         return redirect(url_for('lockers'))
     
 @app.route('/admin/lockers/eliminar', methods=['POST'])
@@ -789,11 +789,12 @@ def lockersEliminar():
         id_recibido = request.form['id']
         currentLokcer = ModelLocker.consult_by_id(db, id_recibido)
         ModelLocker.delete(db, id_recibido)
-        flash(f"Locker con ubicación {currentLokcer.ubicacion} eliminado con éxito")
+        flash(f"Sucursal {currentLokcer.ubicacion} eliminada con éxito. Se tienen 72h para desalojar los lockers.")
         return redirect(url_for('lockers'))
     except:
-        flash("Ha ocurrido un error al eliminar locker")
+        flash("Ha ocurrido un error al eliminar sucursal")
         return redirect(url_for('lockers'))
+
 
 
 # Administracion de repartidores
@@ -877,10 +878,10 @@ def repartidoresActualizar():
     try:
         id_repartidor = request.form['id']
         current = ModelUser.consult_repartidor_by_id(db, id_repartidor)
-        return render_template('editarRepartidores.html', repartidor = current)
+        return render_template('editarRepartidor.html', repartidor = current)
     except:
         flash("Ha ocurrido un error al obtener datos del repartidor")
-        return render_template('editarRepartidores.html', repartidor = {})
+        return render_template('editarRepartidor.html', repartidor = {})
 
 @app.route('/admin/repartidores/actualizado', methods=['GET', 'POST'])
 def repartidoresActualizado():
@@ -890,7 +891,8 @@ def repartidoresActualizado():
         email = request.form['Email']
         telefono = request.form['Telefono']
         direccion = request.form['Direccion']
-        ModelUser.update_cliente(db, id_recibido,nombre, email, telefono, direccion)
+        sucursal = request.form['sucursal']
+        ModelUser.update_repartidor(db, id_recibido,nombre, email, telefono, direccion, sucursal)
         flash(f"Repartidor {nombre} actualizado con éxito")
         return redirect(url_for('repartidores'))
     except:
