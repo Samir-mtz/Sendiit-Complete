@@ -321,6 +321,15 @@
 	background-color: rgb(8, 125, 0);
 }
 
+.circulo.noEntrego{
+	background-color: red;
+}
+
+.noRecogio{
+	color: red;
+	width: 80%;
+}
+
 .arriba .sec-contenido{
 	align-items: end;
 }
