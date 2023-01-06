@@ -73,6 +73,16 @@
   <!-- Main -->
   <main class="main">
     <section class="central">
+      <div class="boton-regreso">
+        {% if current_user.is_active %}
+        <a href="{{ url_for('homeCliente') }}">
+        {% else %}
+        <a href="{{ url_for('index') }}">
+        {% endif %}
+            <i class="bi bi-arrow-left-circle"></i>
+            <span>INICIO</span>
+        </a>
+    </div>
       <div class="slider">
         <form action="/user/formularioEnvio" method="POST" id="formulario" class="formulario">
           <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -254,21 +264,21 @@
                         <!-- Campo : Numero de tarjeta -->
                         <div class="grupo-tarjeta form-control">
                           <label for="inputNumero">Número Tarjeta <label style="color: red;">*</label></label>
-                          <input type="number" id="inputNumero" maxlength="19" autocomplete="off" name="inputNumero" class="input-tarjeta">
+                          <input type="text" id="inputNumero" maxlength="16" autocomplete="off" name="inputNumero" class="input-tarjeta">
                           <small>Mensaje de error</small>
                         </div>
 
                         <!-- Campo: Nombre tarjeta -->
                         <div class="grupo-tarjeta form-control">
                           <label for="inputNombre">Nombre en la tarjeta <label style="color: red;">*</label></label>
-                          <input type="text" id="inputNombre" maxlength="19" autocomplete="off" name="inputNombre" class="input-tarjeta">
+                          <input type="text" id="inputNombre" maxlength="20" autocomplete="off" name="inputNombre" class="input-tarjeta">
                           <small>Mensaje de error</small>
                         </div>
 
                         <!-- Campo: CVV -->
                         <div class="grupo-tarjeta form-control">
                           <label for="inputCCV">CCV <label style="color: red;">*</label></label>
-                          <input type="number" id="inputCCV" name="inputCCV" maxlength="3" class="input-tarjeta input-chico">
+                          <input type="text" id="inputCCV" name="inputCCV" maxlength="3" class="input-tarjeta input-chico">
                           <small class="mensaje-chico">Mensaje de error</small>
                         </div>
 
@@ -298,7 +308,7 @@
                         <div class="grupo-tarjeta form-control">
                           <label for="year">Año <label style="color: red;">*</label></label>
                           <select name="year" id="year" class="selector-tarjeta selector-chico">
-                            <option value="2023">Año</option>
+                            <option value="Año">Año</option>
                             <option value="2023">2023</option>
                             <option value="2024">2024</option>
                             <option value="2025">2025</option>
