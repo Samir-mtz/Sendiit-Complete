@@ -24,11 +24,11 @@ const campos = {
 	destino: false,
 	tamano: false,
 	peso: false,
-	numero: false,
-	nombretarjeta: false,
-	cvv: false,
-	mes: false,
-	anio: false,
+	numero: true,
+	nombretarjeta: true,
+	cvv: true,
+	mes: true,
+	anio: true,
 };
 
 inputs.forEach((input) => {
@@ -279,94 +279,78 @@ function checkInputs() {
 	//comprobar tarjeta
 	let tarjetaSelected = tarjeta.selectedIndex;
 	if (tarjeta.options[tarjetaSelected].text != "Seleccionar") {
-		campos["tarjeta"] = true;
+		setSuccessFor(tarjeta);
 		campos["nombretarjeta"] = true;
-		campos["numero"] = true;
 		campos["cvv"] = true;
 		campos["mes"] = true;
 		campos["year"] = true;
-		setSuccessFor(tarjeta);
 	} else {
 		setErrorFor(tarjeta, "Selecciona una tarjeta.");
-		campos["tarjeta"] = false;
-		campos["nombretarjeta"] = false;
-		campos["numero"] = false;
-		campos["cvv"] = false;
-		campos["mes"] = false;
-		campos["year"] = false;
-	}
+		// Comparacion del nombre de trajeta
+		if (nombreTarjetaValue === "") {
+			setErrorFor(nombretarjeta, "No puede dejar el campo de nombre de tarjeta en blanco.");
+			campos["nombretarjeta"] = false;
+		} else if (nombreTarjetaValue.length < 5) {
+			setErrorFor(nombretarjeta, "Debe de tener una longitud mínima de 5 caracteres.");
+			campos["nombretarjeta"] = false;
+		} else if (nombreTarjetaValue.length > 30) {
+			setErrorFor(nombretarjeta, "Debe de tener una longitud máxima de 30 caracteres.");
+			campos["nombretarjeta"] = false;
+		} else if (!comprobarNombreTarjeta(nombreTarjetaValue)) {
+			setErrorFor(
+				nombretarjeta,
+				"Solo puede tener letras mayusculas, minusculas y espacios."
+			);
+			campos["nombretarjeta"] = false;
+		} else {
+			setSuccessFor(nombretarjeta);
+			campos["nombretarjeta"] = true;
+		}
 
-	// Comparacion del nombre de trajeta
-	if (nombreTarjetaValue === "") {
-		setErrorFor(nombretarjeta, "No puede dejar el campo de nombre de tarjeta en blanco.");
-		campos["nombretarjeta"] = false;
-	} else if (nombreTarjetaValue.length < 5) {
-		setErrorFor(nombretarjeta, "El nombre debe de tener una longitud mínima de 5 caracteres.");
-		campos["nombretarjeta"] = false;
-	} else if (nombreTarjetaValue.length > 30) {
-		setErrorFor(nombretarjeta, "El nombre debe de tener una longitud máxima de 30 caracteres.");
-		campos["nombretarjeta"] = false;
-	} else if (!comprobarNombreTarjeta(nombreTarjetaValue)) {
-		setErrorFor(
-			nombretarjeta,
-			"El nombre solo puede tener letras mayusculas, minusculas y espacios."
-		);
-		campos["nombretarjeta"] = false;
-	} else {
-		setSuccessFor(nombretarjeta);
-		campos["nombretarjeta"] = true;
-	}
+		// Comparacion del numero de tarjeta
+		if (numeroValue === "") {
+			setErrorFor(numero, "No puede dejar el campo de número de tarjeta en blanco.");
+			campos["numero"] = false;
+		} else if (!comprobarNumero(numero.value)) {
+			setErrorFor(numero, "El numero de tarjeta solo debe tener numeros.");
+			campos["numero"] = false;
+		} else {
+			setSuccessFor(numero);
+			campos["numero"] = true;
+		}
 
-	// Comparacion del numero de tarjeta
-	if (numeroValue === "") {
-		setErrorFor(numero, "No puede dejar el campo de número de tarjeta en blanco.");
-		campos["numero"] = false;
-	} else if (numeroValue.length <= 16) {
-		setErrorFor(
-			numero,
-			"El número de tarjeta debe de tener una longitud de 16 caracteres numéricos."
-		);
-		campos["numero"] = false;
-	} else if (!comprobarNumero(nuemro)) {
-		setErrorFor(numero, "El numero de tarjeta solo debe tener numeros.");
-		campos["numero"] = false;
-	} else {
-		setSuccessFor(numero);
-		campos["numero"] = true;
-	}
+		// Comparacion del CVV
+		if (cvvValue === "") {
+			setErrorFor(cvv, "Capture el CVV.");
+			campos["cvv"] = false;
+		} else if (!comprobarCVV(cvv.value)) {
+			setErrorFor(cvv, "El CVV solo puede tener numeros.");
+			campos["cvv"] = false;
+		} else {
+			setSuccessFor(cvv);
+			campos["cvv"] = true;
+		}
 
-	// Comparacion del CVV
-	if (cvvValue === "") {
-		setErrorFor(cvv, "Capture el CVV.");
-		campos["cvv"] = false;
-	} else if (!comprobarNumero(nuemro)) {
-		setErrorFor(numero, "El CVV solo puede tener numeros.");
-		campos["numero"] = false;
-	} else {
-		setSuccessFor(cvv);
-		campos["cvv"] = true;
-	}
+		//comprobar Mes
+		let opcion3 = mes.selectedIndex;
+		if (mes.options[opcion3].text != "Mes") {
+			campos["mes"] = true;
+			setSuccessFor(mes);
+		} else {
+			setErrorFor(mes, "Selecciona el mes.");
+			campos["mes"] = false;
+		}
 
-	//comprobar Mes
-	let opcion3 = mes.selectedIndex;
-	if (mes.options[opcion3].text != "Mes") {
-		campos["mes"] = true;
-		setSuccessFor(mes);
-	} else {
-		setErrorFor(mes, "Selecciona el mes.");
-		campos["mes"] = false;
+		//comprobar Año
+		let opcion4 = year.selectedIndex;
+		if (year.options[opcion4].text != "Año") {
+			campos["year"] = true;
+			setSuccessFor(year);
+		} else {
+			setErrorFor(year, "Selecciona el año.");
+			campos["year"] = false;
+		}
 	}
-
-	//comprobar Año
-	let opcion4 = year.selectedIndex;
-	if (year.options[opcion4].text != "Año") {
-		campos["year"] = true;
-		setSuccessFor(year);
-	} else {
-		setErrorFor(year, "Selecciona el año.");
-		campos["year"] = false;
-	}
-
 }
 
 function setErrorFor(input, message) {
@@ -390,7 +374,7 @@ function comprobarNumero(numero) {
 }
 
 function comprobarCVV(cvv) {
-	return /^[1-9]{3}}$/.test(cvv);
+	return /^[0-9]{3,4}$/.test(cvv);
 }
 
 function comprobarNombre(nombre) {
