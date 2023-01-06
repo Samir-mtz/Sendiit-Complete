@@ -363,7 +363,8 @@ thead {
 }
 
 .origen,
-.destino{
+.destino,
+.estatus{
 	width: calc(10vh);
 }
 
