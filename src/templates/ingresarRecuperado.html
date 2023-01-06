@@ -49,7 +49,7 @@
 			</div>
 
 			<div class="formulario-ingresar">
-        <form action="/login" class="formulario" id="formulario" method="POST">
+        <form action="/login" class="formulario" id="formulario" method="POST" novalidate="true">
           {% with messages = get_flashed_messages()[-1]%}
             {% if messages %}
               <br />
@@ -62,7 +62,7 @@
           <div class="form-control campo">
             <!-- Grupo: Correo Electronico -->
             <label for="email">E-mail <label style="color: red;">*</label></label>
-            <input type="email" name="email" id="email" placeholder="juanperez@gmail.com" />
+            <input type="email" name="email" id="email" placeholder="juanperez@gmail.com"  />
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <small>Mensaje de error</small><br>

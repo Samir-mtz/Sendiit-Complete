@@ -70,7 +70,7 @@
       </div>
 
       <div class="formulario-registrar">
-        <form action="{{ url_for('repartidoresAgregado') }}" method="POST" class="formulario" id="formulario">
+        <form action="{{ url_for('repartidoresAgregado') }}" method="POST" class="formulario" id="formulario" novalidate="true">
           {% with messages = get_flashed_messages() %}
           {% if messages %}
           <br />
@@ -94,7 +94,7 @@
               <!-- Grupo: Correo Electronico -->
               <div class="form-control campo">
                 <label for="email">E-mail <label style="color: red;">*</label></label>
-                <input type="email" name="email" id="email" placeholder="juanperez@gmail.com" autocomplete="off" />
+                <input type="email" name="email" id="email" placeholder="juanperez@gmail.com" autocomplete="off"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Mensaje de error</small><br>
