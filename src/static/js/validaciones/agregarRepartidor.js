@@ -182,7 +182,7 @@ function comprobarTelefono(telefono) {
 }
 
 function comprobarDireccion(direccion) {
-	return /^[a-zA-Záéíóú0-9./# ]{8,40}$/.test(direccion);
+	return /^[a-zA-Záéíóú0-9.,/# ]{8,40}$/.test(direccion);
 }
 
 form.addEventListener("submit", (e) => {

@@ -69,8 +69,8 @@ function checkInputs() {
 	}else if (cantidadValue < 1) {
 		setErrorFor(cantidad, "La cantidad de lockers no puede ser menor a 1.");
 		campos["cantidad"] = false;
-	}else if (cantidadValue > 5) {
-		setErrorFor(cantidad, "La cantidad de lockers no puede ser mayor a 5.");
+	}else if (cantidadValue > 10) {
+		setErrorFor(cantidad, "La cantidad de lockers no puede ser mayor a 10.");
 		campos["cantidad"] = false;
 	}else if (!comprobarCantidad(cantidadValue)) {
 		setErrorFor(cantidad, "No ingreso una cantidad válida.");
@@ -118,11 +118,11 @@ function setSuccessFor(input) {
 }
 
 function comprobarUbicacion(ubicacion) {
-	return /^[a-zA-Záéíóú0-9./# ]{8,40}$/.test(ubicacion);
+	return /^[a-zA-Záéíóú0-9.,/# ]{8,40}$/.test(ubicacion);
 }
 
 function comprobarDireccion(direccion) {
-	return /^[a-zA-Záéíóú0-9./# ]{8,40}$/.test(direccion);
+	return /^[a-zA-Záéíóú0-9.,/# ]{8,40}$/.test(direccion);
 }
 
 function comprobarCantidad(cantidad) {
