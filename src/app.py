@@ -742,7 +742,7 @@ def userHistorial():
             return render_template('historialEnvios.html', envios = enviosUser)
         except:
             flash("Ha ocurrido un error al realizar la búsqueda")
-            return render_template('historialEnvios.html', envios = enviosUser)
+            return render_template('historialEnvios.html', envios = [])
 
 #########################################################################################
 ################################## Usuario administrador ################################
@@ -1011,18 +1011,24 @@ def clientes():
 def clientesVisualizar():    
     try:
         id_recibido = request.form['id']
-        dato_consulta = request.form['dato_a_consultar']
-        if dato_consulta == '':
-            print("Sin dato a consultar")
-            currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
-            list_of_paquetes = ModelEnvio.consult_all_by_user(db, id_recibido)
-            return render_template('visualizarCliente.html', paquetes = list_of_paquetes, usuario = currentUser)
+        current = ModelUser.consult_cliente_by_id(db,id_recibido)
+        if current.confirmed_on == None:
+            flash("No se puede visualizar envíos de un usuario inactivo")
+            return redirect(url_for('clientes'))
         else:
-            print("Con dato a consultar")
-            currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
-            list_of_paquetes = ModelEnvio.consult_to_search_paquete(db, id_recibido, dato_consulta)
-            flash("Resultados de búsqueda para '"+dato_consulta+"'")
-            return render_template('visualizarCliente.html', paquetes = list_of_paquetes, usuario = currentUser)
+            dato_consulta = request.form['dato_a_consultar']
+            if dato_consulta == '':
+                print("Sin dato a consultar")
+                currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
+                list_of_paquetes = ModelEnvio.consult_all_by_user(db, id_recibido)
+                print(list_of_paquetes)
+                return render_template('visualizarCliente.html', paquetes = list_of_paquetes, usuario = currentUser)
+            else:
+                print("Con dato a consultar")
+                currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
+                list_of_paquetes = ModelEnvio.consult_to_search_paquete(db, id_recibido, dato_consulta)
+                flash("Resultados de búsqueda para '"+dato_consulta+"'")
+                return render_template('visualizarCliente.html', paquetes = list_of_paquetes, usuario = currentUser)
     except:
         flash("Ha ocurrido un error al obtener el hisorial del cliente")
         return render_template('visualizarCliente.html', paquetes = [], usuario = {})
@@ -1032,7 +1038,11 @@ def clientesActualizar():
     try:
         id_recibido = request.form['id']
         current = ModelUser.consult_cliente_by_id(db, id_recibido)
-        return render_template('editarUsuarios.html', cliente = current)
+        if current.confirmed_on == None:
+            flash("No se puede editar a un usuario inactivo")
+            return redirect(url_for('clientes'))
+        else:
+            return render_template('editarUsuarios.html', cliente = current)
     except:
         flash("Ha ocurrido un error al obtener datos del cliente")
         return render_template('editarUsuarios.html', cliente = current)
@@ -1057,11 +1067,15 @@ def clientesEliminar():
     try:
         id_recibido = request.form['id']
         currentUser = ModelUser.consult_cliente_by_id(db, id_recibido)
-        ModelUser.delete(db, id_recibido)
-        flash(f"Usuario {currentUser.nombre} eliminado con éxito")
-        return redirect(url_for('clientes'))
+        if currentUser.confirmed_on == None:
+            flash("No se puede deshabilitar a un usuario inactivo")
+            return redirect(url_for('clientes'))
+        else:
+            ModelUser.modificar_estado(db, id_recibido, '0')
+            flash(f"Usuario {currentUser.nombre} deshabilitado con éxito")
+            return redirect(url_for('clientes'))
     except:
-        flash("Ha ocurrido un error al eliminar al cliente")
+        flash("Ha ocurrido un error al deshabilitar al cliente")
         return redirect(url_for('clientes'))
 
 

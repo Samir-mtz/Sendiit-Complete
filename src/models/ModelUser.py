@@ -220,14 +220,14 @@ class ModelUser():
     def consultClientesAll(self, db):
         try:
             cursor = db.connection.cursor()
-            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where tipo="usuario"'
+            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed, confirmed_on FROM user where tipo="usuario"'
             cursor.execute(sql)
             list_clientes=[]
             while True:
                 row = cursor.fetchone()
                 if row == None:
                     break
-                list_clientes.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3], direccion=row[4], password='', confirmed=row[5], tipo=''))
+                list_clientes.append( User(id=row[0], nombre=row[1],email=row[2], telefono=row[3], direccion=row[4], password='', confirmed=row[5], tipo='', confirmed_on=row[6]))
             
             if len(list_clientes)>0:
                 return list_clientes
@@ -260,11 +260,11 @@ class ModelUser():
     def consult_cliente_by_id(self, db, id_recibido):
         try:
             cursor = db.connection.cursor()
-            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed FROM user where id='+id_recibido
+            sql = 'SELECT id, nombre, email, telefono, direcion, confirmed, confirmed_on FROM user where id='+id_recibido
             cursor.execute(sql)
             row = cursor.fetchone()
             if row != None:
-                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='')
+                return User(id=row[0], nombre=row[1],email=row[2], telefono=row[3] ,direccion=row[4], password='', confirmed=row[5], tipo='', confirmed_on=row[6])
             else:
                 return None
         except Exception as ex:

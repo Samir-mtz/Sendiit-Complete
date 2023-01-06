@@ -127,8 +127,12 @@
             <!-- <td class="descripcion-paquete">Regalo de navidad</td> -->
             <td>{{ envio.origen }}</td>
             <td>{{ envio.destino }}</td>
-            <td>22/12/2022</td>
-            <td>23/12/2022</td>
+            <td>{{ envio.fechainicio }}</td>
+            {%if envio.fechaentregado != None %}
+              <td>{{ envio.fechaentregado }}</td>
+            {% else %}
+              <td> - </td>
+            {% endif %}
             <td>{{ envio.estado }}</td>
             <td>
               <button onclick="abrirRastrear('{{ envio.id }}')" class="btn-rastrear btn-ventana-rastrear">

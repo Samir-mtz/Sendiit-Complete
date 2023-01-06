@@ -1,7 +1,7 @@
 
 class Envio():
 
-    def __init__(self, origen,estado, destino, tamano="", fragil="", nombre="", email="", telefono="", costo="", idusuario="", id=-1) -> None:
+    def __init__(self, origen,estado, destino, tamano="", fragil="", nombre="", email="", telefono="", costo="", idusuario="", id=-1, fechainicio="", fechaentregado="") -> None:
         self.id = id
         self.origen = origen
         self.destino = destino
@@ -13,3 +13,5 @@ class Envio():
         self.telefono = telefono
         self.costo = costo
         self.idusuario = idusuario
+        self.fechainicio = fechainicio
+        self.fechaentregado = fechaentregado

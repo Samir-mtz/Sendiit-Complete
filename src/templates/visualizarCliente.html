@@ -114,6 +114,8 @@
             <th rowspan="1" class="tamanio">TAMAÑO</th>
             <th rowspan="1" class="nombre">NOMBRE DESTINARIO</th>
             <th rowspan="1" class="correo">CORREO DESTINATARIO</th>
+            <th rowspan="1" class="correo">FECHA INICIO</th>
+            <th rowspan="1" class="correo">FECHA ENTREGA</th>
             <th rowspan="1" class="estatus">ESTATUS</th>
           </tr>
         </thead>
@@ -127,7 +129,13 @@
             <td>{{ paquete.tamano }}</td>
             <td class="nombre-destinatario">{{ paquete.nombre }}</td>
             <td class="correo-destinatario">{{ paquete.email }}</td>
-            <td>ENTREGADO</td>
+            <td>{{ paquete.fechainicio }}</td>
+            {%if paquete.fechaentregado != None %}
+              <td>{{ paquete.fechaentregado }}</td>
+            {% else %}
+              <td> xxxx-xx-xx </td>
+            {% endif %}
+            <td>{{ paquete.estado }}</td>
           </tr>
           {% endfor %}
           {% if paquetes == [] %}

@@ -10,7 +10,7 @@
 	<!-- Favicon de la empresa -->
 	<link href="../static/img/empresa/favicon.png" rel="icon" />
 	<!-- Estilos -->
-	<link rel="stylesheet" href="../static/css/PagoFracasado.css" />
+	<link rel="stylesheet" href="../static/css/pagoRechazado.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
 </head>
 
@@ -30,8 +30,8 @@
 					<div class="name-user">{{ current_user.nombre }}</div>
 					<div class="btn-user">
 						<div class="pantalla-user"><a href="{{ url_for('homeCliente') }}">Inicio</a></div>
-						<div class="pantalla-user"><a href="#">Historial</a></div>
-						<div class="pantalla-user"><a href="#">Rastrear</a></div>
+						<div class="pantalla-user"><a href="{{ url_for('clienteHistorial') }}">Historial</a></div>
+						<div class="pantalla-user"><a href="{{ url_for('userRastrear') }}">Rastrear</a></div>
 						<div class="cerrar-sesion"><a href="{{ url_for('logout') }}">Cerrar Sesión</a></div>
 					</div>
 				</div>
@@ -51,12 +51,12 @@
 					<h3 class="leyenda"><i> El pago fue rechazado debido a un error, falta de fondos o la tarjeta no existe, reintente nuevamente por favor. </i></h3>
 				  </div>
 				<div class="botones">
-					<a href="./formularioPago.html" class="btn-Reintentar"><button>Reintentar</button></a>
+					<a href="{{ url_for('formularioEnvio') }}" class="btn-Reintentar"><button>Reintentar</button></a>
 				</div>
 
 			</div>
 			<div class="repartidor">
-				<img src="..//static/img/repartidores/Repartidor_4.png" />
+				<img src="../static/img/repartidores/Repartidor_4.png" />
 			</div>
 		</main>
 		<footer class="footer">

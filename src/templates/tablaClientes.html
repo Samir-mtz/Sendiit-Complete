@@ -111,7 +111,7 @@
           <tr style="background-color: #f9d950; font-size: 13px; height: 10px;">
             <th class="accion">VISUALIZAR</th>
             <th class="accion">EDITAR</th>
-            <th class="accion">ELIMINAR</th>
+            <th class="accion">DESHABILITAR</th>
           </tr>
           </tr>
         </thead>
@@ -127,6 +127,10 @@
                 <img src="../static/img/Admin/acciones/visualizar.png" />
               </button>
             </td>
+            {% if cliente.confirmed == 0 and cliente.confirmed_on != None %}
+            <td> - </td>
+            <td> - </td>
+            {% else %}
             <td>
               <button onclick="abrirEditar('{{ cliente.id }}')" class="btn-editar btn-ventana-editar">
                 <img src="../static/img/Admin/acciones/editar.png" />
@@ -137,6 +141,7 @@
                 <img src="../static/img/Admin/acciones/eliminar.png" />
               </button>
             </td>
+            {% endif %}
           </tr>
           {% endfor %}
           {% if clientes == [] %}
@@ -199,7 +204,7 @@
         <div class="encabezado-modal"><button onclick="cerrarEliminar()" class="modal-btn-cerrar-eliminar"><i
               class="bi bi-x-circle"></i></button></div>
         <div class="titulo-modal">
-          <h2>¿Desea eliminar al cliente?</h2>
+          <h2>¿Desea deshabilitar al cliente?</h2>
         </div>
         <div class="botones-modal">
           <form action="{{ url_for('clientesEliminar') }}" method="POST">
