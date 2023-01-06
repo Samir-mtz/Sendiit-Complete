@@ -175,6 +175,7 @@ function NewTarjeta() {
 	selecto.style.display = "None";
 	let formularioTarjeta = document.getElementById("addTarjeta");
 	formularioTarjeta.style.display = "Block";
+	checkInputs();
 }
 function Reset() {
 	let texto = document.getElementById("leyenda");
@@ -183,6 +184,7 @@ function Reset() {
 	selecto.style.display = "Block";
 	let formularioTarjeta = document.getElementById("addTarjeta");
 	formularioTarjeta.style.display = "None";
+	checkInputs();
 }
 
 function checkInputs() {
@@ -193,7 +195,6 @@ function checkInputs() {
 	const nombreTarjetaValue = nombretarjeta.value.trim();
 	const numeroValue = numero.value.trim();
 	const cvvValue = cvv.value.trim();
-
 	// Comparacion del nombre
 	if (nombreValue === "") {
 		setErrorFor(nombre, "No puede dejar el nombre en blanco.");
@@ -205,7 +206,7 @@ function checkInputs() {
 		setSuccessFor(nombre);
 		campos["nombre"] = true;
 	}
-
+	
 	// Comparacion del email
 	if (emailValue === "") {
 		setErrorFor(email, "No puede dejar el email en blanco.");
@@ -217,7 +218,7 @@ function checkInputs() {
 		setSuccessFor(email);
 		campos["email"] = true;
 	}
-
+	
 	// Comparacion del telefono
 	if (telefonoValue === "") {
 		setErrorFor(telefono, "No puede dejar el teléfono en blanco.");
@@ -226,34 +227,34 @@ function checkInputs() {
 		setErrorFor(
 			telefono,
 			"El telefono debe de contener unicamente valores numericos, sin espacios o caracteres entre números."
-		);
-		campos["telefono"] = false;
-	} else {
-		setSuccessFor(telefono);
-		campos["telefono"] = true;
-	}
-
-	// Comparacion del peso
-	if (pesoValue === "") {
-		setErrorFor(peso, "No puede dejar el Peso en blanco.");
-		campos["peso"] = false;
-	} else if (!comprobarPeso(pesoValue)) {
-		setErrorFor(
-			peso,
+			);
+			campos["telefono"] = false;
+		} else {
+			setSuccessFor(telefono);
+			campos["telefono"] = true;
+		}
+		
+		// Comparacion del peso
+		if (pesoValue === "") {
+			setErrorFor(peso, "No puede dejar el Peso en blanco.");
+			campos["peso"] = false;
+		} else if (!comprobarPeso(pesoValue)) {
+			setErrorFor(
+				peso,
 			"El peso debe de contener unicamente valores numericos. Los pesos validos son entre 1 y 30 kg. Use 2 decimales de precisión"
-		);
-		campos["peso"] = false;
-	} else {
-		setSuccessFor(peso);
-		campos["peso"] = true;
-	}
-
-	//comprobar origen
-	let opcion = origen.selectedIndex;
-	if (origen.options[opcion].text != "Seleccionar") {
-		campos["origen"] = true;
-		setSuccessFor(origen);
-	} else {
+			);
+			campos["peso"] = false;
+		} else {
+			setSuccessFor(peso);
+			campos["peso"] = true;
+		}
+		
+		//comprobar origen
+		let opcion = origen.selectedIndex;
+		if (origen.options[opcion].text != "Seleccionar") {
+			campos["origen"] = true;
+			setSuccessFor(origen);
+		} else {
 		setErrorFor(origen, "Ingresa tu origen.");
 		campos["origen"] = false;
 	}
@@ -275,12 +276,17 @@ function checkInputs() {
 		setErrorFor(tamano, "Selecciona el tamaño.");
 		campos["tamano"] = false;
 	}
-
+	
+	let formulario2 = document.getElementById('addTarjeta');
+	// console.log("entre");
+	console.log(formulario2.style.display);
 	//comprobar tarjeta
 	let tarjetaSelected = tarjeta.selectedIndex;
-	if (tarjeta.options[tarjetaSelected].text != "Seleccionar") {
+	// console.log();
+	if (formulario2.style.display == "none" && tarjeta.options[tarjetaSelected].text!="Seleccionar") {
 		setSuccessFor(tarjeta);
 		campos["nombretarjeta"] = true;
+		campos["numero"] = true;
 		campos["cvv"] = true;
 		campos["mes"] = true;
 		campos["year"] = true;
