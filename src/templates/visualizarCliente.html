@@ -23,7 +23,7 @@
       </a>
     </div>
     <div class="links">
-      <div class="link-header">CLIENTES</div>
+      <div class="link-header">VISUALIZAR CLIENTE</div>
     </div>
     <div class="usuario">
       <div class="tarjeta">
@@ -114,6 +114,7 @@
             <th rowspan="1" class="tamanio">TAMAÑO</th>
             <th rowspan="1" class="nombre">NOMBRE DESTINARIO</th>
             <th rowspan="1" class="correo">CORREO DESTINATARIO</th>
+            <th rowspan="1" class="estatus">ESTATUS</th>
           </tr>
         </thead>
         <tbody>
@@ -126,6 +127,7 @@
             <td>{{ paquete.tamano }}</td>
             <td class="nombre-destinatario">{{ paquete.nombre }}</td>
             <td class="correo-destinatario">{{ paquete.email }}</td>
+            <td>ENTREGADO</td>
           </tr>
           {% endfor %}
           {% if paquetes == [] %}
