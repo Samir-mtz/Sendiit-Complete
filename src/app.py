@@ -689,6 +689,10 @@ def userRastrear():
 
             elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
                 return render_template('estatus_4.html', envio=envio)
+            elif envio.estado == "ALMACEN":
+                return render_template('estatus_4_2.html', envio=envio)
+            elif envio.estado == "EN ALMACEN":
+                return render_template('estatus_5_4.html', envio=envio)
 
             elif envio.estado == "RECOGIDO":
                 return render_template('estatus_5.html', envio=envio)
@@ -711,6 +715,10 @@ def userRastrear():
 
             elif envio.estado == "RECOGIDO":
                 return render_template('estatusCliente_5.html', envio=envio)
+            elif envio.estado == "ALMACEN":
+                return render_template('estatusCliente_4_2.html', envio=envio)
+            elif envio.estado == "EN ALMACEN":
+                return render_template('estatusCliente_5_4.html', envio=envio)
             else:
                 return render_template('errorRastrearCliente.html')
     else:
@@ -755,7 +763,7 @@ def admin():
     if user.tipo == 'admin':
         return render_template('Catalogos.html')
     else:
-        return redirect(url_for('home'))
+        return redirect(url_for('admin'))
 
 # Administracion de lockers
 @app.route('/admin/lockers', methods = ['GET', 'POST'])

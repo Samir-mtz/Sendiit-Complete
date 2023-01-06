@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Titulo de pagina -->
+  <title>SENDIIT - ESTATUS PAQUETE</title>
+  <!-- Favicon de la empresa -->
+  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <!-- Estilos -->
+  <link rel="stylesheet" href="../static/css/estatus.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+        <a href="{{ url_for('index') }}">
+            <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+        </a>
+    </div>
+    <div class="links">
+        <div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+        <div class="link-header"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+        <div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
+    </div>
+    <div class="botones">
+        <a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+        <a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+        <a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
+</header>
+
+  <!-- Main -->
+  <main class="main">
+    <section class="trayecto">
+      <div class="img-trayecto">
+        <img src="../static/img/rastrear/trayectoria.png" alt="">
+      </div>
+      <div class="texto-trayecto">
+        <p>Envío de {{ envio.origen }} a {{ envio.destino }}.</p>
+      </div>
+    </section>
+    <section class="arriba">
+      <div class="sec-contenido">
+        <img src="../static/img/rastrear/estatus-1.png" alt="">
+      </div>
+      <div class="sec-contenido">
+        <p class="campo-texto">En espera de recolección, por el repartidor.</p>
+      </div>
+      <div class="sec-contenido"><img src="../static/img/rastrear/estatus-3.png" alt=""></div>
+      <div class="sec-contenido">
+        <p class="campo-texto noRecogio">No se recogió en locker destino.</p>
+      </div>
+      <div class="sec-contenido"><img src="../static/img/rastrear/estatus-4_2.png" alt=""></div>
+      <div class="sec-contenido">
+        <p class="campo-texto">Entregado.</p>
+      </div>
+    </section>
+    <section class="central">
+      <div class="progreso-contenedor">
+        <div class="progreso" id="progreso"></div>
+        <div class="progresoRojo" id="progresoRojo"></div>
+        <div class="progresoVerde" id="progresoVerde"></div>
+        <div class="circulo active">1</div>
+        <div class="circulo active">2</div>
+        <div class="circulo active">3</div>
+        <div class="circulo active noEntrego">4</div>
+        <div class="circulo active">5</div>
+        <div class="circulo ">6</div>
+      </div>
+    </section>
+    <section class="abajo">
+      <div class="sec-contenido">
+        <p class="campo-texto">Por depositarse en locker, por el cliente.</p>
+      </div>
+      <div class="sec-contenido">
+        <img src="../static/img/rastrear/estatus-2.png" alt="">
+      </div>
+      <div class="sec-contenido">
+        <p class="campo-texto">En camino.</p>
+      </div>
+      <div class="sec-contenido"><img src="../static/img/rastrear/estatus-4_1.png" alt=""></div>
+      <div class="sec-contenido">
+        <p class="campo-texto">Se traslado a almacén.</p>
+      </div>
+      <div class="sec-contenido"><img src="../static/img/rastrear/estatus-5_1.png" alt=""></div>
+    </section>
+    <section class="boton-regresar">
+      <div class="boton-regreso">
+        <a href="{{ url_for('index') }}">
+          <i class="bi bi-arrow-left-circle"></i>
+          <span>INICIO</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="derechos">
+      <div class="copyright">
+        <span>&copy;2022 México. Todos los derechos reservados.</span>
+      </div>
+    </div>
+    <div class="redes">
+      <a href="#"><i class="red bi bi-facebook"></i></a>
+      <a href="#"><i class="red bi bi-instagram"></i></a>
+      <a href="#"><i class="red bi bi-telegram"></i></a>
+      <a href="#"><i class="red bi bi-envelope-fill"></i></a>
+    </div>
+  </footer>
+  <script>
+    progreso.style.width = (4 / 5) * 100 + '%';
+    progresoRojo.style.width = (3.5 / 5) * 100 + '%';
+    progresoVerde.style.width = (2.5 / 5) * 100 + '%';
+  </script>
+</body>
+
+</html>
