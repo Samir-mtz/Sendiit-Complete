@@ -319,6 +319,31 @@ h5 {
     transition: 0.4s ease;
 }
 
+.progresoRojo {
+    background-color: rgb(255, 0, 0);
+    position: absolute;
+    top: 50%;
+    left: -1;
+    transform: translateY(-50%);
+    height: calc(2vh);
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+.progresoVerde {
+    background-color: rgb(8, 125, 0);
+    position: absolute;
+    top: 50%;
+    left: -1;
+    transform: translateY(-50%);
+    height: calc(2vh);
+    width: 0%;
+    z-index: -1;
+    transition: 0.4s ease;
+}
+
+
 .circulo{
     background-color: #67686a;
     color: rgb(255, 255, 255);
