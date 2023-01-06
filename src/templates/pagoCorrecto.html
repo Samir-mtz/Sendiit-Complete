@@ -32,9 +32,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -42,21 +42,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="" class="elemento">
+            <a href="{{ url_for('userHistorial') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-clipboard-check"></i>
                 <h6>Historial</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="" class="elemento">
+            <a href="{{ url_for('userRastrear') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-geo-alt"></i>
                 <h6>Rastrear</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -94,7 +94,7 @@
 
       <!-- Grupo: Boton ingresar -->
       <div class="botones">
-        <a href="{{ url_for('homeCliente') }}" class="btn-form">CONTINUAR</a>
+        <a href="{{ url_for('homeCliente') }}" class="btn-form">REGRESAR A INICIO</a>
         <a href="javascript:void(0)" class="btn-download btn-generar btn-form pdf">DESCARGAR ORDEN</a>
       </div>
 
@@ -128,7 +128,7 @@
                     <p class="titulo-seccion-pdf">DATOS REMITENTE</p>
                     <p class="dato-seccion-pdf"> - Nombre: {{current_user.nombre}}</p>
                     <p class="dato-seccion-pdf"> - E-mail: {{current_user.email}}</p>
-                    <p class="dato-seccion-pdf"> - Teléfono: {{current_user.telefono}}</p>
+                    <p class="dato-seccion-pdf"> - Teléfono: {{remitente.telefono}}</p>
                   </div>
                   <div class="datos-usuario-der-pdf">
                     <p class="titulo-seccion-pdf">DATOS DESTINATARIO</p>

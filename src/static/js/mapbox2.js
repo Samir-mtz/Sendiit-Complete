@@ -197,12 +197,12 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
-                                '<strong>Lindavista</strong><p>Av. Juan de Dios Bátiz 523, Zacatenco, Gustavo A. Madero, 07340 Ciudad de México, CDMX</p>',
+                                '<strong>Satélite</strong><p>Av. Luis</p>',
                             'icon': 'post'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [-99.13241777989998, 19.503812618644453]
+                            'coordinates': [-99.2340569979727, 19.514128180882274]
                         }
                     }
                     ,
@@ -211,12 +211,12 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
-                                '<strong>Sátelite</strong><p>Cto. Cirujanos 1-Local 3, Cd. Satélite, 53100 Naucalpan de Juárez, Méx.</p>',
+                                '<strong>Lindavista</strong><p>Av. Luis</p>',
                             'icon': 'post'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [-99.23202789711353, 19.510418491079623]
+                            'coordinates': [-99.13240824161515, 19.503891953905345]
                         }
                     }
                     ,
@@ -225,12 +225,12 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
-                                '<strong>Colonia del Valle</strong><p>C. Gabriel Mancera 916, Col del Valle Centro, Benito Juárez, 03100 Ciudad de México, CDMX</p>',
+                                '<strong>Colonia del Valle</strong><p>Av. Luis</p>',
                             'icon': 'post'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [-99.16479674838662, 19.38370135021779]
+                            'coordinates': [-99.16720392645682, 19.37927890690462]
                         }
                     }
                     ,
@@ -239,26 +239,12 @@ map.on('load', () => {
                         'type': 'Feature',
                         'properties': {
                             'description':
-                                '<strong>Villa de Aragón</strong><p>Av.608, 4a Sección, San Juan de Aragón, Gustavo A. Madero, 07979 Ciudad de México, CDMX</p>',
+                                '<strong>Villa de Aragón</strong><p>Av. Luis</p>',
                             'icon': 'post'
                         },
                         'geometry': {
                             'type': 'Point',
-                            'coordinates': [-99.0612996325149, 19.46156136421477]
-                        }
-                    }
-                    ,
-							
-                        {
-                        'type': 'Feature',
-                        'properties': {
-                            'description':
-                                '<strong>Polanco</strong><p>Av. Ejército Nacional Mexicano 598, Polanco, CDMX</p>',
-                            'icon': 'post'
-                        },
-                        'geometry': {
-                            'type': 'Point',
-                            'coordinates': [-99.1949207882933, 19.43566665558206]
+                            'coordinates': [-99.06060803562491, 19.46977031679685]
                         }
                     }
                     ,
@@ -279,19 +265,16 @@ map.on('load', () => {
             
 let coordinatesPoints = new Map();
                     
-coordinatesPoints.set('Lindavista',[-99.13241777989998, 19.503812618644453])
+coordinatesPoints.set('Satélite',[-99.2340569979727, 19.514128180882274])
                 
                     
-coordinatesPoints.set('Sátelite',[-99.23202789711353, 19.510418491079623])
+coordinatesPoints.set('Lindavista',[-99.13240824161515, 19.503891953905345])
                 
                     
-coordinatesPoints.set('Colonia del Valle',[-99.16479674838662, 19.38370135021779])
+coordinatesPoints.set('Colonia del Valle',[-99.16720392645682, 19.37927890690462])
                 
                     
-coordinatesPoints.set('Villa de Aragón',[-99.0612996325149, 19.46156136421477])
-                
-                    
-coordinatesPoints.set('Polanco',[-99.1949207882933, 19.43566665558206])
+coordinatesPoints.set('Villa de Aragón',[-99.06060803562491, 19.46977031679685])
                 
 function convertMyRoute(inicio, fin){
                         getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))

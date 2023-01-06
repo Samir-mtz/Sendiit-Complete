@@ -345,17 +345,22 @@ def recuperar():
         try:
             email = request.form['email']
             verificar = ModelUser.check_email(db, email)
-            if verificar == True:
-                token = generate_confirmation_token(email)
-                confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
-                template = render_template('correoRecuperarContrasena.html', confirm_url=confirm_url)
-                subject = "Recuperación de cuenta - Sendiit"
-                msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
-                mail.send(msg)
-                return render_template('validacionCorreoRecuperar.html', email=email)
+            confirmado = ModelUser.consulta_email(db, email)
+            if confirmado.confirmed_on != None:
+                if verificar == True:
+                    token = generate_confirmation_token(email)
+                    confirm_url = url_for('confirm_email_restablecer', token=token, _external=True)
+                    template = render_template('correoRecuperarContrasena.html', confirm_url=confirm_url)
+                    subject = "Recuperación de cuenta - Sendiit"
+                    msg = Message(subject, recipients=[email], html=template, sender="sendiitadsscrumios@gmail.com")
+                    mail.send(msg)
+                    return render_template('validacionCorreoRecuperar.html', email=email)
+                else:
+                    flash('El usuario ingresado no está registrado en el sistema')
+                    return render_template('recuperar.html')
             else:
-                flash('El usuario ingresado no está registrado en el sistema')
-                return render_template('recuperar.html')
+                    flash('Se requiere de la activación previa de tu cuenta para poder recuperar contraseña')
+                    return render_template('recuperar.html')
         except:
             flash('Error al verificar datos')
             return render_template('recuperar.html')
@@ -511,6 +516,7 @@ def formularioEnvio():
             idusuario = current_user.id
             datos = Envio(origen,estado, destino, tamano, fragil, nombre, email, telefono, costo, idusuario)
             ModelEnvio.register(db, datos)
+            datosRemitente = ModelUser.consult_cliente_by_id(db, str(idusuario))
 
             nombreTarjeta = request.form['inputNombre']
             if nombreTarjeta != "":
@@ -522,12 +528,12 @@ def formularioEnvio():
             datos = ModelEnvio.consultLast(db)
             now = datetime.now()
             fecha = str(now.day) + "/" + str(now.month) + "/" + str(now.year)
-            return render_template('PagoCorrecto.html', datos=datos, fecha=fecha)
+            return render_template('PagoCorrecto.html', datos=datos, fecha=fecha, remitente = datosRemitente)
         
         ###Funcionalidad del mapbox
         lockers = ModelMapbox.consultaCoordenadas(db)
-        shutil.copy("src/static/js/origen.js", "src/static/js/mapbox2.js")
-        destFile = r"src/static/js/mapbox2.js"
+        shutil.copy("static/js/origen.js", "static/js/mapbox2.js")
+        destFile = r"static/js/mapbox2.js"
         with open(destFile, 'a', encoding="utf-8") as f:
 
             f.write("\nmap.on('load', () => {\n\
@@ -581,7 +587,7 @@ def formularioEnvio():
             f.write("\nfunction convertMyRoute(inicio, fin){\n\
                         getRoute(coordinatesPoints.get(inicio), coordinatesPoints.get(fin))\n\
                     }")
-        shutil.copy("src/static/js/mapbox2.js", "src/static/js/mapboxfinal.js")
+        shutil.copy("static/js/mapbox2.js", "static/js/mapboxfinal.js")
         ##Fin funcionalidad Map Box
         ##Cargamos tarjetas
         listTarjetas = ModelTarjeta.consultAll(db, current_user.id)
@@ -657,12 +663,6 @@ def userRastrear():
 
             elif envio.estado == "RECOGIDO":
                 return render_template('estatus_5.html', envio=envio)
-            elif envio.estado == "ALMACEN":
-                return render_template('estatus_4_2.html', envio=envio)
-            elif envio.estado == "ALMACEN ENTREGADO":
-                return render_template('estatus_5_2.html', envio=envio)
-            elif envio.estado == "DESECHADO":
-                return render_template('estatus_5_3.html', envio=envio)
             else:
                 return render_template('errorRastrear.html', envio=envio)
         else:
@@ -679,14 +679,9 @@ def userRastrear():
                 return render_template('estatusCliente_3.html', envio=envio)
             elif envio.estado == "ENTREGADO EN LOCKER DESTINO":
                 return render_template('estatusCliente_4.html', envio=envio)
+
             elif envio.estado == "RECOGIDO":
                 return render_template('estatusCliente_5.html', envio=envio)
-            elif envio.estado == "ALMACEN":
-                return render_template('estatusCliente_4_2.html', envio=envio)
-            elif envio.estado == "ALMACEN ENTREGADO":
-                return render_template('estatusCliente_5_2.html', envio=envio)
-            elif envio.estado == "DESECHADO":
-                return render_template('estatusCliente_5_3.html', envio=envio)
             else:
                 return render_template('errorRastrearCliente.html')
     else:
