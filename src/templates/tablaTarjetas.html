@@ -18,7 +18,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio">
+      <a href="{{ url_for('index') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -31,9 +31,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="./inicioCliente.html" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -41,21 +41,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./infoCliente.html" class="elemento">
+            <a href="{{ url_for('userHistorial') }}" class="elemento">
               <div class="contenido-elemento">
-                <i class="bi bi-person-rolodex"></i>
-                <h6>Info. General</h6>
+                <i class="bi bi-clipboard-check"></i>
+                <h6>Historial</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./rastrearCliente.html" class="elemento">
+            <a href="{{ url_for('userRastrear') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-geo-alt"></i>
                 <h6>Rastrear</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -71,23 +71,33 @@
   <main class="main">
     <section class="arriba">
       <div class="boton-regreso">
-        <a href="./bienvenidaCliente.html">
+        <a href="{{ url_for('homeCliente') }}">
           <i class="bi bi-arrow-left-circle"></i>
           <span>INICIO</span>
         </a>
       </div>
       <div class="barra-busqueda">
         <div class="buscar">
-          <input type="text" placeholder="Buscar" id="myInput">
-          <i class="fa-search lupa fas"></i>
+          <form action="{{ url_for('userTarjetas') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" placeholder="Buscar" id="myInput" name="dato_consulta">
+            <button type="submit" class='fa-search lupa fas boton-buscar'></button>
+          </form>
         </div>
       </div>
       <div class="logo-categoria">
-        <a href="./tablaClientes.html" class="link-categoria">
+        <a href="{{ url_for('userTarjetas') }}" class="link-categoria">
           <img src="../static/img/categorias/tarjetas.png" alt="Categoria Clientes">
         </a>
       </div>
     </section>
+    {% with messages = get_flashed_messages()[-1]%}
+    {% if messages %}
+    <p class="info-message">
+      {{ messages }}
+    </p>
+    {% endif %}
+    {% endwith %}
     <section class="tabla">
       <table align="center" class="tablatest" id="myTable">
         <thead class="sticky">
@@ -105,60 +115,40 @@
           </tr>
         </thead>
         <tbody>
+          {% for tarjeta in tarjetas %}
           <tr>
-            <td>1</td>
-            <td class="logo-tarjeta">
-                <img src="../static/img/tarjeta/logos/mastercard_2.png" />
-            </td>
-            <td class="nombre-tar">José López</td>
-            <td>**** **** **** 7894</td>
-            <td>
-              <button onclick="abrirEditar()" class="btn-rastrear btn-ventana-editar">
-                <img src="../static/img/Admin/acciones/editar.png" />
-              </button>
-            </td>
-            <td>
-              <button onclick="abrirEliminar()" class="btn-rastrear btn-ventana-eliminar">
-                <img src="../static/img/Admin/acciones/eliminar.png" />
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
+            <td>{{ tarjeta.id }}</td>
+            {% if tarjeta.numtarjeta[0] == '4' %}
             <td class="logo-tarjeta">
                 <img src="../static/img/tarjeta/logos/visa_2.png" />
             </td>
-            <td class="nombre-tar">Carlos Rivera</td>
-            <td>**** **** **** 1597</td>
-            <td>
-              <button onclick="abrirEditar()" class="btn-rastrear btn-ventana-editar">
-                <img src="../static/img/Admin/acciones/editar.png" />
-              </button>
-            </td>
-            <td>
-              <button onclick="abrirEliminar()" class="btn-rastrear btn-ventana-eliminar">
-                <img src="../static/img/Admin/acciones/eliminar.png" />
-              </button>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
+            {% elif tarjeta.numtarjeta[0] == '5' %}
             <td class="logo-tarjeta">
-                <img src="../static/img/tarjeta/logos/visa_2.png" />
+              <img src="../static/img/tarjeta/logos/mastercard_2.png" />
             </td>
-            <td class="nombre-tar">Juan Ruiz</td>
-            <td>**** **** **** 4567</td>
+            {% else %}
+            <td class="logo-tarjeta">
+              <img src="../static/img/tarjetas/tarjeta.png" />
+            </td>
+            {% endif %}
+            <td class="nombre-tar">{{ tarjeta.nombre }}</td>
+            <td>**** **** **** {{ tarjeta.numtarjeta[15:19] }}</td>
             <td>
-              <button onclick="abrirEditar()" class="btn-rastrear btn-ventana-editar">
+              <button onclick="abrirEditar('{{ tarjeta.id }}')" class="btn-rastrear btn-ventana-editar">
                 <img src="../static/img/Admin/acciones/editar.png" />
               </button>
             </td>
             <td>
-              <button onclick="abrirEliminar()" class="btn-rastrear btn-ventana-eliminar">
+              <button onclick="abrirEliminar('{{ tarjeta.id }}')" class="btn-rastrear btn-ventana-eliminar">
                 <img src="../static/img/Admin/acciones/eliminar.png" />
               </button>
             </td>
           </tr>
+          {% endfor %}
+          {% if tarjetas == [] %}
+          <tr><td colspan="10"></td></tr>
+          <tr><td colspan="10"><p class="error-message">No se encontraron resultados</p></td></tr>
+          {% endif %}
         </tbody>
       </table>
     </section>
@@ -175,9 +165,12 @@
           <h2>¿Desea editar la tarjeta?</h2>
         </div>
         <div class="botones-modal">
-          <a href="./editarTarjeta.html"><button class="confirmar">Confirmar</button></a>
-          <a href="./tablaTarjetas.html"><button class="cancelar">Cancelar</button></a>
-        </div>
+          <form action="{{ url_for('tarjetasActualizar') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="number" name="id" value="" id='editar_id' hidden>
+            <button class="confirmar">Confirmar</button>
+          </form>
+          <button onclick="cerrarEditar()" class="cancelar">Cancelar</button>
       </div>
     </center>
   </dialog>
@@ -192,8 +185,12 @@
           <h2>¿Desea eliminar la tarjeta?</h2>
         </div>
         <div class="botones-modal">
-          <a href="#"><button class="confirmar">Confirmar</button></a>
-          <a href="./tablaTarjetas.html"><button class="cancelar">Cancelar</button></a>
+          <form action="{{ url_for('tarjetasEliminar') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="number" name="id" value="" id='eliminar_id' hidden>
+            <button class="confirmar">Confirmar</button>
+          </form>
+          <button onclick="cerrarEliminar()" class="cancelar">Cancelar</button>
         </div>
       </div>
     </center>
@@ -213,7 +210,7 @@
       <a href="#"><i class="red bi bi-envelope-fill"></i></a>
     </div>
   </footer>
-  <script src="../static/js/ventanas/acciones.js"></script>
+  <script src="../../static/js/ventanas/acciones.js"></script>
 </body>
 
 </html>

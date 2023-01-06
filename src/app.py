@@ -438,8 +438,25 @@ def datosCliente():
 @app.route('/user/tarjetas', methods=['GET', 'POST'])
 @login_required
 def userTarjetas():
-    list_tarjetas = ModelTarjeta.consultAll(db, current_user.id)
-    return render_template('tarjetasUsuario.html', tarjetas = list_tarjetas)
+    if request.method == 'POST':
+        try:
+            dato = request.form['dato_consulta']
+            if dato == '':
+                list_tarjetas = ModelTarjeta.consultAll(db, current_user.id)
+                return render_template('tablaTarjetas.html', tarjetas = list_tarjetas)
+            else:
+                list_tarjetas = ModelTarjeta.consult_to_search(db, dato)
+                flash("Resultados de búsqueda para '"+dato+"'")
+                return render_template('tablaTarjetas.html', tarjetas = list_tarjetas)
+        except:
+            return render_template('tablaTarjetas.html', tarjetas = [])
+    else:
+        try:
+            list_tarjetas = ModelTarjeta.consultAll(db, current_user.id)
+            return render_template('tablaTarjetas.html', tarjetas = list_tarjetas)
+        except:
+            flash("Ha ocurrido un error al consultar tarjetas")
+            return render_template('tablaTarjetas.html', tarjetas = [])
 
 
 @app.route('/user/agregarTarjeta', methods=['GET', 'POST'])
@@ -448,18 +465,26 @@ def agregarTarjeta():
     if request.method == 'POST':
         nombre = request.form['inputNombre']
         numtarjeta = request.form['inputNumero']
-        expiracion = request.form['mes'] + "-" + request.form['year']
+        month = request.form['mes']
+        year = request.form['year']
+        if len(month) == 1:
+            expiracion =  '0'+ month + '-' + year
+        else:
+            expiracion = month + '-' + year
         cvv = request.form['inputCCV']
         tarjeta = Tarjeta(numtarjeta, expiracion, nombre, current_user.id, cvv)
         ModelTarjeta.register(db, tarjeta)
+        flash(f"Tarjeta con terminacion {numtarjeta[15:19]} agregada con éxito")
+        return render_template('AgregarTarjeta.html')
+    else:
+        return render_template('AgregarTarjeta.html')
 
-    return render_template('AgregarTarjeta.html')
 
-
-@app.route('/user/tarjetas/<int:id_tarjeta>')
-def tarjetasActualizar(id_tarjeta):
+@app.route('/user/tarjetas/actualizar', methods = ['GET', 'POST'])
+def tarjetasActualizar():
     try:
-        current = ModelTarjeta.consult_by_id(db, id_tarjeta)
+        id_recibido = request.form['id']
+        current = ModelTarjeta.consult_by_id(db, id_recibido)
         return render_template('EditarTarjeta.html', tarjeta=current)
     except:
         return render_template('EditarTarjeta.html', tarjeta={})
@@ -469,12 +494,14 @@ def tarjetasActualizado():
     id_recibido = request.form['id']
     nombre = request.form['nombre']
     numtarjeta = request.form['numtarjeta']
-    expiracion = request.form['mes'] + "-" + request.form['year']
+    month = request.form['mes']
+    year = request.form['year']
+    expiracion = month + '-' + year
     cvv = request.form['cvv']
     
     try:
         ModelTarjeta.update(db, id_recibido, nombre, numtarjeta, expiracion, cvv)
-        flash("Tarjeta actualizado con éxito")
+        flash(f"Tarjeta con terminacion {numtarjeta[15:19]} actualizada con éxito")
         return redirect(url_for('userTarjetas'))
     except:
         flash("Ha ocurrido un error al actualizar valores de tarjeta")
@@ -485,8 +512,10 @@ def tarjetasActualizado():
 def tarjetasEliminar():
     id_recibido = request.form['id']
     try:
+        current = ModelTarjeta.consult_by_id(db, id_recibido)
+        print(current)
         ModelTarjeta.delete(db, id_recibido)
-        flash("Tarjeta eliminada con éxito")
+        flash(f"Tarjeta con terminacion {current.numtarjeta[15:19]} eliminada con éxito")
         return redirect(url_for('userTarjetas'))
     except:
         flash("Ha ocurrido un error al eliminar tarjeta")

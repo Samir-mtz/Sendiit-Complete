@@ -18,7 +18,7 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio">
+      <a href="{{ url_for('logout') }}">
         <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
@@ -31,9 +31,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="./inicioCliente.html" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -41,21 +41,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./infoCliente.html" class="elemento">
+            <a href="{{ url_for('datosCliente') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-person-rolodex"></i>
                 <h6>Info. General</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./rastrearCliente.html" class="elemento">
+            <a href="{{ url_for('userRastrear') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-geo-alt"></i>
                 <h6>Rastrear</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -115,19 +115,27 @@
         </section>
 
 
-        
+
         <!-- Formulario -->
-        <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
-            <!-- Contenedor Boton Abrir Formulario -->
-            
+        <form action="{{ url_for('agregarTarjeta') }}" id="formulario-tarjeta" class="formulario-tarjeta" method="POST">
+          {% with messages = get_flashed_messages()[-1]%}
+          {% if messages %}
+          <p class="info-message">
+            {{ messages }}
+          </p>
+          {% endif %}
+          {% endwith %}
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <!-- Contenedor Boton Abrir Formulario -->
+
           <div class="grupo form-control">
             <label for="inputNumero">Número Tarjeta <label style="color: red;">*</label></label><br>
-            <input type="text" id="inputNumero" maxlength="19" autocomplete="off"><br>
+            <input type="text" id="inputNumero" name="inputNumero" maxlength="19" autocomplete="off"><br>
             <small>Mensaje de error</small>
           </div>
           <div class="grupo form-control">
             <label for="inputNombre">Nombre en la tarjeta <label style="color: red;">*</label></label><br>
-            <input type="text" id="inputNombre" maxlength="19" autocomplete="off"><br>
+            <input type="text" id="inputNombre" name="inputNombre" maxlength="19" autocomplete="off"><br>
             <small>Mensaje de error</small>
           </div>
           <div class="flexbox">
@@ -155,7 +163,7 @@
 
             <div class="grupo ccv chicos form-control">
               <label for="inputCCV">CCV <label style="color: red;">*</label></label>
-              <input type="text" id="inputCCV" maxlength="3"><br>
+              <input type="text" id="inputCCV" name="inputCCV" maxlength="3"><br>
               <small class="mensaje-chico">Mensaje de error</small>
             </div>
           </div>
@@ -165,7 +173,7 @@
               GUARDAR
             </button>
             <br>
-            <a href="./formulariosPaquete.html" class="btn-abrir-formulario salir">
+            <a href="{{ url_for('homeCliente') }}" class="btn-abrir-formulario salir">
               SALIR
             </a>
           </div>

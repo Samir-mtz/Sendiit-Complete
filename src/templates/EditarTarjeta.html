@@ -8,9 +8,9 @@
   <!-- Titulo de pagina -->
   <title>CLIENTE - EDITAR TARJETA</title>
   <!-- Favicon de la empresa -->
-  <link href="../static/img/empresa/favicon.png" rel="icon" />
+  <link href="../../static/img/empresa/favicon.png" rel="icon" />
   <!-- Estilos -->
-  <link rel="stylesheet" href="../static/css/editarTarjeta.css" />
+  <link rel="stylesheet" href="../../static/css/editarTarjeta.css" />
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
 </head>
 
@@ -18,8 +18,8 @@
   <!-- Header -->
   <header class="header">
     <div class="logo">
-      <a href="./inicio">
-        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+      <a href="{{ url_for('index') }}">
+        <img src="../../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
       </a>
     </div>
     <div class="links">
@@ -31,9 +31,9 @@
           <i class="bi bi-person-circle"></i>
         </div>
         <div class="tarjeta-der">
-          <div class="nombre-tarjeta">JUAN PÉREZ</div>
+          <div class="nombre-tarjeta">{{ current_user.nombre }}</div>
           <div class="iconos-tarjeta">
-            <a href="./inicioCliente.html" class="elemento ">
+            <a href="{{ url_for('homeCliente') }}" class="elemento ">
               <!-- <div class="contenido-elemento activo"> -->
               <div class="contenido-elemento">
                 <i class="bi bi-house"></i>
@@ -41,21 +41,21 @@
               </div>
             </a>
             <h5>|</h5>
-            <a href="./infoCliente.html" class="elemento">
+            <a href="{{ url_for('datosCliente') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-person-rolodex"></i>
                 <h6>Info. General</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./rastrearCliente.html" class="elemento">
+            <a href="{{ url_for('userRastrear') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-geo-alt"></i>
                 <h6>Rastrear</h6>
               </div>
             </a>
             <h5>|</h5>
-            <a href="./inicio.html" class="elemento">
+            <a href="{{ url_for('logout') }}" class="elemento">
               <div class="contenido-elemento">
                 <i class="bi bi-box-arrow-in-left cerrar"></i>
                 <h6 class="cerrar">Salir</h6>
@@ -75,23 +75,23 @@
         <section class="tarjeta" id="tarjeta">
           <div class="delantera">
             <div class="logo-marca" id="logo-marca">
-              <img src="../static/img/tarjeta/logos/visa.png" alt="">
+              <img src="../../static/img/tarjeta/logos/visa.png" alt="">
             </div>
-            <img src="../static/img/tarjeta/icono/chip-tarjeta.png" class="chip" alt="">
+            <img src="../../static/img/tarjeta/icono/chip-tarjeta.png" class="chip" alt="">
             <div class="datos">
               <div class="grupo" id="numero">
                 <p class="label">Número Tarjeta</p>
-                <p class="numero">#### #### #### ####</p>
+                <p class="numero">{{ tarjeta.numtarjeta }}</p>
               </div>
               <div class="flexbox">
                 <div class="grupo" id="nombre">
                   <p class="label">Nombre Tarjeta</p>
-                  <p class="nombre">Jhon Doe</p>
+                  <p class="nombre">{{ tarjeta.nombre }}</p>
                 </div>
 
                 <div class="grupo" id="expiracion">
                   <p class="label">Expiracion</p>
-                  <p class="expiracion"><span class="mes">MM</span> / <span class="year">AA</span></p>
+                  <p class="expiracion"><span class="mes">{{ tarjeta.expiracion[0:2] }}</span> / <span class="year">{{ tarjeta.expiracion[3:7] }}</span></p>
                 </div>
               </div>
             </div>
@@ -103,12 +103,12 @@
               <div class="grupo" id="firma">
                 <p class="label">Firma</p>
                 <div class="firma">
-                  <p></p>
+                  <p>{{ tarjeta.nombre }}</p>
                 </div>
               </div>
               <div class="grupo" id="ccv">
                 <p class="label">CCV</p>
-                <p class="ccv"></p>
+                <p class="ccv">{{ tarjeta.cvv }}</p>
               </div>
             </div>
           </div>
@@ -117,15 +117,17 @@
 
         
         <!-- Formulario -->
-        <form action="" id="formulario-tarjeta" class="formulario-tarjeta">
+        <form action="{{ url_for('tarjetasActualizado') }}" id="formulario-tarjeta" class="formulario-tarjeta" method="POST">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+          <input type="text" name="id" value="{{ tarjeta.id }}" hidden>
           <div class="grupo form-control">
             <label for="inputNumero">Número Tarjeta <label style="color: red;">*</label></label><br>
-            <input type="text" id="inputNumero" maxlength="19" autocomplete="off"><br>
+            <input type="text" name="numtarjeta" id="inputNumero" maxlength="19" autocomplete="off" value="{{ tarjeta.numtarjeta }}"><br>
             <small>Mensaje de error</small>
           </div>
           <div class="grupo form-control">
             <label for="inputNombre">Nombre en la tarjeta <label style="color: red;">*</label></label><br>
-            <input type="text" id="inputNombre" maxlength="19" autocomplete="off"><br>
+            <input type="text" id="inputNombre" name="nombre" maxlength="19" autocomplete="off" value="{{ tarjeta.nombre }}"><br>
             <small>Mensaje de error</small>
           </div>
           <div class="flexbox">
@@ -134,7 +136,7 @@
               <div class="flexbox">
                 <div class="grupo-select chicos form-control  fomr-control-chico">
                   <select name="mes" id="selectMes">
-                    <option disabled selected value="Mes">Mes</option>
+                    <option selected value="{{ tarjeta.expiracion[0:2] }}">{{ tarjeta.expiracion[0:2] }}</option>
                   </select><br>
                   <small class="mensaje-chico">Mensaje de error</small>
                 </div>
@@ -142,7 +144,7 @@
                 </div>
                 <div class="grupo-select chicos form-control fomr-control-chico">
                   <select name="year" id="selectYear">
-                    <option disabled selected value="Anio">Año</option>
+                    <option selected value="{{ tarjeta.expiracion[3:7] }}">{{ tarjeta.expiracion[3:7] }}</option>
                   </select><br>
                   <small class="mensaje-chico">Mensaje de error</small>
                 </div>
@@ -153,7 +155,7 @@
 
             <div class="grupo ccv chicos form-control">
               <label for="inputCCV">CCV <label style="color: red;">*</label></label>
-              <input type="text" id="inputCCV" maxlength="3"><br>
+              <input type="text" name="cvv" id="inputCCV" maxlength="3" value="{{ tarjeta.cvv }}"><br>
               <small class="mensaje-chico">Mensaje de error</small>
             </div>
           </div>
@@ -163,15 +165,15 @@
                 GUARDAR
               </button>
               <br>
-              <a href="./formulariosPaquete.html" class="btn-abrir-formulario salir">
+              <a href="{{ url_for('homeCliente') }}" class="btn-abrir-formulario salir">
                 SALIR
               </a>
             </div>
         </form>
       </div>
       <script src="https://kit.fontawesome.com/2c36e9b7b1.js" crossorigin="anonymous"></script>
-      <script src="../static/js/tarjetas/agregar.js"></script>
-      <script src="../static/js/validaciones/tarjeta.js"></script>
+      <script src="../../static/js/tarjetas/agregar.js"></script>
+      <script src="../../static/js/validaciones/tarjeta.js"></script>
   </main>
 
   <!-- Footer -->

@@ -543,7 +543,33 @@ h5 {
 	line-height: calc(0.1vh);
 }
 
+.info-message{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 30px 10px 30px;
+	margin: 0px 0px 10px 0px;
+	min-width: 50vh;
+	max-width: 120;
+	background-color: rgb(220, 255, 255);
+	border-radius: 5px;
+	border: 1px solid rgba(75, 209, 203, 0.2);
+	color: rgb(52, 131, 127);
+}
 
+.error-message{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 10px 30px 10px 30px;
+	margin: 0px 0px 10px 0px;
+	min-width: 50vh;
+	max-width: 120;
+	background-color: rgb(255, 201, 201);
+	border-radius: 5px;
+	border: 1px solid rgba(209, 75, 75, 0.2);
+	color: rgb(131, 52, 52);
+}
 /************************************************************************************
                                         Footer
 ************************************************************************************/
