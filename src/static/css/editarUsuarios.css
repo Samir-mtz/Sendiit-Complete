@@ -290,6 +290,7 @@ h5 {
 	border-radius: calc(2vh);
 }
 
+
 .botones {
 	display: flex;
 	justify-content: space-around;
@@ -368,6 +369,19 @@ h5 {
 .form-control.error small {
 	visibility: visible;
 	font-size: calc(1.5vh);
+}
+
+.noEditar {
+	justify-content: center;
+	align-items: center;
+	width: calc(45vh);
+	height: calc(2vh);
+	font-size: calc(1.8vh);
+	border: none;
+	border-radius: calc(2vh);
+	font-style: italic;
+	color: #777;
+	background-color: none;
 }
 
 /************************************************************************************

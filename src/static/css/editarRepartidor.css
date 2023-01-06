@@ -385,6 +385,19 @@ h5 {
 	font-size: calc(1.3vh);
 }
 
+.noEditar {
+	justify-content: center;
+	align-items: center;
+	width: calc(45vh);
+	height: calc(2vh);
+	font-size: calc(1.8vh);
+	border: none;
+	border-radius: calc(2vh);
+	font-style: italic;
+	color: #777;
+	background-color: none;
+}
+
 /************************************************************************************
                                         Footer
 ************************************************************************************/
