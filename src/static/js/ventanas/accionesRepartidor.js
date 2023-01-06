@@ -32,7 +32,7 @@ function estadoSiguiente(id){
 			}else if(dato == "EN CAMINO"){
 				siguiente="¿Desea actualizar el estado del paquete a \"ENTREGADO EN LOCKER DESTINO\"?"
 			}else if(dato == "ALMACEN"){
-				siguiente="¿Desea actualizar el estado del paquete a \"ALMACEN ENTREGADO\"?"
+				siguiente="¿Desea actualizar el estado del paquete a \"ENTREGADO EN ALMACEN\"?"
 			}
 			texto.innerHTML = siguiente;
 			}
