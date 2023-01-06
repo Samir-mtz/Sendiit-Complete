@@ -16,21 +16,21 @@
 <body>
 	<!-- Header -->
 	<header class="header">
-    <div class="logo">
-      <a href="{{ url_for('index') }}">
-        <img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
-      </a>
-    </div>
-    <div class="links">
-      <div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
-      <div class="link-header"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
-      <div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
-    </div>
-    <div class="botones">
-      <a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
-      <a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
-      <a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
-  </header>
+		<div class="logo">
+			<a href="{{ url_for('index') }}">
+				<img src="../static/img/empresa/logo.png" alt="Logo" class="logo-header" />
+			</a>
+		</div>
+		<div class="links">
+			<div class="link-header"><a href="{{ url_for('index') }}">Inicio</a></div>
+			<div class="link-header"><a href="{{ url_for('sucursales') }}">Sucursales</a></div>
+			<div class="link-header"><a href="{{ url_for('conocenos') }}">Conócenos</a></div>
+		</div>
+		<div class="botones">
+			<a href="{{ url_for('formularioEnvio') }}" class="boton-header botonEnviar">Enviar</a>
+			<a href="{{ url_for('login') }}" class="boton-header botonIngresar"> Ingresar </a>
+			<a href="{{ url_for('register') }}" class="boton-header botonRegistrarse"> Registrar </a>
+	</header>
 
 	<!-- Main -->
 	<main class="main">
@@ -52,13 +52,14 @@
 					{% endwith %}
 				</p>
 				<p class="textgeneral">
-					Hola <b>{{ nombre }}</b>, para continuar se requiere la validación del correo electrónico: <b>{{
-						email}}</b>
+					Hola <b>{{ nombre }}</b>, se te ha enviado un correo electrónico a <b>{{
+						email}}</b> con las instrucciones para finalizar tu proceso de registro y poder ingresar a tu
+					cuenta de usuario.
+
 				</p>
 				<br>
 				<p class="textgeneral">
-					Por favor revisa tus correos recibidos o en spam y sigue las instrucciones
-					enviadas.
+					Favor de revisar tus correos recibidos o spam.
 				</p>
 				<br><br>
 			</div>
