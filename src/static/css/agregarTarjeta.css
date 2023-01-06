@@ -360,10 +360,18 @@ h5 {
 }
 
 /* ---------- Contenedor Boton ----------*/
+.contenedor-btn {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: calc(30vh);
+}
+
 .contenedor-btn .btn-abrir-formulario {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: row;
 	width: calc(12vh);
 	height: calc(5vh);
 	font-size: calc(2vh);
@@ -378,8 +386,27 @@ h5 {
 	cursor: pointer;
 }
 
-.contenedor-btn .btn-abrir-formulario:hover {
-	background: #ffffff;
+.contenedor-btn a{
+	text-decoration: none;
+}
+
+.contenedor-btn .salir {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: row;
+	width: calc(12vh);
+	height: calc(5vh);
+	font-size: calc(2vh);
+	background: #e41f1a;
+	color: #ffffff;
+	position: relative;
+	top: -50%;
+	z-index: 10;
+	border-radius: calc(2vh);
+	transition: all 0.2s ease;
+	border: none;
+	cursor: pointer;
 }
 
 /* ---------- Formulario Tarjeta ----------*/
@@ -395,7 +422,7 @@ h5 {
 	border-radius: calc(2vh);
 	position: relative;
 	line-height: calc(3vh);
-	top: -25%;
+	top: -20%;
 	z-index: 10;
 	transition: clip-path 0.3s ease-out;
 }
@@ -410,7 +437,6 @@ h5 {
 	justify-content: center;
 	color: #000000;
 	font-size: calc(2vh);
-	
 }
 
 .formulario-tarjeta input,
@@ -422,6 +448,7 @@ h5 {
 	/* width: calc(40vh); */
 	transition: 0.3s ease all;
 	border-radius: calc(1.5vh);
+	margin-top: -5%;
 }
 
 .flexbox .chicos input,

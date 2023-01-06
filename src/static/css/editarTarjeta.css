@@ -428,7 +428,7 @@ h5 {
 	border-radius: calc(2vh);
 	position: relative;
 	line-height: calc(3vh);
-	top: -25%;
+	top: -20%;
 	z-index: 10;
 	transition: clip-path 0.3s ease-out;
 }
@@ -455,6 +455,7 @@ h5 {
 	/* width: calc(40vh); */
 	transition: 0.3s ease all;
 	border-radius: calc(1.5vh);
+	margin-top: -5%;
 }
 
 .flexbox .chicos input,
